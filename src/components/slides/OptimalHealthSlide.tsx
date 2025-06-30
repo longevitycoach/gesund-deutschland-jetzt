@@ -81,13 +81,13 @@ export const OptimalHealthSlide = () => {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Männer:</span>
                   <span className="font-bold text-red-600">
-                    ><AnimatedStatistic value={16} suffix=" g/dl" />
+                    {'>'}<AnimatedStatistic value={16} suffix=" g/dl" />
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Frauen:</span>
                   <span className="font-bold text-red-600">
-                    ><AnimatedStatistic value={14} suffix=" g/dl" />
+                    {'>'}<AnimatedStatistic value={14} suffix=" g/dl" />
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">
@@ -102,13 +102,13 @@ export const OptimalHealthSlide = () => {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Männer:</span>
                   <span className="font-bold text-orange-600">
-                    ><AnimatedStatistic value={120} suffix=" ng/ml" />
+                    {'>'}<AnimatedStatistic value={120} suffix=" ng/ml" />
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Frauen:</span>
                   <span className="font-bold text-orange-600">
-                    ><AnimatedStatistic value={60} suffix=" ng/ml" />
+                    {'>'}<AnimatedStatistic value={60} suffix=" ng/ml" />
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">
