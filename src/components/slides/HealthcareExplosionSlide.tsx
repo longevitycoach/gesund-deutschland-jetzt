@@ -41,9 +41,9 @@ export const HealthcareExplosionSlide = () => {
       <div className="text-center mb-8">
         <TrendingUp className="w-16 h-16 mx-auto text-red-500 mb-4 animate-pulse" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Das unbezahlbare Problem der Krankenkassen
+          Das Dilemma der deutschen Krankenkassen
         </h1>
-        <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Die Kostenexplosion im deutschen Gesundheitssystem
         </p>
       </div>
