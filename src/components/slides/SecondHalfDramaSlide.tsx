@@ -1,3 +1,4 @@
+
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -56,6 +57,75 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
       </div>
 
       <div className="max-w-5xl mx-auto space-y-8">
+        {/* Stanford Study Section */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+            🧬 Bahnbrechende Stanford-Studie: Die drei "Wellen des Alterns"
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-lg text-gray-700 mb-4">
+                Eine revolutionäre Studie der Stanford University mit <strong>4.263 Probanden</strong> zwischen 18 und 95 Jahren 
+                hat entdeckt, dass Altern nicht kontinuierlich verläuft, sondern in drei dramatischen "Wellen" geschieht:
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                  <div>
+                    <h4 className="font-semibold text-yellow-800">34 Jahre</h4>
+                    <p className="text-sm text-gray-600">Erste dramatische Alterungswelle</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                  <div>
+                    <h4 className="font-semibold text-orange-800">60 Jahre</h4>
+                    <p className="text-sm text-gray-600">Zweite dramatische Alterungswelle</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                  <div>
+                    <h4 className="font-semibold text-red-800">78 Jahre</h4>
+                    <p className="text-sm text-gray-600">Dritte dramatische Alterungswelle</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-4 p-4 bg-blue-100 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  <strong>81% der Probanden</strong> zeigten diese nicht-linearen Alterungsmuster. 
+                  Die Forscher analysierten 2.925 verschiedene Plasmaproteine.
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <img 
+                src="/lovable-uploads/a3e0947a-ac42-47b6-8816-a46969a884af.png" 
+                alt="Stanford Studie - Aging Waves Diagramm"
+                className="w-full h-auto rounded-lg shadow-lg border border-gray-200"
+              />
+              <p className="text-sm text-gray-600 mt-2">
+                Die drei "Wellen des Alterns" laut Stanford-Studie
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-6 p-4 bg-yellow-100 rounded-lg border border-yellow-300">
+            <h4 className="font-semibold text-yellow-800 mb-2">💡 Warum ist 35 Jahre kritisch?</h4>
+            <p className="text-yellow-800">
+              Dass 35 Jahre als kritisches Alter gilt, zeigt sich auch in der deutschen Gesundheitsvorsorge: 
+              Ab dem vollendeten 35. Lebensjahr haben gesetzlich Versicherte alle drei Jahre Anrecht auf einen 
+              allgemeinen Gesundheits-Check zur Früherkennung von Herz-Kreislauf-Erkrankungen, Nierenerkrankungen und Diabetes.
+            </p>
+          </div>
+        </div>
+
         <div className="bg-gradient-to-r from-red-50 to-orange-50 p-8 rounded-xl border border-red-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Die häufigsten Alterskrankheiten in Deutschland
