@@ -43,18 +43,18 @@ export const HealthcareExplosionSlide = () => {
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Das unbezahlbare Problem der Krankenkassen
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-600 max-w-4xl mx-auto">
           Die Kostenexplosion im deutschen Gesundheitssystem
         </p>
       </div>
 
       {/* Interactive Chart Section */}
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <HealthcareDataChart />
       </div>
 
       {/* Critical Alert Box */}
-      <div className="max-w-6xl mx-auto bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
+      <div className="max-w-4xl mx-auto bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
         <div className="text-center">
           <AlertTriangle className="w-12 h-12 mx-auto text-red-600 mb-4" />
           <h3 className="text-2xl font-bold text-red-800 mb-4">
@@ -83,7 +83,7 @@ export const HealthcareExplosionSlide = () => {
       </div>
 
       {/* NEW: Prevention Call-to-Action */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl border border-green-200">
+      <div className="max-w-4xl mx-auto bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl border border-green-200">
         <div className="text-center max-w-4xl mx-auto">
           <Heart className="w-16 h-16 mx-auto text-green-600 mb-6" />
           <h3 className="text-3xl font-bold text-green-800 mb-6">
@@ -107,7 +107,7 @@ export const HealthcareExplosionSlide = () => {
       </div>
 
       {/* Sources Section */}
-      <div className="mt-8 bg-gray-50 p-6 rounded-xl border border-gray-200">
+      <div className="max-w-4xl mx-auto mt-8 bg-gray-50 p-6 rounded-xl border border-gray-200">
         <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
           <ExternalLink className="w-5 h-5" />
           Verifizierte Quellen
