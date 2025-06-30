@@ -1,4 +1,4 @@
-import { TrendingUp, Target, Zap, Calendar } from 'lucide-react';
+import { TrendingUp, Target, Zap, Calendar, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 
 export const OnePercentMethodSlide = () => {
@@ -45,6 +45,18 @@ export const OnePercentMethodSlide = () => {
                 Olympiasieger und Weltrekordhalter innerhalb weniger Jahre
               </p>
             </div>
+          </div>
+          
+          <div className="mt-6 text-center">
+            <a 
+              href="https://jamesclear.com/marginal-gains"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Mehr über die Geschichte von James Clear
+            </a>
           </div>
         </div>
 
