@@ -1,3 +1,4 @@
+
 import { TrendingUp, AlertTriangle, Calculator, ExternalLink, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { HealthcareDataChart } from '@/components/HealthcareDataChart';
@@ -53,12 +54,15 @@ export const HealthcareExplosionSlide = () => {
       </div>
 
       {/* Critical Alert Box */}
-      <div className="bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
+      <div className="max-w-6xl mx-auto bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
         <div className="text-center">
           <AlertTriangle className="w-12 h-12 mx-auto text-red-600 mb-4" />
           <h3 className="text-2xl font-bold text-red-800 mb-4">
-            Das System kollabiert unter seinem eigenen Gewicht
+            Das Gesundheitssystem ist auf Krankheit, nicht auf Gesundheit fokusiert
           </h3>
+          <p className="text-lg text-red-700 mb-6 max-w-4xl mx-auto">
+            Ein System, das primär auf Behandlung statt Prävention setzt, wird langfristig nicht mehr tragbar sein.
+          </p>
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="bg-white/70 p-4 rounded-xl">
