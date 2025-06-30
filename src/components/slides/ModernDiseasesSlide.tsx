@@ -64,7 +64,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               <div className="text-2xl font-bold text-blue-600">
                 <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
-              <p className="text-sm text-blue-700">sitzen Deutsche täglich</p>
+              <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
             </div>
           </div>
 
@@ -76,6 +76,9 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <AnimatedStatistic value={50} suffix="%" />
               </div>
               <p className="text-sm text-orange-700">der täglichen Energie aus stark verarbeiteten Lebensmitteln</p>
+              <div className="text-sm text-orange-700 font-semibold">
+                Erhöhtes Risiko für Diabetes, Herzerkrankungen
+              </div>
             </div>
           </div>
 
@@ -153,7 +156,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <span className="font-bold text-red-600">+6%</span>
               </div>
               <div className="text-sm text-gray-700">
-                80% Erschöpfung, 52% Schlafstörungen bei Gestressten
+                80% Erschöpfung, 52% Schlafstörungen
               </div>
             </div>
             <p className="text-xs text-gray-500 mt-3">Quelle: TK-Stressstudie 2021, RKI DEGS1</p>
