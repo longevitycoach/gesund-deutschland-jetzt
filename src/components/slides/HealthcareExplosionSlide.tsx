@@ -100,7 +100,7 @@ export const HealthcareExplosionSlide = () => {
         <LifestylePoll
           slideId="healthcare-explosion"
           questionId="monthly-health-spending"
-          question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? (Gesundes Essen, Sport, Nährungsergänzungsmittel, medizinische Tests)"
+          question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? <br>(Gesundes Essen, Sport, Nährungsergänzungsmittel, medizinische Tests)"
           options={spendingOptions}
           onAnswer={handlePollAnswer}
         />
