@@ -1,3 +1,4 @@
+
 import { Heart, AlertTriangle, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -11,33 +12,33 @@ interface WelcomeSlideProps {
 }
 
 export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
-  const awarenessOptions = [
+  const personalChoiceOptions = [
     { 
       id: '1', 
-      text: 'Nein, diese Zahlen schockieren mich', 
-      votes: 85,
-      motivationalResponse: 'Gut, dass Sie jetzt Bescheid wissen! Bewusstsein ist der erste Schritt zur Veränderung. Sie haben noch alle Möglichkeiten, Ihre Zukunft zu gestalten.',
+      text: 'Länger leben - auch mit gesundheitlichen Einschränkungen', 
+      votes: 45,
+      motivationalResponse: 'Verständlich - Zeit ist kostbar! Doch die Longevity-Forschung zeigt: Sie müssen sich nicht entscheiden. Mit der richtigen Prävention können Sie beides haben!',
       icon: <SentimentVeryDissatisfiedIcon className="w-5 h-5" />
     },
     { 
       id: '2', 
-      text: 'Ich hatte eine Ahnung, aber nicht so konkret', 
+      text: 'Gesünder leben im hohen Alter - auch wenn es kürzer ist', 
       votes: 120,
-      motivationalResponse: 'Ihre Ahnung war richtig! Jetzt haben Sie die konkreten Zahlen. Das Gute: Sie sind früh dran und können noch viel beeinflussen.',
+      motivationalResponse: 'Kluge Priorität! Lebensqualität ist entscheidend. Die gute Nachricht: Gesunde Jahre führen oft automatisch zu mehr Lebensjahren.',
       icon: <SentimentNeutralIcon className="w-5 h-5" />
     },
     { 
       id: '3', 
-      text: 'Ja, das war mir bereits bewusst', 
-      votes: 45,
-      motivationalResponse: 'Perfekt! Sie gehören zu den Informierten. Jetzt geht es darum, vom Wissen ins Handeln zu kommen.',
+      text: 'Beides - länger UND gesünder leben', 
+      votes: 180,
+      motivationalResponse: 'Perfekt! Das ist genau das Ziel der Longevity-Medizin. Mit den richtigen Strategien ist beides erreichbar - Gesundheitsspanne = Lebensspanne!',
       icon: <SentimentSatisfiedIcon className="w-5 h-5" />
     },
     { 
       id: '4', 
-      text: 'Ich lebe bereits präventiv und gesundheitsbewusst', 
+      text: 'Ich denke nicht über das Altern nach', 
       votes: 25,
-      motivationalResponse: 'Exzellent! Sie sind bereits auf dem richtigen Weg. Lassen Sie uns schauen, wie Sie Ihre Strategie noch optimieren können.',
+      motivationalResponse: 'Das ist menschlich - aber gefährlich! Je früher Sie handeln, desto mehr können Sie beeinflussen. Die Zukunft beginnt heute!',
       icon: <SentimentVerySatisfiedIcon className="w-5 h-5" />
     }
   ];
@@ -82,9 +83,45 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         </div>
       </div>
 
+      {/* Enhanced Health Breakdown */}
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200 max-w-4xl mx-auto">
+        <h2 className="text-xl font-bold text-center text-gray-800 mb-4">
+          📊 Aufschlüsselung der Gesundheitsspanne
+        </h2>
+        
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="text-center p-4 bg-green-100 rounded-lg border border-green-200">
+            <div className="text-2xl font-bold text-green-700 mb-2">
+              <AnimatedStatistic value={50} suffix="%" />
+            </div>
+            <h4 className="text-sm font-semibold text-green-800 mb-1">Gute Gesundheit</h4>
+            <p className="text-xs text-green-600">Vollständig mobil und unabhängig</p>
+          </div>
+
+          <div className="text-center p-4 bg-orange-100 rounded-lg border border-orange-200">
+            <div className="text-2xl font-bold text-orange-700 mb-2">
+              <AnimatedStatistic value={30} suffix="%" />
+            </div>
+            <h4 className="text-sm font-semibold text-orange-800 mb-1">Moderate Gesundheit</h4>
+            <p className="text-xs text-orange-600">Eingeschränkt mobil, 1-2 chronische Krankheiten</p>
+          </div>
+
+          <div className="text-center p-4 bg-red-100 rounded-lg border border-red-200">
+            <div className="text-2xl font-bold text-red-700 mb-2">
+              <AnimatedStatistic value={20} suffix="%" />
+            </div>
+            <h4 className="text-sm font-semibold text-red-800 mb-1">Schlechte Gesundheit</h4>
+            <p className="text-xs text-red-600">Mehrere chronische Krankheiten, Pflegebedürftigkeit</p>
+          </div>
+        </div>
+      </div>
+
       <div className="mt-8 p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-200">
         <p className="text-lg font-semibold text-orange-800">
           🚨 Das bedeutet: Fast ein Fünftel Ihres Lebens verbringen Sie voraussichtlich krank!
+        </p>
+        <p className="text-md text-orange-700 mt-2">
+          Weitere 30% in moderater Gesundheit mit Einschränkungen
         </p>
       </div>
 
@@ -92,9 +129,9 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
       <div className="mt-8">
         <LifestylePoll
           slideId="welcome"
-          questionId="awareness-check"
-          question="Waren Ihnen diese Zahlen über die Gesundheitsspanne in Deutschland bereits bewusst?"
-          options={awarenessOptions}
+          questionId="personal-choice"
+          question="Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?"
+          options={personalChoiceOptions}
           onAnswer={onLifestyleAnswer}
         />
       </div>
