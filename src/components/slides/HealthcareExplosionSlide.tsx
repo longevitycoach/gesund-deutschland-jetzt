@@ -66,8 +66,8 @@ export const HealthcareExplosionSlide = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="bg-white/70 p-4 rounded-xl">
-                <div className="text-2xl font-bold text-red-600 mb-2">2,2x</div>
-                <p className="text-sm text-red-800">mehr Pflegebedürftige bis 2023</p>
+                <div className="text-2xl font-bold text-red-600 mb-2">100%</div>
+                <p className="text-sm text-red-800">mehr Pflegebedürftige bis 2040</p>
               </div>
               <div className="bg-white/70 p-4 rounded-xl">
                 <div className="text-2xl font-bold text-red-600 mb-2">58%</div>
