@@ -52,36 +52,6 @@ export const HealthcareExplosionSlide = () => {
         <HealthcareDataChart />
       </div>
 
-      {/* Key Statistics */}
-      <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border border-red-200">
-          <Calculator className="w-10 h-10 text-red-600 mb-3" />
-          <h3 className="text-xl font-semibold text-red-800 mb-3">Gesundheitsausgaben 2020</h3>
-          <div className="text-3xl font-bold text-red-600">
-            <AnimatedStatistic value={440.6} suffix=" Mrd. €" />
-          </div>
-          <p className="text-sm text-red-700 mt-2">Corona-Effekte eingerechnet</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
-          <TrendingUp className="w-10 h-10 text-orange-600 mb-3" />
-          <h3 className="text-xl font-semibold text-orange-800 mb-3">BCG-Prognose 2040</h3>
-          <div className="text-3xl font-bold text-orange-600">
-            <AnimatedStatistic value={700} suffix=" Mrd. €" />
-          </div>
-          <p className="text-sm text-orange-700 mt-2">+58% Kostensteigerung</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
-          <AlertTriangle className="w-10 h-10 text-purple-600 mb-3" />
-          <h3 className="text-xl font-semibold text-purple-800 mb-3">Pflegebedürftige</h3>
-          <div className="text-3xl font-bold text-purple-600">
-            +<AnimatedStatistic value={117} suffix="%" />
-          </div>
-          <p className="text-sm text-purple-700 mt-2">2013-2023: 2,6 → 5,69 Mio.</p>
-        </div>
-      </div>
-
       {/* Comparison with EU */}
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
         <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
