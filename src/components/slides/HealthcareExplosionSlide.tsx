@@ -1,9 +1,40 @@
-
-import { TrendingUp, AlertTriangle, Calculator, ExternalLink } from 'lucide-react';
+import { TrendingUp, AlertTriangle, Calculator, ExternalLink, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { HealthcareDataChart } from '@/components/HealthcareDataChart';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
 export const HealthcareExplosionSlide = () => {
+  const handlePollAnswer = (slideId: string, questionId: string, optionId: string) => {
+    console.log('Poll answer:', { slideId, questionId, optionId });
+  };
+
+  const spendingOptions = [
+    {
+      id: 'under50',
+      text: 'Unter 50€ pro Monat',
+      votes: 45,
+      motivationalResponse: 'Schon kleine Beträge können große Wirkung haben! Beginnen Sie mit den Grundlagen: Vollwertige Ernährung und regelmäßige Bewegung sind die besten Investitionen.'
+    },
+    {
+      id: '50to100',
+      text: '50-100€ pro Monat',
+      votes: 32,
+      motivationalResponse: 'Ein solides Budget für Ihre Gesundheit! Sie können bereits hochwertige Nahrungsmittel, Sport-Mitgliedschaften und grundlegende Gesundheitstests finanzieren.'
+    },
+    {
+      id: '100to200',
+      text: '100-200€ pro Monat',
+      votes: 18,
+      motivationalResponse: 'Hervorragend! Mit diesem Budget können Sie umfassende Prävention betreiben: Premium-Supplements, Personal Training und regelmäßige Vorsorgeuntersuchungen.'
+    },
+    {
+      id: 'over200',
+      text: 'Über 200€ pro Monat',
+      votes: 12,
+      motivationalResponse: 'Sie sind ein Vorbild für proaktive Gesundheitsvorsorge! Nutzen Sie dieses Budget für maßgeschneiderte Gesundheitsprogramme und innovative Präventionsmaßnahmen.'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -119,6 +150,39 @@ export const HealthcareExplosionSlide = () => {
         </div>
       </div>
 
+      {/* NEW: Prevention Call-to-Action */}
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl border border-green-200">
+        <div className="text-center max-w-4xl mx-auto">
+          <Heart className="w-16 h-16 mx-auto text-green-600 mb-6" />
+          <h3 className="text-3xl font-bold text-green-800 mb-6">
+            Die Lösung liegt in Ihren Händen
+          </h3>
+          <p className="text-xl text-green-700 mb-8 leading-relaxed">
+            Setzen Sie auf Prävention und stärken Sie Ihre Gesundheit jetzt, um im Alter voller Lebensfreude und Unabhängigkeit zu einem überlasteten Gesundheitssystem zu sein.
+          </p>
+          <div className="bg-white/80 p-6 rounded-xl">
+            <h4 className="text-lg font-semibold text-green-800 mb-4">
+              💡 Investieren Sie heute in Ihre Gesundheit von morgen
+            </h4>
+            <p className="text-green-700">
+              Während das System kollabiert, können Sie sich schützen durch bewusste Ernährung, 
+              regelmäßige Bewegung, gezielte Supplements und präventive Gesundheitstests.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* NEW: Personal Spending Poll */}
+      <div className="max-w-4xl mx-auto">
+        <LifestylePoll
+          slideId="healthcare-explosion"
+          questionId="monthly-health-spending"
+          question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? (Gesundes Essen, Sport, Supplements, medizinische Tests)"
+          options={spendingOptions}
+          onAnswer={handlePollAnswer}
+        />
+      </div>
+
       {/* Sources Section */}
       <div className="mt-8 bg-gray-50 p-6 rounded-xl border border-gray-200">
         <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -141,7 +205,7 @@ export const HealthcareExplosionSlide = () => {
               </li>
               <li>
                 <a 
-                  href="https://web-assets.bcg.com/a1/e5/29e680e2480894bde866bc617562/perspektive-fur-ein-nachhaltiges-gesundheitsystem.pdf" 
+                  href="https://web-assets.bcg.com/a1/e5/29e680e2480894bde866bc617562/perspektive-fur-ein-nachhaltiges-gesundheitssystem.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 hover:underline"
