@@ -1,4 +1,3 @@
-
 import { TrendingUp, Target, Zap, Calendar } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 
@@ -17,44 +16,6 @@ export const OnePercentMethodSlide = () => {
       </div>
 
       <div className="max-w-5xl mx-auto space-y-8">
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-200">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            📈 Die Macht der kleinen Schritte
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-green-800">✅ 1% besser jeden Tag</h3>
-              <div className="bg-white p-6 rounded-xl shadow-lg">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    <AnimatedStatistic value={37} suffix="x" />
-                  </div>
-                  <p className="text-lg text-green-700 font-semibold">besser nach einem Jahr</p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    1,01^365 = 37,78x Verbesserung
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-red-800">❌ 1% schlechter jeden Tag</h3>
-              <div className="bg-white p-6 rounded-xl shadow-lg">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-red-600 mb-2">
-                    Nur <AnimatedStatistic value={0.03} suffix="x" />
-                  </div>
-                  <p className="text-lg text-red-700 font-semibold">übrig nach einem Jahr</p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    0,99^365 = 0,03x - fast bei Null
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
           <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
             🚀 Erfolgsgeschichte: Britisches Radsport-Team
