@@ -1,5 +1,5 @@
 
-import { TrendingDown, Muscle, Zap, Flame } from 'lucide-react';
+import { TrendingDown, Dumbbell, Zap, Flame } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 
 export const SilentDeclineSlide = () => {
@@ -29,7 +29,7 @@ export const SilentDeclineSlide = () => {
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-xl shadow-lg border border-red-200">
-            <Muscle className="w-10 h-10 text-red-500 mb-3" />
+            <Dumbbell className="w-10 h-10 text-red-500 mb-3" />
             <h3 className="text-lg font-semibold text-red-800 mb-2">Muskelabbau</h3>
             <div className="text-2xl font-bold text-red-600 mb-2">
               <AnimatedStatistic value={1} />-<AnimatedStatistic value={2} suffix="%" />
