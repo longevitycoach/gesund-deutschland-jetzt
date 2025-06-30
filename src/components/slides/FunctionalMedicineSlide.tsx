@@ -1,4 +1,3 @@
-
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
 import { InteractivePoll } from '@/components/InteractivePoll';
 
@@ -181,17 +180,6 @@ export const FunctionalMedicineSlide = () => {
               </li>
             </ul>
           </div>
-        </div>
-
-        <div className="bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
-          <h3 className="text-2xl font-bold text-center text-red-800 mb-4">
-            🚨 Das große Dilemma
-          </h3>
-          <p className="text-lg text-center text-red-700 leading-relaxed">
-            Die besten Ärzte für Prävention und Longevity sind verfügbar, 
-            aber nur für die wenigen, die es sich leisten können. 
-            Währenddessen altert die Mehrheit der Bevölkerung ungeplant in die Krankheit hinein.
-          </p>
         </div>
 
         <div className="text-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl">
