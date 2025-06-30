@@ -142,10 +142,6 @@ export const HealthcareDataChart = () => {
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
-          <div className="mt-4 text-sm text-gray-600">
-            <p><strong>Quelle:</strong> Destatis (2000-2020), BCG-Analyse "Nachhaltiges Gesundheitssystem"</p>
-            <p><strong>Anmerkung:</strong> 2020-Werte beinhalten Corona-Effekte. BCG rechnet mit 600-700 Mrd. € bis 2040.</p>
-          </div>
         </div>
       )}
 
@@ -194,10 +190,6 @@ export const HealthcareDataChart = () => {
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
-          <div className="mt-4 text-sm text-gray-600">
-            <p><strong>Quelle:</strong> Sozialpolitik-Aktuell, Bertelsmann-Stiftung Bevölkerungsvorausberechnung</p>
-            <p><strong>Anmerkung:</strong> Demografische Anteile beziehen sich auf standardisierte Altersgruppen ≥65 Jahre.</p>
-          </div>
         </div>
       )}
 
