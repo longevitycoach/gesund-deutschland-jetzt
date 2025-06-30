@@ -1,3 +1,4 @@
+
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -113,8 +114,11 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
             </ul>
           </div>
 
-          <div>
-            
+          <div className="bg-white p-6 rounded-xl shadow-lg">
+            <h4 className="text-lg font-semibold text-gray-800 mb-3">Die Lösung:</h4>
+            <p className="text-gray-700">
+              Bewusste Veränderungen in Bewegung, Ernährung und Stressmanagement können diese Entwicklung stoppen.
+            </p>
           </div>
         </div>
 
@@ -124,15 +128,16 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
           </p>
         </div>
 
-      {/* Interactive Poll moved to end */}
-      <div className="mt-8">
-        <LifestylePoll
-          slideId="modern-diseases"
-          questionId="sitting-hours"
-          question="Wie viele Stunden sitzen Sie täglich?"
-          options={pollOptions}
-          onAnswer={onLifestyleAnswer}
-        />
+        {/* Interactive Poll moved to end */}
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="modern-diseases"
+            questionId="sitting-hours"
+            question="Wie viele Stunden sitzen Sie täglich?"
+            options={pollOptions}
+            onAnswer={onLifestyleAnswer}
+          />
+        </div>
       </div>
     </div>
   );
