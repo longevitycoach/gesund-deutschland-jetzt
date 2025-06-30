@@ -115,7 +115,7 @@ export const FinalDecisionSlide = () => {
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-purple-600 font-bold text-xl">3</span>
               </div>
-              <h4 className="font-semibold text-purple-800 mb-2">1%-Methode</h4>
+              <h4 className="font-semibold text-purple-800 mb-2">Kleine Veränderungen</h4>
               <p className="text-sm text-gray-600">
                 Starten Sie heute mit der 1%-Methode
               </p>
