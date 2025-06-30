@@ -185,13 +185,6 @@ export const PreventionRevolutionSlide = ({ onLifestyleAnswer }: PreventionRevol
             onAnswer={onLifestyleAnswer}
           />
         </div>
-
-        <div className="text-center p-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-xl">
-          <h3 className="text-2xl font-bold mb-3">⚡ Die Zeit ist JETZT!</h3>
-          <p className="text-xl">
-            Jeder Tag, den Sie warten, ist ein verlorener Tag für Ihre Gesundheit.
-          </p>
-        </div>
       </div>
     </div>
   );
