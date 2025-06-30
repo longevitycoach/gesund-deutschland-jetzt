@@ -1,4 +1,5 @@
 
+
 import { Heart, Clock, Target, Star } from 'lucide-react';
 
 export const FinalDecisionSlide = () => {
@@ -167,8 +168,6 @@ export const FinalDecisionSlide = () => {
         </div>
 
         <div className="text-center p-8 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-xl">
-          <h3 className="text-3xl font-bold mb-6">Nehmen Sie sich jetzt die Zeit</h3>
-          
           <div className="text-2xl font-bold mb-4">
             "Wer sich heute keine Zeit für seine Gesundheit nimmt, 
             wird sich später sehr viel Zeit für seine Krankheiten nehmen müssen."
@@ -181,3 +180,4 @@ export const FinalDecisionSlide = () => {
     </div>
   );
 };
+
