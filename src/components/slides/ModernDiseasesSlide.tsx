@@ -171,7 +171,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
             <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-red-500" />
-              Deutschland vs. EU: Dramatische Entwicklung
+              Deutschland: Dramatischer Trend
             </h4>
             <div className="space-y-4">
               <div>
