@@ -1,3 +1,4 @@
+
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -100,13 +101,6 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
                     <div>• Lebenserwartung sinkt rapide ohne Intervention</div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="mt-4 p-4 bg-blue-100 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  <strong>81% der Probanden</strong> zeigten diese drei deutlichen Alterungswellen. 
-                  Die Veränderungen sind wissenschaftlich messbar und betreffen verschiedene Körpersysteme gleichzeitig.
-                </p>
               </div>
             </div>
             
