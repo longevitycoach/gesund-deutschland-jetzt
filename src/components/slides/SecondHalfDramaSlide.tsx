@@ -1,3 +1,4 @@
+
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -59,38 +60,47 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
         {/* Stanford Study Section */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            🧬 Bahnbrechende Stanford-Studie: Die drei "Wellen des Alterns"
+            🧬 Bahnbrechende Stanford-Studie: Der Alterungsprozess im Detail
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-lg text-gray-700 mb-4">
                 Eine revolutionäre Studie der Stanford University mit <strong>4.263 Probanden</strong> zwischen 18 und 95 Jahren 
-                hat entdeckt, dass Altern nicht kontinuierlich verläuft, sondern in drei dramatischen "Wellen" geschieht:
+                hat den Alterungsprozess detailliert erforscht. Die Forscher analysierten <strong>2.925 verschiedene Plasmaproteine</strong> 
+                und entdeckten spezifische Veränderungen in verschiedenen Lebensphasen:
               </p>
               
               <div className="space-y-4">
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-10 h-8 bg-cyan-500 rounded flex items-center justify-center text-white font-bold text-sm">25-30</div>
                   <div>
-                    <h4 className="font-semibold text-yellow-800">34 Jahre</h4>
-                    <p className="text-sm text-gray-600">Erste dramatische Alterungswelle</p>
+                    <h4 className="font-semibold text-cyan-800">Erste Hautveränderungen</h4>
+                    <p className="text-sm text-gray-600">Beginnender Kollagenabbau wird messbar</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-10 h-8 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-sm">30-35</div>
                   <div>
-                    <h4 className="font-semibold text-orange-800">60 Jahre</h4>
-                    <p className="text-sm text-gray-600">Zweite dramatische Alterungswelle</p>
+                    <h4 className="font-semibold text-orange-800">Gelenkprobleme beginnen</h4>
+                    <p className="text-sm text-gray-600">Hormonelle Veränderungen setzen ein</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-10 h-8 bg-teal-600 rounded flex items-center justify-center text-white font-bold text-sm">35-45</div>
                   <div>
-                    <h4 className="font-semibold text-red-800">78 Jahre</h4>
-                    <p className="text-sm text-gray-600">Dritte dramatische Alterungswelle</p>
+                    <h4 className="font-semibold text-teal-800">Herz-Kreislauf-Probleme</h4>
+                    <p className="text-sm text-gray-600">Stoffwechselprobleme nehmen zu</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                  <div className="w-10 h-8 bg-red-500 rounded flex items-center justify-center text-white font-bold text-sm">40-50</div>
+                  <div>
+                    <h4 className="font-semibold text-red-800">Kognitive Veränderungen</h4>
+                    <p className="text-sm text-gray-600">Werden messbar und dokumentierbar</p>
                   </div>
                 </div>
               </div>
@@ -98,19 +108,19 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
               <div className="mt-4 p-4 bg-blue-100 rounded-lg">
                 <p className="text-sm text-blue-800">
                   <strong>81% der Probanden</strong> zeigten diese nicht-linearen Alterungsmuster. 
-                  Die Forscher analysierten 2.925 verschiedene Plasmaproteine.
+                  Die Veränderungen sind wissenschaftlich messbar und betreffen verschiedene Körpersysteme.
                 </p>
               </div>
             </div>
             
             <div className="text-center">
               <img 
-                src="/lovable-uploads/a3e0947a-ac42-47b6-8816-a46969a884af.png" 
-                alt="Stanford Studie - Aging Waves Diagramm"
+                src="/lovable-uploads/1f88dd80-6d79-4f77-9ea7-c5402509b727.png" 
+                alt="Aging Process Timeline - Alterungsprozess nach Körperbereichen"
                 className="w-full h-auto rounded-lg shadow-lg border border-gray-200"
               />
               <p className="text-sm text-gray-600 mt-2">
-                Die drei "Wellen des Alterns" laut Stanford-Studie
+                Alterungsprozess nach Körperbereichen und Lebensjahren
               </p>
             </div>
           </div>
