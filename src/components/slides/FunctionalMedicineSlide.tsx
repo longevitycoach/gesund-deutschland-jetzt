@@ -1,3 +1,4 @@
+
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
 import { InteractivePoll } from '@/components/InteractivePoll';
 
@@ -86,51 +87,92 @@ export const FunctionalMedicineSlide = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            💡 Ihr revolutionärer Ansatz
+        <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-xl border border-gray-200">
+          <h3 className="text-3xl font-bold text-center text-gray-800 mb-8">
+            💡 Standard Medizin vs. Funktionelle Medizin
           </h3>
           
-          <div className="space-y-4">
-            <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
-              </li>
-            </ul>
-          </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-green-800">✅ Funktionelle Medizin arbeitet mit:</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Optimalen Blutwerten</strong> - nicht Durchschnittswerten</span>
+            {/* Standard Medizin */}
+            <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+              <h4 className="text-2xl font-bold text-red-800 mb-6 text-center">❌ Standard-Medizin</h4>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-red-700">Durchschnittswerte</span>
+                    <p className="text-sm text-gray-600 mt-1">Arbeitet mit Normalwerten der kranken Bevölkerung</p>
+                  </div>
                 </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Ursachenforschung</strong> - statt Symptombehandlung</span>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-red-700">Symptombehandlung</span>
+                    <p className="text-sm text-gray-600 mt-1">Behandelt Symptome, Ursachen bleiben oft unentdeckt</p>
+                  </div>
                 </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Individueller Behandlung</strong> - jeder Mensch ist einzigartig</span>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-red-700">Einheitsbehandlung</span>
+                    <p className="text-sm text-gray-600 mt-1">Standardprotokoll für alle Patienten gleich</p>
+                  </div>
                 </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Präventivem Handeln</strong> - bevor Krankheiten entstehen</span>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-red-700">Reaktives Handeln</span>
+                    <p className="text-sm text-gray-600 mt-1">Behandlung erst wenn Krankheit bereits da ist</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-red-700">Kassenzulassung</span>
+                    <p className="text-sm text-gray-600 mt-1">Behandlung wird von Krankenkassen übernommen</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Funktionelle Medizin */}
+            <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
+              <h4 className="text-2xl font-bold text-green-800 mb-6 text-center">✅ Funktionelle Medizin</h4>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-green-700">Optimale Blutwerte</span>
+                    <p className="text-sm text-gray-600 mt-1">Orientiert sich an Werten gesunder, vitaler Menschen</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-green-700">Ursachenforschung</span>
+                    <p className="text-sm text-gray-600 mt-1">Sucht und behandelt die Wurzel des Problems</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-green-700">Individuelle Behandlung</span>
+                    <p className="text-sm text-gray-600 mt-1">Maßgeschneiderte Therapie für jeden Menschen</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-green-700">Präventives Handeln</span>
+                    <p className="text-sm text-gray-600 mt-1">Verhindert Krankheiten bevor sie entstehen</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                  <div>
+                    <span className="font-semibold text-green-700">Selbstzahler</span>
+                    <p className="text-sm text-gray-600 mt-1">Kosten müssen privat getragen werden</p>
+                  </div>
                 </li>
               </ul>
             </div>
