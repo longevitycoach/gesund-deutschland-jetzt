@@ -1,4 +1,3 @@
-
 import { Heart, Clock, Target, Star } from 'lucide-react';
 
 export const FinalDecisionSlide = () => {
@@ -98,7 +97,7 @@ export const FinalDecisionSlide = () => {
               </div>
               <h4 className="font-semibold text-blue-800 mb-2">Umfassende Tests</h4>
               <p className="text-sm text-gray-600">
-                Lassen Sie Ihre Biomarker umfassend testen
+                Lassen Sie ein großes Blutbild machen - die Krankenkassen bezahlen es ab dem 35. Lebensjahr
               </p>
             </div>
 
