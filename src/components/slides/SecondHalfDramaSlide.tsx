@@ -156,20 +156,6 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
           />
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-100 to-orange-100 p-8 rounded-xl border border-yellow-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
-            💰 Die finanziellen Folgen
-          </h3>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-orange-600 mb-2">
-              <AnimatedStatistic value={424000} prefix="€ " />
-            </div>
-            <p className="text-lg text-gray-700">
-              So viel kostet eine durchschnittliche Pflegebedürftigkeit über 8 Jahre
-            </p>
-          </div>
-        </div>
-
         <div className="text-center p-6 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl">
           <h3 className="text-2xl font-bold mb-3">🎯 Aber es gibt einen anderen Weg!</h3>
           <p className="text-xl">
