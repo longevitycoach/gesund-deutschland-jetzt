@@ -1,14 +1,33 @@
-
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
-import { InteractivePoll } from '@/components/InteractivePoll';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
 export const ModernDiseasesSlide = () => {
   const pollOptions = [
-    { id: '1', text: 'Weniger als 4 Stunden', votes: 15 },
-    { id: '2', text: '4-6 Stunden', votes: 45 },
-    { id: '3', text: '6-8 Stunden', votes: 120 },
-    { id: '4', text: 'Mehr als 8 Stunden', votes: 85 }
+    { 
+      id: '1', 
+      text: 'Weniger als 4 Stunden', 
+      votes: 15,
+      motivationalResponse: 'Hervorragend! Sie gehören zur gesunden Minderheit. Achten Sie darauf, auch aktive Pausen einzubauen - das optimiert Ihre Gesundheit zusätzlich!'
+    },
+    { 
+      id: '2', 
+      text: '4-6 Stunden', 
+      votes: 45,
+      motivationalResponse: 'Noch im akzeptablen Bereich! Versuchen Sie, alle 60 Minuten aufzustehen und sich zu bewegen. Schon 2 Minuten können den Unterschied machen.'
+    },
+    { 
+      id: '3', 
+      text: '6-8 Stunden', 
+      votes: 120,
+      motivationalResponse: 'Achtung - Sie befinden sich in der Risikozone! Planen Sie bewusst Stehpausen ein. Ein höhenverstellbarer Schreibtisch könnte eine Investition in Ihre Gesundheit sein.'
+    },
+    { 
+      id: '4', 
+      text: 'Mehr als 8 Stunden', 
+      votes: 85,
+      motivationalResponse: 'Höchste Priorität für Veränderung! Langes Sitzen ist das neue Rauchen. Starten Sie sofort mit 5-Minuten-Bewegungspausen alle Stunde.'
+    }
   ];
 
   return (
@@ -24,6 +43,16 @@ export const ModernDiseasesSlide = () => {
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6">
+        {/* Interactive Poll */}
+        <div className="mb-8">
+          <LifestylePoll
+            slideId="modern-diseases"
+            questionId="sitting-hours"
+            question="Wie viele Stunden sitzen Sie täglich?"
+            options={pollOptions}
+          />
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
             <Smartphone className="w-10 h-10 text-blue-600 mb-3" />
@@ -83,10 +112,7 @@ export const ModernDiseasesSlide = () => {
           </div>
 
           <div>
-            <InteractivePoll
-              question="Wie viele Stunden sitzen Sie täglich?"
-              options={pollOptions}
-            />
+            
           </div>
         </div>
 

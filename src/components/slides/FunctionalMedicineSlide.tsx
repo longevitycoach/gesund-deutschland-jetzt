@@ -1,7 +1,14 @@
-
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
+import { InteractivePoll } from '@/components/InteractivePoll';
 
 export const FunctionalMedicineSlide = () => {
+  const pollOptions = [
+    { id: '1', text: 'Ja, regelmäßig beim Hausarzt', votes: 45 },
+    { id: '2', text: 'Nur bei akuten Beschwerden', votes: 120 },
+    { id: '3', text: 'Selten, ich fühle mich gesund', votes: 85 },
+    { id: '4', text: 'Nein, ich vermeide Arztbesuche', votes: 25 }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -20,7 +27,7 @@ export const FunctionalMedicineSlide = () => {
             Die Visionäre der funktionellen Medizin
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-lg hover-lift">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -62,7 +69,29 @@ export const FunctionalMedicineSlide = () => {
                 </p>
               </div>
             </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg hover-lift">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Stethoscope className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-orange-800 mb-2">
+                  Dr. Ulrich Strunz
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Internist & Molekularmedizin-Pionier (im Ruhestand)
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Interactive Poll */}
+        <div className="my-8">
+          <InteractivePoll
+            question="Wie häufig lassen Sie präventive Gesundheitschecks durchführen?"
+            options={pollOptions}
+          />
         </div>
 
         <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-200">

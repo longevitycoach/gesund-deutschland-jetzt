@@ -1,8 +1,35 @@
-
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
 export const LongevityVisionSlide = () => {
+  const lifestyleOptions = [
+    { 
+      id: '1', 
+      text: 'Ja, ich lebe bereits sehr gesundheitsbewusst', 
+      votes: 25,
+      motivationalResponse: 'Großartig! Sie sind auf dem besten Weg zu einer langen Gesundheitsspanne. Bleiben Sie konsequent - Sie investieren in die wertvollsten Jahre Ihres Lebens!'
+    },
+    { 
+      id: '2', 
+      text: 'Teilweise - ich achte auf einige Bereiche', 
+      votes: 95,
+      motivationalResponse: 'Ein solider Grundstein! Identifizieren Sie 1-2 Bereiche für Verbesserungen. Kleine, konstante Schritte führen zu großen Veränderungen.'
+    },
+    { 
+      id: '3', 
+      text: 'Kaum - ich lebe eher ungesund', 
+      votes: 110,
+      motivationalResponse: 'Ehrlichkeit ist der erste Schritt zur Veränderung! Es ist nie zu spät - starten Sie mit einer kleinen Gewohnheit und bauen Sie darauf auf.'
+    },
+    { 
+      id: '4', 
+      text: 'Ich weiß nicht, was gesund ist', 
+      votes: 35,
+      motivationalResponse: 'Perfekt - Sie sind bereit zu lernen! Das ist die beste Ausgangslage. Jede Information, die Sie heute mitnehmen, kann Ihr Leben verlängern.'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -16,6 +43,16 @@ export const LongevityVisionSlide = () => {
       </div>
 
       <div className="max-w-6xl mx-auto space-y-8">
+        {/* Interactive Poll */}
+        <div className="mb-8">
+          <LifestylePoll
+            slideId="longevity-vision"
+            questionId="health-awareness"
+            question="Wie bewusst leben Sie bereits gesundheitsorientiert?"
+            options={lifestyleOptions}
+          />
+        </div>
+
         {/* Historical Timeline */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">

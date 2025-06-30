@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
 import { ProgressBar } from '@/components/ProgressBar';
+import { useLifestyleAnswers } from '@/hooks/useLifestyleAnswers';
 import { WelcomeSlide } from '@/components/slides/WelcomeSlide';
 import { GoldenYearsSlide } from '@/components/slides/GoldenYearsSlide';
 import { SilentDeclineSlide } from '@/components/slides/SilentDeclineSlide';
@@ -20,6 +21,7 @@ import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { saveAnswer, getAllAnswers } = useLifestyleAnswers();
 
   const slides = [
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern" },
@@ -51,6 +53,11 @@ const Index = () => {
     setCurrentSlide(index);
   };
 
+  const handleLifestyleAnswer = (slideId: string, questionId: string, answer: string) => {
+    saveAnswer(slideId, questionId, answer);
+    console.log('Lifestyle answers so far:', getAllAnswers());
+  };
+
   const CurrentSlideComponent = slides[currentSlide].component;
 
   return (
@@ -60,7 +67,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <PresentationSlide>
-            <CurrentSlideComponent />
+            <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />
           </PresentationSlide>
           
           <SlideNavigation

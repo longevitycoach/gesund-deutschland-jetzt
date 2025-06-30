@@ -1,7 +1,34 @@
-
 import { Zap, Activity, Apple, TestTube } from 'lucide-react';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
 export const PreventionRevolutionSlide = () => {
+  const lifestyleOptions = [
+    { 
+      id: '1', 
+      text: 'Ja, regelmäßige Vorsorge ist mir wichtig', 
+      votes: 40,
+      motivationalResponse: 'Exzellent! Sie verstehen den Wert der Prävention. Erweitern Sie Ihr Vorsorgeprogramm um moderne Biomarker-Tests für optimale Ergebnisse!'
+    },
+    { 
+      id: '2', 
+      text: 'Gelegentlich - nur die Standard-Vorsorge', 
+      votes: 120,
+      motivationalResponse: 'Ein guter Anfang! Erwägen Sie, über die Standardvorsorge hinauszugehen. Investieren Sie in erweiterte Bluttests - sie zeigen mehr als Kassenwerte.'
+    },
+    { 
+      id: '3', 
+      text: 'Selten - nur bei Beschwerden', 
+      votes: 85,
+      motivationalResponse: 'Zeit für einen Paradigmenwechsel! Prävention ist günstiger als Behandlung. Starten Sie mit einem umfassenden Gesundheitscheck.'
+    },
+    { 
+      id: '4', 
+      text: 'Nie - ich vertraue auf meinen Körper', 
+      votes: 30,
+      motivationalResponse: 'Ihr Körper sendet oft erst Signale, wenn es zu spät ist. Geben Sie ihm die Chance, Ihnen früh zu zeigen, was er braucht!'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -16,6 +43,16 @@ export const PreventionRevolutionSlide = () => {
       </div>
 
       <div className="max-w-5xl mx-auto space-y-8">
+        {/* Interactive Poll */}
+        <div className="mb-8">
+          <LifestylePoll
+            slideId="prevention-revolution"
+            questionId="prevention-attitude"
+            question="Wie stehen Sie persönlich zur Gesundheitsvorsorge?"
+            options={lifestyleOptions}
+          />
+        </div>
+
         <div className="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Die neue Formel für ein langes, gesundes Leben

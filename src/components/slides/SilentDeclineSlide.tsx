@@ -1,8 +1,35 @@
-
 import { TrendingDown, Dumbbell, Zap, Flame } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
 export const SilentDeclineSlide = () => {
+  const lifestyleOptions = [
+    { 
+      id: '1', 
+      text: 'Regelmäßig - 3x pro Woche oder mehr', 
+      votes: 35,
+      motivationalResponse: 'Fantastisch! Sie gehören zu den 20% der Bevölkerung, die aktiv gegen den Muskelabbau ankämpfen. Bleiben Sie dran - jedes Training zählt!'
+    },
+    { 
+      id: '2', 
+      text: 'Gelegentlich - 1-2x pro Woche', 
+      votes: 85,
+      motivationalResponse: 'Ein guter Anfang! Versuchen Sie, auf 3x pro Woche zu steigern. Schon kleine Steigerungen können den Muskelabbau deutlich verlangsamen.'
+    },
+    { 
+      id: '3', 
+      text: 'Selten - nur sporadisch', 
+      votes: 120,
+      motivationalResponse: 'Jetzt ist der perfekte Zeitpunkt zu starten! Beginnen Sie mit 2x 20 Minuten pro Woche. Ihr Körper wird es Ihnen in 10 Jahren danken.'
+    },
+    { 
+      id: '4', 
+      text: 'Gar nicht - ich bewege mich kaum', 
+      votes: 45,
+      motivationalResponse: 'Keine Sorge - es ist nie zu spät! Schon 10 Minuten tägliches Gehen kann den Alterungsprozess verlangsamen. Jeder Schritt zählt!'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -16,6 +43,16 @@ export const SilentDeclineSlide = () => {
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6">
+        {/* Interactive Poll */}
+        <div className="mb-8">
+          <LifestylePoll
+            slideId="silent-decline"
+            questionId="exercise-frequency"
+            question="Wie oft treiben Sie aktuell Sport oder machen Krafttraining?"
+            options={lifestyleOptions}
+          />
+        </div>
+
         <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl border border-orange-200">
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
             Ab dem 30. Lebensjahr verlieren wir jährlich 1-2% unserer Muskelmasse. 
