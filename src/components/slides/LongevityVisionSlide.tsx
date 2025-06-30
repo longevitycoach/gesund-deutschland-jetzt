@@ -1,3 +1,4 @@
+
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -64,7 +65,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             📈 Die Entwicklung der Gesundheitsspanne
           </h2>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-5 gap-6">
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold text-blue-800 mb-3">1960</h3>
               <div className="space-y-2">
@@ -97,68 +98,32 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
               <h3 className="text-lg font-semibold text-green-800 mb-3">2030+ Vision</h3>
               <div className="space-y-2">
                 <div className="text-2xl font-bold text-green-600">
-                  <AnimatedStatistic value={90} suffix="+" />
+                  <AnimatedStatistic value={81} suffix="+" />
                 </div>
                 <p className="text-sm text-gray-600">Lebenserwartung</p>
                 <div className="text-lg font-bold text-emerald-600">
                   <AnimatedStatistic value={78} suffix="%" />
                 </div>
                 <p className="text-xs text-gray-500">Gesunde Jahre</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Nina Ruge Example */}
-        <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-8 rounded-xl border border-purple-200">
-          <div className="flex items-center justify-center mb-6">
-            <Heart className="w-8 h-8 text-purple-600 mr-3" />
-            <h2 className="text-2xl font-bold text-purple-800">
-              Das Nina Ruge Phänomen - Moderate Gesundheit mit 68
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">👩 Nina Ruge heute</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Alter:</span>
-                  <span className="font-bold text-purple-600">68 Jahre</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Gesundheitszustand:</span>
-                  <span className="font-bold text-orange-600">Moderat</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Vitalität:</span>
-                  <span className="font-bold text-yellow-600">Eingeschränkt</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Mobilität:</span>
-                  <span className="font-bold text-orange-600">Reduziert</span>
+                <div className="text-xs text-green-700 mt-2 font-medium">
+                  +10-15 Jahre Gesundheitsspanne
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl shadow-lg border border-green-200">
-              <h3 className="text-xl font-semibold text-green-800 mb-4">🎯 Longevity-Vision für Nina</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Potenzielle Lebensspanne:</span>
-                  <span className="font-bold text-green-600">90+ Jahre</span>
+            <div className="text-center p-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl shadow-lg border-2 border-purple-400">
+              <h3 className="text-lg font-semibold text-purple-800 mb-3">2050+ Langfristig</h3>
+              <div className="space-y-2">
+                <div className="text-2xl font-bold text-purple-600">
+                  <AnimatedStatistic value={90} suffix="+" />
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Gesundheitszustand:</span>
-                  <span className="font-bold text-green-600">Optimal</span>
+                <p className="text-sm text-gray-600">Lebenserwartung</p>
+                <div className="text-lg font-bold text-purple-600">
+                  <AnimatedStatistic value={85} suffix="%" />
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Vitalität:</span>
-                  <span className="font-bold text-emerald-600">Vollständig</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Mobilität:</span>
-                  <span className="font-bold text-green-600">Uneingeschränkt</span>
+                <p className="text-xs text-gray-500">Gesunde Jahre</p>
+                <div className="text-xs text-purple-700 mt-2 font-medium">
+                  Hallmarks of Aging
                 </div>
               </div>
             </div>
@@ -255,9 +220,8 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             💡 Die Zukunft beginnt heute
           </h3>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Nina Ruge mit 68 und moderater Gesundheit zeigt uns den aktuellen Standard. 
-            Die Longevity-Forschung zeigt uns, was möglich ist: 
-            <strong className="text-purple-600"> Volle Vitalität und Mobilität bis 90+</strong>
+            Mit der modernen Longevity-Forschung können wir die Gesundheitsspanne um 10-15 Jahre verlängern. 
+            Die Hallmarks of Aging zeigen uns den Weg zu <strong className="text-purple-600">90+ Jahren mit 85% gesunden Lebensjahren</strong>
           </p>
         </div>
       </div>
