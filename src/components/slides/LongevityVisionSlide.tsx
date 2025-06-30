@@ -143,10 +143,10 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             </div>
 
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">2019</h3>
+              <h3 className="text-lg font-semibold text-blue-800 mb-3">2015</h3>
               <div className="space-y-3">
                 <div className="text-2xl font-bold text-blue-600">
-                  <AnimatedStatistic value={73} suffix=" Jahre" />
+                  <AnimatedStatistic value={81} suffix=" Jahre" />
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
                 
@@ -154,21 +154,21 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 <div className="space-y-2">
                   <div className="bg-green-100 p-2 rounded">
                     <div className="text-sm font-bold text-green-700">
-                      <AnimatedStatistic value={37} suffix=" Jahre" />
+                      <AnimatedStatistic value={41} suffix=" Jahre" />
                     </div>
                     <p className="text-xs text-green-600">Gute Gesundheit (50%)</p>
                   </div>
                   
                   <div className="bg-orange-100 p-2 rounded">
                     <div className="text-sm font-bold text-orange-700">
-                      <AnimatedStatistic value={24} suffix=" Jahre" />
+                      <AnimatedStatistic value={26} suffix=" Jahre" />
                     </div>
                     <p className="text-xs text-orange-600">Moderate Gesundheit</p>
                   </div>
                   
                   <div className="bg-red-100 p-2 rounded">
                     <div className="text-sm font-bold text-red-700">
-                      <AnimatedStatistic value={12} suffix=" Jahre" />
+                      <AnimatedStatistic value={14} suffix=" Jahre" />
                     </div>
                     <p className="text-xs text-red-600">Schlechte Gesundheit</p>
                   </div>
@@ -180,7 +180,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
               <h3 className="text-lg font-semibold text-green-800 mb-3">2030+</h3>
               <div className="space-y-3">
                 <div className="text-2xl font-bold text-green-600">
-                  <AnimatedStatistic value={73} suffix=" Jahre" />
+                  <AnimatedStatistic value={81} suffix="+ Jahre" />
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
                 
@@ -188,14 +188,14 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 <div className="space-y-2">
                   <div className="bg-green-200 p-2 rounded border-2 border-green-400">
                     <div className="text-sm font-bold text-green-800">
-                      <AnimatedStatistic value={57} suffix=" Jahre" />
+                      <AnimatedStatistic value={63} suffix=" Jahre" />
                     </div>
                     <p className="text-xs text-green-700">Gute Gesundheit (78%)</p>
                   </div>
                   
                   <div className="bg-orange-50 p-2 rounded">
                     <div className="text-sm font-bold text-orange-600">
-                      <AnimatedStatistic value={12} suffix=" Jahre" />
+                      <AnimatedStatistic value={14} suffix=" Jahre" />
                     </div>
                     <p className="text-xs text-orange-500">Moderate Gesundheit</p>
                   </div>
@@ -215,10 +215,10 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             </div>
 
             <div className="text-center p-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl shadow-lg border-2 border-purple-400">
-              <h3 className="text-lg font-semibold text-purple-800 mb-3">2050+</h3>
+              <h3 className="text-lg font-semibold text-purple-800 mb-3">2050</h3>
               <div className="space-y-3">
                 <div className="text-2xl font-bold text-purple-600">
-                  <AnimatedStatistic value={90} suffix="+" />
+                  <AnimatedStatistic value={90} suffix="+ Jahre" />
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
                 
