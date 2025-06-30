@@ -65,11 +65,6 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
               <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
-              <div className="text-lg font-bold text-blue-600">
-                <AnimatedStatistic value={44} suffix="%" />
-              </div>
-              <p className="text-sm text-blue-700">der Frauen bewegen sich zu wenig</p>
-            </div>
           </div>
 
           <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
@@ -95,7 +90,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               </div>
               <p className="text-sm text-red-700">fühlen sich häufig gestresst (TK-Studie 2021)</p>
               <div className="text-lg font-bold text-red-600">
-                <AnimatedStatistic value={80} suffix="%" />
+                <AnimatedStatistic value={14} suffix="%" />
               </div>
               <p className="text-sm text-red-700">leiden unter chronischem Stress</p>
             </div>
