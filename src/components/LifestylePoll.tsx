@@ -53,17 +53,25 @@ export const LifestylePoll = ({ slideId, questionId, question, options, onAnswer
                 variant={isSelected ? "default" : "outline"}
                 className={`w-full text-left justify-start relative overflow-hidden ${
                   hasAnswered ? 'cursor-default' : 'hover:bg-blue-50'
-                }`}
+                } ${isSelected && hasAnswered ? 'bg-blue-600 text-white border-blue-600' : ''}`}
               >
                 {hasAnswered && (
                   <div 
-                    className="absolute left-0 top-0 h-full bg-blue-100 transition-all duration-1000 ease-out"
+                    className={`absolute left-0 top-0 h-full transition-all duration-1000 ease-out ${
+                      isSelected ? 'bg-blue-500' : 'bg-gray-200'
+                    }`}
                     style={{ width: `${percentage}%` }}
                   />
                 )}
                 <span className="relative z-10 flex justify-between w-full">
-                  <span>{option.text}</span>
-                  {hasAnswered && <span className="font-semibold">{percentage.toFixed(1)}%</span>}
+                  <span className={`${isSelected && hasAnswered ? 'text-white font-semibold' : 'text-gray-800'}`}>
+                    {option.text}
+                  </span>
+                  {hasAnswered && (
+                    <span className={`font-bold ${isSelected ? 'text-white' : 'text-gray-900'}`}>
+                      {percentage.toFixed(1)}%
+                    </span>
+                  )}
                 </span>
               </Button>
             </div>
@@ -72,15 +80,17 @@ export const LifestylePoll = ({ slideId, questionId, question, options, onAnswer
       </div>
       
       {hasAnswered && (
-        <p className="mt-4 text-sm text-gray-600 text-center">
+        <p className="mt-4 text-sm text-gray-700 text-center font-medium">
           Danke für Ihre Teilnahme! Gesamt: {totalVotes} Stimmen
         </p>
       )}
 
       {showMotivation && selectedOptionData?.motivationalResponse && (
-        <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
-          <h4 className="font-semibold text-green-800 mb-2">💡 Ihre persönliche Motivation:</h4>
-          <p className="text-green-700">{selectedOptionData.motivationalResponse}</p>
+        <div className="mt-6 p-5 bg-white rounded-lg border-2 border-green-300 shadow-md">
+          <h4 className="font-bold text-green-800 mb-3 text-lg">💡 Ihre persönliche Motivation:</h4>
+          <p className="text-gray-800 font-medium text-base leading-relaxed">
+            {selectedOptionData.motivationalResponse}
+          </p>
         </div>
       )}
     </Card>
