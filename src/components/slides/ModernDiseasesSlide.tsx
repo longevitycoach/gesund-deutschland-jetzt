@@ -125,7 +125,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <span className="font-bold text-red-600">38% erhöhtes Sterberisiko</span>
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-3">Quelle: DKV-Report 2023, Norwegische Studie</p>
+            
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
@@ -142,7 +142,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 Erhöhtes Risiko für Übergewicht, Diabetes Typ 2, Herz-Kreislauf-Erkrankungen
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-3">Quelle: DGE Ernährungsbericht 2024, Nationale Verzehrstudie II</p>
+            
           </div>
         </div>
 
@@ -165,7 +165,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 80% Erschöpfung, 52% Schlafstörungen
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-3">Quelle: TK-Stressstudie 2021, RKI DEGS1</p>
+            
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
@@ -205,7 +205,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 </p>
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-3">Quelle: OECD Gesundheitsstatistik 2024</p>
+           
           </div>
         </div>
 
