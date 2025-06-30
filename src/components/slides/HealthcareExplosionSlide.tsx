@@ -92,15 +92,6 @@ export const HealthcareExplosionSlide = () => {
           <p className="text-xl text-green-700 mb-8 leading-relaxed">
             Setzen Sie auf Prävention und stärken Sie Ihre Gesundheit jetzt, um im Alter voller Lebensfreude und Unabhängigkeit zu einem überlasteten Gesundheitssystem zu sein.
           </p>
-          <div className="bg-white/80 p-6 rounded-xl">
-            <h4 className="text-lg font-semibold text-green-800 mb-4">
-              💡 Investieren Sie heute in Ihre Gesundheit von morgen
-            </h4>
-            <p className="text-green-700">
-              Während das System kollabiert, können Sie sich schützen durch bewusste Ernährung, 
-              regelmäßige Bewegung, gezielte Supplements und präventive Gesundheitstests.
-            </p>
-          </div>
         </div>
       </div>
 
@@ -109,7 +100,7 @@ export const HealthcareExplosionSlide = () => {
         <LifestylePoll
           slideId="healthcare-explosion"
           questionId="monthly-health-spending"
-          question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? (Gesundes Essen, Sport, Supplements, medizinische Tests)"
+          question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? (Gesundes Essen, Sport, Nährungsergänzungsmittel, medizinische Tests)"
           options={spendingOptions}
           onAnswer={handlePollAnswer}
         />
