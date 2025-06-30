@@ -28,14 +28,14 @@ export const HealthcareDataChart = () => {
   ];
 
   const careData = [
-    { year: 2000, pflegebedürftige: 2.0, trend: "Baseline" },
-    { year: 2005, pflegebedürftige: 2.1, trend: "Leichter Anstieg" },
-    { year: 2010, pflegebedürftige: 2.3, trend: "Kontinuierlich" },
-    { year: 2013, pflegebedürftige: 2.6, trend: "Start" },
-    { year: 2020, pflegebedürftige: 4.1, trend: "Beschleunigung" },
-    { year: 2023, pflegebedürftige: 5.69, trend: "+117%" },
-    { year: 2030, pflegebedürftige: 6.5, trend: "Prognose" },
-    { year: 2040, pflegebedürftige: 8.2, trend: "Hochrechnung" }
+    { year: 2000, pflegebedürftige: 2.0 },
+    { year: 2005, pflegebedürftige: 2.1 },
+    { year: 2010, pflegebedürftige: 2.3 },
+    { year: 2013, pflegebedürftige: 2.6 },
+    { year: 2020, pflegebedürftige: 4.1 },
+    { year: 2023, pflegebedürftige: 5.69 },
+    { year: 2030, pflegebedürftige: 6.5 },
+    { year: 2040, pflegebedürftige: 8.2 }
   ];
 
   const chartConfig = {
@@ -233,15 +233,11 @@ export const HealthcareDataChart = () => {
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
-          <div className="mt-4 space-y-2">
+          <div className="mt-4">
             <div className="bg-red-50 p-3 rounded-lg">
               <p className="text-red-800 font-semibold">
                 🚨 Dramatischer Anstieg: Von 2,0 Mio. (2000) auf 5,69 Mio. (2023) = +185%
               </p>
-            </div>
-            <div className="text-sm text-gray-600">
-              <p><strong>Quelle:</strong> GWS "Zahl des Monats 3/2025", Destatis</p>
-              <p><strong>Trend:</strong> Exponentieller Anstieg seit 2010</p>
             </div>
           </div>
         </div>
