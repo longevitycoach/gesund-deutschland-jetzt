@@ -9,20 +9,31 @@ export const HealthcareDataChart = () => {
   const [activeChart, setActiveChart] = useState<'spending' | 'demographics' | 'care'>('spending');
 
   const spendingData = [
+    { year: 2000, actual: 212.7, projected: null, note: "Öffentliche Daten" },
+    { year: 2005, actual: 242.0, projected: null, note: "Öffentliche Daten" },
+    { year: 2010, actual: 287.3, projected: null, note: "Öffentliche Daten" },
+    { year: 2015, actual: 344.2, projected: null, note: "Öffentliche Daten" },
     { year: 2020, actual: 440.6, projected: null, note: "Tatsächlich (Corona-Effekte)" },
+    { year: 2025, actual: null, projected: 480, note: "Schätzung" },
     { year: 2030, actual: null, projected: 520, note: "Ursprüngliche Prognose" },
-    { year: 2030, actual: null, projected: 600, note: "BCG-Schätzung (untere Grenze)" },
+    { year: 2035, actual: null, projected: 600, note: "BCG-Schätzung" },
     { year: 2040, actual: null, projected: 700, note: "BCG-Prognose (ohne Dämpfung)" }
   ];
 
   const demographicsData = [
-    { year: 2020, over60: 25, over65: 22, pflegebedürftige: 4.1 },
-    { year: 2030, over60: 28, over65: 27, pflegebedürftige: 5.0 },
+    { year: 2000, over60: 23, over65: 16, pflegebedürftige: 2.0 },
+    { year: 2010, over60: 26, over65: 21, pflegebedürftige: 2.3 },
+    { year: 2020, over60: 28, over65: 22, pflegebedürftige: 4.1 },
+    { year: 2030, over60: 30, over65: 27, pflegebedürftige: 5.0 },
     { year: 2040, over60: 34, over65: 28, pflegebedürftige: 6.5 }
   ];
 
   const careData = [
+    { year: 2000, pflegebedürftige: 2.0, trend: "Baseline" },
+    { year: 2005, pflegebedürftige: 2.1, trend: "Leichter Anstieg" },
+    { year: 2010, pflegebedürftige: 2.3, trend: "Kontinuierlich" },
     { year: 2013, pflegebedürftige: 2.6, trend: "Start" },
+    { year: 2020, pflegebedürftige: 4.1, trend: "Beschleunigung" },
     { year: 2023, pflegebedürftige: 5.69, trend: "+117%" },
     { year: 2030, pflegebedürftige: 6.5, trend: "Prognose" },
     { year: 2040, pflegebedürftige: 8.2, trend: "Hochrechnung" }
@@ -56,7 +67,7 @@ export const HealthcareDataChart = () => {
   const formatMillion = (value: number) => `${value} Mio.`;
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex flex-wrap gap-2 justify-center">
         <Button
           variant={activeChart === 'spending' ? 'default' : 'outline'}
@@ -88,13 +99,18 @@ export const HealthcareDataChart = () => {
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
             <Euro className="w-5 h-5 text-blue-600" />
-            Entwicklung der Gesundheitsausgaben in Deutschland
+            Entwicklung der Gesundheitsausgaben in Deutschland (2000-2040)
           </h3>
-          <ChartContainer config={chartConfig} className="h-64">
+          <ChartContainer config={chartConfig} className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={spendingData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
+                <XAxis 
+                  dataKey="year" 
+                  domain={[2000, 2040]}
+                  type="number"
+                  scale="linear"
+                />
                 <YAxis tickFormatter={formatCurrency} />
                 <ChartTooltip 
                   content={<ChartTooltipContent 
@@ -112,6 +128,7 @@ export const HealthcareDataChart = () => {
                   strokeWidth={3}
                   dot={{ r: 6 }}
                   name="Tatsächliche Ausgaben"
+                  connectNulls={false}
                 />
                 <Line 
                   type="monotone" 
@@ -121,12 +138,13 @@ export const HealthcareDataChart = () => {
                   strokeDasharray="5 5"
                   dot={{ r: 6 }}
                   name="Prognostizierte Ausgaben"
+                  connectNulls={false}
                 />
               </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
           <div className="mt-4 text-sm text-gray-600">
-            <p><strong>Quelle:</strong> Destatis (2020), BCG-Analyse "Nachhaltiges Gesundheitssystem"</p>
+            <p><strong>Quelle:</strong> Destatis (2000-2020), BCG-Analyse "Nachhaltiges Gesundheitssystem"</p>
             <p><strong>Anmerkung:</strong> 2020-Werte beinhalten Corona-Effekte. BCG rechnet mit 600-700 Mrd. € bis 2040.</p>
           </div>
         </div>
@@ -136,9 +154,9 @@ export const HealthcareDataChart = () => {
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
             <Users className="w-5 h-5 text-purple-600" />
-            Demografischer Wandel in Deutschland
+            Demografischer Wandel in Deutschland (2000-2040)
           </h3>
-          <ChartContainer config={chartConfig} className="h-64">
+          <ChartContainer config={chartConfig} className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={demographicsData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -169,13 +187,18 @@ export const HealthcareDataChart = () => {
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-red-600" />
-            Entwicklung der Pflegebedürftigen
+            Entwicklung der Pflegebedürftigen (2000-2040)
           </h3>
-          <ChartContainer config={chartConfig} className="h-64">
+          <ChartContainer config={chartConfig} className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={careData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
+                <XAxis 
+                  dataKey="year" 
+                  domain={[2000, 2040]}
+                  type="number"
+                  scale="linear"
+                />
                 <YAxis tickFormatter={formatMillion} />
                 <ChartTooltip 
                   content={<ChartTooltipContent 
@@ -195,12 +218,12 @@ export const HealthcareDataChart = () => {
           <div className="mt-4 space-y-2">
             <div className="bg-red-50 p-3 rounded-lg">
               <p className="text-red-800 font-semibold">
-                🚨 Dramatischer Anstieg: Von 2,6 Mio. (2013) auf 5,69 Mio. (2023) = +117%
+                🚨 Dramatischer Anstieg: Von 2,0 Mio. (2000) auf 5,69 Mio. (2023) = +185%
               </p>
             </div>
             <div className="text-sm text-gray-600">
-              <p><strong>Quelle:</strong> GWS "Zahl des Monats 3/2025"</p>
-              <p><strong>Trend:</strong> Mehr als Verdopplung innerhalb eines Jahrzehnts</p>
+              <p><strong>Quelle:</strong> GWS "Zahl des Monats 3/2025", Destatis</p>
+              <p><strong>Trend:</strong> Exponentieller Anstieg seit 2010</p>
             </div>
           </div>
         </div>
@@ -209,13 +232,13 @@ export const HealthcareDataChart = () => {
       <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-xl border border-red-200">
         <h4 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
           <Calendar className="w-5 h-5" />
-          Zentrale Erkenntnisse
+          Zentrale Erkenntnisse (2000-2040)
         </h4>
         <div className="grid md:grid-cols-2 gap-4 text-sm">
           <div>
             <h5 className="font-semibold text-red-700 mb-2">Gesundheitsausgaben:</h5>
             <ul className="space-y-1 text-red-600">
-              <li>• 2020: 440,6 Mrd. € (Corona-Effekte)</li>
+              <li>• 2000-2020: +107% (212,7 → 440,6 Mrd. €)</li>
               <li>• BCG-Prognose 2040: bis 700 Mrd. €</li>
               <li>• Deutschland: 12,6% vom BIP (EU: 10,4%)</li>
             </ul>
@@ -223,7 +246,7 @@ export const HealthcareDataChart = () => {
           <div>
             <h5 className="font-semibold text-red-700 mb-2">Demografischer Wandel:</h5>
             <ul className="space-y-1 text-red-600">
-              <li>• Pflegebedürftige: +117% in 10 Jahren</li>
+              <li>• Pflegebedürftige: +185% seit 2000</li>
               <li>• 2040: 28% der Bevölkerung ≥65 Jahre</li>
               <li>• Exponentieller Kostendruck erwartet</li>
             </ul>
