@@ -54,12 +54,12 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
           die Kontrolle über Ihre zweite Lebenshälfte übernehmen können.
         </p>
         
-        {/* Image display */}
-        <div className="flex justify-center mb-6">
+        {/* Image display - using 100% of the box */}
+        <div className="w-full mb-6">
           <img 
-            src="aging.png" 
+            src="/lovable-uploads/0bc55fe1-1e6e-47f3-aac0-3cf7ba632e74.png" 
             alt="Gesund vs. Ungesund im Alter"
-            className="max-w-full h-auto rounded-lg shadow-lg max-h-96 object-contain"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </div>
       </div>
