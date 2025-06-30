@@ -1,4 +1,3 @@
-
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -65,6 +64,16 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
               <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
+              
+              <div className="border-t border-blue-200 pt-3 mt-3">
+                <div className="text-lg font-bold text-blue-600">
+                  <AnimatedStatistic value={88} suffix="%" /> Mädchen
+                </div>
+                <div className="text-lg font-bold text-blue-600">
+                  <AnimatedStatistic value={80} suffix="%" /> Jungen
+                </div>
+                <p className="text-xs text-blue-700 mt-1">bewegen sich zu wenig (WHO-Studie)</p>
+              </div>
             </div>
           </div>
 
