@@ -80,20 +80,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             </div>
 
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">2019</h3>
-              <div className="space-y-2">
-                <div className="text-2xl font-bold text-blue-600">
-                  <AnimatedStatistic value={73} suffix=" Jahre" />
-                </div>
-                <p className="text-sm text-gray-600">Lebenserwartung</p>
-                <div className="text-lg font-bold text-orange-600">
-                  <AnimatedStatistic value={50} suffix="%" />
-                </div>
-                <p className="text-xs text-gray-500">Gesunde Jahre</p>
-              </div>
-            </div>
-
-            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold text-blue-800 mb-3">2025</h3>
               <div className="space-y-2">
                 <div className="text-2xl font-bold text-blue-600">
