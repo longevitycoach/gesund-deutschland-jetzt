@@ -52,48 +52,6 @@ export const HealthcareExplosionSlide = () => {
         <HealthcareDataChart />
       </div>
 
-      {/* Comparison with EU */}
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-        <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Deutschland vs. EU-Durchschnitt
-        </h3>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h4 className="text-lg font-semibold text-gray-700 mb-4">Gesundheitsausgaben (% BIP) 2022</h4>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                <span className="font-medium">Deutschland</span>
-                <span className="font-bold text-red-600 text-xl">12,6%</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                <span className="font-medium">EU-Durchschnitt</span>
-                <span className="font-bold text-green-600 text-xl">10,4%</span>
-              </div>
-              <div className="text-center text-sm text-red-600 font-semibold">
-                🚨 Deutschland: Höchste Ausgaben EU-weit
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-700 mb-4">Lebenserwartung-Zuwachs 2010-2019</h4>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                <span className="font-medium">Deutschland</span>
-                <span className="font-bold text-red-600 text-xl">+0,8 Jahre</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                <span className="font-medium">EU-Durchschnitt</span>
-                <span className="font-bold text-green-600 text-xl">+1,5 Jahre</span>
-              </div>
-              <div className="text-center text-sm text-red-600 font-semibold">
-                ⚠️ Weniger Lebenserwartung trotz höherer Kosten
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Critical Alert Box */}
       <div className="bg-gradient-to-r from-red-100 to-orange-100 p-8 rounded-xl border border-red-200">
         <div className="text-center">
