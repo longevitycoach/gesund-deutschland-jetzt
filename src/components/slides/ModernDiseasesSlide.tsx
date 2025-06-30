@@ -67,10 +67,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               
               <div className="border-t border-blue-200 pt-3 mt-3">
                 <div className="text-lg font-bold text-blue-600">
-                  <AnimatedStatistic value={88} suffix="%" /> Mädchen
-                </div>
-                <div className="text-lg font-bold text-blue-600">
-                  <AnimatedStatistic value={80} suffix="%" /> Jungen
+                  <AnimatedStatistic value={88} suffix="%" /> Mädchen, <AnimatedStatistic value={80} suffix="%" /> Jungen
                 </div>
                 <p className="text-xs text-blue-700 mt-1">bewegen sich zu wenig (WHO-Studie)</p>
               </div>
