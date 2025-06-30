@@ -1,7 +1,10 @@
-
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ScienceIcon from '@mui/icons-material/Science';
 
 interface LongevityVisionSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
@@ -211,6 +214,81 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             <p className="text-lg mt-2 opacity-90">
               Die Spezies Mensch hat ihr genetisches Potenzial noch nicht erreicht.
             </p>
+          </div>
+        </div>
+
+        {/* Questions Section */}
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
+            <QuestionMarkIcon className="inline-block mr-2 text-indigo-600" style={{ fontSize: '2rem' }} />
+            Fragen zum Nachdenken
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-indigo-100">
+              <div className="flex items-center gap-3 mb-4">
+                <TipsAndUpdatesIcon className="text-yellow-600" style={{ fontSize: '2rem' }} />
+                <h3 className="text-lg font-semibold text-gray-800">Reflexion</h3>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Wie würde sich Ihr Leben verändern, wenn Sie 15 Jahre länger gesund bleiben könnten?</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Welche Träume könnten Sie mit einer verlängerten Gesundheitsspanne verwirklichen?</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Was wären Sie bereit zu investieren für 78% gesunde Lebensjahre?</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg border border-purple-100">
+              <div className="flex items-center gap-3 mb-4">
+                <FavoriteIcon className="text-red-600" style={{ fontSize: '2rem' }} />
+                <h3 className="text-lg font-semibold text-gray-800">Motivation</h3>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Für wen möchten Sie länger gesund und vital bleiben?</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Welche Momente mit Ihren Liebsten möchten Sie nicht verpassen?</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span>Wie würde es sich anfühlen, mit 80 Jahren noch wie 60 zu sein?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-white p-6 rounded-xl shadow-lg border border-green-100">
+            <div className="flex items-center gap-3 mb-4">
+              <ScienceIcon className="text-blue-600" style={{ fontSize: '2rem' }} />
+              <h3 className="text-lg font-semibold text-gray-800 text-center w-full">Wissenschaftliche Perspektive</h3>
+            </div>
+            <div className="text-center">
+              <p className="text-lg text-gray-700 mb-4">
+                "Die Longevity-Forschung zeigt: Es ist nicht mehr die Frage <em>ob</em>, sondern <em>wann</em> wir die Gesundheitsspanne dramatisch verlängern können."
+              </p>
+              <div className="flex justify-center items-center gap-4 flex-wrap">
+                <div className="bg-blue-50 px-4 py-2 rounded-full">
+                  <span className="text-blue-800 font-semibold">🧬 Hallmarks of Aging</span>
+                </div>
+                <div className="bg-green-50 px-4 py-2 rounded-full">
+                  <span className="text-green-800 font-semibold">🔬 Präventive Biomarker</span>
+                </div>
+                <div className="bg-purple-50 px-4 py-2 rounded-full">
+                  <span className="text-purple-800 font-semibold">💊 Personalisierte Medizin</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
