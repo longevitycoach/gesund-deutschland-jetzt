@@ -14,10 +14,10 @@ export const FunctionalMedicineSlide = () => {
       <div className="text-center mb-8">
         <Stethoscope className="w-16 h-16 mx-auto text-blue-500 mb-4" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Das Problem der funktionellen Medizin
+          Die Funktionelle Medizin
         </h1>
         <p className="text-xl text-gray-600">
-          Die Pioniere der präventiven Medizin und ihre Herausforderungen
+          Pioniere der präventiven Medizin und ihre Herausforderungen
         </p>
       </div>
 
@@ -99,6 +99,28 @@ export const FunctionalMedicineSlide = () => {
             💡 Ihr revolutionärer Ansatz
           </h3>
           
+          <div className="space-y-4">
+              <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h4 className="text-xl font-semibold text-green-800">✅ Funktionelle Medizin arbeitet mit:</h4>
@@ -118,28 +140,6 @@ export const FunctionalMedicineSlide = () => {
                 <li className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   <span className="text-gray-700"><strong>Präventivem Handeln</strong> - bevor Krankheiten entstehen</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
                 </li>
               </ul>
             </div>
