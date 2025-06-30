@@ -56,64 +56,6 @@ export const IndividualHealthSlide = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            🔄 Der Biomarker-Kreislauf
-          </h3>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TestTube className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-blue-800 mb-2">1. Messen</h4>
-              <p className="text-sm text-gray-600">
-                Umfassende Labordiagnostik: Blut, Stuhl, Urin, Speichel
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-green-800 mb-2">2. Analysieren</h4>
-              <p className="text-sm text-gray-600">
-                Defizite erkennen und individuelle Schwachstellen identifizieren
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <RefreshCw className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-orange-800 mb-2">3. Optimieren</h4>
-              <p className="text-sm text-gray-600">
-                Gezielte Supplementierung basierend auf Ihren Werten
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TestTube className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-purple-800 mb-2">4. Re-Messen</h4>
-              <p className="text-sm text-gray-600">
-                Erfolg kontrollieren und Dosierung anpassen
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center gap-4 text-lg font-semibold text-gray-700">
-              <div className="w-8 h-1 bg-blue-500 rounded"></div>
-              <div className="w-8 h-1 bg-green-500 rounded"></div>
-              <div className="w-8 h-1 bg-orange-500 rounded"></div>
-              <div className="w-8 h-1 bg-purple-500 rounded rotate-180"></div>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">Kontinuierlicher Optimierungskreislauf</p>
-          </div>
-        </div>
-
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-xl shadow-lg border border-red-200">
             <h4 className="text-xl font-semibold text-red-800 mb-4">❌ Was NICHT funktioniert</h4>
