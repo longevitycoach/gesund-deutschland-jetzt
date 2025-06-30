@@ -19,6 +19,21 @@ export const SlideNavigation = ({
   onGoTo, 
   slideTitle 
 }: SlideNavigationProps) => {
+  const handleNext = () => {
+    onNext();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePrev = () => {
+    onPrev();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGoTo = (index: number) => {
+    onGoTo(index);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="mt-8 space-y-4">
       <div className="text-center">
@@ -27,7 +42,7 @@ export const SlideNavigation = ({
       
       <div className="flex items-center justify-between">
         <Button 
-          onClick={onPrev} 
+          onClick={handlePrev} 
           variant="outline" 
           disabled={currentSlide === 0}
           className="flex items-center gap-2"
@@ -40,7 +55,7 @@ export const SlideNavigation = ({
           {Array.from({ length: totalSlides }, (_, index) => (
             <button
               key={index}
-              onClick={() => onGoTo(index)}
+              onClick={() => handleGoTo(index)}
               className="transition-colors duration-200"
             >
               {index === currentSlide ? (
@@ -53,7 +68,7 @@ export const SlideNavigation = ({
         </div>
         
         <Button 
-          onClick={onNext} 
+          onClick={handleNext} 
           variant="outline"
           disabled={currentSlide === totalSlides - 1}
           className="flex items-center gap-2"
