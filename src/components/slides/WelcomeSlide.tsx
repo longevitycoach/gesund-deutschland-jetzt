@@ -51,8 +51,7 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
           Die Wahrheit über unser Altern
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Herzlich willkommen zu einer Präsentation, die Ihr Leben verändern könnte. 
-          Entdecken Sie die Wahrheit über das Altern in Deutschland - und wie Sie 
+          Erfahren Sie mehr über das Altern in Deutschland - und wie Sie 
           die Kontrolle über Ihre zweite Lebenshälfte übernehmen können.
         </p>
       </div>
@@ -97,10 +96,10 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
 
       <div className="mt-8 p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-200">
         <p className="text-lg font-semibold text-orange-800">
-          🚨 Das bedeutet: Fast ein Fünftel Ihres Lebens verbringen Sie voraussichtlich krank!
+          🚨 Das bedeutet: Fast ein Fünftel Ihres Lebens verbringen Sie voraussichtlich schwer krank! 
         </p>
         <p className="text-md text-orange-700 mt-2">
-          Weitere 30% in moderater Gesundheit mit Einschränkungen
+          Die zweite Hälfte des Lebens haben die meisten Menschen eine einschränkte Lebensqualität. 
         </p>
       </div>
 
