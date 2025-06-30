@@ -86,40 +86,31 @@ export const FunctionalMedicineSlide = () => {
           </div>
         </div>
 
-        {/* Interactive Poll */}
-        <div className="my-8">
-          <InteractivePoll
-            question="Wie häufig lassen Sie präventive Gesundheitschecks durchführen?"
-            options={pollOptions}
-          />
-        </div>
-
         <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-200">
           <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
             💡 Ihr revolutionärer Ansatz
           </h3>
           
           <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
-                </li>
-              </ul>
-            </div>
+            <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
+              </li>
+            </ul>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
@@ -206,6 +197,14 @@ export const FunctionalMedicineSlide = () => {
           <p className="text-xl">
             Wenn das System noch nicht bereit ist, müssen wir selbst die Initiative ergreifen!
           </p>
+        </div>
+
+        {/* Interactive Poll */}
+        <div className="my-8">
+          <InteractivePoll
+            question="Wie häufig lassen Sie präventive Gesundheitschecks durchführen?"
+            options={pollOptions}
+          />
         </div>
       </div>
     </div>
