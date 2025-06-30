@@ -1,4 +1,3 @@
-
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -60,67 +59,65 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
         {/* Stanford Study Section */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            🧬 Bahnbrechende Stanford-Studie: Der Alterungsprozess im Detail
+            🧬 Bahnbrechende Stanford-Studie: Die drei Alterungswellen
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-lg text-gray-700 mb-4">
                 Eine revolutionäre Studie der Stanford University mit <strong>4.263 Probanden</strong> zwischen 18 und 95 Jahren 
-                hat den Alterungsprozess detailliert erforscht. Die Forscher analysierten <strong>2.925 verschiedene Plasmaproteine</strong> 
-                und entdeckten spezifische Veränderungen in verschiedenen Lebensphasen:
+                hat drei deutliche Alterungswellen identifiziert. Die Forscher analysierten <strong>2.925 verschiedene Plasmaproteine</strong> 
+                und entdeckten spezifische Veränderungen in drei kritischen Lebensphasen:
               </p>
               
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-10 h-8 bg-cyan-500 rounded flex items-center justify-center text-white font-bold text-sm">25-30</div>
-                  <div>
-                    <h4 className="font-semibold text-cyan-800">Erste Hautveränderungen</h4>
-                    <p className="text-sm text-gray-600">Beginnender Kollagenabbau wird messbar</p>
+              <div className="space-y-6">
+                <div className="p-4 bg-white rounded-lg shadow-sm border-l-4 border-cyan-500">
+                  <h4 className="font-bold text-cyan-800 text-lg mb-2">🌊 Erste Welle (um 34 Jahre)</h4>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div>• <strong>25-30 Jahre:</strong> Erste Hautveränderungen und beginnender Kollagenabbau</div>
+                    <div>• <strong>30-35 Jahre:</strong> Gelenkprobleme und hormonelle Veränderungen beginnen</div>
+                    <div>• <strong>35-45 Jahre:</strong> Herz-Kreislauf- und Stoffwechselprobleme nehmen zu</div>
+                    <div>• <strong>40-50 Jahre:</strong> Kognitive Veränderungen werden messbar</div>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-10 h-8 bg-orange-500 rounded flex items-center justify-center text-white font-bold text-sm">30-35</div>
-                  <div>
-                    <h4 className="font-semibold text-orange-800">Gelenkprobleme beginnen</h4>
-                    <p className="text-sm text-gray-600">Hormonelle Veränderungen setzen ein</p>
+                <div className="p-4 bg-white rounded-lg shadow-sm border-l-4 border-orange-500">
+                  <h4 className="font-bold text-orange-800 text-lg mb-2">🌊 Zweite Welle (um 60 Jahre)</h4>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div>• Starker Anstieg chronischer Krankheiten</div>
+                    <div>• Immunsystem wird deutlich schwächer</div>
+                    <div>• Knochenabbau beschleunigt sich drastisch</div>
+                    <div>• Herz-Kreislauf-Erkrankungen nehmen exponentiell zu</div>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-10 h-8 bg-teal-600 rounded flex items-center justify-center text-white font-bold text-sm">35-45</div>
-                  <div>
-                    <h4 className="font-semibold text-teal-800">Herz-Kreislauf-Probleme</h4>
-                    <p className="text-sm text-gray-600">Stoffwechselprobleme nehmen zu</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
-                  <div className="w-10 h-8 bg-red-500 rounded flex items-center justify-center text-white font-bold text-sm">40-50</div>
-                  <div>
-                    <h4 className="font-semibold text-red-800">Kognitive Veränderungen</h4>
-                    <p className="text-sm text-gray-600">Werden messbar und dokumentierbar</p>
+                <div className="p-4 bg-white rounded-lg shadow-sm border-l-4 border-red-500">
+                  <h4 className="font-bold text-red-800 text-lg mb-2">🌊 Dritte Welle (um 78 Jahre)</h4>
+                  <div className="space-y-2 text-sm text-gray-700">
+                    <div>• Drastischer Verlust der Organfunktionen</div>
+                    <div>• Neurologische Probleme verstärken sich massiv</div>
+                    <div>• Pflegebedürftigkeit steigt exponentiell</div>
+                    <div>• Lebenserwartung sinkt rapide ohne Intervention</div>
                   </div>
                 </div>
               </div>
               
               <div className="mt-4 p-4 bg-blue-100 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  <strong>81% der Probanden</strong> zeigten diese nicht-linearen Alterungsmuster. 
-                  Die Veränderungen sind wissenschaftlich messbar und betreffen verschiedene Körpersysteme.
+                  <strong>81% der Probanden</strong> zeigten diese drei deutlichen Alterungswellen. 
+                  Die Veränderungen sind wissenschaftlich messbar und betreffen verschiedene Körpersysteme gleichzeitig.
                 </p>
               </div>
             </div>
             
             <div className="text-center">
               <img 
-                src="/lovable-uploads/1f88dd80-6d79-4f77-9ea7-c5402509b727.png" 
-                alt="Aging Process Timeline - Alterungsprozess nach Körperbereichen"
+                src="/lovable-uploads/8c4960d6-98aa-4def-bf77-94e1739d06b6.png" 
+                alt="Aging Waves - Stanford Study Data showing three distinct aging waves at 34, 60, and 78 years"
                 className="w-full h-auto rounded-lg shadow-lg border border-gray-200"
               />
               <p className="text-sm text-gray-600 mt-2">
-                Alterungsprozess nach Körperbereichen und Lebensjahren
+                Stanford-Studie: Die drei Alterungswellen bei 34, 60 und 78 Jahren
               </p>
             </div>
           </div>
