@@ -246,31 +246,6 @@ export const HealthcareDataChart = () => {
           </div>
         </div>
       )}
-
-      <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-xl border border-red-200">
-        <h4 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
-          <Calendar className="w-5 h-5" />
-          Zentrale Erkenntnisse (2000-2040)
-        </h4>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
-          <div>
-            <h5 className="font-semibold text-red-700 mb-2">Gesundheitsausgaben:</h5>
-            <ul className="space-y-1 text-red-600">
-              <li>• 2000-2020: +107% (212,7 → 440,6 Mrd. €)</li>
-              <li>• BCG-Prognose 2040: bis 700 Mrd. €</li>
-              <li>• Deutschland: 12,6% vom BIP (EU: 10,4%)</li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-semibold text-red-700 mb-2">Demografischer Wandel:</h5>
-            <ul className="space-y-1 text-red-600">
-              <li>• Pflegebedürftige: +185% seit 2000</li>
-              <li>• 2040: 28% der Bevölkerung ≥65 Jahre</li>
-              <li>• Exponentieller Kostendruck erwartet</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
