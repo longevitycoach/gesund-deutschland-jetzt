@@ -64,7 +64,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               <div className="text-2xl font-bold text-blue-600">
                 <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
-              <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
+              <p className="text-sm text-blue-700">sitzen Deutsche täglich</p>
             </div>
           </div>
 
@@ -76,9 +76,6 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <AnimatedStatistic value={50} suffix="%" />
               </div>
               <p className="text-sm text-orange-700">der täglichen Energie aus stark verarbeiteten Lebensmitteln</p>
-              <div className="text-sm text-orange-700 font-semibold">
-                Erhöhtes Risiko für Diabetes, Herzerkrankungen
-              </div>
             </div>
           </div>
 
