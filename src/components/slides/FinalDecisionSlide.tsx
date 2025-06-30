@@ -105,9 +105,9 @@ export const FinalDecisionSlide = () => {
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-green-600 font-bold text-xl">2</span>
               </div>
-              <h4 className="font-semibold text-green-800 mb-2">Funktioneller Mediziner</h4>
+              <h4 className="font-semibold text-green-800 mb-2">Hausarzt mit Labor</h4>
               <p className="text-sm text-gray-600">
-                Finden Sie einen funktionellen Mediziner in Ihrer Nähe
+                Finden Sie einen Hausarzt mit angeschlossenem Labor
               </p>
             </div>
 
