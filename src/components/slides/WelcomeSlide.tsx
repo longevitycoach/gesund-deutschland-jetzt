@@ -1,3 +1,4 @@
+
 import { Heart, AlertTriangle, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -57,7 +58,7 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         {/* Image display - using 100% of the box */}
         <div className="w-full mb-6">
           <img 
-            src="/lovable-uploads/0bc55fe1-1e6e-47f3-aac0-3cf7ba632e74.png" 
+            src="/aging.png" 
             alt="Gesund vs. Ungesund im Alter"
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
