@@ -1,5 +1,5 @@
 
-import { Heart, Zap, Activity, BookOpen } from 'lucide-react';
+import { Heart, Zap, Activity, BookOpen, TestTube, Target, RefreshCw, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 
 export const OptimalHealthSlide = () => {
@@ -186,16 +186,122 @@ export const OptimalHealthSlide = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-100 to-orange-100 p-8 rounded-xl border border-yellow-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
-            💡 Der gemeinsame Nenner aller Experten
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
+          <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
+            🔄 Der kontinuierliche Optimierungskreislauf
           </h3>
-          <div className="text-center text-lg text-gray-700 space-y-2">
-            <p><strong>1.</strong> Messen Sie Ihre Biomarker regelmäßig</p>
-            <p><strong>2.</strong> Optimieren Sie auf Basis der Ergebnisse</p>
-            <p><strong>3.</strong> Bewegen Sie sich täglich intensiv</p>
-            <p><strong>4.</strong> Essen Sie vollwertig und nährstoffreich</p>
-            <p><strong>5.</strong> Kontrollieren Sie den Erfolg durch erneutes Messen</p>
+          
+          <div className="relative">
+            {/* Circular Process Visualization */}
+            <div className="flex justify-center items-center relative">
+              <svg width="400" height="400" className="absolute">
+                {/* Circular arrows */}
+                <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+                          refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1" />
+                  </marker>
+                </defs>
+                <circle cx="200" cy="200" r="150" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                <path d="M 200 50 A 150 150 0 0 1 350 200" fill="none" stroke="#6366f1" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 350 200 A 150 150 0 0 1 200 350" fill="none" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 200 350 A 150 150 0 0 1 50 200" fill="none" stroke="#f59e0b" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 50 200 A 150 150 0 0 1 200 50" fill="none" stroke="#ef4444" strokeWidth="3" markerEnd="url(#arrowhead)" />
+              </svg>
+              
+              {/* Process Steps */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4">
+                <div className="bg-blue-500 p-4 rounded-full shadow-lg">
+                  <TestTube className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-center mt-2">
+                  <h4 className="font-bold text-blue-800">1. MESSEN</h4>
+                  <p className="text-xs text-gray-600">Biomarker analysieren</p>
+                </div>
+              </div>
+              
+              <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2">
+                <div className="bg-green-500 p-4 rounded-full shadow-lg">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-center mt-2">
+                  <h4 className="font-bold text-green-800">2. HANDELN</h4>
+                  <p className="text-xs text-gray-600">Gezielt optimieren</p>
+                </div>
+              </div>
+              
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-4">
+                <div className="bg-amber-500 p-4 rounded-full shadow-lg">
+                  <RefreshCw className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-center mt-2">
+                  <h4 className="font-bold text-amber-800">3. NACHMESSEN</h4>
+                  <p className="text-xs text-gray-600">Erfolg kontrollieren</p>
+                </div>
+              </div>
+              
+              <div className="absolute left-0 top-1/2 transform -translate-x-4 -translate-y-1/2">
+                <div className="bg-red-500 p-4 rounded-full shadow-lg">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-center mt-2">
+                  <h4 className="font-bold text-red-800">4. ANPASSEN</h4>
+                  <p className="text-xs text-gray-600">Strategie verfeinern</p>
+                </div>
+              </div>
+              
+              {/* Center Circle */}
+              <div className="bg-white border-4 border-indigo-200 rounded-full p-6 shadow-xl z-10">
+                <div className="text-center">
+                  <RefreshCw className="w-12 h-12 text-indigo-600 mx-auto mb-2 animate-spin" style={{animationDuration: '4s'}} />
+                  <h4 className="font-bold text-indigo-800">KONTINUIERLICH</h4>
+                  <p className="text-xs text-gray-600">Nie endender Prozess</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Process Details */}
+          <div className="grid md:grid-cols-4 gap-4 mt-12">
+            <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+              <h5 className="font-semibold text-blue-800 mb-2">📊 Messphase</h5>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Blutbild komplett</li>
+                <li>• Vitamine & Mineralien</li>
+                <li>• Hormone & Entzündung</li>
+                <li>• Organfunktionen</li>
+              </ul>
+            </div>
+            
+            <div className="bg-green-50 p-4 rounded-xl border border-green-200">
+              <h5 className="font-semibold text-green-800 mb-2">🎯 Handlungsphase</h5>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Individuelle Dosierung</li>
+                <li>• Gezielte Supplements</li>
+                <li>• Lifestyle-Anpassung</li>
+                <li>• Ernährungsoptimierung</li>
+              </ul>
+            </div>
+            
+            <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
+              <h5 className="font-semibold text-amber-800 mb-2">🔍 Kontrollphase</h5>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Nach 3-6 Monaten</li>
+                <li>• Verbesserung messen</li>
+                <li>• Erfolg dokumentieren</li>
+                <li>• Nebenwirkungen prüfen</li>
+              </ul>
+            </div>
+            
+            <div className="bg-red-50 p-4 rounded-xl border border-red-200">
+              <h5 className="font-semibold text-red-800 mb-2">⚙️ Anpassungsphase</h5>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Dosierung justieren</li>
+                <li>• Neue Defizite angehen</li>
+                <li>• Strategie verfeinern</li>
+                <li>• Ziele neu definieren</li>
+              </ul>
+            </div>
           </div>
         </div>
 
