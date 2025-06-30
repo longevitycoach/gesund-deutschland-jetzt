@@ -1,8 +1,13 @@
+
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const LongevityVisionSlide = () => {
+interface LongevityVisionSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlideProps) => {
   const lifestyleOptions = [
     { 
       id: '1', 
@@ -50,6 +55,7 @@ export const LongevityVisionSlide = () => {
             questionId="health-awareness"
             question="Wie bewusst leben Sie bereits gesundheitsorientiert?"
             options={lifestyleOptions}
+            onAnswer={onLifestyleAnswer}
           />
         </div>
 
@@ -59,7 +65,7 @@ export const LongevityVisionSlide = () => {
             📈 Die Entwicklung der Gesundheitsspanne
           </h2>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-5 gap-6">
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold text-blue-800 mb-3">1960</h3>
               <div className="space-y-2">
@@ -99,6 +105,20 @@ export const LongevityVisionSlide = () => {
                   <AnimatedStatistic value={85} suffix="%" />
                 </div>
                 <p className="text-xs text-gray-500">Vitale Gesundheit</p>
+              </div>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+              <h3 className="text-lg font-semibold text-blue-800 mb-3">2025</h3>
+              <div className="space-y-2">
+                <div className="text-2xl font-bold text-blue-600">
+                  <AnimatedStatistic value={81} suffix=" Jahre" />
+                </div>
+                <p className="text-sm text-gray-600">Durchschnitt heute</p>
+                <div className="text-lg font-bold text-orange-600">
+                  <AnimatedStatistic value={52} suffix="%" />
+                </div>
+                <p className="text-xs text-gray-500">Gesunde Jahre</p>
               </div>
             </div>
 
