@@ -1,4 +1,3 @@
-
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -63,74 +62,165 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
           />
         </div>
 
-        {/* Historical Timeline */}
+        {/* Enhanced Historical Timeline with Health Quality Data */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            📈 Die Entwicklung der Gesundheitsspanne
+            📈 Die Entwicklung der Gesundheitsspanne mit Krankheitsjahren
           </h2>
           
-          <div className="grid md:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold text-blue-800 mb-3">1960</h3>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="text-2xl font-bold text-blue-600">
                   <AnimatedStatistic value={54} suffix=" Jahre" />
                 </div>
-                <p className="text-sm text-gray-600">Lebenserwartung</p>
-                <div className="text-lg font-bold text-green-600">
-                  <AnimatedStatistic value={50} suffix="%" />
+                <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
+                
+                {/* Health breakdown */}
+                <div className="space-y-2">
+                  <div className="bg-green-100 p-2 rounded">
+                    <div className="text-sm font-bold text-green-700">
+                      <AnimatedStatistic value={27} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-green-600">Gute Gesundheit (50%)</p>
+                  </div>
+                  
+                  <div className="bg-orange-100 p-2 rounded">
+                    <div className="text-sm font-bold text-orange-700">
+                      <AnimatedStatistic value={14} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-orange-600">Moderate Gesundheit</p>
+                  </div>
+                  
+                  <div className="bg-red-100 p-2 rounded">
+                    <div className="text-sm font-bold text-red-700">
+                      <AnimatedStatistic value={13} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-red-600">Schlechte Gesundheit</p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500">Gesunde Jahre</p>
               </div>
             </div>
 
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">2025</h3>
-              <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-blue-800 mb-3">2019</h3>
+              <div className="space-y-3">
                 <div className="text-2xl font-bold text-blue-600">
-                  <AnimatedStatistic value={81} suffix=" Jahre" />
+                  <AnimatedStatistic value={73} suffix=" Jahre" />
                 </div>
-                <p className="text-sm text-gray-600">Durchschnitt heute</p>
-                <div className="text-lg font-bold text-orange-600">
-                  <AnimatedStatistic value={52} suffix="%" />
+                <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
+                
+                {/* Health breakdown */}
+                <div className="space-y-2">
+                  <div className="bg-green-100 p-2 rounded">
+                    <div className="text-sm font-bold text-green-700">
+                      <AnimatedStatistic value={37} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-green-600">Gute Gesundheit (50%)</p>
+                  </div>
+                  
+                  <div className="bg-orange-100 p-2 rounded">
+                    <div className="text-sm font-bold text-orange-700">
+                      <AnimatedStatistic value={24} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-orange-600">Moderate Gesundheit</p>
+                  </div>
+                  
+                  <div className="bg-red-100 p-2 rounded">
+                    <div className="text-sm font-bold text-red-700">
+                      <AnimatedStatistic value={12} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-red-600">Schlechte Gesundheit</p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500">Gesunde Jahre</p>
               </div>
             </div>
 
             <div className="text-center p-6 bg-gradient-to-br from-green-100 to-blue-100 rounded-xl shadow-lg border-2 border-green-400">
-              <h3 className="text-lg font-semibold text-green-800 mb-3">2030+ Vision</h3>
-              <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-green-800 mb-3">2030+</h3>
+              <div className="space-y-3">
                 <div className="text-2xl font-bold text-green-600">
-                  <AnimatedStatistic value={81} suffix="+" />
+                  <AnimatedStatistic value={73} suffix=" Jahre" />
                 </div>
-                <p className="text-sm text-gray-600">Lebenserwartung</p>
-                <div className="text-lg font-bold text-emerald-600">
-                  <AnimatedStatistic value={78} suffix="%" />
+                <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
+                
+                {/* Improved Health breakdown */}
+                <div className="space-y-2">
+                  <div className="bg-green-200 p-2 rounded border-2 border-green-400">
+                    <div className="text-sm font-bold text-green-800">
+                      <AnimatedStatistic value={57} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-green-700">Gute Gesundheit (78%)</p>
+                  </div>
+                  
+                  <div className="bg-orange-50 p-2 rounded">
+                    <div className="text-sm font-bold text-orange-600">
+                      <AnimatedStatistic value={12} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-orange-500">Moderate Gesundheit</p>
+                  </div>
+                  
+                  <div className="bg-red-50 p-2 rounded">
+                    <div className="text-sm font-bold text-red-500">
+                      <AnimatedStatistic value={4} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-red-400">Schlechte Gesundheit</p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500">Gesunde Jahre</p>
-                <div className="text-xs text-green-700 mt-2 font-medium">
-                  +10-15 Jahre Gesundheitsspanne
+                
+                <div className="text-xs text-green-700 mt-2 font-medium bg-green-50 p-2 rounded">
+                  Vision: 78% gesunde Jahre
                 </div>
               </div>
             </div>
 
             <div className="text-center p-6 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl shadow-lg border-2 border-purple-400">
-              <h3 className="text-lg font-semibold text-purple-800 mb-3">2050+ Langfristig</h3>
-              <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-purple-800 mb-3">2050+</h3>
+              <div className="space-y-3">
                 <div className="text-2xl font-bold text-purple-600">
                   <AnimatedStatistic value={90} suffix="+" />
                 </div>
-                <p className="text-sm text-gray-600">Lebenserwartung</p>
-                <div className="text-lg font-bold text-purple-600">
-                  <AnimatedStatistic value={85} suffix="%" />
+                <p className="text-sm text-gray-600 mb-4">Lebenserwartung</p>
+                
+                {/* Future Health breakdown */}
+                <div className="space-y-2">
+                  <div className="bg-purple-200 p-2 rounded border-2 border-purple-400">
+                    <div className="text-sm font-bold text-purple-800">
+                      <AnimatedStatistic value={77} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-purple-700">Gute Gesundheit (85%)</p>
+                  </div>
+                  
+                  <div className="bg-orange-50 p-2 rounded">
+                    <div className="text-sm font-bold text-orange-500">
+                      <AnimatedStatistic value={9} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-orange-400">Moderate Gesundheit</p>
+                  </div>
+                  
+                  <div className="bg-red-50 p-2 rounded">
+                    <div className="text-sm font-bold text-red-400">
+                      <AnimatedStatistic value={4} suffix=" Jahre" />
+                    </div>
+                    <p className="text-xs text-red-300">Schlechte Gesundheit</p>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500">Gesunde Jahre</p>
-                <div className="text-xs text-purple-700 mt-2 font-medium">
+                
+                <div className="text-xs text-purple-700 mt-2 font-medium bg-purple-50 p-2 rounded">
                   Hallmarks of Aging
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Additional explanation */}
+          <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+            <p className="text-sm text-gray-700 text-center">
+              <strong>Legende:</strong> Gute Gesundheit = vollständig mobil und unabhängig | 
+              Moderate Gesundheit = eingeschränkte Mobilität, 1-2 chronische Krankheiten | 
+              Schlechte Gesundheit = mehrere chronische Krankheiten, Pflegebedürftigkeit
+            </p>
           </div>
         </div>
 
@@ -146,6 +236,9 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             </div>
             <p className="text-xl text-gray-700">
               Prof. Eric Verdin, CEO Buck Institute of Research on Aging
+            </p>
+            <p className="text-lg text-gray-600 mt-2">
+              Weniger Jahre mit moderater und schlechter Gesundheit
             </p>
           </div>
 
