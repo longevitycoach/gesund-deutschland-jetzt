@@ -1,4 +1,3 @@
-
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -93,7 +92,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
           </div>
 
           <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <h3 className="text-lg font-semibold text-blue-800 mb-3">2015</h3>
+            <h3 className="text-lg font-semibold text-blue-800 mb-3">2025</h3>
             <div className="space-y-3">
               <div className="text-2xl font-bold text-blue-600">
                 <AnimatedStatistic value={81} suffix=" Jahre" />
