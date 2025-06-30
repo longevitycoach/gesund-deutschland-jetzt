@@ -155,14 +155,6 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
             onAnswer={onLifestyleAnswer}
           />
         </div>
-
-        <div className="text-center p-6 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl">
-          <h3 className="text-2xl font-bold mb-3">🎯 Aber es gibt einen anderen Weg!</h3>
-          <p className="text-xl">
-            Diese Statistiken müssen nicht Ihr Schicksal sein. Mit der richtigen Prävention 
-            können Sie Ihre Gesundheitsspanne dramatisch verlängern.
-          </p>
-        </div>
       </div>
     </div>
   );
