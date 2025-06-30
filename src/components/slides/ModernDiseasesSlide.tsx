@@ -1,5 +1,5 @@
 
-import { Smartphone, UtensilsCrossed, Zap, AlertCircle } from 'lucide-react';
+import { Smartphone, UtensilsCrossed, Zap, AlertCircle, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
 import ChairIcon from '@mui/icons-material/Chair';
@@ -60,30 +60,132 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
             <Smartphone className="w-10 h-10 text-blue-600 mb-3" />
             <h3 className="text-xl font-semibold text-blue-800 mb-3">Bewegungsmangel</h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="text-2xl font-bold text-blue-600">
-                <AnimatedStatistic value={25} suffix="%" />
+                <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
-              <p className="text-sm text-blue-700">der Weltbevölkerung bewegt sich zu wenig</p>
+              <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
+              <div className="text-lg font-bold text-blue-600">
+                <AnimatedStatistic value={44} suffix="%" />
+              </div>
+              <p className="text-sm text-blue-700">der Frauen bewegen sich zu wenig</p>
             </div>
           </div>
 
           <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
             <UtensilsCrossed className="w-10 h-10 text-orange-600 mb-3" />
             <h3 className="text-xl font-semibold text-orange-800 mb-3">Hochverarbeitete Nahrung</h3>
-            <div className="space-y-2">
-              <div className="text-lg font-bold text-orange-600">Ultra-processed</div>
-              <p className="text-sm text-orange-700">Lebensmittel dominieren unsere Ernährung</p>
+            <div className="space-y-3">
+              <div className="text-2xl font-bold text-orange-600">
+                <AnimatedStatistic value={50} suffix="%" />
+              </div>
+              <p className="text-sm text-orange-700">der täglichen Energie aus stark verarbeiteten Lebensmitteln</p>
+              <div className="text-sm text-orange-700 font-semibold">
+                Erhöhtes Risiko für Diabetes, Herzerkrankungen
+              </div>
             </div>
           </div>
 
           <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border border-red-200">
             <Zap className="w-10 h-10 text-red-600 mb-3" />
             <h3 className="text-xl font-semibold text-red-800 mb-3">Permanenter Stress</h3>
-            <div className="space-y-2">
-              <div className="text-lg font-bold text-red-600">24/7 Aktivierung</div>
-              <p className="text-sm text-red-700">Chronische Stressreaktion ohne Erholung</p>
+            <div className="space-y-3">
+              <div className="text-2xl font-bold text-red-600">
+                <AnimatedStatistic value={26} suffix="%" />
+              </div>
+              <p className="text-sm text-red-700">fühlen sich häufig gestresst (TK-Studie 2021)</p>
+              <div className="text-lg font-bold text-red-600">
+                <AnimatedStatistic value={80} suffix="%" />
+              </div>
+              <p className="text-sm text-red-700">leiden unter chronischem Stress</p>
             </div>
+          </div>
+        </div>
+
+        {/* Detailed Statistics Boxes */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-500" />
+              Sitzzeiten in Deutschland
+            </h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Durchschnitt täglich:</span>
+                <span className="font-bold text-red-600">9,2 Stunden</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">18-29 Jahre:</span>
+                <span className="font-bold text-red-600">10+ Stunden</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">8+ Stunden sitzen:</span>
+                <span className="font-bold text-red-600">38% erhöhtes Sterberisiko</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-3">Quelle: DKV-Report 2023, Norwegische Studie</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <UtensilsCrossed className="w-5 h-5 text-orange-500" />
+              Ernährungsproblematik
+            </h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Hochverarbeitete Nahrung:</span>
+                <span className="font-bold text-orange-600">50% der Energie</span>
+              </div>
+              <div className="text-sm text-gray-700">
+                Erhöhtes Risiko für Übergewicht, Diabetes Typ 2, Herz-Kreislauf-Erkrankungen
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-3">Quelle: DGE Ernährungsbericht 2024, Nationale Verzehrstudie II</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <Zap className="w-5 h-5 text-red-500" />
+              Stress-Epidemie Deutschland
+            </h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Häufig gestresst:</span>
+                <span className="font-bold text-red-600">26% (2021)</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Anstieg seit 2013:</span>
+                <span className="font-bold text-red-600">+6%</span>
+              </div>
+              <div className="text-sm text-gray-700">
+                80% Erschöpfung, 52% Schlafstörungen bei Gestressten
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-3">Quelle: TK-Stressstudie 2021, RKI DEGS1</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-500" />
+              Deutschland vs. EU
+            </h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Lebenserwartung:</span>
+                <span className="font-bold text-red-600">81,2 Jahre</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">EU-Durchschnitt:</span>
+                <span className="font-bold text-green-600">81,5 Jahre</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Gesundheitsausgaben:</span>
+                <span className="font-bold text-orange-600">12,6% BIP</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-3">Quelle: OECD-Studie 2024</p>
           </div>
         </div>
 
@@ -92,40 +194,31 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
             Die fatale Kombination führt zu:
           </h3>
           <div className="text-center text-3xl font-bold text-red-600 mb-4">
-            Stillen Entzündungen im Körper
+            Stillen Entzündungen im Körper ("Inflammaging")
           </div>
-          <p className="text-lg text-red-700 text-center">
+          <p className="text-lg text-red-700 text-center mb-4">
             Diese chronischen Mikro-Entzündungen sind die Grundlage aller Alterskrankheiten
           </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-lg">
-            <h4 className="text-lg font-semibold text-gray-800 mb-3">Schockierende Statistiken:</h4>
-            <ul className="space-y-2 text-gray-700">
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <span><strong>8+ Stunden Sitzen:</strong> 80% erhöhtes Sterberisiko</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                <span><strong>Deutschland:</strong> Nur 17% leben gesund</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg">
-            <h4 className="text-lg font-semibold text-gray-800 mb-3">Die Lösung:</h4>
-            <p className="text-gray-700">
-              Bewusste Veränderungen in Bewegung, Ernährung und Stressmanagement können diese Entwicklung stoppen.
+          <div className="bg-white/50 p-4 rounded-lg">
+            <p className="text-sm text-red-800 font-semibold text-center">
+              🔬 Wissenschaftlich bestätigt durch deutsche Forschung zu "Inflammaging" - 
+              chronische Entzündungen beschleunigen den Alterungsprozess
             </p>
           </div>
         </div>
 
-        <div className="text-center p-6 bg-yellow-50 rounded-xl border border-yellow-200">
-          <p className="text-lg font-semibold text-yellow-800">
-            🔥 Diese Faktoren wirken wie ein stiller Brand in Ihrem Körper - jeden Tag!
-          </p>
+        <div className="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+          <div className="flex items-start gap-4">
+            <AlertCircle className="w-8 h-8 text-yellow-600 mt-1 flex-shrink-0" />
+            <div>
+              <h4 className="text-lg font-semibold text-yellow-800 mb-2">Schockierende Realität:</h4>
+              <div className="space-y-2 text-yellow-700">
+                <p><strong>Nur 17% der Deutschen</strong> leben gesund (DKV-Report 2023)</p>
+                <p><strong>Höchste Gesundheitsausgaben EU-weit</strong> - aber sinkende Lebenserwartung</p>
+                <p><strong>88% der Mädchen, 80% der Jungen</strong> bewegen sich zu wenig</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Interactive Poll moved to end */}
@@ -137,6 +230,32 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
             options={pollOptions}
             onAnswer={onLifestyleAnswer}
           />
+        </div>
+
+        {/* Sources Section */}
+        <div className="mt-8 bg-gray-50 p-6 rounded-xl border border-gray-200">
+          <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <ExternalLink className="w-5 h-5" />
+            Quellen & Studien
+          </h4>
+          <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+            <div>
+              <p><strong>Bewegung & Sitzen:</strong></p>
+              <ul className="list-disc list-inside space-y-1 text-xs">
+                <li>DKV-Report 2023</li>
+                <li>RKI-Studie GEDA 2019/2020</li>
+                <li>Norwegische Langzeitstudie (12.000 Teilnehmer)</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Ernährung & Stress:</strong></p>
+              <ul className="list-disc list-inside space-y-1 text-xs">
+                <li>DGE Ernährungsbericht 2024</li>
+                <li>TK-Stressstudie 2021</li>
+                <li>OECD Gesundheitsstatistik 2024</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
