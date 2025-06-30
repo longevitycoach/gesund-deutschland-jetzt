@@ -57,7 +57,7 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         {/* Image display */}
         <div className="flex justify-center mb-6">
           <img 
-            src="/lovable-uploads/0bc55fe1-1e6e-47f3-aac0-3cf7ba632e74.png" 
+            src="aging.png" 
             alt="Gesund vs. Ungesund im Alter"
             className="max-w-full h-auto rounded-lg shadow-lg max-h-96 object-contain"
           />
