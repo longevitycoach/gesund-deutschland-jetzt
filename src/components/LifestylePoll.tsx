@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface PollOption {
   id: string;
@@ -15,69 +16,153 @@ interface LifestylePollProps {
   questionId: string;
   question: string;
   options: PollOption[];
-  onAnswer?: (slideId: string, questionId: string, optionId: string) => void;
+  multipleChoice?: boolean;
+  onAnswer?: (slideId: string, questionId: string, optionId: string | string[]) => void;
 }
 
-export const LifestylePoll = ({ slideId, questionId, question, options, onAnswer }: LifestylePollProps) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+export const LifestylePoll = ({ 
+  slideId, 
+  questionId, 
+  question, 
+  options, 
+  multipleChoice = false,
+  onAnswer 
+}: LifestylePollProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [showMotivation, setShowMotivation] = useState(false);
   
   const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
   
-  const handleAnswer = (optionId: string) => {
+  const handleSingleAnswer = (optionId: string) => {
     if (hasAnswered) return;
     
-    setSelectedOption(optionId);
+    setSelectedOptions([optionId]);
     setHasAnswered(true);
     setShowMotivation(true);
     onAnswer?.(slideId, questionId, optionId);
   };
+
+  const handleMultipleChoice = (optionId: string, checked: boolean) => {
+    if (hasAnswered) return;
+
+    setSelectedOptions(prev => {
+      if (checked) {
+        return [...prev, optionId];
+      } else {
+        return prev.filter(id => id !== optionId);
+      }
+    });
+  };
+
+  const handleSubmitMultiple = () => {
+    if (selectedOptions.length === 0 || hasAnswered) return;
+    
+    setHasAnswered(true);
+    setShowMotivation(true);
+    onAnswer?.(slideId, questionId, selectedOptions);
+  };
   
-  const selectedOptionData = options.find(opt => opt.id === selectedOption);
+  const selectedOptionData = options.find(opt => selectedOptions.includes(opt.id));
   
   return (
     <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">{question}</h3>
       
+      {multipleChoice && !hasAnswered && (
+        <p className="text-sm text-gray-600 mb-4 italic">
+          Mehrfachantworten möglich - wählen Sie alle zutreffenden Optionen aus
+        </p>
+      )}
+      
       <div className="space-y-3">
         {options.map((option) => {
           const percentage = totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
-          const isSelected = selectedOption === option.id;
+          const isSelected = selectedOptions.includes(option.id);
           
-          return (
-            <div key={option.id} className="relative">
-              <Button
-                onClick={() => handleAnswer(option.id)}
-                disabled={hasAnswered}
-                variant={isSelected ? "default" : "outline"}
-                className={`w-full text-left justify-start relative overflow-hidden ${
-                  hasAnswered ? 'cursor-default' : 'hover:bg-blue-50'
-                } ${isSelected && hasAnswered ? 'bg-blue-600 text-white border-blue-600' : ''}`}
-              >
-                {hasAnswered && (
-                  <div 
-                    className={`absolute left-0 top-0 h-full transition-all duration-1000 ease-out ${
-                      isSelected ? 'bg-blue-500' : 'bg-gray-200'
-                    }`}
-                    style={{ width: `${percentage}%` }}
+          if (multipleChoice) {
+            return (
+              <div key={option.id} className="relative">
+                <div className={`flex items-center space-x-3 p-4 rounded-lg border transition-all ${
+                  isSelected ? 'bg-blue-100 border-blue-300' : 'bg-white border-gray-200 hover:border-blue-200'
+                } ${hasAnswered ? 'cursor-default' : 'cursor-pointer'}`}
+                onClick={() => !hasAnswered && handleMultipleChoice(option.id, !isSelected)}
+                >
+                  <Checkbox
+                    checked={isSelected}
+                    onCheckedChange={(checked) => handleMultipleChoice(option.id, checked as boolean)}
+                    disabled={hasAnswered}
+                    className="flex-shrink-0"
                   />
-                )}
-                <span className="relative z-10 flex justify-between w-full">
-                  <span className={`${isSelected && hasAnswered ? 'text-white font-semibold' : 'text-gray-800'}`}>
-                    {option.text}
-                  </span>
-                  {hasAnswered && (
-                    <span className={`font-bold ${isSelected ? 'text-white' : 'text-gray-900'}`}>
-                      {percentage.toFixed(1)}%
+                  <div className="flex-1">
+                    {hasAnswered && (
+                      <div 
+                        className={`absolute left-0 top-0 h-full transition-all duration-1000 ease-out rounded-lg ${
+                          isSelected ? 'bg-blue-200' : 'bg-gray-100'
+                        }`}
+                        style={{ width: `${percentage}%`, opacity: 0.3 }}
+                      />
+                    )}
+                    <span className={`relative z-10 flex justify-between w-full ${
+                      isSelected && hasAnswered ? 'font-semibold text-blue-800' : 'text-gray-800'
+                    }`}>
+                      <span>{option.text}</span>
+                      {hasAnswered && (
+                        <span className={`font-bold ${isSelected ? 'text-blue-900' : 'text-gray-700'}`}>
+                          {percentage.toFixed(1)}%
+                        </span>
+                      )}
                     </span>
+                  </div>
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div key={option.id} className="relative">
+                <Button
+                  onClick={() => handleSingleAnswer(option.id)}
+                  disabled={hasAnswered}
+                  variant={isSelected ? "default" : "outline"}
+                  className={`w-full text-left justify-start relative overflow-hidden ${
+                    hasAnswered ? 'cursor-default' : 'hover:bg-blue-50'
+                  } ${isSelected && hasAnswered ? 'bg-blue-600 text-white border-blue-600' : ''}`}
+                >
+                  {hasAnswered && (
+                    <div 
+                      className={`absolute left-0 top-0 h-full transition-all duration-1000 ease-out ${
+                        isSelected ? 'bg-blue-500' : 'bg-gray-200'
+                      }`}
+                      style={{ width: `${percentage}%` }}
+                    />
                   )}
-                </span>
-              </Button>
-            </div>
-          );
+                  <span className="relative z-10 flex justify-between w-full">
+                    <span className={`${isSelected && hasAnswered ? 'text-white font-semibold' : 'text-gray-800'}`}>
+                      {option.text}
+                    </span>
+                    {hasAnswered && (
+                      <span className={`font-bold ${isSelected ? 'text-white' : 'text-gray-900'}`}>
+                        {percentage.toFixed(1)}%
+                      </span>
+                    )}
+                  </span>
+                </Button>
+              </div>
+            );
+          }
         })}
       </div>
+
+      {multipleChoice && !hasAnswered && selectedOptions.length > 0 && (
+        <div className="mt-4 text-center">
+          <Button 
+            onClick={handleSubmitMultiple}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+          >
+            Antworten absenden ({selectedOptions.length} ausgewählt)
+          </Button>
+        </div>
+      )}
       
       {hasAnswered && (
         <p className="mt-4 text-sm text-gray-700 text-center font-medium">
@@ -90,6 +175,18 @@ export const LifestylePoll = ({ slideId, questionId, question, options, onAnswer
           <h4 className="font-bold text-green-800 mb-3 text-lg">💡 Ihre persönliche Motivation:</h4>
           <p className="text-gray-800 font-medium text-base leading-relaxed">
             {selectedOptionData.motivationalResponse}
+          </p>
+        </div>
+      )}
+
+      {showMotivation && multipleChoice && selectedOptions.length > 1 && (
+        <div className="mt-6 p-5 bg-white rounded-lg border-2 border-blue-300 shadow-md">
+          <h4 className="font-bold text-blue-800 mb-3 text-lg">🤔 Ihre Reflexion:</h4>
+          <p className="text-gray-800 font-medium text-base leading-relaxed">
+            Sie haben {selectedOptions.length} Bereiche ausgewählt, die für Sie relevant sind. 
+            Diese Vielfalt zeigt, dass Gesundheit ein komplexes Thema ist, das verschiedene 
+            Lebensbereiche umfasst. Betrachten Sie jeden ausgewählten Punkt als Ansatzpunkt 
+            für positive Veränderungen.
           </p>
         </div>
       )}
