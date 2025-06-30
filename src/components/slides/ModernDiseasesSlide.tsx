@@ -174,23 +174,53 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
             <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-red-500" />
-              Deutschland vs. EU
+              Deutschland vs. EU: Dramatische Entwicklung
             </h4>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700">Lebenserwartung:</span>
-                <span className="font-bold text-red-600">81,2 Jahre</span>
+            <div className="space-y-4">
+              <div>
+                <h5 className="font-semibold text-gray-700 mb-2">Lebenserwartung-Entwicklung:</h5>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2000-2010 Deutschland:</span>
+                    <span className="font-bold text-orange-600">+2,2 Jahre</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2000-2010 EU-Schnitt:</span>
+                    <span className="font-bold text-green-600">+2,5 Jahre</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2010-2019 Deutschland:</span>
+                    <span className="font-bold text-red-600">+0,8 Jahre</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2010-2019 EU-Schnitt:</span>
+                    <span className="font-bold text-green-600">+1,5 Jahre</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700">EU-Durchschnitt:</span>
-                <span className="font-bold text-green-600">81,5 Jahre</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700">Gesundheitsausgaben:</span>
-                <span className="font-bold text-orange-600">12,6% BIP</span>
+              
+              <div className="border-t border-gray-200 pt-3">
+                <h5 className="font-semibold text-gray-700 mb-2">Gesundheitsausgaben (% BIP):</h5>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2016 Deutschland:</span>
+                    <span className="font-bold text-orange-600">11,1%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2022 Deutschland:</span>
+                    <span className="font-bold text-red-600">12,6%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">2022 EU-Schnitt:</span>
+                    <span className="font-bold text-green-600">10,4%</span>
+                  </div>
+                </div>
+                <p className="text-xs text-red-600 font-semibold mt-2">
+                  Höchste Ausgaben EU-weit, aber sinkende Lebenserwartung
+                </p>
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-3">Quelle: OECD-Studie 2024</p>
+            <p className="text-xs text-gray-500 mt-3">Quelle: OECD Gesundheitsstatistik 2024</p>
           </div>
         </div>
 
