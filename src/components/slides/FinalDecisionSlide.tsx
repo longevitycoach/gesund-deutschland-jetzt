@@ -1,3 +1,4 @@
+
 import { Heart, Clock, Target, Star } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
@@ -45,42 +46,42 @@ export const FinalDecisionSlide = ({ onLifestyleAnswer }: FinalDecisionSlideProp
     }
   ];
 
-  const motivationReflectionOptions = [
+  const personalCommitmentOptions = [
     {
       id: '1',
-      text: 'Ich möchte für meine Familie gesund und aktiv bleiben',
-      votes: 167,
-      motivationalResponse: 'Eine wunderbare Motivation! Ihre Familie ist Ihr stärkster Antrieb. Denken Sie daran: Gesunde Eltern sind das größte Geschenk an ihre Kinder.'
+      text: 'Ich bin bereit, meine Komfortzone zu verlassen',
+      votes: 143,
+      motivationalResponse: 'Mut ist der erste Schritt zur Veränderung! Außerhalb der Komfortzone beginnt das wahre Leben. Sie haben bereits den wichtigsten Schritt getan.'
     },
     {
       id: '2', 
-      text: 'Ich will meine Träume und Ziele auch im Alter verwirklichen',
-      votes: 134,
-      motivationalResponse: 'Fantastisch! Alter sollte niemals ein Hindernis für Ihre Träume sein. Mit der richtigen Gesundheitsstrategie können Sie bis ins hohe Alter aktiv bleiben.'
+      text: 'Ich nehme meine Gesundheit ab heute selbst in die Hand',
+      votes: 189,
+      motivationalResponse: 'Perfekt! Eigenverantwortung ist der Schlüssel zu dauerhaftem Erfolg. Sie sind der Architekt Ihrer eigenen Gesundheit.'
     },
     {
       id: '3',
-      text: 'Ich möchte nicht von anderen abhängig sein',
-      votes: 198,
-      motivationalResponse: 'Eine starke und wichtige Motivation! Unabhängigkeit ist Lebensqualität. Investieren Sie heute in Ihre Gesundheit für maximale Selbstständigkeit.'
+      text: 'Ich bin bereit, langfristig zu denken und zu handeln',
+      votes: 167,
+      motivationalResponse: 'Hervorragend! Langfristiges Denken unterscheidet erfolgreiche Menschen. Ihre zukünftige Gesundheit dankt Ihnen für diese Einstellung.'
     },
     {
       id: '4',
-      text: 'Ich will die Kosten für Krankheiten vermeiden',
-      votes: 89,
-      motivationalResponse: 'Sehr klug gedacht! Prävention kostet einen Bruchteil dessen, was Behandlung später kosten wird. Eine Investition, die sich mehrfach auszahlt.'
+      text: 'Ich möchte ein Beispiel für meine Mitmenschen sein',
+      votes: 98,
+      motivationalResponse: 'Inspirierend! Als Vorbild schaffen Sie positive Veränderungen weit über sich selbst hinaus. Ihre Transformation kann andere Leben retten.'
     },
     {
       id: '5',
-      text: 'Ich möchte ein Vorbild für andere sein',
-      votes: 76,
-      motivationalResponse: 'Inspirierend! Als Vorbild motivieren Sie nicht nur sich selbst, sondern helfen auch anderen. Ihre Gesundheitsreise kann Leben verändern.'
+      text: 'Ich erkenne, dass kleine Schritte große Wirkung haben',
+      votes: 134,
+      motivationalResponse: 'Weise Erkenntnis! Der Weg von 1000 Meilen beginnt mit einem Schritt. Konstanz schlägt Perfektion - jeden Tag ein bisschen besser.'
     },
     {
       id: '6',
-      text: 'Ich habe Angst vor Krankheit und Verfall',
-      votes: 112,
-      motivationalResponse: 'Diese Angst ist völlig verständlich und kann ein starker Motivator sein. Wandeln Sie diese Angst in positive Handlungen um - Sie haben die Kontrolle!'
+      text: 'Ich brauche noch mehr Überzeugung zum Handeln',
+      votes: 67,
+      motivationalResponse: 'Ehrlichkeit ist wichtig. Aber bedenken Sie: Jeder Tag des Wartens ist ein verlorener Tag. Manchmal muss man handeln, bevor man sich bereit fühlt.'
     }
   ];
 
@@ -248,13 +249,13 @@ export const FinalDecisionSlide = ({ onLifestyleAnswer }: FinalDecisionSlideProp
           </div>
         </div>
 
-        {/* New Reflection Question */}
+        {/* New Personal Commitment Reflection Question */}
         <div className="mt-8">
           <LifestylePoll
             slideId="final-decision"
-            questionId="health-motivation"
-            question="Was motiviert Sie am meisten, heute mit Ihrer Gesundheitsoptimierung zu beginnen?"
-            options={motivationReflectionOptions}
+            questionId="personal-commitment"
+            question="Wo stehen Sie heute in Bezug auf Ihre persönliche Bereitschaft zur Veränderung?"
+            options={personalCommitmentOptions}
             multipleChoice={false}
             onAnswer={onLifestyleAnswer}
           />
