@@ -248,17 +248,71 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
             <div>
               <p><strong>Bewegung & Sitzen:</strong></p>
               <ul className="list-disc list-inside space-y-1 text-xs">
-                <li>DKV-Report 2023</li>
-                <li>RKI-Studie GEDA 2019/2020</li>
-                <li>Norwegische Langzeitstudie (12.000 Teilnehmer)</li>
+                <li>
+                  <a 
+                    href="https://www.dkv.com/dkv-report-2023" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    DKV-Report 2023
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.rki.de/DE/Content/Gesundheitsmonitoring/Studien/Geda-2019/geda-2019_node.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    RKI-Studie GEDA 2019/2020
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.bmj.com/content/377/bmj-2022-071374" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    Norwegische Langzeitstudie (12.000 Teilnehmer)
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <p><strong>Ernährung & Stress:</strong></p>
               <ul className="list-disc list-inside space-y-1 text-xs">
-                <li>DGE Ernährungsbericht 2024</li>
-                <li>TK-Stressstudie 2021</li>
-                <li>OECD Gesundheitsstatistik 2024</li>
+                <li>
+                  <a 
+                    href="https://www.dge.de/wissenschaft/ernaehrungsberichte/ernaehrungsbericht-2024/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    DGE Ernährungsbericht 2024
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.tk.de/techniker/magazin/life-balance/stress-bewaeltigen/tk-stressstudie-2021-2116214" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    TK-Stressstudie 2021
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.oecd.org/health/health-at-a-glance/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    OECD Gesundheitsstatistik 2024
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
