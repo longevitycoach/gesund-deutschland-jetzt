@@ -1,4 +1,3 @@
-
 import { Heart, Zap, Activity, BookOpen, TestTube, Target, RefreshCw, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 
@@ -191,10 +190,10 @@ export const OptimalHealthSlide = () => {
             🔄 Der kontinuierliche Optimierungskreislauf
           </h3>
           
-          <div className="relative">
+          <div className="relative max-w-4xl mx-auto">
             {/* Circular Process Visualization */}
-            <div className="flex justify-center items-center relative">
-              <svg width="400" height="400" className="absolute">
+            <div className="flex justify-center items-center relative min-h-[500px]">
+              <svg width="500" height="500" className="absolute">
                 {/* Circular arrows */}
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" 
@@ -202,49 +201,49 @@ export const OptimalHealthSlide = () => {
                     <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1" />
                   </marker>
                 </defs>
-                <circle cx="200" cy="200" r="150" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
-                <path d="M 200 50 A 150 150 0 0 1 350 200" fill="none" stroke="#6366f1" strokeWidth="3" markerEnd="url(#arrowhead)" />
-                <path d="M 350 200 A 150 150 0 0 1 200 350" fill="none" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowhead)" />
-                <path d="M 200 350 A 150 150 0 0 1 50 200" fill="none" stroke="#f59e0b" strokeWidth="3" markerEnd="url(#arrowhead)" />
-                <path d="M 50 200 A 150 150 0 0 1 200 50" fill="none" stroke="#ef4444" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <circle cx="250" cy="250" r="180" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="5,5" />
+                <path d="M 250 70 A 180 180 0 0 1 430 250" fill="none" stroke="#6366f1" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 430 250 A 180 180 0 0 1 250 430" fill="none" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 250 430 A 180 180 0 0 1 70 250" fill="none" stroke="#f59e0b" strokeWidth="3" markerEnd="url(#arrowhead)" />
+                <path d="M 70 250 A 180 180 0 0 1 250 70" fill="none" stroke="#ef4444" strokeWidth="3" markerEnd="url(#arrowhead)" />
               </svg>
               
-              {/* Process Steps */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4">
+              {/* Process Steps - positioned to avoid overlap */}
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-blue-500 p-4 rounded-full shadow-lg">
                   <TestTube className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-center mt-2">
+                <div className="text-center mt-2 max-w-[120px]">
                   <h4 className="font-bold text-blue-800">1. MESSEN</h4>
                   <p className="text-xs text-gray-600">Biomarker analysieren</p>
                 </div>
               </div>
               
-              <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2">
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
                 <div className="bg-green-500 p-4 rounded-full shadow-lg">
                   <Target className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-center mt-2">
+                <div className="text-center mt-2 max-w-[120px]">
                   <h4 className="font-bold text-green-800">2. HANDELN</h4>
                   <p className="text-xs text-gray-600">Gezielt optimieren</p>
                 </div>
               </div>
               
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-4">
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-amber-500 p-4 rounded-full shadow-lg">
                   <RefreshCw className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-center mt-2">
+                <div className="text-center mt-2 max-w-[120px]">
                   <h4 className="font-bold text-amber-800">3. NACHMESSEN</h4>
                   <p className="text-xs text-gray-600">Erfolg kontrollieren</p>
                 </div>
               </div>
               
-              <div className="absolute left-0 top-1/2 transform -translate-x-4 -translate-y-1/2">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
                 <div className="bg-red-500 p-4 rounded-full shadow-lg">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-center mt-2">
+                <div className="text-center mt-2 max-w-[120px]">
                   <h4 className="font-bold text-red-800">4. ANPASSEN</h4>
                   <p className="text-xs text-gray-600">Strategie verfeinern</p>
                 </div>
