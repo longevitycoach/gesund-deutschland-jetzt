@@ -1,3 +1,4 @@
+
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
 import { InteractivePoll } from '@/components/InteractivePoll';
 
@@ -88,33 +89,34 @@ export const FunctionalMedicineSlide = () => {
 
         <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border border-green-200">
           <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            💡 Ihr revolutionärer Ansatz
+            💡 Medizinische Ansätze im Vergleich
           </h3>
           
-          <div className="space-y-4">
-            <h4 className="text-xl font-semibold text-red-800">❌ Standard-Medizin arbeitet mit:</h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
-              </li>
-            </ul>
-          </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-green-800">✅ Funktionelle Medizin arbeitet mit:</h4>
+            <div className="bg-red-50 p-6 rounded-xl border border-red-200 space-y-4">
+              <h4 className="text-xl font-semibold text-red-800 text-center">❌ Standard-Medizin</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Durchschnittswerten</strong> der kranken Bevölkerung</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Symptombehandlung</strong> - Ursachen bleiben</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Einheitsbehandlung</strong> - alle bekommen dasselbe</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span className="text-gray-700"><strong>Reaktivem Handeln</strong> - erst wenn Krankheit da ist</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-green-50 p-6 rounded-xl border border-green-200 space-y-4">
+              <h4 className="text-xl font-semibold text-green-800 text-center">✅ Funktionelle Medizin</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
