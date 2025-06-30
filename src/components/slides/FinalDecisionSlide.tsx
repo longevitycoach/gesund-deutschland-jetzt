@@ -167,10 +167,6 @@ export const FinalDecisionSlide = () => {
 
         <div className="text-center p-8 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-xl">
           <h3 className="text-3xl font-bold mb-6">⏰ Die Zeit ist JETZT!</h3>
-          <p className="text-xl mb-6 leading-relaxed">
-            Jeder Tag, den Sie warten, ist ein verlorener Tag für Ihre Gesundheit. 
-            Die Entscheidung liegt bei Ihnen - aber sie muss heute getroffen werden.
-          </p>
           
           <div className="text-2xl font-bold mb-4">
             "Wer sich heute keine Zeit für seine Gesundheit nimmt, 
