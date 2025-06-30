@@ -57,62 +57,41 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
           <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-          <h3 className="text-lg font-semibold text-blue-800 mb-2">Lebenserwartung Deutschland 2025</h3>
+          <h3 className="text-lg font-semibold text-blue-800 mb-2">Gesamtlebenserwartung</h3>
           <div className="text-3xl font-bold text-blue-600">
             <AnimatedStatistic value={81.2} suffix=" Jahre" />
           </div>
+          <p className="text-sm text-blue-600 mt-2">Deutschland 2025</p>
         </div>
 
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
           <Heart className="w-8 h-8 text-green-600 mx-auto mb-3" />
-          <h3 className="text-lg font-semibold text-green-800 mb-2">Gesunde Lebenserwartung</h3>
+          <h3 className="text-lg font-semibold text-green-800 mb-2">Gute Gesundheit</h3>
           <div className="text-3xl font-bold text-green-600">
-            Nur <AnimatedStatistic value={65} />-<AnimatedStatistic value={67} suffix=" Jahre" />
+            <AnimatedStatistic value={50} suffix="%" />
           </div>
+          <p className="text-sm text-green-600 mt-2">Vollständig mobil und unabhängig</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
+          <AlertTriangle className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+          <h3 className="text-lg font-semibold text-orange-800 mb-2">Moderate Gesundheit</h3>
+          <div className="text-3xl font-bold text-orange-600">
+            <AnimatedStatistic value={30} suffix="%" />
+          </div>
+          <p className="text-sm text-orange-600 mt-2">Eingeschränkt mobil, 1-2 chronische Krankheiten</p>
         </div>
 
         <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl border border-red-200">
           <AlertTriangle className="w-8 h-8 text-red-600 mx-auto mb-3" />
-          <h3 className="text-lg font-semibold text-red-800 mb-2">Kranke Jahre am Lebensende</h3>
+          <h3 className="text-lg font-semibold text-red-800 mb-2">Schlechte Gesundheit</h3>
           <div className="text-3xl font-bold text-red-600">
-            <AnimatedStatistic value={13} />-<AnimatedStatistic value={16} suffix=" Jahre" />
+            <AnimatedStatistic value={20} suffix="%" />
           </div>
-        </div>
-      </div>
-
-      {/* Enhanced Health Breakdown */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200 max-w-4xl mx-auto">
-        <h2 className="text-xl font-bold text-center text-gray-800 mb-4">
-          📊 Aufschlüsselung der Gesundheitsspanne
-        </h2>
-        
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="text-center p-4 bg-green-100 rounded-lg border border-green-200">
-            <div className="text-2xl font-bold text-green-700 mb-2">
-              <AnimatedStatistic value={50} suffix="%" />
-            </div>
-            <h4 className="text-sm font-semibold text-green-800 mb-1">Gute Gesundheit</h4>
-            <p className="text-xs text-green-600">Vollständig mobil und unabhängig</p>
-          </div>
-
-          <div className="text-center p-4 bg-orange-100 rounded-lg border border-orange-200">
-            <div className="text-2xl font-bold text-orange-700 mb-2">
-              <AnimatedStatistic value={30} suffix="%" />
-            </div>
-            <h4 className="text-sm font-semibold text-orange-800 mb-1">Moderate Gesundheit</h4>
-            <p className="text-xs text-orange-600">Eingeschränkt mobil, 1-2 chronische Krankheiten</p>
-          </div>
-
-          <div className="text-center p-4 bg-red-100 rounded-lg border border-red-200">
-            <div className="text-2xl font-bold text-red-700 mb-2">
-              <AnimatedStatistic value={20} suffix="%" />
-            </div>
-            <h4 className="text-sm font-semibold text-red-800 mb-1">Schlechte Gesundheit</h4>
-            <p className="text-xs text-red-600">Mehrere chronische Krankheiten, Pflegebedürftigkeit</p>
-          </div>
+          <p className="text-sm text-red-600 mt-2">Mehrere chronische Krankheiten, Pflegebedürftigkeit</p>
         </div>
       </div>
 
