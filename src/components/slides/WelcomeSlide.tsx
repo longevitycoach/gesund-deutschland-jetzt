@@ -1,4 +1,3 @@
-
 import { Heart, AlertTriangle, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -50,10 +49,19 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Die Wahrheit über unser Altern
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6">
           Erfahren Sie mehr über das Altern in Deutschland - und wie Sie 
           die Kontrolle über Ihre zweite Lebenshälfte übernehmen können.
         </p>
+        
+        {/* Image display */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/lovable-uploads/0bc55fe1-1e6e-47f3-aac0-3cf7ba632e74.png" 
+            alt="Gesund vs. Ungesund im Alter"
+            className="max-w-full h-auto rounded-lg shadow-lg max-h-96 object-contain"
+          />
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
