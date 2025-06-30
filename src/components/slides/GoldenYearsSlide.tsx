@@ -1,4 +1,3 @@
-
 import { Activity, TrendingDown, Calendar } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
@@ -109,17 +108,17 @@ export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) =
             längere Regenerationszeiten, weniger Energie, erste Verspannungen.
           </p>
         </div>
+      </div>
 
-        {/* Interactive Poll */}
-        <div className="mt-8">
-          <LifestylePoll
-            slideId="golden-years"
-            questionId="fitness-comparison"
-            question="Fühlen Sie sich heute genauso fit wie vor 10 Jahren?"
-            options={fitnessComparisonOptions}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
+      {/* Interactive Poll moved to end */}
+      <div className="mt-8">
+        <LifestylePoll
+          slideId="golden-years"
+          questionId="fitness-comparison"
+          question="Fühlen Sie sich heute genauso fit wie vor 10 Jahren?"
+          options={fitnessComparisonOptions}
+          onAnswer={onLifestyleAnswer}
+        />
       </div>
     </div>
   );

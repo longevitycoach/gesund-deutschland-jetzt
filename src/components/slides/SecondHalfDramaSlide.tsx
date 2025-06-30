@@ -1,4 +1,3 @@
-
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -146,7 +145,7 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
           </div>
         </div>
 
-        {/* Interactive Poll */}
+        {/* Interactive Poll moved to end */}
         <div className="mt-8">
           <LifestylePoll
             slideId="second-half-drama"

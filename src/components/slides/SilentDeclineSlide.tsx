@@ -1,4 +1,3 @@
-
 import { TrendingDown, AlertTriangle, Clock } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -128,7 +127,7 @@ export const SilentDeclineSlide = ({ onLifestyleAnswer }: SilentDeclineSlideProp
           </div>
         </div>
 
-        {/* Interactive Poll */}
+        {/* Interactive Poll moved to end */}
         <div className="mt-8">
           <LifestylePoll
             slideId="silent-decline"

@@ -1,31 +1,43 @@
 import { Zap, Activity, Apple, TestTube } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
+import HealingIcon from '@mui/icons-material/Healing';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb';
 
-export const PreventionRevolutionSlide = () => {
+interface PreventionRevolutionSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const PreventionRevolutionSlide = ({ onLifestyleAnswer }: PreventionRevolutionSlideProps) => {
   const lifestyleOptions = [
     { 
       id: '1', 
       text: 'Ja, regelmäßige Vorsorge ist mir wichtig', 
       votes: 40,
-      motivationalResponse: 'Exzellent! Sie verstehen den Wert der Prävention. Erweitern Sie Ihr Vorsorgeprogramm um moderne Biomarker-Tests für optimale Ergebnisse!'
+      motivationalResponse: 'Exzellent! Sie verstehen den Wert der Prävention. Erweitern Sie Ihr Vorsorgeprogramm um moderne Biomarker-Tests für optimale Ergebnisse!',
+      icon: <CheckCircleIcon className="w-5 h-5" />
     },
     { 
       id: '2', 
       text: 'Gelegentlich - nur die Standard-Vorsorge', 
       votes: 120,
-      motivationalResponse: 'Ein guter Anfang! Erwägen Sie, über die Standardvorsorge hinauszugehen. Investieren Sie in erweiterte Bluttests - sie zeigen mehr als Kassenwerte.'
+      motivationalResponse: 'Ein guter Anfang! Erwägen Sie, über die Standardvorsorge hinauszugehen. Investieren Sie in erweiterte Bluttests - sie zeigen mehr als Kassenwerte.',
+      icon: <SelfImprovementIcon className="w-5 h-5" />
     },
     { 
       id: '3', 
       text: 'Selten - nur bei Beschwerden', 
       votes: 85,
-      motivationalResponse: 'Zeit für einen Paradigmenwechsel! Prävention ist günstiger als Behandlung. Starten Sie mit einem umfassenden Gesundheitscheck.'
+      motivationalResponse: 'Zeit für einen Paradigmenwechsel! Prävention ist günstiger als Behandlung. Starten Sie mit einem umfassenden Gesundheitscheck.',
+      icon: <HealingIcon className="w-5 h-5" />
     },
     { 
       id: '4', 
       text: 'Nie - ich vertraue auf meinen Körper', 
       votes: 30,
-      motivationalResponse: 'Ihr Körper sendet oft erst Signale, wenn es zu spät ist. Geben Sie ihm die Chance, Ihnen früh zu zeigen, was er braucht!'
+      motivationalResponse: 'Ihr Körper sendet oft erst Signale, wenn es zu spät ist. Geben Sie ihm die Chance, Ihnen früh zu zeigen, was er braucht!',
+      icon: <DoNotDisturbIcon className="w-5 h-5" />
     }
   ];
 
@@ -43,16 +55,6 @@ export const PreventionRevolutionSlide = () => {
       </div>
 
       <div className="max-w-5xl mx-auto space-y-8">
-        {/* Interactive Poll */}
-        <div className="mb-8">
-          <LifestylePoll
-            slideId="prevention-revolution"
-            questionId="prevention-attitude"
-            question="Wie stehen Sie persönlich zur Gesundheitsvorsorge?"
-            options={lifestyleOptions}
-          />
-        </div>
-
         <div className="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl border border-blue-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Die neue Formel für ein langes, gesundes Leben
@@ -171,6 +173,17 @@ export const PreventionRevolutionSlide = () => {
             geistig klar und körperlich aktiv bleiben. Das ist keine Utopie - 
             das ist mit der richtigen Prävention erreichbar!
           </p>
+        </div>
+
+        {/* Interactive Poll moved to end */}
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="prevention-revolution"
+            questionId="prevention-attitude"
+            question="Wie stehen Sie persönlich zur Gesundheitsvorsorge?"
+            options={lifestyleOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
 
         <div className="text-center p-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-xl">

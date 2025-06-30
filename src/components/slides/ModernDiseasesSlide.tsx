@@ -1,4 +1,3 @@
-
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -7,7 +6,11 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
-export const ModernDiseasesSlide = () => {
+interface ModernDiseasesSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlideProps) => {
   const pollOptions = [
     { 
       id: '1', 
@@ -52,16 +55,6 @@ export const ModernDiseasesSlide = () => {
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* Interactive Poll */}
-        <div className="mb-8">
-          <LifestylePoll
-            slideId="modern-diseases"
-            questionId="sitting-hours"
-            question="Wie viele Stunden sitzen Sie täglich?"
-            options={pollOptions}
-          />
-        </div>
-
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
             <Smartphone className="w-10 h-10 text-blue-600 mb-3" />
@@ -130,6 +123,16 @@ export const ModernDiseasesSlide = () => {
             🔥 Diese Faktoren wirken wie ein stiller Brand in Ihrem Körper - jeden Tag!
           </p>
         </div>
+
+      {/* Interactive Poll moved to end */}
+      <div className="mt-8">
+        <LifestylePoll
+          slideId="modern-diseases"
+          questionId="sitting-hours"
+          question="Wie viele Stunden sitzen Sie täglich?"
+          options={pollOptions}
+          onAnswer={onLifestyleAnswer}
+        />
       </div>
     </div>
   );

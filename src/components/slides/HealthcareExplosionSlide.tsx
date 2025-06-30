@@ -1,4 +1,3 @@
-
 import { TrendingUp, DollarSign, Users, AlertTriangle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -136,17 +135,6 @@ export const HealthcareExplosionSlide = ({ onLifestyleAnswer }: HealthcareExplos
           </div>
         </div>
 
-        {/* Interactive Poll */}
-        <div className="mt-8">
-          <LifestylePoll
-            slideId="healthcare-explosion"
-            questionId="health-investment"
-            question="Wie viel investieren Sie monatlich in Ihre Gesundheitsvorsorge (Sport, Ernährung, Prävention)?"
-            options={healthInvestmentOptions}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
-
         <div className="bg-gradient-to-r from-yellow-100 to-orange-100 p-8 rounded-xl border border-yellow-200">
           <div className="flex items-center justify-center mb-4">
             <AlertTriangle className="w-8 h-8 text-orange-600 mr-3" />
@@ -162,6 +150,16 @@ export const HealthcareExplosionSlide = ({ onLifestyleAnswer }: HealthcareExplos
               Sie müssen selbst vorsorgen!
             </div>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="healthcare-explosion"
+            questionId="health-investment"
+            question="Wie viel investieren Sie monatlich in Ihre Gesundheitsvorsorge (Sport, Ernährung, Prävention)?"
+            options={healthInvestmentOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
 
         <div className="bg-gradient-to-r from-green-100 to-blue-100 p-8 rounded-xl border border-green-200">

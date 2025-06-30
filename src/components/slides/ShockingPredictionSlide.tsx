@@ -1,4 +1,3 @@
-
 import { Calendar, TrendingUp, AlertTriangle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -129,7 +128,7 @@ export const ShockingPredictionSlide = ({ onLifestyleAnswer }: ShockingPredictio
           </div>
         </div>
 
-        {/* Interactive Poll */}
+        {/* Interactive Poll moved to end */}
         <div className="mt-8">
           <LifestylePoll
             slideId="shocking-prediction"
