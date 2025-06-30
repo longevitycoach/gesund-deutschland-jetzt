@@ -127,7 +127,7 @@ export const FinalDecisionSlide = () => {
               </div>
               <h4 className="font-semibold text-orange-800 mb-2">Gesundheitsspanne</h4>
               <p className="text-sm text-gray-600">
-                Investieren Sie in Ihre Gesundheitsspanne
+                Investieren Sie bewusst in Ihre Gesundheit und belohnen Sie sich
               </p>
             </div>
           </div>
