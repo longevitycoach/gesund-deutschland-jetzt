@@ -261,43 +261,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
       </div>
 
       {/* The Promise */}
-      <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-8 rounded-xl">
-        <h2 className="text-3xl font-bold text-center mb-6">
-          🌟 Das Versprechen der modernen Longevity-Medizin
-        </h2>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Statt wie bisher:</h3>
-            <ul className="space-y-2 text-lg">
-              <li>• 12-17 kranke Jahre am Lebensende</li>
-              <li>• Schwindende Mobilität ab 60</li>
-              <li>• Pflegebedürftigkeit im Alter</li>
-              <li>• Verlust der Lebensqualität</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Die neue Vision:</h3>
-            <ul className="space-y-2 text-lg">
-              <li>• 78% der Lebensspanne in Gesundheit</li>
-              <li>• Volle Mobilität bis 85+</li>
-              <li>• Unabhängigkeit im hohen Alter</li>
-              <li>• Maximale Lebensqualität bis zuletzt</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="text-center mt-8 p-6 bg-white bg-opacity-20 rounded-xl">
-          <p className="text-2xl font-bold">
-            "Könnten wir das Langlebigkeitspotenzial bereits heute ausschöpfen - 
-            Menschen hätten es nicht über 122 Jahre gebracht!"
-          </p>
-          <p className="text-lg mt-2 opacity-90">
-            Die Spezies Mensch hat ihr genetisches Potenzial noch nicht erreicht.
-          </p>
-        </div>
-      </div>
+      
 
       {/* Questions Section */}
       <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
