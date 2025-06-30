@@ -1,8 +1,50 @@
-
-
 import { Heart, Clock, Target, Star } from 'lucide-react';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const FinalDecisionSlide = () => {
+interface FinalDecisionSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[]) => void;
+}
+
+export const FinalDecisionSlide = ({ onLifestyleAnswer }: FinalDecisionSlideProps) => {
+  const actionReadinessOptions = [
+    { 
+      id: '1', 
+      text: 'Umfassende Gesundheitstests durchführen lassen', 
+      votes: 85,
+      motivationalResponse: 'Perfekter Start! Wissen ist Macht. Mit umfassenden Tests schaffen Sie die Grundlage für gezielte Verbesserungen.'
+    },
+    { 
+      id: '2', 
+      text: 'Einen Hausarzt mit Labor-Anschluss finden', 
+      votes: 72,
+      motivationalResponse: 'Kluge Entscheidung! Ein guter Hausarzt mit Labor ist Ihr Partner für die proaktive Gesundheitsüberwachung.'
+    },
+    { 
+      id: '3', 
+      text: 'Mit kleinen täglichen Veränderungen beginnen (1%-Methode)', 
+      votes: 156,
+      motivationalResponse: 'Genial! Kleine Schritte führen zu großen Veränderungen. Konsistenz schlägt Perfektion - jeden Tag 1% besser!'
+    },
+    { 
+      id: '4', 
+      text: 'Gezielt in meine Gesundheit investieren', 
+      votes: 93,
+      motivationalResponse: 'Hervorragend! Gesundheit ist die beste Investition. Jeder Euro heute spart Ihnen später Tausende und schenkt Lebensqualität.'
+    },
+    { 
+      id: '5', 
+      text: 'Mich über Longevity-Medizin informieren', 
+      votes: 47,
+      motivationalResponse: 'Sehr gut! Bildung ist der erste Schritt zur Transformation. Je mehr Sie wissen, desto besser können Sie handeln.'
+    },
+    { 
+      id: '6', 
+      text: 'Ich bin noch nicht bereit für Veränderungen', 
+      votes: 23,
+      motivationalResponse: 'Das ist ehrlich - aber bedenken Sie: Jeder Tag ohne Handeln ist ein verlorener Tag. Wann, wenn nicht jetzt?'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -167,6 +209,18 @@ export const FinalDecisionSlide = () => {
           </div>
         </div>
 
+        {/* New Multiple Choice Question */}
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="final-decision"
+            questionId="action-readiness"
+            question="Welche konkreten Schritte sind Sie bereit, in den nächsten 30 Tagen zu unternehmen?"
+            options={actionReadinessOptions}
+            multipleChoice={true}
+            onAnswer={onLifestyleAnswer}
+          />
+        </div>
+
         <div className="text-center p-8 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-xl">
           <div className="text-2xl font-bold mb-4">
             "Wer sich heute keine Zeit für seine Gesundheit nimmt, 
@@ -180,4 +234,3 @@ export const FinalDecisionSlide = () => {
     </div>
   );
 };
-
