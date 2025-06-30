@@ -64,7 +64,7 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
           
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <p className="text-lg text-gray-700 mb-4">
+              <p className="text-lg text-gray-700 mb-4 w-full">
                 Eine revolutionäre Studie der Stanford University mit <strong>4.263 Probanden</strong> zwischen 18 und 95 Jahren 
                 hat drei deutliche Alterungswellen identifiziert. Die Forscher analysierten <strong>2.925 verschiedene Plasmaproteine</strong> 
                 und entdeckten spezifische Veränderungen in drei kritischen Lebensphasen:
