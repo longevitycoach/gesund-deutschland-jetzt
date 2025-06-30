@@ -1,4 +1,3 @@
-
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -114,15 +113,6 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
                 Die drei "Wellen des Alterns" laut Stanford-Studie
               </p>
             </div>
-          </div>
-          
-          <div className="mt-6 p-4 bg-yellow-100 rounded-lg border border-yellow-300">
-            <h4 className="font-semibold text-yellow-800 mb-2">💡 Warum ist 35 Jahre kritisch?</h4>
-            <p className="text-yellow-800">
-              Dass 35 Jahre als kritisches Alter gilt, zeigt sich auch in der deutschen Gesundheitsvorsorge: 
-              Ab dem vollendeten 35. Lebensjahr haben gesetzlich Versicherte alle drei Jahre Anrecht auf einen 
-              allgemeinen Gesundheits-Check zur Früherkennung von Herz-Kreislauf-Erkrankungen, Nierenerkrankungen und Diabetes.
-            </p>
           </div>
         </div>
 
