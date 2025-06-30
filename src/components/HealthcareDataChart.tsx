@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
@@ -158,22 +157,41 @@ export const HealthcareDataChart = () => {
           </h3>
           <ChartContainer config={chartConfig} className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={demographicsData}>
+              <LineChart data={demographicsData}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
+                <XAxis 
+                  dataKey="year" 
+                  domain={[2000, 2040]}
+                  type="number"
+                  scale="linear"
+                />
                 <YAxis tickFormatter={formatPercent} />
                 <ChartTooltip 
                   content={<ChartTooltipContent 
                     formatter={(value, name) => [
-                      name === 'pflegebedürftige' ? formatMillion(Number(value)) : formatPercent(Number(value)), 
-                      name === 'over60' ? 'Über 60 Jahre' : name === 'over65' ? 'Über 65 Jahre' : 'Pflegebedürftige'
+                      formatPercent(Number(value)), 
+                      name === 'over60' ? 'Über 60 Jahre' : 'Über 65 Jahre'
                     ]}
                   />}
                 />
                 <Legend />
-                <Bar dataKey="over60" fill="#3b82f6" name="Über 60 Jahre (%)" />
-                <Bar dataKey="over65" fill="#8b5cf6" name="Über 65 Jahre (%)" />
-              </BarChart>
+                <Line 
+                  type="monotone" 
+                  dataKey="over60" 
+                  stroke="#3b82f6" 
+                  strokeWidth={3}
+                  dot={{ r: 6 }}
+                  name="Über 60 Jahre (%)"
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="over65" 
+                  stroke="#8b5cf6" 
+                  strokeWidth={3}
+                  dot={{ r: 6 }}
+                  name="Über 65 Jahre (%)"
+                />
+              </LineChart>
             </ResponsiveContainer>
           </ChartContainer>
           <div className="mt-4 text-sm text-gray-600">
