@@ -1,7 +1,47 @@
 
 import { Activity, TrendingDown, Calendar } from 'lucide-react';
+import { LifestylePoll } from '@/components/LifestylePoll';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import HealingIcon from '@mui/icons-material/Healing';
 
-export const GoldenYearsSlide = () => {
+interface GoldenYearsSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) => {
+  const fitnessComparisonOptions = [
+    { 
+      id: '1', 
+      text: 'Ja, ich fühle mich genauso fit wie damals', 
+      votes: 15,
+      motivationalResponse: 'Fantastisch! Sie gehören zur seltenen Gruppe, die ihre Fitness erhalten hat. Bleiben Sie auf diesem Weg - Sie machen alles richtig!',
+      icon: <FitnessCenterIcon className="w-5 h-5" />
+    },
+    { 
+      id: '2', 
+      text: 'Größtenteils ja, aber ich merke kleine Unterschiede', 
+      votes: 45,
+      motivationalResponse: 'Das ist völlig normal und ein gutes Zeichen für Ihr Körperbewusstsein. Kleine Anpassungen können große Unterschiede machen.',
+      icon: <SelfImprovementIcon className="w-5 h-5" />
+    },
+    { 
+      id: '3', 
+      text: 'Nein, ich merke deutliche Unterschiede', 
+      votes: 110,
+      motivationalResponse: 'Ehrlichkeit ist der erste Schritt! Die gute Nachricht: Es ist nie zu spät, wieder mehr Fitness aufzubauen. Jede Verbesserung zählt.',
+      icon: <AccessibilityNewIcon className="w-5 h-5" />
+    },
+    { 
+      id: '4', 
+      text: 'Ich war schon vor 10 Jahren nicht besonders fit', 
+      votes: 65,
+      motivationalResponse: 'Perfekte Ausgangslage für Verbesserungen! Sie haben weniger zu verlieren und mehr zu gewinnen. Starten Sie jetzt - Ihr Körper wird es Ihnen danken.',
+      icon: <HealingIcon className="w-5 h-5" />
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -70,10 +110,15 @@ export const GoldenYearsSlide = () => {
           </p>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <p className="text-blue-800 font-medium text-center">
-            💡 Interaktive Frage: Fühlen Sie sich heute genauso fit wie vor 10 Jahren?
-          </p>
+        {/* Interactive Poll */}
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="golden-years"
+            questionId="fitness-comparison"
+            question="Fühlen Sie sich heute genauso fit wie vor 10 Jahren?"
+            options={fitnessComparisonOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
       </div>
     </div>

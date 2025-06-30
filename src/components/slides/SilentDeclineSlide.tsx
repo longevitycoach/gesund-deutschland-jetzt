@@ -1,32 +1,45 @@
-import { TrendingDown, Dumbbell, Zap, Flame } from 'lucide-react';
+
+import { TrendingDown, AlertTriangle, Clock } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-export const SilentDeclineSlide = () => {
-  const lifestyleOptions = [
+interface SilentDeclineSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const SilentDeclineSlide = ({ onLifestyleAnswer }: SilentDeclineSlideProps) => {
+  const bodyAwarenessOptions = [
     { 
       id: '1', 
-      text: 'Regelmäßig - 3x pro Woche oder mehr', 
-      votes: 35,
-      motivationalResponse: 'Fantastisch! Sie gehören zu den 20% der Bevölkerung, die aktiv gegen den Muskelabbau ankämpfen. Bleiben Sie dran - jedes Training zählt!'
+      text: 'Nein, ich ignoriere körperliche Veränderungen meist', 
+      votes: 95,
+      motivationalResponse: 'Das ist sehr menschlich - aber auch gefährlich! Ihr Körper sendet ständig Signale. Zeit, hinzuhören und präventiv zu handeln.',
+      icon: <VisibilityOffIcon className="w-5 h-5" />
     },
     { 
       id: '2', 
-      text: 'Gelegentlich - 1-2x pro Woche', 
-      votes: 85,
-      motivationalResponse: 'Ein guter Anfang! Versuchen Sie, auf 3x pro Woche zu steigern. Schon kleine Steigerungen können den Muskelabbau deutlich verlangsamen.'
+      text: 'Manchmal bemerke ich etwas, vergesse es aber schnell', 
+      votes: 120,
+      motivationalResponse: 'Typisch! Unser Alltag übertönt die leisen Signale. Ein Gesundheitstagebuch könnte Ihnen helfen, Muster zu erkennen.',
+      icon: <VisibilityIcon className="w-5 h-5" />
     },
     { 
       id: '3', 
-      text: 'Selten - nur sporadisch', 
-      votes: 120,
-      motivationalResponse: 'Jetzt ist der perfekte Zeitpunkt zu starten! Beginnen Sie mit 2x 20 Minuten pro Woche. Ihr Körper wird es Ihnen in 10 Jahren danken.'
+      text: 'Ja, aber ich schiebe es auf das Alter', 
+      votes: 85,
+      motivationalResponse: 'Stopp! "Das Alter" ist keine Diagnose. Viele Beschwerden sind vermeidbar oder umkehrbar. Lassen Sie sich nicht abspeisen!',
+      icon: <ReportProblemIcon className="w-5 h-5" />
     },
     { 
       id: '4', 
-      text: 'Gar nicht - ich bewege mich kaum', 
-      votes: 45,
-      motivationalResponse: 'Keine Sorge - es ist nie zu spät! Schon 10 Minuten tägliches Gehen kann den Alterungsprozess verlangsamen. Jeder Schritt zählt!'
+      text: 'Ja, ich achte bewusst auf Veränderungen', 
+      votes: 35,
+      motivationalResponse: 'Hervorragend! Sie praktizieren bereits Gesundheits-Achtsamkeit. Das ist der Schlüssel für rechtzeitiges Handeln.',
+      icon: <CheckCircleIcon className="w-5 h-5" />
     }
   ];
 
@@ -35,91 +48,100 @@ export const SilentDeclineSlide = () => {
       <div className="text-center mb-8">
         <TrendingDown className="w-16 h-16 mx-auto text-orange-500 mb-4" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Der stille Beginn des Verfalls
+          Der stille Abstieg beginnt
         </h1>
-        <h2 className="text-2xl text-orange-600 font-semibold">
-          Ab 30 startet der Abbau
-        </h2>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          Ab 40 beschleunigt sich der körperliche Abbau. Was schleichend begann, 
+          wird nun messbar und spürbar.
+        </p>
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6">
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 p-8 rounded-xl border border-orange-200">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Der körperliche Abbau nach 40
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+              <div className="text-3xl font-bold text-orange-600 mb-2">
+                -<AnimatedStatistic value={1} suffix="%" />
+              </div>
+              <p className="text-sm text-gray-600 mb-1">Muskelmasse</p>
+              <p className="text-xs text-orange-600">pro Jahr ab 40</p>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+              <div className="text-3xl font-bold text-red-600 mb-2">
+                -<AnimatedStatistic value={2} suffix="%" />
+              </div>
+              <p className="text-sm text-gray-600 mb-1">Knochendichte</p>
+              <p className="text-xs text-red-600">pro Jahr bei Frauen</p>
+            </div>
+
+            <div className="text-center p-6 bg-white rounded-xl shadow-lg">
+              <div className="text-3xl font-bold text-purple-600 mb-2">
+                -<AnimatedStatistic value={10} suffix="%" />
+              </div>
+              <p className="text-sm text-gray-600 mb-1">Stoffwechsel</p>
+              <p className="text-xs text-purple-600">pro Dekade</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <div className="flex items-center gap-3 mb-4">
+              <Clock className="w-6 h-6 text-blue-600" />
+              <h3 className="text-xl font-semibold text-blue-800">Erste Warnsignale</h3>
+            </div>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Längere Regeneration nach Sport</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Nachlassende Energie am Nachmittag</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Häufigere Verspannungen</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Schlechterer Schlaf</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-red-200">
+            <div className="flex items-center gap-3 mb-4">
+              <AlertTriangle className="w-6 h-6 text-red-600" />
+              <h3 className="text-xl font-semibold text-red-800">Das Problem</h3>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Die meisten Menschen ignorieren diese subtilen Veränderungen oder 
+              schieben sie auf "das Alter". Dabei ist genau jetzt der optimale 
+              Zeitpunkt für Gegenmaßnahmen!
+            </p>
+          </div>
+        </div>
+
         {/* Interactive Poll */}
-        <div className="mb-8">
+        <div className="mt-8">
           <LifestylePoll
             slideId="silent-decline"
-            questionId="exercise-frequency"
-            question="Wie oft treiben Sie aktuell Sport oder machen Krafttraining?"
-            options={lifestyleOptions}
+            questionId="body-awareness"
+            question="Nehmen Sie bewusst wahr, wenn sich etwas in Ihrem Körper verändert?"
+            options={bodyAwarenessOptions}
+            onAnswer={onLifestyleAnswer}
           />
         </div>
 
-        <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-xl border border-orange-200">
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Ab dem 30. Lebensjahr verlieren wir jährlich 1-2% unserer Muskelmasse. 
-            Unsere Hormone beginnen zu schwanken, der Stoffwechsel verlangsamt sich, 
-            und die ersten Mikro-Entzündungen entstehen.
-          </p>
-          <p className="text-xl font-semibold text-orange-800">
-            Das Problem: Wir merken es zunächst nicht.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-red-200">
-            <Dumbbell className="w-10 h-10 text-red-500 mb-3" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Muskelabbau</h3>
-            <div className="text-2xl font-bold text-red-600 mb-2">
-              <AnimatedStatistic value={1} />-<AnimatedStatistic value={2} suffix="%" />
-            </div>
-            <p className="text-sm text-gray-600">pro Jahr ab 30</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-orange-200">
-            <Zap className="w-10 h-10 text-orange-500 mb-3" />
-            <h3 className="text-lg font-semibold text-orange-800 mb-2">Hormonproduktion</h3>
-            <div className="text-lg font-bold text-orange-600 mb-2">
-              Erste Veränderungen
-            </div>
-            <p className="text-sm text-gray-600">ab 35 Jahren</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-yellow-200">
-            <Flame className="w-10 h-10 text-yellow-500 mb-3" />
-            <h3 className="text-lg font-semibold text-yellow-800 mb-2">Stoffwechsel</h3>
-            <div className="text-2xl font-bold text-yellow-600 mb-2">
-              <AnimatedStatistic value={2} />-<AnimatedStatistic value={3} suffix="%" />
-            </div>
-            <p className="text-sm text-gray-600">Verlangsamung pro Dekade</p>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-100 via-orange-100 to-yellow-100 p-8 rounded-xl">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-            Die schleichende Katastrophe
-          </h3>
-          <div className="space-y-3 text-gray-700">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              <p>Muskelmasse schwindet unmerklich - Kraftverlust setzt ein</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-              <p>Hormonbalance gerät aus dem Gleichgewicht - Energie lässt nach</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-              <p>Stoffwechsel wird träge - Gewichtszunahme beginnt</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-              <p>Mikro-Entzündungen entstehen - Grundlage aller Alterskrankheiten</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="text-center p-6 bg-gray-100 rounded-xl">
-          <p className="text-lg font-semibold text-gray-800">
-            ⚠️ Dieser Prozess ist biologisch normal - aber nicht unumkehrbar!
+        <div className="text-center p-6 bg-yellow-50 rounded-xl border border-yellow-200">
+          <p className="text-lg font-semibold text-yellow-800">
+            💡 Die gute Nachricht: Jetzt ist noch Zeit zum Handeln!
           </p>
         </div>
       </div>

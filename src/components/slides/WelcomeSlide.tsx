@@ -1,8 +1,48 @@
 
 import { Heart, AlertTriangle, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
-export const WelcomeSlide = () => {
+interface WelcomeSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
+  const awarenessOptions = [
+    { 
+      id: '1', 
+      text: 'Nein, diese Zahlen schockieren mich', 
+      votes: 85,
+      motivationalResponse: 'Gut, dass Sie jetzt Bescheid wissen! Bewusstsein ist der erste Schritt zur Veränderung. Sie haben noch alle Möglichkeiten, Ihre Zukunft zu gestalten.',
+      icon: <SentimentVeryDissatisfiedIcon className="w-5 h-5" />
+    },
+    { 
+      id: '2', 
+      text: 'Ich hatte eine Ahnung, aber nicht so konkret', 
+      votes: 120,
+      motivationalResponse: 'Ihre Ahnung war richtig! Jetzt haben Sie die konkreten Zahlen. Das Gute: Sie sind früh dran und können noch viel beeinflussen.',
+      icon: <SentimentNeutralIcon className="w-5 h-5" />
+    },
+    { 
+      id: '3', 
+      text: 'Ja, das war mir bereits bewusst', 
+      votes: 45,
+      motivationalResponse: 'Perfekt! Sie gehören zu den Informierten. Jetzt geht es darum, vom Wissen ins Handeln zu kommen.',
+      icon: <SentimentSatisfiedIcon className="w-5 h-5" />
+    },
+    { 
+      id: '4', 
+      text: 'Ich lebe bereits präventiv und gesundheitsbewusst', 
+      votes: 25,
+      motivationalResponse: 'Exzellent! Sie sind bereits auf dem richtigen Weg. Lassen Sie uns schauen, wie Sie Ihre Strategie noch optimieren können.',
+      icon: <SentimentVerySatisfiedIcon className="w-5 h-5" />
+    }
+  ];
+
   return (
     <div className="text-center space-y-8">
       <div className="mb-8">
@@ -47,6 +87,17 @@ export const WelcomeSlide = () => {
         <p className="text-lg font-semibold text-orange-800">
           🚨 Das bedeutet: Fast ein Fünftel Ihres Lebens verbringen Sie voraussichtlich krank!
         </p>
+      </div>
+
+      {/* Interactive Poll */}
+      <div className="mt-8">
+        <LifestylePoll
+          slideId="welcome"
+          questionId="awareness-check"
+          question="Waren Ihnen diese Zahlen über die Gesundheitsspanne in Deutschland bereits bewusst?"
+          options={awarenessOptions}
+          onAnswer={onLifestyleAnswer}
+        />
       </div>
     </div>
   );

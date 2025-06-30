@@ -1,8 +1,48 @@
 
 import { Calendar, TrendingUp, AlertTriangle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
-export const ShockingPredictionSlide = () => {
+interface ShockingPredictionSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const ShockingPredictionSlide = ({ onLifestyleAnswer }: ShockingPredictionSlideProps) => {
+  const reactionOptions = [
+    { 
+      id: '1', 
+      text: 'Schockierend - das hatte ich nicht erwartet', 
+      votes: 110,
+      motivationalResponse: 'Ihre Reaktion ist verständlich! Diese Zahlen sind ein Weckruf. Aber jetzt, wo Sie es wissen, können Sie handeln und Ihre Zukunft aktiv gestalten.',
+      icon: <SentimentVeryDissatisfiedIcon className="w-5 h-5" />
+    },
+    { 
+      id: '2', 
+      text: 'Beunruhigend - ich mache mir Sorgen', 
+      votes: 95,
+      motivationalResponse: 'Sorge ist berechtigt, aber verwandeln Sie sie in Motivation! Sie haben noch 40+ Jahre Zeit, um diese Statistiken zu Ihren Gunsten zu verändern.',
+      icon: <SentimentDissatisfiedIcon className="w-5 h-5" />
+    },
+    { 
+      id: '3', 
+      text: 'Nicht überraschend - so ist das Leben', 
+      votes: 45,
+      motivationalResponse: 'Resignation ist der größte Feind Ihrer Gesundheit! Diese Zahlen sind nicht in Stein gemeißelt - Sie können Ihr Schicksal beeinflussen.',
+      icon: <SentimentNeutralIcon className="w-5 h-5" />
+    },
+    { 
+      id: '4', 
+      text: 'Motivierend - ich will das ändern', 
+      votes: 85,
+      motivationalResponse: 'Perfekte Einstellung! Diese Motivation ist Ihr wertvollstes Gut. Halten Sie sie fest - sie wird Sie durch alle Veränderungen tragen.',
+      icon: <EmojiPeopleIcon className="w-5 h-5" />
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -87,6 +127,17 @@ export const ShockingPredictionSlide = () => {
               Das ist fast ein Viertel Ihrer gesamten zweiten Lebenshälfte.
             </p>
           </div>
+        </div>
+
+        {/* Interactive Poll */}
+        <div className="mt-8">
+          <LifestylePoll
+            slideId="shocking-prediction"
+            questionId="reaction-to-statistics"
+            question="Wie reagieren Sie auf diese Statistiken über Ihre Zukunft?"
+            options={reactionOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
 
         <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-xl border border-yellow-200">

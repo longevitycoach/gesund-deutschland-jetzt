@@ -1,6 +1,11 @@
+
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
+import ChairIcon from '@mui/icons-material/Chair';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
 export const ModernDiseasesSlide = () => {
   const pollOptions = [
@@ -8,25 +13,29 @@ export const ModernDiseasesSlide = () => {
       id: '1', 
       text: 'Weniger als 4 Stunden', 
       votes: 15,
-      motivationalResponse: 'Hervorragend! Sie gehören zur gesunden Minderheit. Achten Sie darauf, auch aktive Pausen einzubauen - das optimiert Ihre Gesundheit zusätzlich!'
+      motivationalResponse: 'Hervorragend! Sie gehören zur gesunden Minderheit. Achten Sie darauf, auch aktive Pausen einzubauen - das optimiert Ihre Gesundheit zusätzlich!',
+      icon: <DirectionsRunIcon className="w-5 h-5" />
     },
     { 
       id: '2', 
       text: '4-6 Stunden', 
       votes: 45,
-      motivationalResponse: 'Noch im akzeptablen Bereich! Versuchen Sie, alle 60 Minuten aufzustehen und sich zu bewegen. Schon 2 Minuten können den Unterschied machen.'
+      motivationalResponse: 'Noch im akzeptablen Bereich! Versuchen Sie, alle 60 Minuten aufzustehen und sich zu bewegen. Schon 2 Minuten können den Unterschied machen.',
+      icon: <SelfImprovementIcon className="w-5 h-5" />
     },
     { 
       id: '3', 
       text: '6-8 Stunden', 
       votes: 120,
-      motivationalResponse: 'Achtung - Sie befinden sich in der Risikozone! Planen Sie bewusst Stehpausen ein. Ein höhenverstellbarer Schreibtisch könnte eine Investition in Ihre Gesundheit sein.'
+      motivationalResponse: 'Achtung - Sie befinden sich in der Risikozone! Planen Sie bewusst Stehpausen ein. Ein höhenverstellbarer Schreibtisch könnte eine Investition in Ihre Gesundheit sein.',
+      icon: <FitnessCenterIcon className="w-5 h-5" />
     },
     { 
       id: '4', 
       text: 'Mehr als 8 Stunden', 
       votes: 85,
-      motivationalResponse: 'Höchste Priorität für Veränderung! Langes Sitzen ist das neue Rauchen. Starten Sie sofort mit 5-Minuten-Bewegungspausen alle Stunde.'
+      motivationalResponse: 'Höchste Priorität für Veränderung! Langes Sitzen ist das neue Rauchen. Starten Sie sofort mit 5-Minuten-Bewegungspausen alle Stunde.',
+      icon: <ChairIcon className="w-5 h-5" />
     }
   ];
 
