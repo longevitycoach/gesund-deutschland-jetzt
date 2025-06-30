@@ -63,7 +63,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               <div className="text-2xl font-bold text-blue-600">
                 <AnimatedStatistic value={9.2} suffix=" Std." />
               </div>
-              <p className="text-sm text-blue-700">sitzen Deutsche täglich (DKV-Report 2023)</p>
+              <p className="text-sm text-blue-700">sitzen Deutsche täglich</p>
               
               <div className="border-t border-blue-200 pt-3 mt-3">
                 <div className="text-lg font-bold text-blue-600">
@@ -95,7 +95,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               <div className="text-2xl font-bold text-red-600">
                 <AnimatedStatistic value={26} suffix="%" />
               </div>
-              <p className="text-sm text-red-700">fühlen sich häufig gestresst (TK-Studie 2021)</p>
+              <p className="text-sm text-red-700">fühlen sich häufig gestresst</p>
               <div className="text-lg font-bold text-red-600">
                 <AnimatedStatistic value={14} suffix="%" />
               </div>
