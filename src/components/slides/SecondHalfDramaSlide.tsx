@@ -1,4 +1,3 @@
-
 import { AlertTriangle, TrendingDown, Heart } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -114,6 +113,18 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
                 Stanford-Studie: Die drei Alterungswellen bei 34, 60 und 78 Jahren
               </p>
             </div>
+          </div>
+          
+          {/* New Aging Process Timeline */}
+          <div className="mt-8 text-center">
+            <img 
+              src="/lovable-uploads/0ca9e1ef-22d4-4f57-af00-def7a73857a0.png" 
+              alt="Aging Process Timeline showing different body systems aging from 25 to 50 years"
+              className="w-full h-auto rounded-lg shadow-lg border border-gray-200 max-w-4xl mx-auto"
+            />
+            <p className="text-sm text-gray-600 mt-2">
+              Aging Process Timeline: Verschiedene Körpersysteme altern unterschiedlich schnell
+            </p>
           </div>
         </div>
 
