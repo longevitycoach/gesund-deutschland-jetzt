@@ -39,32 +39,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
     }
   ];
 
-  const lifestyleOptions = [
-    { 
-      id: '1', 
-      text: 'Ja, ich lebe bereits sehr gesundheitsbewusst', 
-      votes: 25,
-      motivationalResponse: 'Großartig! Sie sind auf dem besten Weg zu einer langen Gesundheitsspanne. Bleiben Sie konsequent - Sie investieren in die wertvollsten Jahre Ihres Lebens!'
-    },
-    { 
-      id: '2', 
-      text: 'Teilweise - ich achte auf einige Bereiche', 
-      votes: 95,
-      motivationalResponse: 'Ein solider Grundstein! Identifizieren Sie 1-2 Bereiche für Verbesserungen. Kleine, konstante Schritte führen zu großen Veränderungen.'
-    },
-    { 
-      id: '3', 
-      text: 'Kaum - ich lebe eher ungesund', 
-      votes: 110,
-      motivationalResponse: 'Ehrlichkeit ist der erste Schritt zur Veränderung! Es ist nie zu spät - starten Sie mit einer kleinen Gewohnheit und bauen Sie darauf auf.'
-    },
-    { 
-      id: '4', 
-      text: 'Ich weiß nicht, was gesund ist', 
-      votes: 35,
-      motivationalResponse: 'Perfekt - Sie sind bereit zu lernen! Das ist die beste Ausgangslage. Jede Information, die Sie heute mitnehmen, kann Ihr Leben verlängern.'
-    }
-  ];
+
 
   return (
     <div className="space-y-8">
@@ -78,28 +53,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Personal Choice Poll */}
-        <div className="mb-8">
-          <LifestylePoll
-            slideId="longevity-vision"
-            questionId="personal-choice"
-            question="Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?"
-            options={personalChoiceOptions}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
-
-        {/* Health Awareness Poll */}
-        <div className="mb-8">
-          <LifestylePoll
-            slideId="longevity-vision"
-            questionId="health-awareness"
-            question="Wie bewusst leben Sie bereits gesundheitsorientiert?"
-            options={lifestyleOptions}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
 
         {/* Enhanced Historical Timeline with Health Quality Data */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border border-blue-200">
@@ -354,7 +307,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
         <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
             <QuestionMarkIcon className="inline-block mr-2 text-indigo-600" style={{ fontSize: '2rem' }} />
-            Fragen zum Nachdenken
+            Wir brauchen einen Sinn im Leben - Reflektieren Sie eine Minute. 
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -374,7 +327,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Was wären Sie bereit zu investieren für 78% gesunde Lebensjahre?</span>
+                  <span>Was wären Sie bereit in Ihrem Leben 15 Jahre weitere gesunde Lebensjahre?</span>
                 </li>
               </ul>
             </div>
@@ -395,7 +348,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Wie würde es sich anfühlen, mit 80 Jahren noch wie 60 zu sein?</span>
+                  <span>Wie würde es sich anfühlen, mit 80 Jahren noch wie 40 zu sein?</span>
                 </li>
               </ul>
             </div>
@@ -436,6 +389,19 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
           </p>
         </div>
       </div>
+
+
+        <div className="max-w-6xl mx-auto space-y-8">
+        {/* Personal Choice Poll */}
+        <div className="mb-8">
+          <LifestylePoll
+            slideId="longevity-vision"
+            questionId="personal-choice"
+            question="Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?"
+            options={personalChoiceOptions}
+            onAnswer={onLifestyleAnswer}
+          />
+        </div>
     </div>
   );
 };
