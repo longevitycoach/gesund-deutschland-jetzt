@@ -40,6 +40,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
 
   return (
     <div className="space-y-8">
+      {/* Header */}
       <div className="text-center mb-8">
         <Star className="w-16 h-16 mx-auto text-purple-500 mb-4 animate-pulse" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -260,9 +261,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
         </div>
       </div>
 
-      {/* The Promise */}
-      
-
       {/* Questions Section */}
       <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
@@ -336,17 +334,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="text-center p-8 bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl border border-purple-200">
-        <h3 className="text-2xl font-bold text-gray-800 mb-4">
-          💡 Die Zukunft beginnt heute
-        </h3>
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Mit der modernen Longevity-Forschung können wir die Gesundheitsspanne um 10-15 Jahre verlängern. 
-          Die Hallmarks of Aging zeigen uns den Weg zu <strong className="text-purple-600">90+ Jahren mit 85% gesunden Lebensjahren</strong>
-        </p>
       </div>
 
       <div className="max-w-6xl mx-auto space-y-8">
