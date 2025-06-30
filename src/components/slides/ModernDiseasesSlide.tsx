@@ -178,14 +178,6 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <h5 className="font-semibold text-gray-700 mb-2">Lebenserwartung-Entwicklung:</h5>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-700">2000-2010 Deutschland:</span>
-                    <span className="font-bold text-orange-600">+2,2 Jahre</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700">2000-2010 EU-Schnitt:</span>
-                    <span className="font-bold text-green-600">+2,5 Jahre</span>
-                  </div>
-                  <div className="flex justify-between items-center">
                     <span className="text-gray-700">2010-2019 Deutschland:</span>
                     <span className="font-bold text-red-600">+0,8 Jahre</span>
                   </div>
@@ -200,10 +192,6 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                 <h5 className="font-semibold text-gray-700 mb-2">Gesundheitsausgaben (% BIP):</h5>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-700">2016 Deutschland:</span>
-                    <span className="font-bold text-orange-600">11,1%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
                     <span className="text-gray-700">2022 Deutschland:</span>
                     <span className="font-bold text-red-600">12,6%</span>
                   </div>
@@ -213,7 +201,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
                   </div>
                 </div>
                 <p className="text-xs text-red-600 font-semibold mt-2">
-                  Höchste Ausgaben EU-weit, aber sinkende Lebenserwartung
+                  Höchste Ausgaben EU-weit, aber wenig mehr Lebenserwartung
                 </p>
               </div>
             </div>
@@ -236,20 +224,6 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlidePr
               🔬 Wissenschaftlich bestätigt durch deutsche Forschung zu "Inflammaging" - 
               chronische Entzündungen beschleunigen den Alterungsprozess
             </p>
-          </div>
-        </div>
-
-        <div className="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
-          <div className="flex items-start gap-4">
-            <AlertCircle className="w-8 h-8 text-yellow-600 mt-1 flex-shrink-0" />
-            <div>
-              <h4 className="text-lg font-semibold text-yellow-800 mb-2">Schockierende Realität:</h4>
-              <div className="space-y-2 text-yellow-700">
-                <p><strong>Nur 17% der Deutschen</strong> leben gesund (DKV-Report 2023)</p>
-                <p><strong>Höchste Gesundheitsausgaben EU-weit</strong> - aber sinkende Lebenserwartung</p>
-                <p><strong>88% der Mädchen, 80% der Jungen</strong> bewegen sich zu wenig</p>
-              </div>
-            </div>
           </div>
         </div>
 
