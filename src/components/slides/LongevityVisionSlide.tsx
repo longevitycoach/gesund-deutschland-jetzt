@@ -1,4 +1,3 @@
-
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -65,7 +64,7 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
             📈 Die Entwicklung der Gesundheitsspanne
           </h2>
           
-          <div className="grid md:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <h3 className="text-lg font-semibold text-blue-800 mb-3">1960</h3>
               <div className="space-y-2">
@@ -91,20 +90,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                   <AnimatedStatistic value={50} suffix="%" />
                 </div>
                 <p className="text-xs text-gray-500">Gesunde Jahre</p>
-              </div>
-            </div>
-
-            <div className="text-center p-6 bg-white rounded-xl shadow-lg border-2 border-purple-300">
-              <h3 className="text-lg font-semibold text-purple-800 mb-3">Heute (Nina Ruge)</h3>
-              <div className="space-y-2">
-                <div className="text-2xl font-bold text-purple-600">
-                  <AnimatedStatistic value={68} suffix=" Jahre" />
-                </div>
-                <p className="text-sm text-gray-600">Aktuelles Alter</p>
-                <div className="text-lg font-bold text-green-600">
-                  <AnimatedStatistic value={85} suffix="%" />
-                </div>
-                <p className="text-xs text-gray-500">Vitale Gesundheit</p>
               </div>
             </div>
 
