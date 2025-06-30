@@ -74,10 +74,10 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
                 <div className="p-4 bg-white rounded-lg shadow-sm border-l-4 border-cyan-500">
                   <h4 className="font-bold text-cyan-800 text-lg mb-2">🌊 Erste Welle (um 34 Jahre)</h4>
                   <div className="space-y-2 text-sm text-gray-700">
-                    <div>• <strong>25-30 Jahre:</strong> Erste Hautveränderungen und beginnender Kollagenabbau</div>
-                    <div>• <strong>30-35 Jahre:</strong> Gelenkprobleme und hormonelle Veränderungen beginnen</div>
-                    <div>• <strong>35-45 Jahre:</strong> Herz-Kreislauf- und Stoffwechselprobleme nehmen zu</div>
-                    <div>• <strong>40-50 Jahre:</strong> Kognitive Veränderungen werden messbar</div>
+                    <div>• Erste Hautveränderungen und beginnender Kollagenabbau</div>
+                    <div>• Gelenkprobleme und hormonelle Veränderungen beginnen</div>
+                    <div>• Herz-Kreislauf- und Stoffwechselprobleme nehmen zu</div>
+                    <div>• Kognitive Veränderungen werden messbar</div>
                   </div>
                 </div>
                 
@@ -106,7 +106,7 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlide
             <div className="text-center">
               <img 
                 src="/lovable-uploads/8c4960d6-98aa-4def-bf77-94e1739d06b6.png" 
-                alt="Aging Waves - Stanford Study Data showing three distinct aging waves at 34, 60, and 78 years"
+                alt="Aging Waves - Stanford Study Data showing three distinct aging waves at 34, 60 and 78 years"
                 className="w-full h-auto rounded-lg shadow-lg border border-gray-200"
               />
               <p className="text-sm text-gray-600 mt-2">
