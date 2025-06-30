@@ -180,15 +180,6 @@ export const FinalDecisionSlide = () => {
             - Prof. Dr. Ingo Froböse
           </p>
         </div>
-
-        <div className="bg-gradient-to-r from-green-100 to-blue-100 p-8 rounded-xl border border-green-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
-            🎯 Ihr neues Lebensmotto
-          </h3>
-          <p className="text-center text-xl font-semibold text-gray-700">
-            "Ich investiere heute in meine Gesundheit, damit ich morgen das Leben in vollen Zügen genießen kann."
-          </p>
-        </div>
       </div>
     </div>
   );
