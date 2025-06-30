@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
@@ -12,6 +11,7 @@ import { SecondHalfDramaSlide } from '@/components/slides/SecondHalfDramaSlide';
 import { HealthcareExplosionSlide } from '@/components/slides/HealthcareExplosionSlide';
 import { PreventionRevolutionSlide } from '@/components/slides/PreventionRevolutionSlide';
 import { FunctionalMedicineSlide } from '@/components/slides/FunctionalMedicineSlide';
+import { LongevityVisionSlide } from '@/components/slides/LongevityVisionSlide';
 import { OptimalHealthSlide } from '@/components/slides/OptimalHealthSlide';
 import { IndividualHealthSlide } from '@/components/slides/IndividualHealthSlide';
 import { OnePercentMethodSlide } from '@/components/slides/OnePercentMethodSlide';
@@ -31,6 +31,7 @@ const Index = () => {
     { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen" },
     { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention" },
     { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin" },
+    { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung" },
     { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit" },
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell" },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit" },
