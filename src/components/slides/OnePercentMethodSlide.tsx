@@ -1,7 +1,39 @@
 import { TrendingUp, Target, Zap, Calendar, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const OnePercentMethodSlide = () => {
+interface OnePercentMethodSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const OnePercentMethodSlide = ({ onLifestyleAnswer }: OnePercentMethodSlideProps) => {
+  const pollOptions = [
+    {
+      id: 'daily-walk',
+      text: 'Täglich 10 Minuten spazieren gehen',
+      votes: 42,
+      motivationalResponse: 'Perfekt! Ein täglicher 10-Minuten-Spaziergang ist ein fantastischer erster Schritt. Diese kleine Gewohnheit kann Ihre Herzgesundheit verbessern, Stress reduzieren und Ihre Energie steigern. Beginnen Sie heute - nach einer Mahlzeit ist der ideale Zeitpunkt!'
+    },
+    {
+      id: 'water-habit',
+      text: 'Ein großes Glas Wasser nach dem Aufstehen trinken',
+      votes: 38,
+      motivationalResponse: 'Ausgezeichnet! Diese einfache Gewohnheit startet Ihren Stoffwechsel, hilft bei der Entgiftung und gibt Ihnen einen energiereichen Start in den Tag. Stellen Sie das Glas schon am Abend bereit - so vergessen Sie es garantiert nicht!'
+    },
+    {
+      id: 'breathing-exercise',
+      text: '1 Minute bewusst atmen',
+      votes: 35,
+      motivationalResponse: 'Wunderbar! Eine Minute bewusstes Atmen kann Stress reduzieren, den Blutdruck senken und Ihre Konzentration verbessern. Diese Mikrogewohnheit lässt sich überall einbauen - im Auto, am Schreibtisch oder vor dem Schlafengehen.'
+    },
+    {
+      id: 'vegetable-portion',
+      text: 'Zu jeder Mahlzeit eine Portion Gemüse',
+      votes: 29,
+      motivationalResponse: 'Kluge Wahl! Diese Gewohnheit versorgt Sie mit wichtigen Nährstoffen, Ballaststoffen und Antioxidantien. Beginnen Sie mit dem Gemüse, das Sie bereits mögen, und erweitern Sie dann langsam Ihre Vielfalt.'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -61,83 +93,13 @@ export const OnePercentMethodSlide = () => {
         </div>
 
         <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
-          <h3 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            💪 Die 1%-Methode in der Praxis - Ihr 4-Wochen-Start
-          </h3>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
-              <h4 className="text-lg font-semibold text-green-800 mb-4">📅 Woche 1</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Nach dem Essen 10min spazieren gehen</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Ein grosses Wasser nach dem Aufstehen trinken</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>1min bewusst atmen</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
-              <h4 className="text-lg font-semibold text-blue-800 mb-4">📅 Woche 2</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Immer die Treppen benutzen</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Immer eine Portion Gemüse</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Mit dem Fahrrad in die Arbeit fahren</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
-              <h4 className="text-lg font-semibold text-purple-800 mb-4">📅 Woche 3</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>Starte mit 5min Frühsport</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>Koche zweimal pro Woche ohne unverarbeitete Lebensmittel</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>Pflanze deinen Balkon mit 5 Lebensmittelpflanzen</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl border border-orange-200">
-              <h4 className="text-lg font-semibold text-orange-800 mb-4">📅 Woche 4</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>Tracke deine Schritte mit einer Smartwatch</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>Limitiere den Alkoholkonsum auf einmal pro Woche</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>Begrenze deine Zeit mit negativen Menschen</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <LifestylePoll
+            slideId="one-percent-method"
+            questionId="first-small-step"
+            question="🚀 Mit welchem kleinen Schritt möchten Sie heute beginnen?"
+            options={pollOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
 
         <div className="bg-gradient-to-r from-yellow-100 to-orange-100 p-8 rounded-xl border border-yellow-200">
