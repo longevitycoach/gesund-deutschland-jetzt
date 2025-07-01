@@ -1,23 +1,20 @@
 
 export const slideScripts = {
   welcome: `
-    Willkommen zu dieser wichtigen Präsentation über das Altern in Deutschland. 
-
-    Die Wahrheit über unser Altern ist oft erschreckend, aber gleichzeitig hoffnungsvoll. 
+    Willkommen zum Thema Altern in Deutschland. 
     
-    Betrachten wir zunächst die aktuellen Zahlen: Die Gesamtlebenserwartung in Deutschland liegt bei 81,2 Jahren. 
+    Betrachten wir zunächst die aktuellen Zahlen: Die Gesamtlebenserwartung in Deutschland liegt bei etwa 81 Jahren. 
     Das klingt zunächst ermutigend. Doch die Realität sieht anders aus.
     
-    Nur 50 Prozent der Menschen verbringen ihre letzten Lebensjahre in vollständiger Mobilität und Unabhängigkeit. 
-    30 Prozent leben mit eingeschränkter Mobilität und ein bis zwei chronischen Krankheiten. 
-    Und erschreckende 20 Prozent verbringen ihre letzten Jahre mit mehreren chronischen Krankheiten und Pflegebedürftigkeit.
+    Wir verbringen im Durchschnitt etwa die erste Hälfte unserer Lebenszeit gesund. Dann folgen 24 Jahre eine Zeit mit mit eingeschränkter Mobilität und beginnen die ersten Anzeichen von ein bis zwei chronischen Krankheiten. 
+    Die letzten 16 Jahre sind eine Zeit mit mehreren chronischen Krankheiten und Pflegebedürftigkeit.
     
-    Das bedeutet: Fast ein Fünftel Ihres Lebens verbringen Sie voraussichtlich schwer krank! 
-    Die zweite Hälfte des Lebens ist für die meisten Menschen von eingeschränkter Lebensqualität geprägt.
+    Das bedeutet: Fast ein Drittel Ihres Lebens verbringen Sie voraussichtlich schwer krank! Die zweite Hälfte des Lebens ist für die meisten Menschen von eingeschränkter Lebensqualität geprägt.
     
-    Doch es gibt Hoffnung - und genau darum geht es in dieser Präsentation.
+    Doch es gibt Hoffnung - wir möchten Ihnen erklären wie Sie Ihre zweite Lebenshälfte mit gesundheitlichen Einschränkungen überwinden können.
     
-    Bitte beantworten Sie nun die Frage: Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?
+  Wir stellen Ihnen am Ende jedes Themas eine kurze Frage. Sie erhalten am Ende eine ausführliche Auswertung und eine persönliche Empfehlung.
+  Hier die erste Frage: Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?
   `,
 
   goldenYears: `
@@ -35,7 +32,7 @@ export const slideScripts = {
     
     Dieser schleichende Prozess beginnt früh - viel früher, als die meisten Menschen denken.
     
-    Bitte beantworten Sie: Fühlen Sie sich heute genauso fit wie vor 10 Jahren?
+    Fühlen Sie sich heute genauso fit wie vor 10 Jahren?
   `,
 
   silentDecline: `
