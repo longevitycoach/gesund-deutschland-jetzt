@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -16,7 +15,7 @@ interface LifestylePollProps {
   question: string;
   options: PollOption[];
   multipleChoice?: boolean;
-  onAnswer?: (slideId: string, questionId: string, optionId: string | string[]) => void;
+  onAnswer?: (slideId: string, questionId: string, optionId: string | string[], questionText: string, answerText: string) => void;
 }
 
 export const LifestylePoll = ({ 
@@ -40,9 +39,11 @@ export const LifestylePoll = ({
     setHasAnswered(true);
     setShowMotivation(true);
     
-    // Save answer to database
+    // Save answer to database with full question and answer text
     if (onAnswer) {
-      await onAnswer(slideId, questionId, optionId);
+      const selectedOption = options.find(opt => opt.id === optionId);
+      const answerText = selectedOption ? selectedOption.text : '';
+      await onAnswer(slideId, questionId, optionId, question, answerText);
     }
   };
 
@@ -64,9 +65,13 @@ export const LifestylePoll = ({
     setHasAnswered(true);
     setShowMotivation(true);
     
-    // Save answer to database
+    // Save answer to database with full question and answer text
     if (onAnswer) {
-      await onAnswer(slideId, questionId, selectedOptions);
+      const selectedOptionTexts = selectedOptions
+        .map(optionId => options.find(opt => opt.id === optionId)?.text || '')
+        .filter(text => text !== '');
+      const answerText = selectedOptionTexts.join(', ');
+      await onAnswer(slideId, questionId, selectedOptions, question, answerText);
     }
   };
   

@@ -15,7 +15,13 @@ export const useSurveySession = () => {
     setSessionId(currentSessionId);
   }, []);
 
-  const saveAnswer = async (slideId: string, questionId: string, answer: string | string[]) => {
+  const saveAnswer = async (
+    slideId: string, 
+    questionId: string, 
+    answer: string | string[], 
+    questionText: string, 
+    answerText: string
+  ) => {
     if (!sessionId) return;
 
     try {
@@ -28,7 +34,9 @@ export const useSurveySession = () => {
           session_id: sessionId,
           slide_id: slideId,
           question_id: questionId,
-          answer: answerString
+          answer: answerString,
+          question_text: questionText,
+          answer_text: answerText
         });
 
       if (error) {
@@ -38,7 +46,9 @@ export const useSurveySession = () => {
           session_id: sessionId,
           slide_id: slideId,
           question_id: questionId,
-          answer: answerString
+          answer: answerString,
+          question_text: questionText,
+          answer_text: answerText
         });
       }
     } catch (error) {

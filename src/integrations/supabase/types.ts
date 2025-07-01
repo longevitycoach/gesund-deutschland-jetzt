@@ -12,25 +12,31 @@ export type Database = {
       survey_responses: {
         Row: {
           answer: string
+          answer_text: string | null
           created_at: string
           id: string
           question_id: string
+          question_text: string | null
           session_id: string
           slide_id: string
         }
         Insert: {
           answer: string
+          answer_text?: string | null
           created_at?: string
           id?: string
           question_id: string
+          question_text?: string | null
           session_id: string
           slide_id: string
         }
         Update: {
           answer?: string
+          answer_text?: string | null
           created_at?: string
           id?: string
           question_id?: string
+          question_text?: string | null
           session_id?: string
           slide_id?: string
         }

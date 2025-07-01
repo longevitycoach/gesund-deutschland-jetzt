@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
@@ -52,15 +51,23 @@ const Index = () => {
     setCurrentSlide(index);
   };
 
-  const handleLifestyleAnswer = async (slideId: string, questionId: string, answer: string | string[]) => {
+  const handleLifestyleAnswer = async (
+    slideId: string, 
+    questionId: string, 
+    answer: string | string[], 
+    questionText: string, 
+    answerText: string
+  ) => {
     // Save to database
-    await saveAnswer(slideId, questionId, answer);
+    await saveAnswer(slideId, questionId, answer, questionText, answerText);
     
     console.log('Answer saved to database:', {
       sessionId,
       slideId,
       questionId,
       answer,
+      questionText,
+      answerText,
       timestamp: new Date().toISOString()
     });
   };
