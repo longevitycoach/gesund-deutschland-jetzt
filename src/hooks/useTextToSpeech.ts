@@ -55,62 +55,70 @@ export const useTextToSpeech = () => {
 
       console.log('Successfully received response from edge function');
 
-      // Check if response was cached
-      const cacheStatus = response.data?.headers?.['x-cache'] || 'UNKNOWN';
-      console.log('Cache status:', cacheStatus);
-
-      // The edge function should return raw audio data (ArrayBuffer)
-      let audioBlob: Blob;
+      // The response.data should be an ArrayBuffer
+      let audioBuffer: ArrayBuffer;
       
       if (response.data instanceof ArrayBuffer) {
-        audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
-      } else if (response.data && response.data.constructor === ArrayBuffer) {
-        audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+        audioBuffer = response.data;
+      } else if (response.data && typeof response.data === 'object' && response.data.constructor === ArrayBuffer) {
+        audioBuffer = response.data;
       } else {
-        // Handle the case where data might be returned differently
-        console.error('Unexpected response format:', typeof response.data, response.data);
-        
-        // Try to convert response to ArrayBuffer
-        const arrayBuffer = await fetch(`data:application/octet-stream;base64,${btoa(String.fromCharCode(...new Uint8Array(response.data)))}`).then(r => r.arrayBuffer());
-        audioBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+        console.error('Unexpected response format:', typeof response.data);
+        throw new Error('Invalid audio data format received');
       }
 
-      if (audioBlob.size === 0) {
+      if (audioBuffer.byteLength === 0) {
         throw new Error('Empty audio data received');
       }
 
-      console.log('Audio blob size:', audioBlob.size);
+      console.log('Audio buffer size:', audioBuffer.byteLength);
 
-      // Create audio URL and test if it's valid
+      // Create blob from ArrayBuffer
+      const audioBlob = new Blob([audioBuffer], { type: 'audio/mpeg' });
       const audioUrl = URL.createObjectURL(audioBlob);
-      
-      // Test if the blob contains valid audio data
-      const testAudio = new Audio();
-      await new Promise((resolve, reject) => {
-        testAudio.oncanplaythrough = resolve;
-        testAudio.onerror = reject;
-        testAudio.src = audioUrl;
-      });
 
-      // If test passes, create the actual audio element
-      const audio = new Audio(audioUrl);
+      console.log('Created audio blob, size:', audioBlob.size);
+
+      // Create and configure audio element
+      const audio = new Audio();
       audioRef.current = audio;
 
+      // Set up event listeners before setting src
+      audio.oncanplaythrough = () => {
+        console.log('Audio can play through, starting playback...');
+        audio.play().catch(e => {
+          console.error('Audio play error:', e);
+          setIsPlaying(false);
+          URL.revokeObjectURL(audioUrl);
+          audioRef.current = null;
+        });
+      };
+
       audio.onended = () => {
+        console.log('Audio playback ended');
         setIsPlaying(false);
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
       };
 
       audio.onerror = (e) => {
-        console.error('Audio playback error:', e);
+        console.error('Audio error:', e);
         setIsPlaying(false);
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
       };
 
-      console.log('Starting audio playback...');
-      await audio.play();
+      audio.onloadstart = () => {
+        console.log('Audio loading started');
+      };
+
+      audio.onloadeddata = () => {
+        console.log('Audio data loaded');
+      };
+
+      // Set the audio source
+      audio.src = audioUrl;
+      audio.load(); // Explicitly load the audio
 
     } catch (error) {
       if (error.name !== 'AbortError') {
