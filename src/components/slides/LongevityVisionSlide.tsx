@@ -310,59 +310,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
           </div>
         </div>
 
-        {/* New Focused Reflection Question */}
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-xl border-2 border-amber-200">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="bg-amber-100 p-4 rounded-full">
-                <TipsAndUpdatesIcon className="text-amber-600" style={{ fontSize: '3rem' }} />
-              </div>
-            </div>
-            
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              💭 Ihre persönliche Reflexion
-            </h2>
-            
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-amber-100 max-w-4xl mx-auto">
-              <div className="text-xl font-semibold text-amber-800 mb-4">
-                Reflexionsfrage für Ihre Entscheidung:
-              </div>
-              
-              <div className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-                "Wenn Sie heute wüssten, dass Sie durch konkrete Maßnahmen 
-                <span className="text-purple-600 font-bold"> 15 gesunde Jahre </span>
-                zu Ihrem Leben hinzufügen könnten - welche drei Schritte würden Sie 
-                <span className="text-amber-600 font-bold"> noch diese Woche </span>
-                unternehmen, um diesem Ziel näher zu kommen?"
-              </div>
-              
-              <div className="grid md:grid-cols-3 gap-4 mt-6">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                  <div className="text-blue-800 font-semibold text-sm mb-2">Schritt 1</div>
-                  <div className="text-blue-700 text-sm">Was würden Sie sofort ändern?</div>
-                </div>
-                
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
-                  <div className="text-green-800 font-semibold text-sm mb-2">Schritt 2</div>
-                  <div className="text-green-700 text-sm">Welche Gewohnheit würden Sie aufbauen?</div>
-                </div>
-                
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
-                  <div className="text-purple-800 font-semibold text-sm mb-2">Schritt 3</div>
-                  <div className="text-purple-700 text-sm">Welche Unterstützung würden Sie suchen?</div>
-                </div>
-              </div>
-              
-              <div className="mt-6 text-center">
-                <div className="text-sm text-gray-600 italic">
-                  Nehmen Sie sich einen Moment Zeit für diese Reflexion - 
-                  Ihre Antworten könnten der Beginn Ihrer Longevity-Reise sein.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Questions Section */}
         <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl border border-indigo-200">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
