@@ -45,8 +45,7 @@ export const useTextToSpeech = () => {
 
       // Call Supabase Edge Function
       const response = await supabase.functions.invoke('text-to-speech', {
-        body: { text },
-        signal: currentRequestRef.current.signal
+        body: { text }
       });
 
       if (response.error) {
