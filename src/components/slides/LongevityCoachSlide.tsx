@@ -261,7 +261,7 @@ export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlidePr
           <LifestylePoll
             slideId="longevity-coach"
             questionId="coach-support-needs"
-            question="🤔 Was würden Sie von einem Coach benötigen?"
+            question="🤔 Wie könnte die Longevity Coach App aussehen?"
             options={pollOptions}
             onAnswer={onLifestyleAnswer}
           />
