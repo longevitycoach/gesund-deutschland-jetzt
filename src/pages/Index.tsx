@@ -88,7 +88,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <PresentationSlide>
-            {/* Pass sessionId to PersonalizedInsightsSlide */}
+            {/* Pass sessionId to PersonalizedInsightsSlide, onLifestyleAnswer to others */}
             {CurrentSlideComponent === PersonalizedInsightsSlide ? (
               <CurrentSlideComponent sessionId={sessionId} />
             ) : (
