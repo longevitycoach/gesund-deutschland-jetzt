@@ -472,41 +472,47 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
           <div className="text-center mb-6">
             <Star className="w-12 h-12 mx-auto text-purple-500 mb-4" />
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              🎯 Ihre persönliche Longevity-Entscheidung
+              🎯 Was würden Sie mit 15 weiteren gesunden Lebensjahren machen?
             </h2>
             <p className="text-lg text-purple-700 font-medium">
-              Nach allem, was Sie über die Vision der Longevity-Forschung erfahren haben
+              Stellen Sie sich vor: Sie sind körperlich und geistig fit wie heute - nur 15 Jahre länger
             </p>
           </div>
 
           <LifestylePoll
             slideId="longevity-vision"
-            questionId="longevity-commitment"
-            question="Welcher Schritt beschreibt am besten Ihre aktuelle Bereitschaft, in Ihre Gesundheitsspanne zu investieren?"
+            questionId="healthy-years-purpose"
+            question="Was wäre Ihr wichtigstes Ziel mit 15 zusätzlichen gesunden Jahren?"
             options={[
               {
-                id: "immediate-action",
-                text: "Ich bin bereit, sofort konkrete Maßnahmen zu ergreifen und meine Gesundheit systematisch zu optimieren",
-                votes: 342,
-                motivationalResponse: "Fantastisch! Ihre Bereitschaft zum sofortigen Handeln ist der Schlüssel für eine erfolgreiche Longevity-Reise. Menschen, die schnell handeln, sehen oft die besten Ergebnisse. Der nächste Schritt ist ein strukturierter Plan - genau das, was ein persönlicher Longevity Coach bieten kann."
+                id: "learning-growth",
+                text: "Nochmal studieren, eine neue Sprache oder ein Musikinstrument lernen - persönliches Wachstum",
+                votes: 278,
+                motivationalResponse: "Wunderbar! Lebenslanges Lernen hält nicht nur den Geist jung, sondern ist auch ein bewiesener Schutzfaktor gegen Demenz. Mit 15 zusätzlichen gesunden Jahren könnten Sie mehrere Leidenschaften entwickeln und sich kontinuierlich weiterentwickeln."
               },
               {
-                id: "gradual-change",
-                text: "Ich möchte schrittweise beginnen und mich langsam an gesündere Gewohnheiten herantasten",
+                id: "career-passion",
+                text: "Meinen Job weitermachen - ich liebe was ich tue und möchte länger einen Beitrag leisten",
+                votes: 195,
+                motivationalResponse: "Das ist inspirierend! Menschen, die Sinn in ihrer Arbeit finden, leben nicht nur länger, sondern auch gesünder. 15 weitere Jahre bedeuten 15 Jahre mehr positive Wirkung und Erfüllung in dem, was Sie lieben."
+              },
+              {
+                id: "family-relationships",
+                text: "Für meinen Partner, Familie und Enkel da sein - mehr Zeit mit den Menschen, die mir wichtig sind",
                 votes: 456,
-                motivationalResponse: "Ein weiser Ansatz! Nachhaltige Veränderungen entstehen oft durch kleine, kontinuierliche Schritte. Die 1%-Methode zeigt: Schon 1% Verbesserung täglich führt zu 37-facher Steigerung im Jahr. Ein strukturierter Begleiter kann Ihnen helfen, diese Schritte gezielt zu setzen."
+                motivationalResponse: "Das berührt das Herz! Starke soziale Bindungen sind einer der stärksten Faktoren für Langlebigkeit. 15 weitere gesunde Jahre bedeuten mehr Erinnerungen, mehr Unterstützung und mehr Liebe mit Ihren Liebsten zu teilen."
               },
               {
-                id: "need-guidance",
-                text: "Ich erkenne die Wichtigkeit, brauche aber professionelle Anleitung für den richtigen Weg",
-                votes: 389,
-                motivationalResponse: "Sehr klug! Die Longevity-Forschung ist komplex, und individualisierte Ansätze sind entscheidend. Professionelle Begleitung kann den Unterschied zwischen Trial-and-Error und zielgerichtetem Erfolg ausmachen. Ein persönlicher Coach kann Ihnen helfen, Ihren optimalen Weg zu finden."
+                id: "travel-adventure",
+                text: "Eine Weltreise unternehmen und all die Orte sehen, die ich immer besuchen wollte",
+                votes: 321,
+                motivationalResponse: "Abenteuer hält jung! Reisen fördert Flexibilität, Neugier und Offenheit - alles Eigenschaften, die mit gesundem Altern verbunden sind. 15 weitere Jahre geben Ihnen Zeit, die Welt zu entdecken und dabei vital zu bleiben."
               },
               {
-                id: "skeptical-cautious",
-                text: "Ich bin noch skeptisch und möchte mehr Beweise, bevor ich mich festlege",
-                votes: 213,
-                motivationalResponse: "Gesunde Skepsis ist wertvoll! Die Wissenschaft hinter Longevity basiert auf jahrzehntelanger Forschung und messbaren Biomarkern. Lassen Sie uns Ihnen zeigen, wie Sie durch datenbasierte Ansätze und messbare Ergebnisse Ihre eigenen Beweise sammeln können."
+                id: "no-planning",
+                text: "Ich habe noch keine konkreten Pläne - das Leben wird zeigen, was kommt",
+                votes: 142,
+                motivationalResponse: "Offenheit ist wertvoll! Manchmal entstehen die schönsten Möglichkeiten spontan. 15 gesunde Jahre mehr geben Ihnen die Flexibilität, neue Träume zu entwickeln und Chancen zu ergreifen, die Sie heute noch nicht sehen können."
               }
             ]}
             onAnswer={onLifestyleAnswer}
