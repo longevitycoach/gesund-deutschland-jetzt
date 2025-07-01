@@ -1,6 +1,7 @@
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { LifestylePoll } from '@/components/LifestylePoll';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
@@ -372,15 +373,95 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 "Die Longevity-Forschung zeigt: Es ist nicht mehr die Frage <em>ob</em>, sondern <em>wann</em> wir die Gesundheitsspanne dramatisch verlängern können."
               </p>
               <div className="flex justify-center items-center gap-4 flex-wrap">
-                <div className="bg-blue-50 px-4 py-2 rounded-full">
-                  <span className="text-blue-800 font-semibold">🧬 Hallmarks of Aging</span>
-                </div>
-                <div className="bg-green-50 px-4 py-2 rounded-full">
-                  <span className="text-green-800 font-semibold">🔬 Präventive Biomarker</span>
-                </div>
-                <div className="bg-purple-50 px-4 py-2 rounded-full">
-                  <span className="text-purple-800 font-semibold">💊 Personalisierte Medizin</span>
-                </div>
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <div className="bg-blue-50 px-4 py-2 rounded-full cursor-pointer hover:bg-blue-100 transition-colors">
+                      <span className="text-blue-800 font-semibold">🧬 Hallmarks of Aging</span>
+                    </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80">
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-semibold text-blue-800">Hallmarks of Aging</h4>
+                      <p className="text-sm text-gray-600">
+                        Die 12 fundamentalen biologischen Prozesse, die das Altern verursachen. Diese wissenschaftlich identifizierten "Merkmale des Alterns" sind die Hauptansatzpunkte für Anti-Aging-Therapien.
+                      </p>
+                      <div className="text-xs text-gray-500 space-y-1">
+                        <p>• Genomische Instabilität</p>
+                        <p>• Telomerverkürzung</p>
+                        <p>• Zelluläre Seneszenz</p>
+                        <p>• Mitochondriale Dysfunktion</p>
+                      </div>
+                      <a 
+                        href="https://www.cell.com/cell/fulltext/S0092-8674(13)00645-4" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 text-xs underline inline-block"
+                      >
+                        → Originalstudie (Cell, 2013)
+                      </a>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <div className="bg-green-50 px-4 py-2 rounded-full cursor-pointer hover:bg-green-100 transition-colors">
+                      <span className="text-green-800 font-semibold">🔬 Präventive Biomarker</span>
+                    </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80">
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-semibold text-green-800">Präventive Biomarker</h4>
+                      <p className="text-sm text-gray-600">
+                        Messbare biologische Indikatoren, die Krankheitsrisiken Jahre vor Symptomen erkennen. Sie ermöglichen frühzeitige Interventionen und individualisierte Präventionsstrategien.
+                      </p>
+                      <div className="text-xs text-gray-500 space-y-1">
+                        <p>• Entzündungsmarker (CRP, IL-6)</p>
+                        <p>• Metabolische Marker (HbA1c, Insulin)</p>
+                        <p>• Herzgesundheit (ApoB, Lp(a))</p>
+                        <p>• Biologisches Alter (DNA-Methylierung)</p>
+                      </div>
+                      <a 
+                        href="https://www.nature.com/articles/s41591-019-0684-5" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-green-600 hover:text-green-800 text-xs underline inline-block"
+                      >
+                        → Nature Medicine Studie
+                      </a>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <div className="bg-purple-50 px-4 py-2 rounded-full cursor-pointer hover:bg-purple-100 transition-colors">
+                      <span className="text-purple-800 font-semibold">💊 Personalisierte Medizin</span>
+                    </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80">
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-semibold text-purple-800">Personalisierte Medizin</h4>
+                      <p className="text-sm text-gray-600">
+                        Medizinische Behandlung basierend auf individuellen Genen, Lebensstil und Umweltfaktoren. Statt "One-Size-Fits-All" werden Therapien auf jeden Menschen maßgeschneidert.
+                      </p>
+                      <div className="text-xs text-gray-500 space-y-1">
+                        <p>• Genetische Risikoprofile</p>
+                        <p>• Individuelle Supplement-Dosierung</p>
+                        <p>• Personalisierte Ernährungspläne</p>
+                        <p>• Maßgeschneiderte Trainingsregime</p>
+                      </div>
+                      <a 
+                        href="https://www.nejm.org/doi/full/10.1056/NEJMra1510061" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-purple-600 hover:text-purple-800 text-xs underline inline-block"
+                      >
+                        → New England Journal of Medicine
+                      </a>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
               </div>
             </div>
           </div>
