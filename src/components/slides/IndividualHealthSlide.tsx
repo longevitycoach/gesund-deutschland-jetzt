@@ -148,13 +148,6 @@ export const IndividualHealthSlide = ({ onLifestyleAnswer }: IndividualHealthSli
             </p>
           </div>
         </div>
-
-        <div className="text-center p-6 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl">
-          <h3 className="text-2xl font-bold mb-3">🔬 Precision Health ist die Zukunft</h3>
-          <p className="text-xl">
-            Vergessen Sie Einheitslösungen - Ihre Gesundheit verdient individuelle Präzision!
-          </p>
-        </div>
       </div>
 
       {/* Interactive Poll */}
