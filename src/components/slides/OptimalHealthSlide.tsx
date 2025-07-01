@@ -1,7 +1,40 @@
+
 import { Heart, Zap, Activity, BookOpen, TestTube, Target, RefreshCw, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const OptimalHealthSlide = () => {
+interface OptimalHealthSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const OptimalHealthSlide = ({ onLifestyleAnswer }: OptimalHealthSlideProps) => {
+  const optimalHealthOptions = [
+    { 
+      id: '1', 
+      text: 'Ich strebe nach optimalen Werten für maximale Leistung', 
+      votes: 25,
+      motivationalResponse: 'Exzellent! Sie verstehen, dass optimale Gesundheit mehr ist als nur "nicht krank sein". Bleiben Sie bei dieser Einstellung!',
+    },
+    { 
+      id: '2', 
+      text: 'Normal-Werte reichen mir, solange ich gesund bin', 
+      votes: 85,
+      motivationalResponse: 'Das ist verständlich, aber bedenken Sie: "Normal" ist oft nur der Durchschnitt einer kranken Gesellschaft. Optimale Werte könnten Ihr Leben transformieren.',
+    },
+    { 
+      id: '3', 
+      text: 'Ich war mir nicht bewusst, dass es einen Unterschied gibt', 
+      votes: 120,
+      motivationalResponse: 'Perfekt! Jetzt wissen Sie es. Der Unterschied zwischen "normal" und "optimal" kann 20-30 Jahre gesunde Lebenszeit bedeuten.',
+    },
+    { 
+      id: '4', 
+      text: 'Das ist mir zu aufwendig und teuer', 
+      votes: 55,
+      motivationalResponse: 'Verstehe ich. Aber was kostet mehr: Prävention heute oder Krankheit morgen? Optimal zu leben ist eine Investition, die sich immer lohnt.',
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -310,6 +343,17 @@ export const OptimalHealthSlide = () => {
             Diese Experten haben die Roadmap für optimale Gesundheit erstellt - jetzt liegt es an uns, sie zu befolgen!
           </p>
         </div>
+      </div>
+
+      {/* Interactive Poll */}
+      <div className="mt-8">
+        <LifestylePoll
+          slideId="optimal-health"
+          questionId="optimal-vs-normal"
+          question="Wie stehen Sie zu optimalen Gesundheitswerten statt Durchschnittswerten?"
+          options={optimalHealthOptions}
+          onAnswer={onLifestyleAnswer}
+        />
       </div>
     </div>
   );
