@@ -43,23 +43,44 @@ export const useTextToSpeech = () => {
 
       console.log('Calling text-to-speech edge function...');
 
-      // Call Supabase Edge Function
-      const { data, error } = await supabase.functions.invoke('text-to-speech', {
-        body: { text },
+      // Call Supabase Edge Function - this returns a Response object
+      const response = await fetch(`${supabase.supabaseUrl}/functions/v1/text-to-speech`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabase.supabaseKey}`,
+          'apikey': supabase.supabaseKey,
+        },
+        body: JSON.stringify({ text }),
         signal: currentRequestRef.current.signal
       });
 
-      if (error) {
-        throw new Error(`Edge function error: ${error.message}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Edge function error:', response.status, errorText);
+        throw new Error(`Edge function returned status ${response.status}`);
       }
 
-      // The response should be audio data
-      if (!data) {
+      // Check if response is JSON (error) or audio data
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType?.includes('application/json')) {
+        // This is an error response
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Unknown error from edge function');
+      }
+
+      // Get audio data as array buffer
+      const audioBuffer = await response.arrayBuffer();
+      
+      if (audioBuffer.byteLength === 0) {
         throw new Error('No audio data received');
       }
 
+      console.log('Successfully received audio, size:', audioBuffer.byteLength);
+
       // Convert the response to a blob and create audio URL
-      const audioBlob = new Blob([data], { type: 'audio/mpeg' });
+      const audioBlob = new Blob([audioBuffer], { type: 'audio/mpeg' });
       const audioUrl = URL.createObjectURL(audioBlob);
 
       // Create and play audio element
