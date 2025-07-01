@@ -1,9 +1,10 @@
-
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
 import { ProgressBar } from '@/components/ProgressBar';
+import { AudioControl } from '@/components/AudioControl';
 import { useSurveySession } from '@/hooks/useSurveySession';
+import { slideScripts } from '@/data/slideScripts';
 import { WelcomeSlide } from '@/components/slides/WelcomeSlide';
 import { GoldenYearsSlide } from '@/components/slides/GoldenYearsSlide';
 import { SilentDeclineSlide } from '@/components/slides/SilentDeclineSlide';
@@ -29,21 +30,21 @@ const Index = () => {
   const { sessionId, saveAnswer } = useSurveySession();
 
   const slides = [
-    { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern" },
-    { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter" },
-    { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls" },
-    { component: ModernDiseasesSlide, title: "Die modernen Krankmacher" },
-    { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte" },
-    { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen" },
-    { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention" },
-    { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin" },
-    { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung" },
-    { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit" },
-    { component: IndividualHealthSlide, title: "Gesundheit ist individuell" },
-    { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit" },
-    { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach" },
-    { component: PersonalizedInsightsSlide, title: "Ihre persönlichen Longevity-Insights" },
-    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben" }
+    { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern", scriptKey: 'welcome' },
+    { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter", scriptKey: 'goldenYears' },
+    { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline' },
+    { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases' },
+    { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: null },
+    { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: null },
+    { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: null },
+    { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin", scriptKey: 'functionalMedicine' },
+    { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung", scriptKey: null },
+    { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit", scriptKey: null },
+    { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth' },
+    { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod' },
+    { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null },
+    { component: PersonalizedInsightsSlide, title: "Ihre persönlichen Longevity-Insights", scriptKey: null },
+    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null }
   ];
 
   const nextSlide = () => {
@@ -77,6 +78,15 @@ const Index = () => {
       answerText,
       timestamp: new Date().toISOString()
     });
+  };
+
+  // Get current slide script
+  const getCurrentScript = () => {
+    const slide = slides[currentSlide];
+    if (slide.scriptKey && slideScripts[slide.scriptKey as keyof typeof slideScripts]) {
+      return slideScripts[slide.scriptKey as keyof typeof slideScripts];
+    }
+    return '';
   };
 
   // Render the current slide component
@@ -117,6 +127,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <ProgressBar current={currentSlide + 1} total={slides.length} />
+      
+      {/* Audio Control - only show if script exists for current slide */}
+      {getCurrentScript() && (
+        <AudioControl 
+          script={getCurrentScript()} 
+          autoPlay={true}
+          key={currentSlide} // Force re-render on slide change
+        />
+      )}
       
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
