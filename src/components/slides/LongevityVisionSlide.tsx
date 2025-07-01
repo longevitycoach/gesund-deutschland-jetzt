@@ -10,33 +10,6 @@ interface LongevityVisionSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
 }
 
-export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlideProps) => {
-  const personalChoiceOptions = [
-    { 
-      id: '1', 
-      text: 'Länger leben - auch mit gesundheitlichen Einschränkungen', 
-      votes: 45,
-      motivationalResponse: 'Verständlich - Zeit ist kostbar! Doch die Longevity-Forschung zeigt: Sie müssen sich nicht entscheiden. Mit der richtigen Prävention können Sie beides haben!'
-    },
-    { 
-      id: '2', 
-      text: 'Gesünder leben im hohen Alter - auch wenn es kürzer ist', 
-      votes: 120,
-      motivationalResponse: 'Kluge Priorität! Lebensqualität ist entscheidend. Die gute Nachricht: Gesunde Jahre führen oft automatisch zu mehr Lebensjahren.'
-    },
-    { 
-      id: '3', 
-      text: 'Beides - länger UND gesünder leben', 
-      votes: 180,
-      motivationalResponse: 'Perfekt! Das ist genau das Ziel der Longevity-Medizin. Mit den richtigen Strategien ist beides erreichbar - Gesundheitsspanne = Lebensspanne!'
-    },
-    { 
-      id: '4', 
-      text: 'Ich denke nicht über das Altern nach', 
-      votes: 25,
-      motivationalResponse: 'Das ist menschlich - aber gefährlich! Je früher Sie handeln, desto mehr können Sie beeinflussen. Die Zukunft beginnt heute!'
-    }
-  ];
 
   return (
     <TooltipProvider>
