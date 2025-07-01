@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
@@ -16,6 +17,7 @@ import { OptimalHealthSlide } from '@/components/slides/OptimalHealthSlide';
 import { IndividualHealthSlide } from '@/components/slides/IndividualHealthSlide';
 import { OnePercentMethodSlide } from '@/components/slides/OnePercentMethodSlide';
 import { LongevityCoachSlide } from '@/components/slides/LongevityCoachSlide';
+import { PersonalizedInsightsSlide } from '@/components/slides/PersonalizedInsightsSlide';
 import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 
 const Index = () => {
@@ -36,6 +38,7 @@ const Index = () => {
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell" },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit" },
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach" },
+    { component: PersonalizedInsightsSlide, title: "Ihre persönlichen Longevity-Insights" },
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben" }
   ];
 
@@ -81,7 +84,12 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <PresentationSlide>
-            <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />
+            {/* Pass sessionId to PersonalizedInsightsSlide */}
+            {CurrentSlideComponent === PersonalizedInsightsSlide ? (
+              <CurrentSlideComponent sessionId={sessionId} />
+            ) : (
+              <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />
+            )}
           </PresentationSlide>
           
           <SlideNavigation

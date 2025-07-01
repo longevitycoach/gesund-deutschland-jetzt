@@ -1,9 +1,8 @@
-
 import { Users, Brain, Target, TrendingUp } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface LongevityCoachSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
 }
 
 export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlideProps) => {
@@ -89,7 +88,7 @@ export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlidePr
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Basierend auf Ihren aktuellen Daten</span>
+                    <span>Basiert auf Ihren aktuellen Daten</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
