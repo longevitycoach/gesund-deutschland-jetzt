@@ -1,3 +1,4 @@
+
 import { Activity, TrendingDown, Calendar } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
@@ -6,7 +7,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import HealingIcon from '@mui/icons-material/Healing';
 
 interface GoldenYearsSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
 }
 
 export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) => {
