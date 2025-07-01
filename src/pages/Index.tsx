@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
@@ -18,11 +19,11 @@ import { OptimalHealthSlide } from '@/components/slides/OptimalHealthSlide';
 import { IndividualHealthSlide } from '@/components/slides/IndividualHealthSlide';
 import { OnePercentMethodSlide } from '@/components/slides/OnePercentMethodSlide';
 import { LongevityCoachSlide } from '@/components/slides/LongevityCoachSlide';
-import { PersonalizedInsightsSlide } from '@/components/slides/PersonalizedInsightsSlide';
 import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 
 interface SlideComponentProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  sessionId?: string;
 }
 
 const Index = () => {
@@ -43,7 +44,6 @@ const Index = () => {
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth' },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod' },
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null },
-    { component: PersonalizedInsightsSlide, title: "Ihre persönlichen Longevity-Insights", scriptKey: null },
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null }
   ];
 
@@ -91,9 +91,9 @@ const Index = () => {
 
   // Render the current slide component
   const renderCurrentSlide = () => {
-    // PersonalizedInsightsSlide is at index 13 and needs sessionId
+    // FinalDecisionSlide is at index 13 and needs sessionId
     if (currentSlide === 13) {
-      return <PersonalizedInsightsSlide sessionId={sessionId} />;
+      return <FinalDecisionSlide sessionId={sessionId} onLifestyleAnswer={handleLifestyleAnswer} />;
     }
     
     // All other slides need onLifestyleAnswer
@@ -110,9 +110,7 @@ const Index = () => {
       OptimalHealthSlide,
       IndividualHealthSlide,
       OnePercentMethodSlide,
-      LongevityCoachSlide,
-      null, // PersonalizedInsightsSlide handled above
-      FinalDecisionSlide
+      LongevityCoachSlide
     ];
     
     const CurrentSlideComponent = slideComponents[currentSlide];
