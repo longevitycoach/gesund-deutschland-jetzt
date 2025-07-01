@@ -1,6 +1,5 @@
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
-import { LifestylePoll } from '@/components/LifestylePoll';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
@@ -410,19 +409,6 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="max-w-6xl mx-auto space-y-8">
-          {/* Personal Choice Poll */}
-          <div className="mb-8">
-            <LifestylePoll
-              slideId="longevity-vision"
-              questionId="personal-choice"
-              question="Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?"
-              options={personalChoiceOptions}
-              onAnswer={onLifestyleAnswer}
-            />
           </div>
         </div>
       </div>
