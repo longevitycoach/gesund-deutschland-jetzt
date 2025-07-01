@@ -52,6 +52,7 @@ serve(async (req) => {
         console.log('Found cached audio file, returning cached version')
         const audioBuffer = await cachedFile.arrayBuffer()
         
+        // Return the ArrayBuffer directly
         return new Response(audioBuffer, {
           headers: {
             ...corsHeaders,
@@ -62,7 +63,7 @@ serve(async (req) => {
         })
       }
     } catch (cacheError) {
-      console.log('Cache miss or error, generating new audio:', cacheError.message)
+      console.log('Cache miss or error, generating new audio:', cacheError)
     }
 
     // Cache miss - generate new audio
@@ -123,7 +124,7 @@ serve(async (req) => {
         console.log('Successfully cached audio file')
       }
     } catch (cacheUploadError) {
-      console.error('Cache upload error:', cacheUploadError.message)
+      console.error('Cache upload error:', cacheUploadError)
     }
 
     // Return audio data directly as ArrayBuffer

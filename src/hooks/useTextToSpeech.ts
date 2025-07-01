@@ -43,29 +43,27 @@ export const useTextToSpeech = () => {
 
       console.log('Calling text-to-speech edge function...');
 
-      // Call Supabase Edge Function
-      const response = await supabase.functions.invoke('text-to-speech', {
-        body: { text }
+      // Call Supabase Edge Function - this will now return raw ArrayBuffer
+      const response = await fetch('/functions/v1/text-to-speech', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabase.supabaseKey}`,
+          'apikey': supabase.supabaseKey,
+        },
+        body: JSON.stringify({ text })
       });
 
-      if (response.error) {
-        console.error('Edge function error:', response.error);
-        throw new Error(`Edge function error: ${response.error.message}`);
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error('Edge function error:', response.status, errorData);
+        throw new Error(`Edge function error: ${response.status}`);
       }
 
       console.log('Successfully received response from edge function');
 
-      // The response.data should be an ArrayBuffer
-      let audioBuffer: ArrayBuffer;
-      
-      if (response.data instanceof ArrayBuffer) {
-        audioBuffer = response.data;
-      } else if (response.data && typeof response.data === 'object' && response.data.constructor === ArrayBuffer) {
-        audioBuffer = response.data;
-      } else {
-        console.error('Unexpected response format:', typeof response.data);
-        throw new Error('Invalid audio data format received');
-      }
+      // Get the response as ArrayBuffer directly
+      const audioBuffer = await response.arrayBuffer();
 
       if (audioBuffer.byteLength === 0) {
         throw new Error('Empty audio data received');
