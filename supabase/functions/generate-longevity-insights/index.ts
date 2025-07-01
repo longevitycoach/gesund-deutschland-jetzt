@@ -28,10 +28,30 @@ serve(async (req) => {
       throw new Error('Perplexity API key not configured');
     }
 
-    // Build user profile from responses
-    const userProfile = responses.map((response: any) => {
+    // Filter responses to only include those with valid question_text and answer_text
+    const validResponses = responses.filter((response: any) => {
+      return response.question_text && 
+             response.answer_text && 
+             response.question_text.trim() !== '' && 
+             response.answer_text.trim() !== '';
+    });
+
+    console.log(`Processing ${validResponses.length} valid responses out of ${responses.length} total`);
+
+    if (validResponses.length === 0) {
+      return new Response(JSON.stringify({ 
+        insights: 'Leider konnten keine gültigen Umfrageantworten gefunden werden. Bitte durchlaufen Sie die Umfrage erneut mit vollständigen Antworten.' 
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Build user profile from valid responses only
+    const userProfile = validResponses.map((response: any) => {
       return `Frage: "${response.question_text}" - Antwort: "${response.answer_text}"`;
     }).join('\n');
+
+    console.log('Generated user profile:', userProfile);
 
     // Create system prompt for Longevity insights
     const systemPrompt = `Du bist ein erfahrener Longevity-Experte und Coach. Analysiere die Antworten des Nutzers und erstelle personalisierte, wissenschaftlich fundierte Empfehlungen für ein längeres, gesünderes Leben.
@@ -58,6 +78,8 @@ Sei spezifisch, motivierend und wissenschaftlich präzise. Verwende eine freundl
 ${userProfile}
 
 Bitte erstelle basierend auf diesen Antworten personalisierte Longevity-Insights und Empfehlungen.`;
+
+    console.log('Calling Perplexity API with prompts...');
 
     // Call Perplexity API
     const response = await fetch('https://api.perplexity.ai/chat/completions', {
@@ -90,10 +112,14 @@ Bitte erstelle basierend auf diesen Antworten personalisierte Longevity-Insights
     });
 
     if (!response.ok) {
-      throw new Error(`Perplexity API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`Perplexity API error: ${response.status} - ${errorText}`);
+      throw new Error(`Perplexity API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
+    console.log('Perplexity API response received successfully');
+    
     const insights = data.choices[0].message.content;
 
     // Store the insights in the database
@@ -108,6 +134,8 @@ Bitte erstelle basierend auf diesen Antworten personalisierte Longevity-Insights
 
     if (insertError) {
       console.error('Error storing insights:', insertError);
+    } else {
+      console.log('Successfully stored insights in database');
     }
 
     console.log('Successfully generated and stored insights for session:', sessionId);
