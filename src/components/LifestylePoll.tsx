@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 
 interface PollOption {
@@ -66,7 +65,7 @@ export const LifestylePoll = ({
   const selectedOptionData = options.find(opt => selectedOptions.includes(opt.id));
   
   return (
-    <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+    <div>
       <h3 className="text-xl font-semibold mb-4 text-gray-800">{question}</h3>
       
       {multipleChoice && !hasAnswered && (
@@ -190,6 +189,6 @@ export const LifestylePoll = ({
           </p>
         </div>
       )}
-    </Card>
+    </div>
   );
 };
