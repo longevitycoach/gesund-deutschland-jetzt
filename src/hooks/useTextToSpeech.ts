@@ -43,7 +43,7 @@ export const useTextToSpeech = () => {
 
       console.log('Calling text-to-speech edge function...');
 
-      // Call Supabase Edge Function using the proper invoke method
+      // Call Supabase Edge Function
       const { data, error } = await supabase.functions.invoke('text-to-speech', {
         body: { text }
       });
@@ -53,34 +53,32 @@ export const useTextToSpeech = () => {
         throw new Error(`Edge function error: ${error.message}`);
       }
 
-      if (!data) {
-        throw new Error('No audio data received');
-      }
+      console.log('Successfully received response from edge function');
 
-      console.log('Successfully received audio data');
-
-      // The edge function should return audio data as ArrayBuffer or blob
-      let audioBuffer: ArrayBuffer;
+      // The edge function returns raw audio data (ArrayBuffer)
+      // We need to convert it to a blob for audio playback
+      let audioBlob: Blob;
       
       if (data instanceof ArrayBuffer) {
-        audioBuffer = data;
-      } else if (data.arrayBuffer) {
-        audioBuffer = await data.arrayBuffer();
+        audioBlob = new Blob([data], { type: 'audio/mpeg' });
+      } else if (data && typeof data === 'object' && data.constructor === Object) {
+        // If it's a plain object, it might be an error response
+        throw new Error('Invalid response format from edge function');
       } else {
-        throw new Error('Invalid audio data format received');
+        // Treat as raw data and convert to ArrayBuffer
+        const response = new Response(data);
+        const arrayBuffer = await response.arrayBuffer();
+        audioBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
       }
 
-      if (audioBuffer.byteLength === 0) {
+      if (audioBlob.size === 0) {
         throw new Error('Empty audio data received');
       }
 
-      console.log('Audio buffer size:', audioBuffer.byteLength);
+      console.log('Audio blob size:', audioBlob.size);
 
-      // Convert the response to a blob and create audio URL
-      const audioBlob = new Blob([audioBuffer], { type: 'audio/mpeg' });
+      // Create audio URL and play
       const audioUrl = URL.createObjectURL(audioBlob);
-
-      // Create and play audio element
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
 
@@ -90,8 +88,8 @@ export const useTextToSpeech = () => {
         audioRef.current = null;
       };
 
-      audio.onerror = () => {
-        console.error('Audio playback error');
+      audio.onerror = (e) => {
+        console.error('Audio playback error:', e);
         setIsPlaying(false);
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
