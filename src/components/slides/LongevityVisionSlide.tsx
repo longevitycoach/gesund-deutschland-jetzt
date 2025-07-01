@@ -1,6 +1,7 @@
 import { Heart, Zap, Target, TrendingUp, Star } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { LifestylePoll } from '@/components/LifestylePoll';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -383,6 +384,52 @@ export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlide
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Multiple Choice Reflection Question */}
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-xl border border-purple-200">
+          <div className="text-center mb-6">
+            <Star className="w-12 h-12 mx-auto text-purple-500 mb-4" />
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              🎯 Ihre persönliche Longevity-Entscheidung
+            </h2>
+            <p className="text-lg text-purple-700 font-medium">
+              Nach allem, was Sie über die Vision der Longevity-Forschung erfahren haben
+            </p>
+          </div>
+
+          <LifestylePoll
+            slideId="longevity-vision"
+            questionId="longevity-commitment"
+            question="Welcher Schritt beschreibt am besten Ihre aktuelle Bereitschaft, in Ihre Gesundheitsspanne zu investieren?"
+            options={[
+              {
+                id: "immediate-action",
+                text: "Ich bin bereit, sofort konkrete Maßnahmen zu ergreifen und meine Gesundheit systematisch zu optimieren",
+                votes: 342,
+                motivationalResponse: "Fantastisch! Ihre Bereitschaft zum sofortigen Handeln ist der Schlüssel für eine erfolgreiche Longevity-Reise. Menschen, die schnell handeln, sehen oft die besten Ergebnisse. Der nächste Schritt ist ein strukturierter Plan - genau das, was ein persönlicher Longevity Coach bieten kann."
+              },
+              {
+                id: "gradual-change",
+                text: "Ich möchte schrittweise beginnen und mich langsam an gesündere Gewohnheiten herantasten",
+                votes: 456,
+                motivationalResponse: "Ein weiser Ansatz! Nachhaltige Veränderungen entstehen oft durch kleine, kontinuierliche Schritte. Die 1%-Methode zeigt: Schon 1% Verbesserung täglich führt zu 37-facher Steigerung im Jahr. Ein strukturierter Begleiter kann Ihnen helfen, diese Schritte gezielt zu setzen."
+              },
+              {
+                id: "need-guidance",
+                text: "Ich erkenne die Wichtigkeit, brauche aber professionelle Anleitung für den richtigen Weg",
+                votes: 389,
+                motivationalResponse: "Sehr klug! Die Longevity-Forschung ist komplex, und individualisierte Ansätze sind entscheidend. Professionelle Begleitung kann den Unterschied zwischen Trial-and-Error und zielgerichtetem Erfolg ausmachen. Ein persönlicher Coach kann Ihnen helfen, Ihren optimalen Weg zu finden."
+              },
+              {
+                id: "skeptical-cautious",
+                text: "Ich bin noch skeptisch und möchte mehr Beweise, bevor ich mich festlege",
+                votes: 213,
+                motivationalResponse: "Gesunde Skepsis ist wertvoll! Die Wissenschaft hinter Longevity basiert auf jahrzehntelanger Forschung und messbaren Biomarkern. Lassen Sie uns Ihnen zeigen, wie Sie durch datenbasierte Ansätze und messbare Ergebnisse Ihre eigenen Beweise sammeln können."
+              }
+            ]}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
       </div>
     </TooltipProvider>
