@@ -71,15 +71,15 @@ export const OnePercentMethodSlide = () => {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>5 Min. täglich gehen</span>
+                  <span>Nach dem Essen 10min spazieren gehen</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>1 Glas Wasser mehr</span>
+                  <span>Ein grosses Wasser nach dem Aufstehen trinken</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>30 Sek. bewusst atmen</span>
+                  <span>1min bewusst atmen</span>
                 </li>
               </ul>
             </div>
@@ -89,15 +89,15 @@ export const OnePercentMethodSlide = () => {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>7 Min. täglich gehen</span>
+                  <span>Immer die Treppen benutzen</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>+ 1 Portion Gemüse</span>
+                  <span>Immer eine Portion Gemüse</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>45 Sek. Atemübung</span>
+                  <span>Mit dem Fahrrad in die Arbeit fahren</span>
                 </li>
               </ul>
             </div>
@@ -107,15 +107,15 @@ export const OnePercentMethodSlide = () => {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>10 Min. täglich gehen</span>
+                  <span>Starte mit 5min Frühsport</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>2 Portionen Gemüse</span>
+                  <span>Koche zweimal pro Woche ohne unverarbeitete Lebensmittel</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span>1 Min. Meditation</span>
+                  <span>Pflanze deinen Balkon mit 5 Lebensmittelpflanzen</span>
                 </li>
               </ul>
             </div>
@@ -125,15 +125,15 @@ export const OnePercentMethodSlide = () => {
               <ul className="space-y-2 text-sm text-gray-700">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>10 Min. + 30 Sek. mehr</span>
+                  <span>Tracke deine Schritte mit einer Smartwatch</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>+ 1 gesunde Mahlzeit</span>
+                  <span>Limitiere den Alkoholkonsum auf einmal pro Woche</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>90 Sek. Entspannung</span>
+                  <span>Begrenze deine Zeit mit negativen Menschen</span>
                 </li>
               </ul>
             </div>
