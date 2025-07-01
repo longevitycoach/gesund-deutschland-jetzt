@@ -51,13 +51,13 @@ export const useTextToSpeech = () => {
   const speak = async (text: string) => {
     if (!text.trim()) return;
 
-    // Stop current speech if playing
-    if (isPlaying) {
+    // If already playing, stop instead of starting new audio
+    if (globalIsPlaying) {
       stop();
       return;
     }
 
-    // Stop any other audio that might be playing globally
+    // Stop any existing audio that might be playing
     stopGlobalAudio();
 
     try {
@@ -77,7 +77,7 @@ export const useTextToSpeech = () => {
 
       console.log('Calling text-to-speech edge function...');
 
-      // Call Supabase Edge Function - this will now return raw ArrayBuffer
+      // Call Supabase Edge Function
       const response = await fetch('https://prybthpekucgwivbdjhi.supabase.co/functions/v1/text-to-speech', {
         method: 'POST',
         headers: {
@@ -85,7 +85,8 @@ export const useTextToSpeech = () => {
           'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeWJ0aHBla3VjZ3dpdmJkamhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjc4MzYsImV4cCI6MjA2Njk0MzgzNn0.PLzZGJOF5qP8UMaZ04RAwQ_5kUqc1nOAb4E6tTO6pr8`,
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeWJ0aHBla3VjZ3dpdmJkamhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjc4MzYsImV4cCI6MjA2Njk0MzgzNn0.PLzZGJOF5qP8UMaZ04RAwQ_5kUqc1nOAb4E6tTO6pr8',
         },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text }),
+        signal: currentRequestRef.current.signal
       });
 
       if (!response.ok) {
@@ -119,41 +120,29 @@ export const useTextToSpeech = () => {
       // Set up event listeners before setting src
       audio.oncanplaythrough = () => {
         console.log('Audio can play through, starting playback...');
-        audio.play().catch(e => {
-          console.error('Audio play error:', e);
-          globalIsPlaying = false;
-          setIsPlaying(false);
-          if (globalSetIsPlaying) {
-            globalSetIsPlaying(false);
-          }
-          URL.revokeObjectURL(audioUrl);
-          audioRef.current = null;
-          globalAudio = null;
-        });
+        // Double check if we should still be playing (user might have stopped)
+        if (globalIsPlaying && globalAudio === audio) {
+          audio.play().catch(e => {
+            console.error('Audio play error:', e);
+            stopGlobalAudio();
+            URL.revokeObjectURL(audioUrl);
+            audioRef.current = null;
+          });
+        }
       };
 
       audio.onended = () => {
         console.log('Audio playback ended');
-        globalIsPlaying = false;
-        setIsPlaying(false);
-        if (globalSetIsPlaying) {
-          globalSetIsPlaying(false);
-        }
+        stopGlobalAudio();
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
-        globalAudio = null;
       };
 
       audio.onerror = (e) => {
         console.error('Audio error:', e);
-        globalIsPlaying = false;
-        setIsPlaying(false);
-        if (globalSetIsPlaying) {
-          globalSetIsPlaying(false);
-        }
+        stopGlobalAudio();
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
-        globalAudio = null;
       };
 
       audio.onloadstart = () => {
@@ -172,13 +161,8 @@ export const useTextToSpeech = () => {
       if (error.name !== 'AbortError') {
         console.error('Text-to-speech error:', error);
       }
-      globalIsPlaying = false;
-      setIsPlaying(false);
-      if (globalSetIsPlaying) {
-        globalSetIsPlaying(false);
-      }
+      stopGlobalAudio();
       audioRef.current = null;
-      globalAudio = null;
     }
   };
 
@@ -203,7 +187,7 @@ export const useTextToSpeech = () => {
   };
 
   const toggle = (text: string) => {
-    if (isPlaying) {
+    if (globalIsPlaying) {
       stop();
     } else {
       speak(text);
