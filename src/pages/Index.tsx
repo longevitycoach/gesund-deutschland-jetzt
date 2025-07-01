@@ -79,8 +79,6 @@ const Index = () => {
     });
   };
 
-  const CurrentSlideComponent = slides[currentSlide].component;
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <ProgressBar current={currentSlide + 1} total={slides.length} />
@@ -92,7 +90,10 @@ const Index = () => {
             {currentSlide === 13 ? (
               <PersonalizedInsightsSlide sessionId={sessionId} />
             ) : (
-              <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />
+              (() => {
+                const CurrentSlideComponent = slides[currentSlide].component;
+                return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />;
+              })()
             )}
           </PresentationSlide>
           
