@@ -73,8 +73,8 @@ serve(async (req) => {
 
     console.log('Generating new audio with ElevenLabs API')
 
-    // Call ElevenLabs API
-    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/ekJ0doQ5Wa25P7W5HCj7', {
+    // Call ElevenLabs API - using a standard German voice
+    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/pFZP5JQG7iQjIQuC4Bku', {
       method: 'POST',
       headers: {
         'Accept': 'audio/mpeg',
@@ -96,13 +96,17 @@ serve(async (req) => {
     if (!response.ok) {
       const errorText = await response.text()
       console.error('ElevenLabs API error:', response.status, errorText)
-      throw new Error(`ElevenLabs API error: ${response.status}`)
+      throw new Error(`ElevenLabs API error: ${response.status} - ${errorText}`)
     }
 
     // Get audio data as array buffer
     const audioBuffer = await response.arrayBuffer()
     
     console.log('Successfully generated audio, size:', audioBuffer.byteLength)
+
+    if (audioBuffer.byteLength === 0) {
+      throw new Error('Received empty audio data from ElevenLabs')
+    }
 
     // Cache the generated audio file
     try {
@@ -122,7 +126,7 @@ serve(async (req) => {
       console.error('Cache upload error:', cacheUploadError.message)
     }
 
-    // Return audio data directly
+    // Return audio data directly as ArrayBuffer
     return new Response(audioBuffer, {
       headers: {
         ...corsHeaders,

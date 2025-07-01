@@ -45,7 +45,8 @@ export const useTextToSpeech = () => {
 
       // Call Supabase Edge Function
       const response = await supabase.functions.invoke('text-to-speech', {
-        body: { text }
+        body: { text },
+        signal: currentRequestRef.current.signal
       });
 
       if (response.error) {
@@ -59,19 +60,20 @@ export const useTextToSpeech = () => {
       const cacheStatus = response.data?.headers?.['x-cache'] || 'UNKNOWN';
       console.log('Cache status:', cacheStatus);
 
-      // The edge function returns raw audio data (ArrayBuffer)
-      // We need to convert it to a blob for audio playback
+      // The edge function should return raw audio data (ArrayBuffer)
       let audioBlob: Blob;
       
       if (response.data instanceof ArrayBuffer) {
         audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
-      } else if (response.data && typeof response.data === 'object' && response.data.constructor === Object) {
-        // If it's a plain object, it might be an error response
-        throw new Error('Invalid response format from edge function');
+      } else if (response.data && response.data.constructor === ArrayBuffer) {
+        audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
       } else {
-        // Treat as raw data and convert to ArrayBuffer
-        const arrayBuffer = new Response(response.data).arrayBuffer();
-        audioBlob = new Blob([await arrayBuffer], { type: 'audio/mpeg' });
+        // Handle the case where data might be returned differently
+        console.error('Unexpected response format:', typeof response.data, response.data);
+        
+        // Try to convert response to ArrayBuffer
+        const arrayBuffer = await fetch(`data:application/octet-stream;base64,${btoa(String.fromCharCode(...new Uint8Array(response.data)))}`).then(r => r.arrayBuffer());
+        audioBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
       }
 
       if (audioBlob.size === 0) {
@@ -80,8 +82,18 @@ export const useTextToSpeech = () => {
 
       console.log('Audio blob size:', audioBlob.size);
 
-      // Create audio URL and play
+      // Create audio URL and test if it's valid
       const audioUrl = URL.createObjectURL(audioBlob);
+      
+      // Test if the blob contains valid audio data
+      const testAudio = new Audio();
+      await new Promise((resolve, reject) => {
+        testAudio.oncanplaythrough = resolve;
+        testAudio.onerror = reject;
+        testAudio.src = audioUrl;
+      });
+
+      // If test passes, create the actual audio element
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
 
@@ -98,6 +110,7 @@ export const useTextToSpeech = () => {
         audioRef.current = null;
       };
 
+      console.log('Starting audio playback...');
       await audio.play();
 
     } catch (error) {
