@@ -2,6 +2,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+// Global audio instance to ensure only one audio plays at a time
+let globalAudio: HTMLAudioElement | null = null;
+let globalIsPlaying = false;
+let globalSetIsPlaying: ((playing: boolean) => void) | null = null;
+
 export const useTextToSpeech = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSupported, setIsSupported] = useState(true);
@@ -9,6 +14,12 @@ export const useTextToSpeech = () => {
   const currentRequestRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
+    // Register this instance's setIsPlaying function
+    globalSetIsPlaying = setIsPlaying;
+    
+    // Sync with global state
+    setIsPlaying(globalIsPlaying);
+
     // Clean up on unmount
     return () => {
       if (currentRequestRef.current) {
@@ -18,8 +29,24 @@ export const useTextToSpeech = () => {
         audioRef.current.pause();
         audioRef.current = null;
       }
+      // Clear global reference if this was the active instance
+      if (globalSetIsPlaying === setIsPlaying) {
+        globalSetIsPlaying = null;
+      }
     };
   }, []);
+
+  const stopGlobalAudio = () => {
+    if (globalAudio) {
+      globalAudio.pause();
+      globalAudio.currentTime = 0;
+      globalAudio = null;
+    }
+    globalIsPlaying = false;
+    if (globalSetIsPlaying) {
+      globalSetIsPlaying(false);
+    }
+  };
 
   const speak = async (text: string) => {
     if (!text.trim()) return;
@@ -30,8 +57,15 @@ export const useTextToSpeech = () => {
       return;
     }
 
+    // Stop any other audio that might be playing globally
+    stopGlobalAudio();
+
     try {
+      globalIsPlaying = true;
       setIsPlaying(true);
+      if (globalSetIsPlaying) {
+        globalSetIsPlaying(true);
+      }
 
       // Cancel any existing request
       if (currentRequestRef.current) {
@@ -48,7 +82,7 @@ export const useTextToSpeech = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeWJ0aHBla3VjZ3dpdmJkamhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjc4MzYsImV4cCI6MjA2Njk0MzgzNn0.PLzZGJOF5qP8UMaZ04RAwQ_5kUqc1nOAb4E6tTO6pr8`,
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeWJ0aHBla3VjZ3dpdmJkamhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjc4MzYsImV4cCI6MjA2Njk0MzgzNn0.PLzZGJOF5qP8UMaZ04RAwQ_5kUqc1nOAb4E6tTO6pr8',
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeWJ0aHBla3VjZ3dpdmJkamhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNjc4MzYsImV4cCI6MjA2Njk0MzgzNn0.PLzZGJOF5qP8UMaZ04RAwQ_5kUqc1nOAb4E6tTO6pr8',
         },
         body: JSON.stringify({ text })
@@ -80,30 +114,46 @@ export const useTextToSpeech = () => {
       // Create and configure audio element
       const audio = new Audio();
       audioRef.current = audio;
+      globalAudio = audio; // Set as global audio instance
 
       // Set up event listeners before setting src
       audio.oncanplaythrough = () => {
         console.log('Audio can play through, starting playback...');
         audio.play().catch(e => {
           console.error('Audio play error:', e);
+          globalIsPlaying = false;
           setIsPlaying(false);
+          if (globalSetIsPlaying) {
+            globalSetIsPlaying(false);
+          }
           URL.revokeObjectURL(audioUrl);
           audioRef.current = null;
+          globalAudio = null;
         });
       };
 
       audio.onended = () => {
         console.log('Audio playback ended');
+        globalIsPlaying = false;
         setIsPlaying(false);
+        if (globalSetIsPlaying) {
+          globalSetIsPlaying(false);
+        }
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
+        globalAudio = null;
       };
 
       audio.onerror = (e) => {
         console.error('Audio error:', e);
+        globalIsPlaying = false;
         setIsPlaying(false);
+        if (globalSetIsPlaying) {
+          globalSetIsPlaying(false);
+        }
         URL.revokeObjectURL(audioUrl);
         audioRef.current = null;
+        globalAudio = null;
       };
 
       audio.onloadstart = () => {
@@ -122,8 +172,13 @@ export const useTextToSpeech = () => {
       if (error.name !== 'AbortError') {
         console.error('Text-to-speech error:', error);
       }
+      globalIsPlaying = false;
       setIsPlaying(false);
+      if (globalSetIsPlaying) {
+        globalSetIsPlaying(false);
+      }
       audioRef.current = null;
+      globalAudio = null;
     }
   };
 
@@ -134,7 +189,10 @@ export const useTextToSpeech = () => {
       currentRequestRef.current = null;
     }
 
-    // Stop audio playback
+    // Stop global audio
+    stopGlobalAudio();
+
+    // Stop local audio playback
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
