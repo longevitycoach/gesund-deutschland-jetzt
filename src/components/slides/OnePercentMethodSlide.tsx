@@ -1,3 +1,4 @@
+
 import { TrendingUp, Target, Zap, Calendar, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -92,16 +93,6 @@ export const OnePercentMethodSlide = ({ onLifestyleAnswer }: OnePercentMethodSli
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
-          <LifestylePoll
-            slideId="one-percent-method"
-            questionId="first-small-step"
-            question="🚀 Mit welchem kleinen Schritt möchten Sie heute beginnen?"
-            options={pollOptions}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
-
         <div className="bg-gradient-to-r from-yellow-100 to-orange-100 p-8 rounded-xl border border-yellow-200">
           <h3 className="text-2xl font-bold text-center text-gray-800 mb-4">
             🧠 Die Psychologie dahinter
@@ -150,6 +141,16 @@ export const OnePercentMethodSlide = ({ onLifestyleAnswer }: OnePercentMethodSli
             Vergessen Sie große Vorsätze! Verbessern Sie sich jeden Tag nur um 1% - 
             und werden Sie in einem Jahr zu einer völlig neuen, gesünderen Version Ihrer selbst.
           </p>
+        </div>
+
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+          <LifestylePoll
+            slideId="one-percent-method"
+            questionId="first-small-step"
+            question="🚀 Mit welchem kleinen Schritt möchten Sie heute beginnen?"
+            options={pollOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
       </div>
     </div>
