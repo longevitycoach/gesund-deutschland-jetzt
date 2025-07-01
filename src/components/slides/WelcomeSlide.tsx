@@ -8,9 +8,10 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 
 interface WelcomeSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
+export const WelcomeSlide = ({ onLifestyleAnswer, highlightQuestion }: WelcomeSlideProps) => {
   const personalChoiceOptions = [
     { 
       id: '1', 
@@ -111,8 +112,10 @@ export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
         </p>
       </div>
 
-      {/* Interactive Poll moved to end */}
-      <div className="mt-8">
+      {/* Interactive Poll with highlighting */}
+      <div className={`mt-8 transition-all duration-300 ${
+        highlightQuestion ? 'ring-4 ring-blue-500 ring-opacity-50 bg-blue-50 p-4 rounded-xl' : ''
+      }`}>
         <LifestylePoll
           slideId="welcome"
           questionId="personal-choice"

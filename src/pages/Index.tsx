@@ -25,6 +25,7 @@ import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 interface SlideComponentProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   sessionId?: string;
+  highlightQuestion?: boolean;
 }
 
 const Index = () => {
@@ -32,7 +33,7 @@ const Index = () => {
   const [isAutoAdvancing, setIsAutoAdvancing] = useState(false);
   const [answeredSlides, setAnsweredSlides] = useState<Set<number>>(new Set());
   const [nextClickCount, setNextClickCount] = useState(0);
-  const [showSkipDialog, setShowSkipDialog] = useState(false);
+  const [highlightQuestion, setHighlightQuestion] = useState(false);
   const { sessionId, saveAnswer } = useSurveySession();
   const { stop } = useTextToSpeech();
 
@@ -53,10 +54,10 @@ const Index = () => {
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: true }
   ];
 
-  // Reset next click count when slide changes
+  // Reset next click count and highlight when slide changes
   useEffect(() => {
     setNextClickCount(0);
-    setShowSkipDialog(false);
+    setHighlightQuestion(false);
   }, [currentSlide]);
 
   const nextSlide = () => {
@@ -85,13 +86,13 @@ const Index = () => {
     // If slide has a question and user hasn't answered
     if (hasQuestion && !hasAnswered) {
       if (nextClickCount === 0) {
-        // First click - show dialog asking if they want to answer
-        setShowSkipDialog(true);
+        // First click - highlight the question
+        setHighlightQuestion(true);
         setNextClickCount(1);
         return;
       } else if (nextClickCount === 1) {
         // Second click - skip the question
-        setShowSkipDialog(false);
+        setHighlightQuestion(false);
         setNextClickCount(0);
         nextSlide();
         return;
@@ -99,17 +100,6 @@ const Index = () => {
     }
 
     // Normal navigation for slides without questions or already answered
-    nextSlide();
-  };
-
-  const handleAnswerQuestion = () => {
-    setShowSkipDialog(false);
-    setNextClickCount(0);
-  };
-
-  const handleSkipQuestion = () => {
-    setShowSkipDialog(false);
-    setNextClickCount(0);
     nextSlide();
   };
 
@@ -123,8 +113,10 @@ const Index = () => {
     // Save to database
     await saveAnswer(slideId, questionId, answer, questionText, answerText);
     
-    // Mark this slide as answered
+    // Mark this slide as answered and remove highlight
     setAnsweredSlides(prev => new Set([...prev, currentSlide]));
+    setHighlightQuestion(false);
+    setNextClickCount(0);
     
     console.log('Answer saved to database:', {
       sessionId,
@@ -159,7 +151,7 @@ const Index = () => {
   const renderCurrentSlide = () => {
     // FinalDecisionSlide is at index 13 and needs sessionId
     if (currentSlide === 13) {
-      return <FinalDecisionSlide sessionId={sessionId} onLifestyleAnswer={handleLifestyleAnswer} />;
+      return <FinalDecisionSlide sessionId={sessionId} onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
     }
     
     // All other slides need onLifestyleAnswer
@@ -182,7 +174,7 @@ const Index = () => {
     const CurrentSlideComponent = slideComponents[currentSlide];
     
     if (CurrentSlideComponent) {
-      return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />;
+      return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
     }
     
     return null;
@@ -198,34 +190,6 @@ const Index = () => {
           <div className="flex items-center gap-2">
             <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
             <span>Antwort gespeichert! Weiter zur nächsten Folie in 5 Sekunden...</span>
-          </div>
-        </div>
-      )}
-
-      {/* Show skip dialog */}
-      {showSkipDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md mx-4 shadow-xl">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800">
-              Möchten Sie die Frage auf dieser Folie beantworten?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Diese Folie enthält eine Frage. Möchten Sie sie beantworten oder zur nächsten Folie springen?
-            </p>
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={handleAnswerQuestion}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-              >
-                Frage beantworten
-              </button>
-              <button
-                onClick={handleSkipQuestion}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-              >
-                Überspringen
-              </button>
-            </div>
           </div>
         </div>
       )}
