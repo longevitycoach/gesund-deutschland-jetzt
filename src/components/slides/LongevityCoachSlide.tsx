@@ -1,7 +1,45 @@
 
 import { Users, Brain, Target, TrendingUp } from 'lucide-react';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const LongevityCoachSlide = () => {
+interface LongevityCoachSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlideProps) => {
+  const pollOptions = [
+    {
+      id: 'habit-ideas',
+      text: 'Ideen für Good Habits die aufeinander aufbauen und sich gut in meinen Alltag einfügen',
+      votes: 45,
+      motivationalResponse: 'Ausgezeichnet! Ein systematischer Gewohnheitsaufbau ist der Schlüssel zum Erfolg. Ich helfe Ihnen dabei, kleine, aufeinander aufbauende Habits zu entwickeln, die nahtlos in Ihren Alltag passen und sich gegenseitig verstärken.'
+    },
+    {
+      id: 'blood-analysis',
+      text: 'Analyse und Erklärung meiner Blutwerte',
+      votes: 38,
+      motivationalResponse: 'Perfekte Wahl! Ihre Blutwerte sind wie ein Kompass für Ihre Gesundheit. Ich übersetze die medizinischen Daten in verständliche Insights und zeige Ihnen konkrete Handlungsschritte zur Optimierung.'
+    },
+    {
+      id: 'doctor-preparation',
+      text: 'Vorbereitung für das Arztgespräch',
+      votes: 29,
+      motivationalResponse: 'Sehr klug! Eine gute Vorbereitung maximiert den Nutzen Ihres Arztbesuchs. Ich helfe Ihnen dabei, die richtigen Fragen zu stellen und alle wichtigen Punkte anzusprechen.'
+    },
+    {
+      id: 'longevity-tips',
+      text: 'Longevity Healthspan Profitipps',
+      votes: 52,
+      motivationalResponse: 'Fantastisch! Sie denken bereits in die richtige Richtung. Ich teile mit Ihnen die neuesten wissenschaftlichen Erkenntnisse und bewährte Strategien für ein langes, gesundes Leben.'
+    },
+    {
+      id: 'no-support',
+      text: 'Ich benötige keine Unterstützung, ich weiß selbst was gut für mich ist',
+      votes: 12,
+      motivationalResponse: 'Respekt für Ihre Eigenverantwortung! Selbst die erfolgreichsten Menschen haben Mentoren. Manchmal kann ein externer Blick neue Perspektiven eröffnen, die Sie noch nicht bedacht haben.'
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -217,6 +255,16 @@ export const LongevityCoachSlide = () => {
             Er hilft Ihnen dabei, die Erkenntnisse der Spitzenmedizin in Ihren Alltag zu integrieren 
             und selbstverantwortlich die ersten Schritte in eine gesunde zweite Lebenshälfte zu unternehmen.
           </p>
+        </div>
+
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+          <LifestylePoll
+            slideId="longevity-coach"
+            questionId="coach-support-needs"
+            question="🤔 Was würden Sie von einem Coach benötigen?"
+            options={pollOptions}
+            onAnswer={onLifestyleAnswer}
+          />
         </div>
       </div>
     </div>
