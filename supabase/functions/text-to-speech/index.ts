@@ -27,8 +27,8 @@ serve(async (req) => {
 
     console.log('Processing text-to-speech request for text length:', text.length)
 
-    // Call ElevenLabs API
-    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/onwK4e9ZLuTAKqWW03F9', {
+    // Call ElevenLabs API with the new voice ID
+    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/ekJ0doQ5Wa25P7W5HCj7', {
       method: 'POST',
       headers: {
         'Accept': 'audio/mpeg',
