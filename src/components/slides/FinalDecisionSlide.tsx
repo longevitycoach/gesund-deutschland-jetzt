@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Heart, Target, Zap, Clock, Brain, Sparkles, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,9 +7,10 @@ import { supabase } from '@/integrations/supabase/client';
 interface FinalDecisionSlideProps {
   sessionId: string;
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer }: FinalDecisionSlideProps) => {
+export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQuestion }: FinalDecisionSlideProps) => {
   const [insights, setInsights] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
@@ -205,7 +205,9 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer }: FinalDecisi
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+        <div className={`bg-white p-8 rounded-xl shadow-xl border border-gray-200 transition-all duration-300 ${
+          highlightQuestion ? 'ring-4 ring-blue-500 ring-opacity-50 bg-blue-50' : ''
+        }`}>
           <LifestylePoll
             slideId="final-decision"
             questionId="health-journey-decision"
