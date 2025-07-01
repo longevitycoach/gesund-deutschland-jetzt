@@ -7,7 +7,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 interface SilentDeclineSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
 }
 
 export const SilentDeclineSlide = ({ onLifestyleAnswer }: SilentDeclineSlideProps) => {

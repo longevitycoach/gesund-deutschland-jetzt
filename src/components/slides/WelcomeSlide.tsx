@@ -1,4 +1,3 @@
-
 import { Heart, AlertTriangle, TrendingUp } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -8,7 +7,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
 interface WelcomeSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
 }
 
 export const WelcomeSlide = ({ onLifestyleAnswer }: WelcomeSlideProps) => {
