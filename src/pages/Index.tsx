@@ -1,10 +1,10 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
 import { ProgressBar } from '@/components/ProgressBar';
 import { AudioControl } from '@/components/AudioControl';
 import { useSurveySession } from '@/hooks/useSurveySession';
+import { useTextToSpeech } from '@/hooks/useTextToSpeech';
 import { slideScripts } from '@/data/slideScripts';
 import { WelcomeSlide } from '@/components/slides/WelcomeSlide';
 import { GoldenYearsSlide } from '@/components/slides/GoldenYearsSlide';
@@ -29,6 +29,7 @@ interface SlideComponentProps {
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { sessionId, saveAnswer } = useSurveySession();
+  const { stop } = useTextToSpeech();
 
   const slides = [
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern", scriptKey: 'welcome' },
@@ -48,14 +49,20 @@ const Index = () => {
   ];
 
   const nextSlide = () => {
+    // Stop audio when changing slides
+    stop();
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
+    // Stop audio when changing slides
+    stop();
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const goToSlide = (index: number) => {
+    // Stop audio when changing slides
+    stop();
     setCurrentSlide(index);
   };
 
