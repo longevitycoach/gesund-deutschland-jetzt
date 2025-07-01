@@ -38,30 +38,36 @@ export type Database = {
       }
       survey_responses: {
         Row: {
+          analysis_created_at: string | null
           answer: string
           answer_text: string | null
           created_at: string
           id: string
+          perplexity_analysis: string | null
           question_id: string
           question_text: string | null
           session_id: string
           slide_id: string
         }
         Insert: {
+          analysis_created_at?: string | null
           answer: string
           answer_text?: string | null
           created_at?: string
           id?: string
+          perplexity_analysis?: string | null
           question_id: string
           question_text?: string | null
           session_id: string
           slide_id: string
         }
         Update: {
+          analysis_created_at?: string | null
           answer?: string
           answer_text?: string | null
           created_at?: string
           id?: string
+          perplexity_analysis?: string | null
           question_id?: string
           question_text?: string | null
           session_id?: string
