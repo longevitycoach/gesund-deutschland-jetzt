@@ -12,16 +12,19 @@ interface AudioControlProps {
 export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) => {
   const { toggle, isPlaying, isSupported } = useTextToSpeech();
 
-  // Auto-play when component mounts if autoPlay is true
+  // Auto-play when component mounts if autoPlay is true AND no audio is currently playing
   React.useEffect(() => {
-    if (autoPlay && isSupported && script) {
+    if (autoPlay && isSupported && script && !isPlaying) {
       // Small delay to ensure proper initialization
       const timer = setTimeout(() => {
-        toggle(script);
+        // Double check that no audio is playing before starting
+        if (!isPlaying) {
+          toggle(script);
+        }
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [autoPlay, script, isSupported]);
+  }, [autoPlay, script, isSupported]); // Removed isPlaying from dependencies to prevent re-triggering
 
   if (!isSupported) {
     return null;

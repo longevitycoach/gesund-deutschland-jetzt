@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
@@ -133,12 +134,11 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <ProgressBar current={currentSlide + 1} total={slides.length} />
       
-      {/* Audio Control - only show if script exists for current slide */}
+      {/* Audio Control - only show if script exists for current slide, removed key prop */}
       {getCurrentScript() && (
         <AudioControl 
           script={getCurrentScript()} 
           autoPlay={true}
-          key={currentSlide} // Force re-render on slide change
         />
       )}
       
