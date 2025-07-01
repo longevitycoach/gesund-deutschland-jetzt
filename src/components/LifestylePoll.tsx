@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -32,13 +33,17 @@ export const LifestylePoll = ({
   
   const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
   
-  const handleSingleAnswer = (optionId: string) => {
+  const handleSingleAnswer = async (optionId: string) => {
     if (hasAnswered) return;
     
     setSelectedOptions([optionId]);
     setHasAnswered(true);
     setShowMotivation(true);
-    onAnswer?.(slideId, questionId, optionId);
+    
+    // Save answer to database
+    if (onAnswer) {
+      await onAnswer(slideId, questionId, optionId);
+    }
   };
 
   const handleMultipleChoice = (optionId: string, checked: boolean) => {
@@ -53,12 +58,16 @@ export const LifestylePoll = ({
     });
   };
 
-  const handleSubmitMultiple = () => {
+  const handleSubmitMultiple = async () => {
     if (selectedOptions.length === 0 || hasAnswered) return;
     
     setHasAnswered(true);
     setShowMotivation(true);
-    onAnswer?.(slideId, questionId, selectedOptions);
+    
+    // Save answer to database
+    if (onAnswer) {
+      await onAnswer(slideId, questionId, selectedOptions);
+    }
   };
   
   const selectedOptionData = options.find(opt => selectedOptions.includes(opt.id));

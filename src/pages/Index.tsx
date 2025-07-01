@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
 import { ProgressBar } from '@/components/ProgressBar';
-import { useLifestyleAnswers } from '@/hooks/useLifestyleAnswers';
+import { useSurveySession } from '@/hooks/useSurveySession';
 import { WelcomeSlide } from '@/components/slides/WelcomeSlide';
 import { GoldenYearsSlide } from '@/components/slides/GoldenYearsSlide';
 import { SilentDeclineSlide } from '@/components/slides/SilentDeclineSlide';
@@ -20,7 +21,7 @@ import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { saveAnswer, getAllAnswers } = useLifestyleAnswers();
+  const { sessionId, saveAnswer } = useSurveySession();
 
   const slides = [
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern" },
@@ -51,9 +52,17 @@ const Index = () => {
     setCurrentSlide(index);
   };
 
-  const handleLifestyleAnswer = (slideId: string, questionId: string, answer: string) => {
-    saveAnswer(slideId, questionId, answer);
-    console.log('Lifestyle answers so far:', getAllAnswers());
+  const handleLifestyleAnswer = async (slideId: string, questionId: string, answer: string | string[]) => {
+    // Save to database
+    await saveAnswer(slideId, questionId, answer);
+    
+    console.log('Answer saved to database:', {
+      sessionId,
+      slideId,
+      questionId,
+      answer,
+      timestamp: new Date().toISOString()
+    });
   };
 
   const CurrentSlideComponent = slides[currentSlide].component;
