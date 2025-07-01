@@ -79,6 +79,18 @@ const Index = () => {
     });
   };
 
+  // Render the current slide component
+  const renderCurrentSlide = () => {
+    if (currentSlide === 13) {
+      // PersonalizedInsightsSlide needs sessionId
+      return <PersonalizedInsightsSlide sessionId={sessionId} />;
+    } else {
+      // All other slides need onLifestyleAnswer
+      const CurrentSlideComponent = slides[currentSlide].component;
+      return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <ProgressBar current={currentSlide + 1} total={slides.length} />
@@ -86,15 +98,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <PresentationSlide>
-            {/* Render PersonalizedInsightsSlide with sessionId, all others with onLifestyleAnswer */}
-            {currentSlide === 13 ? (
-              <PersonalizedInsightsSlide sessionId={sessionId} />
-            ) : (
-              (() => {
-                const CurrentSlideComponent = slides[currentSlide].component;
-                return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />;
-              })()
-            )}
+            {renderCurrentSlide()}
           </PresentationSlide>
           
           <SlideNavigation
