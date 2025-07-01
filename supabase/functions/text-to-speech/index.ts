@@ -74,8 +74,8 @@ serve(async (req) => {
 
     console.log('Generating new audio with ElevenLabs API')
 
-    // Call ElevenLabs API - using the specified voice ID
-    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/X8KZLawfrdRo4EyOvZTI', {
+    // Call ElevenLabs API - using the new voice ID: 2akG5cSuq69b7zeB1Ihl
+    const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/2akG5cSuq69b7zeB1Ihl', {
       method: 'POST',
       headers: {
         'Accept': 'audio/mpeg',
