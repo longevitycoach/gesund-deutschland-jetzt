@@ -1,4 +1,3 @@
-
 import { Heart, Clock, Target, Star } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
@@ -43,45 +42,6 @@ export const FinalDecisionSlide = ({ onLifestyleAnswer }: FinalDecisionSlideProp
       text: 'Ich bin noch nicht bereit für Veränderungen', 
       votes: 23,
       motivationalResponse: 'Das ist ehrlich - aber bedenken Sie: Jeder Tag ohne Handeln ist ein verlorener Tag. Wann, wenn nicht jetzt?'
-    }
-  ];
-
-  const personalCommitmentOptions = [
-    {
-      id: '1',
-      text: 'Ich bin bereit, meine Komfortzone zu verlassen',
-      votes: 143,
-      motivationalResponse: 'Mut ist der erste Schritt zur Veränderung! Außerhalb der Komfortzone beginnt das wahre Leben. Sie haben bereits den wichtigsten Schritt getan.'
-    },
-    {
-      id: '2', 
-      text: 'Ich nehme meine Gesundheit ab heute selbst in die Hand',
-      votes: 189,
-      motivationalResponse: 'Perfekt! Eigenverantwortung ist der Schlüssel zu dauerhaftem Erfolg. Sie sind der Architekt Ihrer eigenen Gesundheit.'
-    },
-    {
-      id: '3',
-      text: 'Ich bin bereit, langfristig zu denken und zu handeln',
-      votes: 167,
-      motivationalResponse: 'Hervorragend! Langfristiges Denken unterscheidet erfolgreiche Menschen. Ihre zukünftige Gesundheit dankt Ihnen für diese Einstellung.'
-    },
-    {
-      id: '4',
-      text: 'Ich möchte ein Beispiel für meine Mitmenschen sein',
-      votes: 98,
-      motivationalResponse: 'Inspirierend! Als Vorbild schaffen Sie positive Veränderungen weit über sich selbst hinaus. Ihre Transformation kann andere Leben retten.'
-    },
-    {
-      id: '5',
-      text: 'Ich erkenne, dass kleine Schritte große Wirkung haben',
-      votes: 134,
-      motivationalResponse: 'Weise Erkenntnis! Der Weg von 1000 Meilen beginnt mit einem Schritt. Konstanz schlägt Perfektion - jeden Tag ein bisschen besser.'
-    },
-    {
-      id: '6',
-      text: 'Ich brauche noch mehr Überzeugung zum Handeln',
-      votes: 67,
-      motivationalResponse: 'Ehrlichkeit ist wichtig. Aber bedenken Sie: Jeder Tag des Wartens ist ein verlorener Tag. Manchmal muss man handeln, bevor man sich bereit fühlt.'
     }
   ];
 
@@ -249,19 +209,7 @@ export const FinalDecisionSlide = ({ onLifestyleAnswer }: FinalDecisionSlideProp
           </div>
         </div>
 
-        {/* New Personal Commitment Reflection Question */}
-        <div className="mt-8">
-          <LifestylePoll
-            slideId="final-decision"
-            questionId="personal-commitment"
-            question="Wo stehen Sie heute in Bezug auf Ihre persönliche Bereitschaft zur Veränderung?"
-            options={personalCommitmentOptions}
-            multipleChoice={false}
-            onAnswer={onLifestyleAnswer}
-          />
-        </div>
-
-        {/* Existing Action Readiness Question */}
+        {/* Action Readiness Question */}
         <div className="mt-8">
           <LifestylePoll
             slideId="final-decision"
