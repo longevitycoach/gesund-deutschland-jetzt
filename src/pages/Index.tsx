@@ -81,14 +81,37 @@ const Index = () => {
 
   // Render the current slide component
   const renderCurrentSlide = () => {
+    // PersonalizedInsightsSlide is at index 13 and needs sessionId
     if (currentSlide === 13) {
-      // PersonalizedInsightsSlide needs sessionId
       return <PersonalizedInsightsSlide sessionId={sessionId} />;
-    } else {
-      // All other slides need onLifestyleAnswer
-      const CurrentSlideComponent = slides[currentSlide].component;
+    }
+    
+    // All other slides need onLifestyleAnswer
+    const slideComponents = [
+      WelcomeSlide,
+      GoldenYearsSlide,
+      SilentDeclineSlide,
+      ModernDiseasesSlide,
+      SecondHalfDramaSlide,
+      HealthcareExplosionSlide,
+      PreventionRevolutionSlide,
+      FunctionalMedicineSlide,
+      LongevityVisionSlide,
+      OptimalHealthSlide,
+      IndividualHealthSlide,
+      OnePercentMethodSlide,
+      LongevityCoachSlide,
+      null, // PersonalizedInsightsSlide handled above
+      FinalDecisionSlide
+    ];
+    
+    const CurrentSlideComponent = slideComponents[currentSlide];
+    
+    if (CurrentSlideComponent) {
       return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} />;
     }
+    
+    return null;
   };
 
   return (
