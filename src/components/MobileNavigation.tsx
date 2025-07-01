@@ -24,18 +24,15 @@ export const MobileNavigation = ({
 
   const handleNext = () => {
     onNext();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePrev = () => {
     onPrev();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleGoTo = (index: number) => {
     onGoTo(index);
     setIsMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
