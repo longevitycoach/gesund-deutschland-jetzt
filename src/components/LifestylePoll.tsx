@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -65,7 +64,7 @@ export const LifestylePoll = ({
   const selectedOptionData = options.find(opt => selectedOptions.includes(opt.id));
   
   return (
-    <div>
+    <>
       <h3 className="text-xl font-semibold mb-4 text-gray-800">{question}</h3>
       
       {multipleChoice && !hasAnswered && (
@@ -189,6 +188,6 @@ export const LifestylePoll = ({
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
