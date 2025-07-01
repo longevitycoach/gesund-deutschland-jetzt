@@ -1,7 +1,38 @@
-
 import { Fingerprint, TestTube, RefreshCw, Target } from 'lucide-react';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const IndividualHealthSlide = () => {
+interface IndividualHealthSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+}
+
+export const IndividualHealthSlide = ({ onLifestyleAnswer }: IndividualHealthSlideProps) => {
+  const individualHealthOptions = [
+    { 
+      id: '1', 
+      text: 'Ich lasse regelmäßig meine Blutwerte checken und optimiere gezielt', 
+      votes: 35,
+      motivationalResponse: 'Fantastisch! Sie haben verstanden, dass datenbasierte Gesundheit der Schlüssel zur Optimierung ist. Bleiben Sie dabei!',
+    },
+    { 
+      id: '2', 
+      text: 'Ich nehme Standard-Vitamine und hoffe, das reicht', 
+      votes: 120,
+      motivationalResponse: 'Das ist ein Anfang, aber Sie verschenken enormes Potenzial. Ihre individuellen Bedürfnisse sind wahrscheinlich ganz anders als der Standard.',
+    },
+    { 
+      id: '3', 
+      text: 'Ich orientiere mich an dem, was andere machen', 
+      votes: 85,
+      motivationalResponse: 'Verständlich, aber gefährlich! Was für andere funktioniert, kann für Sie völlig falsch sein. Ihre Biochemie ist einzigartig.',
+    },
+    { 
+      id: '4', 
+      text: 'Ich mache gar nichts - wenn ich krank werde, gehe ich zum Arzt', 
+      votes: 95,
+      motivationalResponse: 'Das ist die teuerste und riskanteste Strategie. Prävention kostet einen Bruchteil von dem, was Krankheit kostet - finanziell und gesundheitlich.',
+    }
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center mb-8">
@@ -124,6 +155,17 @@ export const IndividualHealthSlide = () => {
             Vergessen Sie Einheitslösungen - Ihre Gesundheit verdient individuelle Präzision!
           </p>
         </div>
+      </div>
+
+      {/* Interactive Poll */}
+      <div className="mt-8">
+        <LifestylePoll
+          slideId="individual-health"
+          questionId="health-approach"
+          question="Wie gehen Sie derzeit mit Ihrer individuellen Gesundheit um?"
+          options={individualHealthOptions}
+          onAnswer={onLifestyleAnswer}
+        />
       </div>
     </div>
   );
