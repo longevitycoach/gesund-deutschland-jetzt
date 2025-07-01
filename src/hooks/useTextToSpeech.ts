@@ -44,31 +44,34 @@ export const useTextToSpeech = () => {
       console.log('Calling text-to-speech edge function...');
 
       // Call Supabase Edge Function
-      const { data, error } = await supabase.functions.invoke('text-to-speech', {
+      const response = await supabase.functions.invoke('text-to-speech', {
         body: { text }
       });
 
-      if (error) {
-        console.error('Edge function error:', error);
-        throw new Error(`Edge function error: ${error.message}`);
+      if (response.error) {
+        console.error('Edge function error:', response.error);
+        throw new Error(`Edge function error: ${response.error.message}`);
       }
 
       console.log('Successfully received response from edge function');
+
+      // Check if response was cached
+      const cacheStatus = response.data?.headers?.['x-cache'] || 'UNKNOWN';
+      console.log('Cache status:', cacheStatus);
 
       // The edge function returns raw audio data (ArrayBuffer)
       // We need to convert it to a blob for audio playback
       let audioBlob: Blob;
       
-      if (data instanceof ArrayBuffer) {
-        audioBlob = new Blob([data], { type: 'audio/mpeg' });
-      } else if (data && typeof data === 'object' && data.constructor === Object) {
+      if (response.data instanceof ArrayBuffer) {
+        audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+      } else if (response.data && typeof response.data === 'object' && response.data.constructor === Object) {
         // If it's a plain object, it might be an error response
         throw new Error('Invalid response format from edge function');
       } else {
         // Treat as raw data and convert to ArrayBuffer
-        const response = new Response(data);
-        const arrayBuffer = await response.arrayBuffer();
-        audioBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+        const arrayBuffer = new Response(response.data).arrayBuffer();
+        audioBlob = new Blob([await arrayBuffer], { type: 'audio/mpeg' });
       }
 
       if (audioBlob.size === 0) {
