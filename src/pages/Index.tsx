@@ -20,6 +20,10 @@ import { LongevityCoachSlide } from '@/components/slides/LongevityCoachSlide';
 import { PersonalizedInsightsSlide } from '@/components/slides/PersonalizedInsightsSlide';
 import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
 
+interface SlideComponentProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+}
+
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { sessionId, saveAnswer } = useSurveySession();
