@@ -1,9 +1,10 @@
 
 import { useState, useEffect, useRef } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 export const useTextToSpeech = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSupported, setIsSupported] = useState(true); // ElevenLabs is always supported
+  const [isSupported, setIsSupported] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const currentRequestRef = useRef<AbortController | null>(null);
 
@@ -40,33 +41,25 @@ export const useTextToSpeech = () => {
       // Create new abort controller
       currentRequestRef.current = new AbortController();
 
-      // Call ElevenLabs API
-      const response = await fetch('https://api.elevenlabs.io/v1/text-to-speech/onwK4e9ZLuTAKqWW03F9', {
-        method: 'POST',
-        headers: {
-          'Accept': 'audio/mpeg',
-          'Content-Type': 'application/json',
-          'xi-api-key': 'sk_4b3e692de5f301dbcfa57b8953a63dbd7ab5d54438a67af6'
-        },
-        body: JSON.stringify({
-          text: text,
-          model_id: 'eleven_multilingual_v2',
-          voice_settings: {
-            stability: 0.7,
-            similarity_boost: 0.8,
-            style: 0.2,
-            use_speaker_boost: true
-          }
-        }),
+      console.log('Calling text-to-speech edge function...');
+
+      // Call Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('text-to-speech', {
+        body: { text },
         signal: currentRequestRef.current.signal
       });
 
-      if (!response.ok) {
-        throw new Error(`ElevenLabs API error: ${response.status}`);
+      if (error) {
+        throw new Error(`Edge function error: ${error.message}`);
       }
 
-      // Convert response to audio blob
-      const audioBlob = await response.blob();
+      // The response should be audio data
+      if (!data) {
+        throw new Error('No audio data received');
+      }
+
+      // Convert the response to a blob and create audio URL
+      const audioBlob = new Blob([data], { type: 'audio/mpeg' });
       const audioUrl = URL.createObjectURL(audioBlob);
 
       // Create and play audio element
