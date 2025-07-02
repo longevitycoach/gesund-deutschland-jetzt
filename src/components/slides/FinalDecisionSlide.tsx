@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Heart, Target, Zap, Clock, Brain, Sparkles, BookOpen } from 'lucide-react';
+import { Heart, Target, Zap, Clock, Brain, Sparkles, BookOpen, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { LifestylePoll } from '@/components/LifestylePoll';
 import { supabase } from '@/integrations/supabase/client';
 
 interface FinalDecisionSlideProps {
@@ -14,6 +13,36 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
   const [insights, setInsights] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState<string>('');
+  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
+
+  // Load existing Perplexity analysis on component mount
+  useEffect(() => {
+    loadExistingAnalysis();
+  }, [sessionId]);
+
+  const loadExistingAnalysis = async () => {
+    if (!sessionId) return;
+    
+    setIsLoadingAnalysis(true);
+    try {
+      // Check for existing analysis in survey_responses
+      const { data: responses } = await supabase
+        .from('survey_responses')
+        .select('perplexity_analysis')
+        .eq('session_id', sessionId)
+        .not('perplexity_analysis', 'is', null)
+        .limit(1);
+
+      if (responses && responses.length > 0 && responses[0].perplexity_analysis) {
+        setAnalysisResults(responses[0].perplexity_analysis);
+      }
+    } catch (error) {
+      console.error('Error loading existing analysis:', error);
+    } finally {
+      setIsLoadingAnalysis(false);
+    }
+  };
 
   const generatePersonalizedInsights = async () => {
     if (!sessionId) return;
@@ -52,27 +81,6 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       setIsLoading(false);
     }
   };
-
-  const pollOptions = [
-    {
-      id: 'start-journey',
-      text: 'Ja, ich möchte meine Gesundheitsreise beginnen',
-      votes: 78,
-      motivationalResponse: 'Herzlichen Glückwunsch zu dieser wichtigen Entscheidung! Der erste Schritt ist oft der schwierigste. Sie haben heute den Grundstein für eine gesündere Zukunft gelegt.'
-    },
-    {
-      id: 'need-time',
-      text: 'Ich brauche noch Zeit zum Nachdenken',
-      votes: 19,
-      motivationalResponse: 'Das ist völlig verständlich. Wichtige Entscheidungen brauchen Zeit. Denken Sie daran: Jeder Tag, den Sie warten, ist ein Tag weniger für Ihre Gesundheit.'
-    },
-    {
-      id: 'skeptical',
-      text: 'Ich bin noch skeptisch',
-      votes: 3,
-      motivationalResponse: 'Skepsis ist gesund und zeigt, dass Sie kritisch denken. Die Wissenschaft hinter der Longevity-Forschung wird täglich stärker. Vielleicht ist ein kleiner erster Schritt der richtige Weg?'
-    }
-  ];
 
   return (
     <div className="space-y-8">
@@ -133,6 +141,43 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                   {insights}
                 </div>
               </div>
+            </div>
+          )}
+        </div>
+
+        {/* Perplexity Analysis Results Section */}
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+          <div className="flex items-center gap-3 mb-6">
+            <Brain className="w-8 h-8 text-blue-600" />
+            <h3 className="text-2xl font-bold text-blue-800">Ihre Perplexity-Analyse</h3>
+          </div>
+          
+          {isLoadingAnalysis ? (
+            <div className="text-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Analyse wird geladen...</p>
+            </div>
+          ) : analysisResults ? (
+            <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+              <div className="flex items-center gap-3 mb-4">
+                <CheckCircle className="w-6 h-6 text-blue-600" />
+                <h4 className="text-lg font-semibold text-blue-800">Ihre persönliche Gesundheitsanalyse:</h4>
+              </div>
+              <div className="prose prose-blue max-w-none">
+                <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
+                  {analysisResults}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-8 bg-gray-50 rounded-xl">
+              <Brain className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+              <p className="text-gray-600 mb-4">
+                Keine Perplexity-Analyse verfügbar. Bitte beantworten Sie zuerst die Fragen in der Präsentation.
+              </p>
+              <p className="text-sm text-gray-500">
+                Die Analyse wird automatisch erstellt, nachdem Sie Ihre Antworten abgegeben haben.
+              </p>
             </div>
           )}
         </div>
@@ -203,18 +248,6 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
               </div>
             </div>
           </div>
-        </div>
-
-        <div className={`bg-white p-8 rounded-xl shadow-xl border border-gray-200 transition-all duration-300 ${
-          highlightQuestion ? 'ring-4 ring-blue-500 ring-opacity-50 bg-blue-50' : ''
-        }`}>
-          <LifestylePoll
-            slideId="final-decision"
-            questionId="health-journey-decision"
-            question="🤔 Sind Sie bereit, Ihre Gesundheitsreise zu beginnen?"
-            options={pollOptions}
-            onAnswer={onLifestyleAnswer}
-          />
         </div>
 
         <div className="text-center p-8 bg-gradient-to-r from-blue-500 to-green-600 text-white rounded-xl">
