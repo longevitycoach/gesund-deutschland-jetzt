@@ -62,16 +62,18 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       const answeredSlideIds = new Set(responses?.map(r => r.slide_id) || []);
       
       // Define slides that should have questions based on actual database responses
-      // Check which slides from Index.tsx configuration have questions
+      // Match the actual slide_id values from the database
       const slidesWithQuestions = [
         { slideNumber: 1, slideName: 'Willkommen', slideId: 'welcome' },
+        { slideNumber: 2, slideName: 'Goldene Jahre', slideId: 'golden-years' },
         { slideNumber: 3, slideName: 'Der stille Beginn des Verfalls', slideId: 'silent-decline' },
         { slideNumber: 5, slideName: 'Das Drama der zweiten Lebenshälfte', slideId: 'second-half-drama' },
         { slideNumber: 7, slideName: 'Die Revolution der Prävention', slideId: 'prevention-revolution' },
         { slideNumber: 9, slideName: 'Die Vision der Longevity-Forschung', slideId: 'longevity-vision' },
         { slideNumber: 10, slideName: 'Die Pioniere der optimalen Gesundheit', slideId: 'optimal-health' },
         { slideNumber: 11, slideName: 'Gesundheit ist individuell', slideId: 'individual-health' },
-        { slideNumber: 12, slideName: 'Die 1%-Methode für Ihre Gesundheit', slideId: 'one-percent-method' }
+        { slideNumber: 12, slideName: 'Die 1%-Methode für Ihre Gesundheit', slideId: 'one-percent-method' },
+        { slideNumber: 13, slideName: 'Longevity Coach', slideId: 'longevity-coach' }
       ];
 
       const missing = slidesWithQuestions.filter(slide => !answeredSlideIds.has(slide.slideId));
@@ -79,6 +81,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       
       console.log('Antworten gefunden für Slides:', Array.from(answeredSlideIds));
       console.log('Fehlende Slides:', missing);
+      console.log('Alle verfügbaren slide_ids in der Datenbank:', responses?.map(r => r.slide_id));
       
     } catch (error) {
       console.error('Error checking missing questions:', error);
@@ -121,6 +124,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       }
 
       console.log(`Starte automatische Analyse für ${responses.length} Antworten`);
+      console.log('Responses für Analyse:', responses);
       
       // Rufe die Perplexity Edge Function auf
       const { data, error } = await supabase.functions.invoke('generate-longevity-insights', {
@@ -129,6 +133,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
 
       if (error) {
         console.error('Fehler bei automatischer Analyse:', error);
+        console.error('Error details:', error);
       } else {
         console.log('Automatische Analyse erfolgreich erstellt');
         setAnalysisResults(data.insights);
