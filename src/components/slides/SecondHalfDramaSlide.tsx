@@ -7,10 +7,11 @@ import HelpIcon from '@mui/icons-material/Help';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
 interface SecondHalfDramaSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const SecondHalfDramaSlide = ({ onLifestyleAnswer }: SecondHalfDramaSlideProps) => {
+export const SecondHalfDramaSlide = ({ onLifestyleAnswer, highlightQuestion }: SecondHalfDramaSlideProps) => {
   const fearOptions = [
     { 
       id: '1', 

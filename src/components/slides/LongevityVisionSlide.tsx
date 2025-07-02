@@ -9,10 +9,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ScienceIcon from '@mui/icons-material/Science';
 
 interface LongevityVisionSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const LongevityVisionSlide = ({ onLifestyleAnswer }: LongevityVisionSlideProps) => {
+export const LongevityVisionSlide = ({ onLifestyleAnswer, highlightQuestion }: LongevityVisionSlideProps) => {
   return (
     <TooltipProvider>
       <div className="space-y-8">

@@ -2,10 +2,11 @@ import { Fingerprint, TestTube, RefreshCw, Target } from 'lucide-react';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface IndividualHealthSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const IndividualHealthSlide = ({ onLifestyleAnswer }: IndividualHealthSlideProps) => {
+export const IndividualHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: IndividualHealthSlideProps) => {
   const individualHealthOptions = [
     { 
       id: '1', 

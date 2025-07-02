@@ -28,19 +28,18 @@ serve(async (req) => {
       throw new Error('Perplexity API key not configured');
     }
 
-    // Filter responses to only include those with valid question_text and answer_text
+    // Process ALL responses - we don't require question_text and answer_text to be filled
     const validResponses = responses.filter((response: any) => {
-      return response.question_text && 
-             response.answer_text && 
-             response.question_text.trim() !== '' && 
-             response.answer_text.trim() !== '';
+      return response.answer && response.answer.trim() !== '';
     });
 
     console.log(`Processing ${validResponses.length} valid responses out of ${responses.length} total`);
+    console.log('All responses:', responses);
+    console.log('Valid responses:', validResponses);
 
     if (validResponses.length === 0) {
       return new Response(JSON.stringify({ 
-        insights: 'Leider konnten keine gültigen Umfrageantworten gefunden werden. Bitte durchlaufen Sie die Umfrage erneut mit vollständigen Antworten.' 
+        insights: 'Leider konnten keine Umfrageantworten gefunden werden. Bitte durchlaufen Sie die Umfrage erneut.' 
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -91,8 +90,9 @@ Sei motivierend, wissenschaftlich fundiert und praktisch orientiert. Verwende ei
     const comprehensiveUserPrompt = `Hier sind die Antworten des Nutzers auf die Longevity-Umfrage:
 
 ${validResponses.map((response, index) => 
-  `${index + 1}. **Frage:** ${response.question_text}
-   **Antwort:** ${response.answer_text}
+  `${index + 1}. **Slide:** ${response.slide_id}
+   **Frage:** ${response.question_text || 'Nicht verfügbar'}
+   **Antwort:** ${response.answer_text || response.answer}
    ---`
 ).join('\n')}
 

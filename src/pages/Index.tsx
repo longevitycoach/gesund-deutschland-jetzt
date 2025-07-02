@@ -39,7 +39,7 @@ const Index = () => {
 
   const slides = [
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern", scriptKey: 'welcome', hasQuestion: true },
-    { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter", scriptKey: 'goldenYears', hasQuestion: false },
+    { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter", scriptKey: 'goldenYears', hasQuestion: true },
     { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline', hasQuestion: true },
     { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases', hasQuestion: false },
     { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: null, hasQuestion: true },
@@ -50,7 +50,7 @@ const Index = () => {
     { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit", scriptKey: null, hasQuestion: true },
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth', hasQuestion: true },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod', hasQuestion: true },
-    { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null, hasQuestion: false },
+    { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null, hasQuestion: true },
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: false }
   ];
 

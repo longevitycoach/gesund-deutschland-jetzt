@@ -203,14 +203,14 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
             </h2>
           </div>
           
-          {!hasGenerated && (
+          {!analysisResults && !isLoadingAnalysis && (
             <div className="text-center">
               <p className="text-gray-700 mb-6">
                 Basierend auf Ihren Antworten können wir Ihnen personalisierte Gesundheitsempfehlungen generieren.
                 Diese werden mit den neuesten wissenschaftlichen Erkenntnissen erstellt.
               </p>
               <Button
-                onClick={generatePersonalizedInsights}
+                onClick={autoGenerateAnalysis}
                 disabled={isLoading}
                 className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg"
               >

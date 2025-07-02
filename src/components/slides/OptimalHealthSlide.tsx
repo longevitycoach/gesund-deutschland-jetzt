@@ -4,10 +4,11 @@ import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface OptimalHealthSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const OptimalHealthSlide = ({ onLifestyleAnswer }: OptimalHealthSlideProps) => {
+export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: OptimalHealthSlideProps) => {
   const optimalHealthOptions = [
     { 
       id: '1', 

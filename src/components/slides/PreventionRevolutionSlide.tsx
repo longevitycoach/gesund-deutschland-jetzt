@@ -6,10 +6,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb';
 
 interface PreventionRevolutionSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const PreventionRevolutionSlide = ({ onLifestyleAnswer }: PreventionRevolutionSlideProps) => {
+export const PreventionRevolutionSlide = ({ onLifestyleAnswer, highlightQuestion }: PreventionRevolutionSlideProps) => {
   const lifestyleOptions = [
     { 
       id: '1', 

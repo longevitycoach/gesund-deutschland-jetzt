@@ -7,10 +7,11 @@ import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
 interface ModernDiseasesSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const ModernDiseasesSlide = ({ onLifestyleAnswer }: ModernDiseasesSlideProps) => {
+export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion }: ModernDiseasesSlideProps) => {
   const pollOptions = [
     { 
       id: '1', 

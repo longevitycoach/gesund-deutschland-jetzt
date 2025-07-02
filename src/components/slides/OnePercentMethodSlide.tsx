@@ -4,10 +4,11 @@ import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface OnePercentMethodSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
-export const OnePercentMethodSlide = ({ onLifestyleAnswer }: OnePercentMethodSlideProps) => {
+export const OnePercentMethodSlide = ({ onLifestyleAnswer, highlightQuestion }: OnePercentMethodSlideProps) => {
   const pollOptions = [
     {
       id: 'daily-walk',
