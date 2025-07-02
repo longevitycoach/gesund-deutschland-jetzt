@@ -46,103 +46,39 @@ serve(async (req) => {
       });
     }
 
-    // Process each response individually with Perplexity API
-    const analysisPromises = validResponses.map(async (response: any) => {
-      // Create German system prompt for individual response analysis
-      const systemPrompt = `Du bist ein erfahrener Gesundheits- und Longevity-Experte. Analysiere die folgende Antwort einer Person auf eine Gesundheitsfrage und erstelle eine präzise, wissenschaftlich fundierte Bewertung.
+    // Check if analysis already exists for this session
+    const { data: existingInsight } = await supabase
+      .from('ai_insights')
+      .select('*')
+      .eq('session_id', sessionId)
+      .eq('prompt_type', 'longevity_personalized_comprehensive')
+      .order('created_at', { ascending: false })
+      .limit(1);
 
-Deine Analyse soll:
-- Die Antwort im Kontext der Longevity-Forschung bewerten
-- Gesundheitsrisiken oder -chancen identifizieren
-- Konkrete, umsetzbare Empfehlungen geben
-- Auf deutsche Sprache fokussiert sein
-- Maximal 200 Wörter umfassen
+    if (existingInsight && existingInsight.length > 0) {
+      console.log(`Found existing analysis for session: ${sessionId}`);
+      return new Response(JSON.stringify({ 
+        insights: existingInsight[0].insights_text,
+        isExisting: true,
+        analysisDate: existingInsight[0].created_at
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
-Sei präzise, wissenschaftlich und motivierend in deiner Antwort.`;
+    // Mark all responses as being used for analysis
+    const responseIds = validResponses.map(r => r.id);
+    const { error: markError } = await supabase
+      .from('survey_responses')
+      .update({ analysis_created_at: new Date().toISOString() })
+      .in('id', responseIds);
 
-      const userPrompt = `Frage: "${response.question_text}"
-Antwort: "${response.answer_text}"
+    if (markError) {
+      console.error('Error marking responses as analyzed:', markError);
+    }
 
-Bitte analysiere diese Antwort und gib eine personalisierte Bewertung mit Empfehlungen.`;
-
-      console.log(`Analyzing response for question: ${response.question_text}`);
-
-      try {
-        // Call Perplexity API for individual response
-        const perplexityResponse = await fetch('https://api.perplexity.ai/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${perplexityApiKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            model: 'llama-3.1-sonar-large-128k-online',
-            messages: [
-              {
-                role: 'system',
-                content: systemPrompt
-              },
-              {
-                role: 'user',
-                content: userPrompt
-              }
-            ],
-            temperature: 0.3,
-            top_p: 0.9,
-            max_tokens: 300,
-            return_images: false,
-            return_related_questions: false,
-            search_recency_filter: 'month',
-            frequency_penalty: 0.5,
-            presence_penalty: 0.2
-          }),
-        });
-
-        if (!perplexityResponse.ok) {
-          const errorText = await perplexityResponse.text();
-          console.error(`Perplexity API error for response ${response.id}: ${perplexityResponse.status} - ${errorText}`);
-          return null;
-        }
-
-        const analysisData = await perplexityResponse.json();
-        const analysis = analysisData.choices[0].message.content;
-
-        // Update the survey response with the analysis
-        const { error: updateError } = await supabase
-          .from('survey_responses')
-          .update({
-            perplexity_analysis: analysis,
-            analysis_created_at: new Date().toISOString()
-          })
-          .eq('id', response.id);
-
-        if (updateError) {
-          console.error('Error updating survey response with analysis:', updateError);
-          return null;
-        }
-
-        console.log(`Successfully analyzed and stored analysis for response ${response.id}`);
-        return {
-          responseId: response.id,
-          question: response.question_text,
-          answer: response.answer_text,
-          analysis: analysis
-        };
-
-      } catch (error) {
-        console.error(`Error analyzing response ${response.id}:`, error);
-        return null;
-      }
-    });
-
-    // Wait for all analyses to complete
-    const analysisResults = await Promise.all(analysisPromises);
-    const successfulAnalyses = analysisResults.filter(result => result !== null);
-
-    console.log(`Successfully analyzed ${successfulAnalyses.length} out of ${validResponses.length} responses`);
-
-    // Create comprehensive insights from all analyses
-    const comprehensiveSystemPrompt = `Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den individuellen Analysen der Nutzerantworten, erstelle nun eine umfassende, personalisierte Longevity-Strategie.
+    // Create comprehensive analysis prompt with all responses
+    const comprehensiveSystemPrompt = `Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den Nutzerantworten, erstelle eine umfassende, personalisierte Longevity-Strategie.
 
 Strukturiere deine Antwort wie folgt:
 1. **Persönliche Gesundheitsanalyse** (Überblick über die wichtigsten Erkenntnisse)
@@ -152,16 +88,15 @@ Strukturiere deine Antwort wie folgt:
 
 Sei motivierend, wissenschaftlich fundiert und praktisch orientiert. Verwende eine freundliche, aber professionelle deutsche Sprache.`;
 
-    const comprehensiveUserPrompt = `Hier sind die analysierten Antworten des Nutzers:
+    const comprehensiveUserPrompt = `Hier sind die Antworten des Nutzers auf die Longevity-Umfrage:
 
-${successfulAnalyses.map(analysis => 
-  `**Frage:** ${analysis.question}
-**Antwort:** ${analysis.answer}
-**Analyse:** ${analysis.analysis}
----`
+${validResponses.map((response, index) => 
+  `${index + 1}. **Frage:** ${response.question_text}
+   **Antwort:** ${response.answer_text}
+   ---`
 ).join('\n')}
 
-Erstelle basierend auf diesen Einzelanalysen eine umfassende, personalisierte Longevity-Strategie für diese Person.`;
+Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevity-Strategie für diese Person.`;
 
     console.log('Creating comprehensive insights...');
 
@@ -204,6 +139,7 @@ Erstelle basierend auf diesen Einzelanalysen eine umfassende, personalisierte Lo
     const comprehensiveData = await comprehensiveResponse.json();
     const comprehensiveInsights = comprehensiveData.choices[0].message.content;
 
+
     // Store the comprehensive insights in the ai_insights table
     const { error: insertError } = await supabase
       .from('ai_insights')
@@ -221,11 +157,10 @@ Erstelle basierend auf diesen Einzelanalysen eine umfassende, personalisierte Lo
     }
 
     console.log(`Successfully generated comprehensive insights for session: ${sessionId}`);
-    console.log(`Individual analyses stored: ${successfulAnalyses.length}`);
+    console.log(`Analyzed ${validResponses.length} responses`);
 
     return new Response(JSON.stringify({ 
       insights: comprehensiveInsights,
-      individualAnalyses: successfulAnalyses.length,
       totalResponses: validResponses.length 
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

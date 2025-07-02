@@ -43,7 +43,6 @@ export type Database = {
           answer_text: string | null
           created_at: string
           id: string
-          perplexity_analysis: string | null
           question_id: string
           question_text: string | null
           session_id: string
@@ -55,7 +54,6 @@ export type Database = {
           answer_text?: string | null
           created_at?: string
           id?: string
-          perplexity_analysis?: string | null
           question_id: string
           question_text?: string | null
           session_id: string
@@ -67,7 +65,6 @@ export type Database = {
           answer_text?: string | null
           created_at?: string
           id?: string
-          perplexity_analysis?: string | null
           question_id?: string
           question_text?: string | null
           session_id?: string

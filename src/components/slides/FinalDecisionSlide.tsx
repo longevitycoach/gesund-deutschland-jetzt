@@ -26,16 +26,17 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
     
     setIsLoadingAnalysis(true);
     try {
-      // Check for existing analysis in survey_responses
-      const { data: responses } = await supabase
-        .from('survey_responses')
-        .select('perplexity_analysis')
+      // Check for existing analysis in ai_insights table
+      const { data: insights } = await supabase
+        .from('ai_insights')
+        .select('insights_text')
         .eq('session_id', sessionId)
-        .not('perplexity_analysis', 'is', null)
+        .eq('prompt_type', 'longevity_personalized_comprehensive')
+        .order('created_at', { ascending: false })
         .limit(1);
 
-      if (responses && responses.length > 0 && responses[0].perplexity_analysis) {
-        setAnalysisResults(responses[0].perplexity_analysis);
+      if (insights && insights.length > 0 && insights[0].insights_text) {
+        setAnalysisResults(insights[0].insights_text);
       }
     } catch (error) {
       console.error('Error loading existing analysis:', error);
