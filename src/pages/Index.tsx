@@ -128,14 +128,14 @@ const Index = () => {
       timestamp: new Date().toISOString()
     });
 
-    // Auto-advance to next slide after 5 seconds
+    // Auto-advance to next slide after 3 seconds
     setIsAutoAdvancing(true);
     setTimeout(() => {
       setIsAutoAdvancing(false);
       if (currentSlide < slides.length - 1) {
         nextSlide();
       }
-    }, 5000);
+    }, 3000);
   };
 
   // Get current slide script
@@ -189,7 +189,7 @@ const Index = () => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg">
           <div className="flex items-center gap-2">
             <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-            <span>Antwort gespeichert! Weiter zur nächsten Folie in 5 Sekunden...</span>
+            <span>Antwort gespeichert! Weiter zur nächsten Folie in 3 Sekunden...</span>
           </div>
         </div>
       )}
