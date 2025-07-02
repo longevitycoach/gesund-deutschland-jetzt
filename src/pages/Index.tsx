@@ -21,7 +21,6 @@ import { IndividualHealthSlide } from '@/components/slides/IndividualHealthSlide
 import { OnePercentMethodSlide } from '@/components/slides/OnePercentMethodSlide';
 import { LongevityCoachSlide } from '@/components/slides/LongevityCoachSlide';
 import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
-import { TestAnalysis } from '@/components/TestAnalysis';
 
 interface SlideComponentProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
@@ -183,8 +182,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Temporary test component - remove after testing */}
-      <TestAnalysis />
       <ProgressBar current={currentSlide + 1} total={slides.length} />
       
       {/* Show auto-advance feedback */}
