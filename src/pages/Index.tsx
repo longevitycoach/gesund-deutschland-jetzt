@@ -40,18 +40,18 @@ const Index = () => {
   const slides = [
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern", scriptKey: 'welcome', hasQuestion: true },
     { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter", scriptKey: 'goldenYears', hasQuestion: false },
-    { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline', hasQuestion: false },
+    { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline', hasQuestion: true },
     { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases', hasQuestion: false },
-    { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: null, hasQuestion: false },
+    { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: null, hasQuestion: true },
     { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: null, hasQuestion: false },
-    { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: null, hasQuestion: false },
+    { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: null, hasQuestion: true },
     { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin", scriptKey: 'functionalMedicine', hasQuestion: false },
-    { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung", scriptKey: null, hasQuestion: false },
-    { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit", scriptKey: null, hasQuestion: false },
+    { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung", scriptKey: null, hasQuestion: true },
+    { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit", scriptKey: null, hasQuestion: true },
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth', hasQuestion: true },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod', hasQuestion: true },
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null, hasQuestion: false },
-    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: true }
+    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: false }
   ];
 
   // Reset next click count and highlight when slide changes
