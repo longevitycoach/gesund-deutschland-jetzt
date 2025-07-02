@@ -128,14 +128,17 @@ const Index = () => {
       timestamp: new Date().toISOString()
     });
 
-    // Auto-advance to next slide after 3 seconds
-    setIsAutoAdvancing(true);
-    setTimeout(() => {
-      setIsAutoAdvancing(false);
-      if (currentSlide < slides.length - 1) {
-        nextSlide();
-      }
-    }, 3000);
+    // Auto-advance to next slide after 3 seconds (only for slides with questions)
+    const currentSlideInfo = slides[currentSlide];
+    if (currentSlideInfo.hasQuestion) {
+      setIsAutoAdvancing(true);
+      setTimeout(() => {
+        setIsAutoAdvancing(false);
+        if (currentSlide < slides.length - 1) {
+          nextSlide();
+        }
+      }, 3000);
+    }
   };
 
   // Get current slide script

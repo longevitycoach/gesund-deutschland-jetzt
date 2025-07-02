@@ -15,10 +15,12 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
   const [hasGenerated, setHasGenerated] = useState(false);
   const [analysisResults, setAnalysisResults] = useState<string>('');
   const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
+  const [missingQuestions, setMissingQuestions] = useState<Array<{slideNumber: number, slideName: string}>>([]);
 
-  // Load existing Perplexity analysis on component mount
+  // Load existing Perplexity analysis and check missing questions on component mount
   useEffect(() => {
     loadExistingAnalysis();
+    checkMissingQuestions();
   }, [sessionId]);
 
   const loadExistingAnalysis = async () => {
@@ -42,6 +44,38 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       console.error('Error loading existing analysis:', error);
     } finally {
       setIsLoadingAnalysis(false);
+    }
+  };
+
+  const checkMissingQuestions = async () => {
+    if (!sessionId) return;
+    
+    try {
+      // Get user's survey responses
+      const { data: responses } = await supabase
+        .from('survey_responses')
+        .select('slide_id')
+        .eq('session_id', sessionId);
+
+      const answeredSlideIds = new Set(responses?.map(r => r.slide_id) || []);
+      
+      // Define slides that should have questions based on Index.tsx configuration
+      const slidesWithQuestions = [
+        { slideNumber: 1, slideName: 'Willkommen', slideId: 'welcome' },
+        { slideNumber: 3, slideName: 'Der stille Beginn des Verfalls', slideId: 'silent-decline' },
+        { slideNumber: 5, slideName: 'Das Drama der zweiten Lebenshälfte', slideId: 'second-half-drama' },
+        { slideNumber: 7, slideName: 'Die Revolution der Prävention', slideId: 'prevention-revolution' },
+        { slideNumber: 9, slideName: 'Die Vision der Longevity-Forschung', slideId: 'longevity-vision' },
+        { slideNumber: 10, slideName: 'Die Pioniere der optimalen Gesundheit', slideId: 'optimal-health' },
+        { slideNumber: 11, slideName: 'Gesundheit ist individuell', slideId: 'individual-health' },
+        { slideNumber: 12, slideName: 'Die 1%-Methode für Ihre Gesundheit', slideId: 'one-percent-method' }
+      ];
+
+      const missing = slidesWithQuestions.filter(slide => !answeredSlideIds.has(slide.slideId));
+      setMissingQuestions(missing);
+      
+    } catch (error) {
+      console.error('Error checking missing questions:', error);
     }
   };
 
@@ -145,6 +179,32 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
             </div>
           )}
         </div>
+
+        {/* Missing Questions Info Box */}
+        {missingQuestions.length > 0 && (
+          <div className="bg-orange-50 p-6 rounded-xl border-2 border-orange-300 shadow-lg">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center">!</div>
+              <h3 className="text-xl font-bold text-orange-800">Fehlende Antworten</h3>
+            </div>
+            <p className="text-orange-700 mb-4">
+              Die folgenden Fragen wurden noch nicht beantwortet:
+            </p>
+            <ul className="space-y-2">
+              {missingQuestions.map((question, index) => (
+                <li key={index} className="flex items-center gap-2 text-orange-800">
+                  <span className="w-6 h-6 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold">
+                    {question.slideNumber}
+                  </span>
+                  <span className="font-medium">{question.slideName}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-orange-600 mt-4 italic">
+              Bitte gehen Sie zurück zu den entsprechenden Folien und beantworten Sie die Fragen.
+            </p>
+          </div>
+        )}
 
         {/* Perplexity Analysis Results Section */}
         <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
