@@ -21,6 +21,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
   useEffect(() => {
     loadExistingAnalysis();
     checkMissingQuestions();
+    // Automatische Analyse starten, wenn noch keine vorhanden ist
+    autoGenerateAnalysis();
   }, [sessionId]);
 
   const loadExistingAnalysis = async () => {
@@ -59,7 +61,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
 
       const answeredSlideIds = new Set(responses?.map(r => r.slide_id) || []);
       
-      // Define slides that should have questions based on Index.tsx configuration
+      // Define slides that should have questions based on actual database responses
+      // Check which slides from Index.tsx configuration have questions
       const slidesWithQuestions = [
         { slideNumber: 1, slideName: 'Willkommen', slideId: 'welcome' },
         { slideNumber: 3, slideName: 'Der stille Beginn des Verfalls', slideId: 'silent-decline' },
@@ -74,8 +77,64 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       const missing = slidesWithQuestions.filter(slide => !answeredSlideIds.has(slide.slideId));
       setMissingQuestions(missing);
       
+      console.log('Antworten gefunden für Slides:', Array.from(answeredSlideIds));
+      console.log('Fehlende Slides:', missing);
+      
     } catch (error) {
       console.error('Error checking missing questions:', error);
+    }
+  };
+
+  /**
+   * Automatische Analyse-Funktion:
+   * - Holt alle unanalysierten Antworten aus survey_responses
+   * - Ruft Perplexity API auf, auch wenn Fragen übersprungen wurden
+   * - Speichert Ergebnisse in ai_insights Tabelle
+   */
+  const autoGenerateAnalysis = async () => {
+    if (!sessionId) return;
+    
+    try {
+      // Prüfe, ob bereits eine Analyse existiert
+      const { data: existingAnalysis } = await supabase
+        .from('ai_insights')
+        .select('id')
+        .eq('session_id', sessionId)
+        .eq('prompt_type', 'longevity_personalized_comprehensive')
+        .limit(1);
+
+      if (existingAnalysis && existingAnalysis.length > 0) {
+        console.log('Analyse bereits vorhanden für Session:', sessionId);
+        return;
+      }
+
+      // Hole alle Antworten für diese Session (ohne analysis_created_at Filter)
+      const { data: responses } = await supabase
+        .from('survey_responses')
+        .select('*')
+        .eq('session_id', sessionId)
+        .order('created_at', { ascending: true });
+
+      if (!responses || responses.length === 0) {
+        console.log('Keine Antworten für automatische Analyse gefunden');
+        return;
+      }
+
+      console.log(`Starte automatische Analyse für ${responses.length} Antworten`);
+      
+      // Rufe die Perplexity Edge Function auf
+      const { data, error } = await supabase.functions.invoke('generate-longevity-insights', {
+        body: { sessionId, responses }
+      });
+
+      if (error) {
+        console.error('Fehler bei automatischer Analyse:', error);
+      } else {
+        console.log('Automatische Analyse erfolgreich erstellt');
+        setAnalysisResults(data.insights);
+      }
+    } catch (error) {
+      console.error('Fehler bei autoGenerateAnalysis:', error);
     }
   };
 
