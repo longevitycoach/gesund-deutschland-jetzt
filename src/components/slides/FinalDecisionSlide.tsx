@@ -136,10 +136,25 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
         console.error('Error details:', error);
       } else {
         console.log('Automatische Analyse erfolgreich erstellt');
-        setAnalysisResults(data.insights);
+        console.log('Analysis data received:', data);
+        if (data && data.insights) {
+          setAnalysisResults(data.insights);
+        }
       }
     } catch (error) {
       console.error('Fehler bei autoGenerateAnalysis:', error);
+    }
+  };
+
+  // Manual trigger function for testing
+  const manualTriggerAnalysis = async () => {
+    setIsLoadingAnalysis(true);
+    try {
+      await autoGenerateAnalysis();
+      // Reload existing analysis after trigger
+      await loadExistingAnalysis();
+    } finally {
+      setIsLoadingAnalysis(false);
     }
   };
 
@@ -294,17 +309,31 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                 </div>
               </div>
             </div>
-          ) : (
-            <div className="text-center py-8 bg-gray-50 rounded-xl">
-              <Brain className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-600 mb-4">
-                Keine Perplexity-Analyse verfügbar. Bitte beantworten Sie zuerst die Fragen in der Präsentation.
-              </p>
-              <p className="text-sm text-gray-500">
-                Die Analyse wird automatisch erstellt, nachdem Sie Ihre Antworten abgegeben haben.
-              </p>
-            </div>
-          )}
+           ) : (
+             <div className="text-center py-8 bg-gray-50 rounded-xl">
+               <Brain className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+               <p className="text-gray-600 mb-4">
+                 Keine Perplexity-Analyse verfügbar. Starten Sie die Analyse für vorhandene Antworten.
+               </p>
+               <Button
+                 onClick={manualTriggerAnalysis}
+                 disabled={isLoadingAnalysis}
+                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+               >
+                 {isLoadingAnalysis ? (
+                   <div className="flex items-center gap-2">
+                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                     Analyse wird erstellt...
+                   </div>
+                 ) : (
+                   <div className="flex items-center gap-2">
+                     <Brain className="w-4 h-4" />
+                     Perplexity-Analyse starten
+                   </div>
+                 )}
+               </Button>
+             </div>
+           )}
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
