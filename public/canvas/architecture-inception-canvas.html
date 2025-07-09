@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Inception Canvas - Longevity Coaching Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .canvas-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .canvas-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .canvas-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .canvas-section h3 {
+            color: #34495e;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .canvas-section p {
+            margin-bottom: 10px;
+        }
+        
+        .canvas-section ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .canvas-section li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+        }
+        
+        .risk {
+            background-color: #fee;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            margin: 10px 0;
+        }
+        
+        .success {
+            background-color: #efe;
+            padding: 15px;
+            border-left: 4px solid #27ae60;
+            margin: 10px 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        
+        .tag.orange {
+            background-color: #f39c12;
+        }
+        
+        .tag.green {
+            background-color: #27ae60;
+        }
+        
+        .tag.red {
+            background-color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .canvas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .canvas-section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Architecture Inception Canvas</h1>
+            <h2>Longevity Coaching Platform (LongevityCoach)</h2>
+            <div class="meta-info">
+                <p>Created by: Matthias Buchhorn | Date: July 2025 | Version: 1.0</p>
+                <p>Platform: longevitycoa.ch</p>
+            </div>
+        </header>
+        
+        <div class="canvas-grid">
+            <div class="canvas-section">
+                <h2>1. Business Case</h2>
+                <h3>What is the WHY behind the software initiative?</h3>
+                <p>The global longevity market is projected to reach <strong>€44.2B by 2030</strong>, driven by an aging population increasingly focused on extending not just lifespan but healthspan.</p>
+                
+                <div class="highlight">
+                    <strong>Economic Driver:</strong> Transform healthcare from reactive treatment to proactive optimization by democratizing access to evidence-based longevity science.
+                </div>
+                
+                <p><strong>Target:</strong> €68K revenue by 2026 through freemium SaaS model (Free/€9/€29 monthly tiers) with 2,100+ active users.</p>
+                
+                <p><strong>Business Motivation:</strong> Bridge the gap between cutting-edge longevity research and practical application for health-conscious individuals aged 35-65.</p>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>2. Functional Overview</h2>
+                <h3>What would be on your software product box?</h3>
+                <div class="highlight">
+                    <strong>LongevityCoach: Your Personal AI-Powered Longevity Expert</strong>
+                </div>
+                
+                <ul>
+                    <li><strong>Comprehensive Biomarker Analysis</strong> - Interpret 45+ biomarkers across 9 health categories</li>
+                    <li><strong>Personalized Protocol Generation</strong> - Evidence-based interventions tailored to your biology</li>
+                    <li><strong>Continuous Optimization</strong> - "Measure, Do, Measure" cycle</li>
+                    <li><strong>Wearable Integration</strong> - Combine lab data with real-time metrics</li>
+                    <li><strong>German-Language Education</strong> - Localized longevity content</li>
+                    <li><strong>Privacy-First Design</strong> - German-engineered security</li>
+                </ul>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>3. Quality Goals</h2>
+                <h3>Top 3 Most Important Quality Attributes</h3>
+                
+                <div class="success">
+                    <h4>1. Security & Privacy (ISO 25010: Security)</h4>
+                    <ul>
+                        <li>GDPR-compliant architecture with end-to-end encryption</li>
+                        <li>Privacy-first AI agents that never expose personal health data</li>
+                        <li>HIPAA-compliant data handling for international expansion</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight">
+                    <h4>2. Usability (ISO 25010: Usability)</h4>
+                    <ul>
+                        <li>Intuitive interface for non-technical users aged 35-65</li>
+                        <li>Complex biomarker data presented in actionable insights</li>
+                        <li>Mobile-first responsive design</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight">
+                    <h4>3. Reliability (ISO 25010: Reliability)</h4>
+                    <ul>
+                        <li>99.9% uptime for critical health monitoring</li>
+                        <li>Accurate biomarker interpretation with confidence levels</li>
+                        <li>Failsafe mechanisms for health recommendations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>4. Business Context</h2>
+                <h3>System as a "Black Box" - Key Interactions</h3>
+                
+                <h4>Users:</h4>
+                <ul>
+                    <li><span class="tag green">Primary</span> Health-conscious individuals (35-65 years)</li>
+                    <li><span class="tag">Secondary</span> Healthcare providers</li>
+                    <li><span class="tag">Future</span> Corporate wellness programs</li>
+                </ul>
+                
+                <h4>Input Systems:</h4>
+                <ul>
+                    <li>Laboratory systems (blood test results)</li>
+                    <li>Wearable devices (fitness trackers, smartwatches)</li>
+                    <li>User manual inputs (lifestyle data)</li>
+                </ul>
+                
+                <h4>Output Systems:</h4>
+                <ul>
+                    <li>Notification services (reminders, alerts)</li>
+                    <li>Healthcare provider reports</li>
+                    <li>Third-party health apps (via API)</li>
+                </ul>
+                
+                <h4>External Dependencies:</h4>
+                <ul>
+                    <li>Payment processing systems</li>
+                    <li>Authentication services</li>
+                    <li>Scientific literature databases</li>
+                    <li>Expert content sources</li>
+                </ul>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>5. Organisational Constraints</h2>
+                
+                <div class="risk">
+                    <h4>Time Constraints:</h4>
+                    <ul>
+                        <li>MVP launch target: Q3 2025</li>
+                        <li>First paying customers: Q4 2025</li>
+                        <li>Break-even target: 2026</li>
+                    </ul>
+                </div>
+                
+                <h4>Budget Constraints:</h4>
+                <ul>
+                    <li>Bootstrap funding model</li>
+                    <li>Lean development team</li>
+                    <li>Infrastructure costs optimized through Mabu.red</li>
+                </ul>
+                
+                <h4>Methodology:</h4>
+                <ul>
+                    <li>Agile development with 2-week sprints</li>
+                    <li>User-centric design process</li>
+                    <li>Continuous integration/deployment</li>
+                </ul>
+                
+                <h4>Standards:</h4>
+                <ul>
+                    <li><span class="tag red">Mandatory</span> GDPR compliance</li>
+                    <li><span class="tag red">Required</span> German data protection standards</li>
+                    <li><span class="tag orange">Important</span> Healthcare industry best practices</li>
+                </ul>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>6. Technical Constraints</h2>
+                
+                <h4>Predefined Technology Decisions:</h4>
+                <ul>
+                    <li>Initial hosting on Mabu.red platform</li>
+                    <li>Python-based AI/ML stack requirement</li>
+                    <li>API-first architecture mandate</li>
+                    <li>Mobile-responsive web application (no native apps initially)</li>
+                    <li>Google Notebook LM for knowledge management</li>
+                    <li>RAG Systems with FAISS vector database</li>
+                    <li>Model Context Protocol (MCP) for AI agents</li>
+                </ul>
+                
+                <h4>Integration Requirements:</h4>
+                <ul>
+                    <li>Must support common wearable device APIs</li>
+                    <li>Laboratory system compatibility (HL7/FHIR standards)</li>
+                    <li>Standard authentication protocols (OAuth 2.0)</li>
+                </ul>
+                
+                <h4>Performance Requirements:</h4>
+                <ul>
+                    <li>Real-time biomarker analysis (<5 seconds)</li>
+                    <li>Support for 2,100+ concurrent users</li>
+                    <li>Scalable to 10,000+ users without architecture changes</li>
+                </ul>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>7. Architectural Hypotheses</h2>
+                <h3>High-Level Architecture Assumptions</h3>
+                
+                <div class="highlight">
+                    <h4>1. Microservices Architecture</h4>
+                    <p>Separate services for biomarker analysis, protocol generation, user management. Enables independent scaling and development.</p>
+                </div>
+                
+                <h4>2. AI Agent Framework (MCP-based)</h4>
+                <ul>
+                    <li>Model Context Protocol (MCP) for standardized AI agent communication</li>
+                    <li>Containerized AI agents for secure processing</li>
+                    <li>Model versioning for continuous improvement</li>
+                    <li>Knowledge Activation with RAG Systems</li>
+                    <li>Vector database integration (FAISS)</li>
+                </ul>
+                
+                <h4>3. Event-Driven Data Pipeline</h4>
+                <ul>
+                    <li>Real-time processing of wearable data</li>
+                    <li>Asynchronous biomarker analysis workflows</li>
+                </ul>
+                
+                <h4>4. API Gateway Pattern</h4>
+                <ul>
+                    <li>Centralized API management</li>
+                    <li>Rate limiting and authentication at gateway</li>
+                </ul>
+                
+                <h4>5. Multi-Tenant SaaS Architecture</h4>
+                <ul>
+                    <li>Shared infrastructure with logical isolation</li>
+                    <li>Tenant-specific customization capabilities</li>
+                </ul>
+            </div>
+            
+            <div class="canvas-section">
+                <h2>8. Challenges and Risks</h2>
+                
+                <div class="risk">
+                    <h4>Technical Challenges:</h4>
+                    <ul>
+                        <li><strong>AI Model Accuracy</strong> - Ensuring reliable biomarker interpretation</li>
+                        <li><strong>Data Integration</strong> - Harmonizing multiple sources/formats</li>
+                        <li><strong>Real-time Processing</strong> - Maintaining performance at scale</li>
+                    </ul>
+                </div>
+                
+                <div class="risk">
+                    <h4>Business Risks:</h4>
+                    <ul>
+                        <li><strong>Regulatory Compliance</strong> - Navigating evolving regulations</li>
+                        <li><strong>Market Competition</strong> - Differentiating from established platforms</li>
+                        <li><strong>User Trust</strong> - Building confidence in AI recommendations</li>
+                    </ul>
+                </div>
+                
+                <div class="success">
+                    <h4>Mitigation Strategies:</h4>
+                    <ul>
+                        <li>Comprehensive testing and validation frameworks</li>
+                        <li>Partner with medical professionals for validation</li>
+                        <li>Transparent AI decision documentation</li>
+                        <li>Strong data governance processes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Architecture Inception Canvas, © 2023 by Gernot Starke, Patrick Roos and arc42 Contributors</p>
+            <p>Licensed under Attribution-ShareAlike 4.0 International</p>
+            <p>Template: <a href="https://canvas.arc42.org">https://canvas.arc42.org</a></p>
+        </footer>
+    </div>
+</body>
+</html>
