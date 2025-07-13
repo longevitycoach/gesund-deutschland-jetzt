@@ -124,9 +124,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
         max_tokens: 2000,
         return_images: false,
         return_related_questions: false,
-        search_recency_filter: 'month',
-        frequency_penalty: 0.5,
-        presence_penalty: 0.2
+        search_recency_filter: 'month'
       }),
     });
 
