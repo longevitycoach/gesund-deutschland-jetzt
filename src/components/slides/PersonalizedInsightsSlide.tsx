@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { Brain, Sparkles, BookOpen, Target } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 
 interface PersonalizedInsightsSlideProps {
@@ -10,8 +9,14 @@ interface PersonalizedInsightsSlideProps {
 
 export const PersonalizedInsightsSlide = ({ sessionId }: PersonalizedInsightsSlideProps) => {
   const [insights, setInsights] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasGenerated, setHasGenerated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Auto-generate insights on component mount
+  useEffect(() => {
+    if (sessionId) {
+      generatePersonalizedInsights();
+    }
+  }, [sessionId]);
 
   const generatePersonalizedInsights = async () => {
     if (!sessionId) return;
@@ -41,7 +46,6 @@ export const PersonalizedInsightsSlide = ({ sessionId }: PersonalizedInsightsSli
         setInsights('Fehler beim Generieren der Insights. Bitte versuchen Sie es erneut.');
       } else {
         setInsights(data.insights);
-        setHasGenerated(true);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -72,33 +76,12 @@ export const PersonalizedInsightsSlide = ({ sessionId }: PersonalizedInsightsSli
             </h2>
           </div>
           
-          {!hasGenerated && (
-            <div className="text-center">
-              <p className="text-gray-700 mb-6">
-                Klicken Sie auf den Button unten, um Ihre personalisierten Longevity-Insights zu generieren.
-                Diese werden basierend auf Ihren Umfrageantworten und den neuesten wissenschaftlichen Erkenntnissen erstellt.
-              </p>
-              <Button
-                onClick={generatePersonalizedInsights}
-                disabled={isLoading}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg"
-              >
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    Insights werden generiert...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <Brain className="w-5 h-5" />
-                    Personalisierte Insights generieren
-                  </div>
-                )}
-              </Button>
+          {isLoading ? (
+            <div className="text-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Ihre personalisierten Insights werden generiert...</p>
             </div>
-          )}
-
-          {insights && (
+          ) : insights ? (
             <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
               <div className="flex items-center gap-3 mb-4">
                 <BookOpen className="w-6 h-6 text-purple-600" />
@@ -109,6 +92,13 @@ export const PersonalizedInsightsSlide = ({ sessionId }: PersonalizedInsightsSli
                   {insights}
                 </div>
               </div>
+            </div>
+          ) : (
+            <div className="text-center py-8 bg-gray-50 rounded-xl">
+              <Brain className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+              <p className="text-gray-600">
+                Keine Antworten gefunden. Bitte durchlaufen Sie die Umfrage.
+              </p>
             </div>
           )}
         </div>

@@ -209,55 +209,6 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       </div>
 
       <div className="max-w-5xl mx-auto space-y-8">
-        {/* Personalized Insights Section */}
-        <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-xl border border-purple-200">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-purple-600" />
-            <h2 className="text-2xl font-bold text-purple-800">
-              Ihre persönlichen Longevity-Insights
-            </h2>
-          </div>
-          
-          {!analysisResults && !isLoadingAnalysis && (
-            <div className="text-center">
-              <p className="text-gray-700 mb-6">
-                Basierend auf Ihren Antworten können wir Ihnen personalisierte Gesundheitsempfehlungen generieren.
-                Diese werden mit den neuesten wissenschaftlichen Erkenntnissen erstellt.
-              </p>
-              <Button
-                onClick={autoGenerateAnalysis}
-                disabled={isLoading}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg"
-              >
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    Insights werden generiert...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <Brain className="w-5 h-5" />
-                    Personalisierte Insights generieren
-                  </div>
-                )}
-              </Button>
-            </div>
-          )}
-
-          {insights && (
-            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <BookOpen className="w-6 h-6 text-purple-600" />
-                <h3 className="text-xl font-semibold text-purple-800">Ihre persönlichen Empfehlungen:</h3>
-              </div>
-              <div className="prose prose-gray max-w-none">
-                <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
-                  {insights}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* Missing Questions Info Box */}
         {missingQuestions.length > 0 && (
@@ -285,56 +236,6 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
           </div>
         )}
 
-        {/* Perplexity Analysis Results Section */}
-        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
-          <div className="flex items-center gap-3 mb-6">
-            <Brain className="w-8 h-8 text-blue-600" />
-            <h3 className="text-2xl font-bold text-blue-800">Ihre Perplexity-Analyse</h3>
-          </div>
-          
-          {isLoadingAnalysis ? (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Analyse wird geladen...</p>
-            </div>
-          ) : analysisResults ? (
-            <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
-              <div className="flex items-center gap-3 mb-4">
-                <CheckCircle className="w-6 h-6 text-blue-600" />
-                <h4 className="text-lg font-semibold text-blue-800">Ihre persönliche Gesundheitsanalyse:</h4>
-              </div>
-              <div className="prose prose-blue max-w-none">
-                <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
-                  {analysisResults}
-                </div>
-              </div>
-            </div>
-           ) : (
-             <div className="text-center py-8 bg-gray-50 rounded-xl">
-               <Brain className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-               <p className="text-gray-600 mb-4">
-                 Keine Perplexity-Analyse verfügbar. Starten Sie die Analyse für vorhandene Antworten.
-               </p>
-               <Button
-                 onClick={manualTriggerAnalysis}
-                 disabled={isLoadingAnalysis}
-                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
-               >
-                 {isLoadingAnalysis ? (
-                   <div className="flex items-center gap-2">
-                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                     Analyse wird erstellt...
-                   </div>
-                 ) : (
-                   <div className="flex items-center gap-2">
-                     <Brain className="w-4 h-4" />
-                     Perplexity-Analyse starten
-                   </div>
-                 )}
-               </Button>
-             </div>
-           )}
-        </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200">
