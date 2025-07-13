@@ -100,7 +100,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
 
     console.log('Creating comprehensive insights...');
 
-    // Generate comprehensive insights
+    // Generate comprehensive insights using async API
     const comprehensiveResponse = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
       headers: {
@@ -108,7 +108,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'sonar-pro',
+        model: 'sonar',
         messages: [
           {
             role: 'system',
@@ -146,7 +146,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
       .insert({
         session_id: sessionId,
         insights_text: comprehensiveInsights,
-        model_used: 'sonar-pro',
+        model_used: 'sonar',
         prompt_type: 'longevity_personalized_comprehensive'
       });
 
