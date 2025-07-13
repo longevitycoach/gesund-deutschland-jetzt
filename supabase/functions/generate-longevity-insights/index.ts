@@ -108,7 +108,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.1-sonar-large-128k-online',
+        model: 'sonar-pro',
         messages: [
           {
             role: 'system',
@@ -146,7 +146,7 @@ Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevi
       .insert({
         session_id: sessionId,
         insights_text: comprehensiveInsights,
-        model_used: 'llama-3.1-sonar-large-128k-online',
+        model_used: 'sonar-pro',
         prompt_type: 'longevity_personalized_comprehensive'
       });
 
