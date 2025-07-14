@@ -100,10 +100,10 @@ Formatierung:
     const comprehensiveUserPrompt = `Hier sind die Antworten des Nutzers auf die Longevity-Umfrage:
 
 ${validResponses.map((response, index) => 
-   `${index + 1}. **Slide:** ${response.slide_id}
+  `${index + 1}. **Slide:** ${response.slide_id}
    **Frage:** ${response.question_text || 'Nicht verfügbar'}
    **Antwort:** ${response.answer_text || response.answer}`
-).join('\n')}
+).join('\n\n')}
 
 Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevity-Strategie. Sprich die Person direkt an und motiviere sie.`;
 

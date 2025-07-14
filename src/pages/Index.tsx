@@ -128,10 +128,20 @@ const Index = () => {
       timestamp: new Date().toISOString()
     });
 
-    // Auto-advance to next slide after 3 seconds (only for slides with questions)
+    // Auto-advance to next slide after scrolling and 3 seconds (only for slides with questions)
     const currentSlideInfo = slides[currentSlide];
     if (currentSlideInfo.hasQuestion) {
       setIsAutoAdvancing(true);
+      
+      // Scroll to bottom of page
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 500);
+      
+      // Auto-advance after 3 seconds
       setTimeout(() => {
         setIsAutoAdvancing(false);
         if (currentSlide < slides.length - 1) {
