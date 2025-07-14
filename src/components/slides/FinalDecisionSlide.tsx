@@ -146,6 +146,26 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
     }
   };
 
+  // Force regenerate analysis - bypasses cache
+  const forceRegenerateAnalysis = async () => {
+    setIsLoadingAnalysis(true);
+    try {
+      // Delete existing analysis first
+      await supabase
+        .from('ai_insights')
+        .delete()
+        .eq('session_id', sessionId)
+        .eq('prompt_type', 'longevity_personalized_comprehensive');
+      
+      // Generate new analysis
+      await autoGenerateAnalysis();
+      // Reload the new analysis
+      await loadExistingAnalysis();
+    } finally {
+      setIsLoadingAnalysis(false);
+    }
+  };
+
   // Manual trigger function for testing
   const manualTriggerAnalysis = async () => {
     setIsLoadingAnalysis(true);
@@ -308,10 +328,27 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
         {/* Personalized Analysis Section */}
         {analysisResults && (
           <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-fadeIn">
-            <div className="flex items-center gap-3 mb-6">
-              <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
-              <h3 className="text-3xl font-bold text-purple-800">Ihre personalisierte Longevity-Analyse</h3>
-              <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
+                <h3 className="text-3xl font-bold text-purple-800">Ihre personalisierte Longevity-Analyse</h3>
+                <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
+              </div>
+              <Button 
+                onClick={forceRegenerateAnalysis}
+                disabled={isLoadingAnalysis}
+                variant="outline"
+                className="border-purple-300 text-purple-700 hover:bg-purple-50"
+              >
+                {isLoadingAnalysis ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+                    Generiere...
+                  </div>
+                ) : (
+                  "🔄 Neue Analyse generieren"
+                )}
+              </Button>
             </div>
             
             {/* Perplexity request: 
