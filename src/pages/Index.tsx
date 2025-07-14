@@ -191,7 +191,9 @@ const Index = () => {
   // Get saved answer for current slide
   const getSavedAnswer = (slideId: string, questionId: string) => {
     const key = `${slideId}-${questionId}`;
-    return savedAnswers[key];
+    const answer = savedAnswers[key];
+    console.log('getSavedAnswer debug:', { slideId, questionId, key, answer, type: typeof answer });
+    return answer;
   };
 
   // Get current slide script
