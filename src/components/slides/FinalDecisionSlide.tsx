@@ -374,12 +374,14 @@ export const FinalDecisionSlide = ({
             .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-3 mb-1">$1</h3>')
             // Kompakte nummerierte Listen
             .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-2 my-1"><span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">$1</span><span class="text-gray-800 text-sm">$2</span></div>')
-            // ✓ Symbole OHNE spans/divs
-            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '✓ <strong>$1:</strong> $2<br>')
-            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '✓ <strong>$1:</strong> $2<br>')
-            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '✓ <strong>$1:</strong> $2<br>')
-            // Listen OHNE spans/divs
-            .replace(/^-\s+(.*?)$/gm, '• $1<br>')
+            // ✓ Symbole OHNE spans/divs und Umbrüche
+            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '✓ <strong>$1:</strong> $2 ')
+            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '✓ <strong>$1:</strong> $2 ')
+            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '✓ <strong>$1:</strong> $2 ')
+            // Listen OHNE spans/divs und Umbrüche
+            .replace(/^-\s+(.*?)$/gm, '• $1 ')
+            // Horizontale Linien
+            .replace(/^---+$/gm, '<hr class="my-4 border-gray-300">')
             // Kompakte Absätze
             .replace(/\n\n/g, '</p><p class="mb-2 text-gray-700 leading-snug text-sm">').replace(/^(.+)$/gm, '<p class="mb-2 text-gray-700 leading-snug text-sm">$1</p>').replace(/<p class="mb-2 text-gray-700 leading-snug text-sm"><\/p>/g, '')
           }} />
