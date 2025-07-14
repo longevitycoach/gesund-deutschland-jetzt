@@ -3,6 +3,7 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface LongevityCoachSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
 export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlideProps) => {
@@ -140,7 +141,7 @@ export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlidePr
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Motivation und Accountability</span>
+                    <span>Motivation und Eigenverantwortung</span>
                   </li>
                 </ul>
               </div>
