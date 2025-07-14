@@ -1,12 +1,45 @@
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
 import { InteractivePoll } from '@/components/InteractivePoll';
+import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const FunctionalMedicineSlide = () => {
+interface FunctionalMedicineSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
+}
+
+export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion }: FunctionalMedicineSlideProps) => {
   const pollOptions = [
     { id: '1', text: 'Ja, regelmäßig beim Hausarzt', votes: 45 },
     { id: '2', text: 'Nur bei akuten Beschwerden', votes: 120 },
     { id: '3', text: 'Selten, ich fühle mich gesund', votes: 85 },
     { id: '4', text: 'Nein, ich vermeide Arztbesuche', votes: 25 }
+  ];
+
+  const functionalMedicineOptions = [
+    { 
+      id: '1', 
+      text: 'Ja, ich bin bereits Selbstzahler bei einem funktionellen Mediziner', 
+      votes: 15,
+      motivationalResponse: 'Fantastisch! Sie sind bereits auf dem richtigen Weg zur Longevity-Medizin. Nutzen Sie diese Expertise optimal für Ihre Gesundheit!'
+    },
+    { 
+      id: '2', 
+      text: 'Nein, aber ich würde es gerne versuchen', 
+      votes: 85,
+      motivationalResponse: 'Ausgezeichnet! Der erste Schritt ist das Interesse. Recherchieren Sie Funktionelle Mediziner in Ihrer Nähe - es ist eine Investition in Ihre Zukunft!'
+    },
+    { 
+      id: '3', 
+      text: 'Ich bin unsicher, ob sich die Kosten lohnen', 
+      votes: 120,
+      motivationalResponse: 'Verständlich! Bedenken Sie: Was kostet Ihre Gesundheit? Eine Konsultation kann Jahre des gesunden Lebens bedeuten - die beste Investition überhaupt!'
+    },
+    { 
+      id: '4', 
+      text: 'Nein, ich vertraue nur der konventionellen Medizin', 
+      votes: 35,
+      motivationalResponse: 'Das ist nachvollziehbar. Funktionelle Medizin ergänzt die konventionelle Medizin - sie ersetzt sie nicht. Es geht um Prävention statt nur Behandlung!'
+    }
   ];
 
   return (
@@ -192,7 +225,20 @@ export const FunctionalMedicineSlide = () => {
           </p>
         </div>
 
-        {/* Interactive Poll */}
+        {/* New Lifestyle Poll about Functional Medicine */}
+        <div className={`mt-8 transition-all duration-300 ${
+          highlightQuestion ? 'ring-4 ring-blue-500 ring-opacity-50 bg-blue-50 p-4 rounded-xl' : ''
+        }`}>
+          <LifestylePoll
+            slideId="functional-medicine"
+            questionId="self-payer-question"
+            question="Sind Sie bereits Selbstzahler bei einem Arzt spezialisiert für funktionelle Medizin?"
+            options={functionalMedicineOptions}
+            onAnswer={onLifestyleAnswer}
+          />
+        </div>
+
+        {/* Original Interactive Poll */}
         <div className="my-8">
           <InteractivePoll
             question="Wie häufig lassen Sie präventive Gesundheitschecks durchführen?"
