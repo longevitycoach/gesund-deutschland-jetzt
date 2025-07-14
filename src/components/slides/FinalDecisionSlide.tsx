@@ -342,6 +342,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                     .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
                      // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
                      .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
+                     // Nummerierte Aufzählungen in einer Zeile darstellen
+                     .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-3 my-2"><span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$1</span><span class="text-gray-800 font-medium">$2</span></div>')
                      // Fix formatting for emoji headers to keep symbols and text on same line
                      .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>')
                      .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
