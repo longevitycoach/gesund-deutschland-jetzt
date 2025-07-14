@@ -314,18 +314,29 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
               <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
             </div>
             
+            {/* 
+              HTML Comment - Original Perplexity Request for debugging:
+              System Prompt: Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den Nutzerantworten, erstelle eine umfassende, personalisierte Longevity-Strategie.
+              WICHTIG: Sprich den Nutzer direkt an (Du/Sie) und vermeide die dritte Person. Schreibe persönlich und motivierend.
+              Strukturiere deine Antwort wie folgt:
+              🔍 **Persönliche Gesundheitsanalyse** (Überblick über Ihre wichtigsten Erkenntnisse)
+              🎯 **Top 3 Prioritäten** (Die wichtigsten Bereiche für Ihre Verbesserungen)
+              💡 **Konkrete Handlungsschritte** (Spezifische, umsetzbare Empfehlungen mit Erklärung der jeweiligen Longevity-Effekte)
+              🌟 **Langfristige Vision** (Wie sich Ihre Gesundheit in 5-10 Jahren entwickeln könnte)
+              
+              User Prompt: Hier sind die Antworten des Nutzers auf die Longevity-Umfrage mit Fragen und Antworten...
+            */}
             <div className="prose prose-lg max-w-none">
               <div 
                 className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft"
                 dangerouslySetInnerHTML={{ 
                   __html: analysisResults
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-purple-700 font-bold">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em class="text-purple-600 italic">$1</em>')
-                    .replace(/^---$/gm, '<hr class="my-6 border-purple-200 border-2">')
-                    .replace(/^#{2}\s*(.*?)$/gm, '<h2 class="text-2xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🔍</span>$1</h2>')
-                    .replace(/^#{1}\s*(.*?)$/gm, '<h1 class="text-3xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h1>')
-                    .replace(/\*\*([^*]+)\*\*/g, '<h3 class="text-xl font-bold text-purple-800 mt-6 mb-4 flex items-center gap-3"><span class="text-2xl">💡</span>$1</h3>')
-                    .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
+                    .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🔍</span>$1</h2>')
+                    .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🎯</span>$1</h2>')
+                    .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">💡</span>$1</h2>')
+                    .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🌟</span>$1</h2>')
+                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
+                    .replace(/---/g, '<hr class="my-6 border-purple-200 border-2">')
                     .replace(/\n\n/g, '</p><p class="mb-4">')
                     .replace(/^(.+)$/gm, '<p class="mb-4">$1</p>')
                     .replace(/<p class="mb-4"><\/p>/g, '')

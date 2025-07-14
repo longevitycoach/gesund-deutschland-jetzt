@@ -82,18 +82,18 @@ serve(async (req) => {
 WICHTIG: Sprich den Nutzer direkt an (Du/Sie) und vermeide die dritte Person. Schreibe persönlich und motivierend.
 
 Strukturiere deine Antwort wie folgt:
-**Persönliche Gesundheitsanalyse** (Überblick über deine wichtigsten Erkenntnisse)
+🔍 **Persönliche Gesundheitsanalyse** (Überblick über Ihre wichtigsten Erkenntnisse)
 
-**Top 3 Prioritäten** (Die wichtigsten Bereiche für deine Verbesserungen)
+🎯 **Top 3 Prioritäten** (Die wichtigsten Bereiche für Ihre Verbesserungen)
 
-**Konkrete Handlungsschritte** (Spezifische, umsetzbare Empfehlungen mit Erklärung der jeweiligen Longevity-Effekte)
+💡 **Konkrete Handlungsschritte** (Spezifische, umsetzbare Empfehlungen mit Erklärung der jeweiligen Longevity-Effekte)
 
-**Langfristige Vision** (Wie sich deine Gesundheit in 5-10 Jahren entwickeln könnte)
+🌟 **Langfristige Vision** (Wie sich Ihre Gesundheit in 5-10 Jahren entwickeln könnte)
 
 Formatierung:
 - Verwende horizontale Linien (---) zwischen den Hauptabschnitten
-- Spreche the Nutzer direkt an und nicht in dritter Person und danke ihm für seine Antworten
-- Keine Bullet Points vor Überschriften verwenden, stattdessen passende Symbole
+- Spreche den Nutzer direkt an und nicht in dritter Person und danke ihm für seine Antworten
+- Verwende unterschiedliche Symbole für Überschriften: 🔍 für Analyse, 🎯 für Prioritäten, 💡 für Handlungsschritte, 🌟 für Vision
 - Bei jeder Handlungsempfehlung erkläre konkret den Health- und Longevity-Effekt
 - Sei motivierend und mutmachend - betone was bereits gut läuft und wie erreichbar die Ziele sind
 - Verwende eine freundliche, ermutigende deutsche Sprache und gib dem Nutzer das Gefühl, dass positive Veränderungen möglich sind`;

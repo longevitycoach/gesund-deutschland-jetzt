@@ -16,6 +16,7 @@ interface LifestylePollProps {
   options: PollOption[];
   multipleChoice?: boolean;
   onAnswer?: (slideId: string, questionId: string, optionId: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
 export const LifestylePoll = ({ 
@@ -24,7 +25,8 @@ export const LifestylePoll = ({
   question, 
   options, 
   multipleChoice = false,
-  onAnswer 
+  onAnswer,
+  highlightQuestion = false
 }: LifestylePollProps) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [hasAnswered, setHasAnswered] = useState(false);
@@ -38,6 +40,11 @@ export const LifestylePoll = ({
     setSelectedOptions([optionId]);
     setHasAnswered(true);
     setShowMotivation(true);
+    
+    // Scroll to bottom and auto-advance after 3 seconds
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 500);
     
     // Save answer to database with full question and answer text
     if (onAnswer) {
@@ -65,6 +72,11 @@ export const LifestylePoll = ({
     setHasAnswered(true);
     setShowMotivation(true);
     
+    // Scroll to bottom and auto-advance after 3 seconds  
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 500);
+    
     // Save answer to database with full question and answer text
     if (onAnswer) {
       const selectedOptionTexts = selectedOptions
@@ -78,8 +90,8 @@ export const LifestylePoll = ({
   const selectedOptionData = options.find(opt => selectedOptions.includes(opt.id));
   
   return (
-    <>
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">{question}</h3>
+    <div className={highlightQuestion ? "animate-pulse bg-yellow-100 p-6 rounded-xl border-2 border-yellow-400" : ""}>
+      <h3 className={`text-xl font-semibold mb-4 ${highlightQuestion ? "text-yellow-800" : "text-gray-800"}`} dangerouslySetInnerHTML={{ __html: question }} />
       
       {multipleChoice && !hasAnswered && (
         <p className="text-sm text-gray-600 mb-4 italic">
@@ -202,6 +214,6 @@ export const LifestylePoll = ({
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 };

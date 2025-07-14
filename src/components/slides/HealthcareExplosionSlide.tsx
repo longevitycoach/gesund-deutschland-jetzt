@@ -4,10 +4,12 @@ import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { HealthcareDataChart } from '@/components/HealthcareDataChart';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
-export const HealthcareExplosionSlide = () => {
-  const handlePollAnswer = (slideId: string, questionId: string, optionId: string) => {
-    console.log('Poll answer:', { slideId, questionId, optionId });
-  };
+interface HealthcareExplosionSlideProps {
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
+}
+
+export const HealthcareExplosionSlide = ({ onLifestyleAnswer, highlightQuestion }: HealthcareExplosionSlideProps) => {
 
   const spendingOptions = [
     {
@@ -102,7 +104,8 @@ export const HealthcareExplosionSlide = () => {
           questionId="monthly-health-spending"
           question="Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben? <br>(Gesundes Essen, Sport, Nährungsergänzungsmittel, medizinische Tests)"
           options={spendingOptions}
-          onAnswer={handlePollAnswer}
+          onAnswer={onLifestyleAnswer}
+          highlightQuestion={highlightQuestion}
         />
       </div>
 

@@ -12,27 +12,27 @@ export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: Opt
   const optimalHealthOptions = [
     { 
       id: '1', 
-      text: 'Ich strebe nach optimalen Werten für maximale Leistung', 
+      text: 'Optimale Werte für maximale Leistung', 
       votes: 25,
-      motivationalResponse: 'Exzellent! Sie verstehen, dass optimale Gesundheit mehr ist als nur "nicht krank sein". Bleiben Sie bei dieser Einstellung!',
+      motivationalResponse: 'Exzellent! Sie verstehen, dass optimale Gesundheit mehr ist als nur "nicht krank sein".',
     },
     { 
       id: '2', 
-      text: 'Normal-Werte reichen mir, solange ich gesund bin', 
+      text: 'Normal-Werte reichen mir aus', 
       votes: 85,
-      motivationalResponse: 'Das ist verständlich, aber bedenken Sie: "Normal" ist oft nur der Durchschnitt einer kranken Gesellschaft. Optimale Werte könnten Ihr Leben transformieren.',
+      motivationalResponse: 'Verständlich, aber "Normal" ist oft nur der kranke Durchschnitt. Optimale Werte transformieren Leben.',
     },
     { 
       id: '3', 
-      text: 'Ich war mir nicht bewusst, dass es einen Unterschied gibt', 
+      text: 'Kannte den Unterschied nicht', 
       votes: 120,
-      motivationalResponse: 'Perfekt! Jetzt wissen Sie es. Der Unterschied zwischen "normal" und "optimal" kann 20-30 Jahre gesunde Lebenszeit bedeuten.',
+      motivationalResponse: 'Perfekt! Jetzt wissen Sie es. Der Unterschied kann 20-30 Jahre gesunde Lebenszeit bedeuten.',
     },
     { 
       id: '4', 
-      text: 'Das ist mir zu aufwendig und teuer', 
+      text: 'Ist mir zu aufwendig', 
       votes: 55,
-      motivationalResponse: 'Verstehe ich. Aber was kostet mehr: Prävention heute oder Krankheit morgen? Optimal zu leben ist eine Investition, die sich immer lohnt.',
+      motivationalResponse: 'Was kostet mehr: Prävention heute oder Krankheit morgen? Optimal leben lohnt sich immer.',
     }
   ];
 
@@ -354,6 +354,7 @@ export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: Opt
           question="Wie stehen Sie zu optimalen Gesundheitswerten statt Durchschnittswerten?"
           options={optimalHealthOptions}
           onAnswer={onLifestyleAnswer}
+          highlightQuestion={highlightQuestion}
         />
       </div>
     </div>

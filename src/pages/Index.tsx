@@ -43,7 +43,7 @@ const Index = () => {
     { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline', hasQuestion: true },
     { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases', hasQuestion: false },
     { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: null, hasQuestion: true },
-    { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: null, hasQuestion: false },
+    { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: null, hasQuestion: true },
     { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: null, hasQuestion: true },
     { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin", scriptKey: 'functionalMedicine', hasQuestion: false },
     { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung", scriptKey: null, hasQuestion: true },
