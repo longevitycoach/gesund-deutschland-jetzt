@@ -351,8 +351,10 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                      .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
                      // "✓ Bewegung integrieren" in eine Zeile
                      .replace(/✓\s*Bewegung\s*integrieren/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Bewegung integrieren</span></span>')
-                     // "✓ Steh- und Gehpausen:" in eine Zeile
-                     .replace(/✓\s*Steh-\s*und\s*Gehpausen:/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Steh- und Gehpausen:</span></span>')
+                     // "✓ Steh- und Gehpausen:" in eine Zeile - auch bei Zeilenumbrüchen
+                     .replace(/✓\s*\n?\s*Steh-\s*und\s*Gehpausen:/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Steh- und Gehpausen:</span></span>')
+                     // Allgemeine Regel für ✓ gefolgt von Text (auch mit Zeilenumbrüchen)
+                     .replace(/✓\s*\n?\s*([^<\n]+)/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>$1</span></span>')
                     // Horizontale Linien
                     .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
                     // Listen formatieren
