@@ -15,16 +15,7 @@ interface ModernDiseasesSlideProps {
 }
 
 export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance, selectedAnswer }: ModernDiseasesSlideProps) => {
-  // Auto-advance after 3 seconds without user interaction
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (onAutoAdvance) {
-        onAutoAdvance();
-      }
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, [onAutoAdvance]);
+  // Removed auto-advance timer to prevent unwanted navigation when returning to this slide
   const healthRiskOptions = [
     { 
       id: 'sitting', 
