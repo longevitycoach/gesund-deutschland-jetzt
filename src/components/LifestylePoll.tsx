@@ -36,12 +36,18 @@ export const LifestylePoll = ({
   const [selectedOptions, setSelectedOptions] = useState<string[]>(() => {
     if (selectedAnswer) {
       if (Array.isArray(selectedAnswer)) {
-        return selectedAnswer;
+        // Entferne Duplikate aus dem Array
+        return [...new Set(selectedAnswer)];
       } else if (typeof selectedAnswer === 'string') {
         // If it's a JSON string, try to parse it
         try {
           const parsed = JSON.parse(selectedAnswer);
-          return Array.isArray(parsed) ? parsed : [selectedAnswer];
+          if (Array.isArray(parsed)) {
+            // Entferne Duplikate aus dem geparsten Array
+            return [...new Set(parsed)];
+          } else {
+            return [selectedAnswer];
+          }
         } catch {
           return [selectedAnswer];
         }
@@ -79,6 +85,10 @@ export const LifestylePoll = ({
 
     setSelectedOptions(prev => {
       if (checked) {
+        // Prüfen ob Option bereits vorhanden ist, um Duplikate zu vermeiden
+        if (prev.includes(optionId)) {
+          return prev;
+        }
         return [...prev, optionId];
       } else {
         return prev.filter(id => id !== optionId);
