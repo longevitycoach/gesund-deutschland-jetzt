@@ -230,29 +230,27 @@ const Index = () => {
     const CurrentSlideComponent = slideComponents[currentSlide];
     
     if (CurrentSlideComponent) {
-      // Get saved answer for current slide
-      const slideInfo = slides[currentSlide];
-      const slideId = slideInfo.scriptKey || slideInfo.title.toLowerCase().replace(/\s+/g, '-');
-      
-      // Get specific question ID for each slide
-      const getQuestionId = (slideIndex: number) => {
-        const questionIds = [
-          'personal-choice', // welcome
-          'fitness-comparison', // golden-years  
-          'body-awareness', // silent-decline
-          'health-risks', // modern-diseases
-          'aging-fears', // second-half-drama
-          'monthly-health-spending', // healthcare-explosion
-          'prevention-attitude', // prevention-revolution
-          'self-payer-question', // functional-medicine
-          'healthy-years-purpose', // longevity-vision
-          'optimal-vs-normal', // optimal-health
-          'health-approach', // individual-health
-          'first-small-step', // one-percent-method
-          'coach-support-needs' // longevity-coach
+      // Get specific slide ID and question ID for each slide
+      const getSlideInfo = (slideIndex: number) => {
+        const slideInfos = [
+          { slideId: 'welcome', questionId: 'personal-choice' },
+          { slideId: 'golden-years', questionId: 'fitness-comparison' },
+          { slideId: 'silent-decline', questionId: 'body-awareness' },
+          { slideId: 'modern-diseases', questionId: 'health-risks' },
+          { slideId: 'second-half-drama', questionId: 'aging-fears' },
+          { slideId: 'healthcare-explosion', questionId: 'monthly-health-spending' },
+          { slideId: 'prevention-revolution', questionId: 'prevention-attitude' },
+          { slideId: 'functional-medicine', questionId: 'self-payer-question' },
+          { slideId: 'longevity-vision', questionId: 'healthy-years-purpose' },
+          { slideId: 'optimal-health', questionId: 'optimal-vs-normal' },
+          { slideId: 'individual-health', questionId: 'health-approach' },
+          { slideId: 'one-percent-method', questionId: 'first-small-step' },
+          { slideId: 'longevity-coach', questionId: 'coach-support-needs' }
         ];
-        return questionIds[slideIndex] || 'default';
+        return slideInfos[slideIndex] || { slideId: 'default', questionId: 'default' };
       };
+      
+      const currentSlideInfo = getSlideInfo(currentSlide);
       
       // Special handling for ModernDiseasesSlide (slide 3, index 3) to add auto-advance
       if (currentSlide === 3) {
@@ -260,7 +258,7 @@ const Index = () => {
           onLifestyleAnswer={handleLifestyleAnswer} 
           highlightQuestion={highlightQuestion}
           onAutoAdvance={nextSlide}
-          selectedAnswer={getSavedAnswer(slideId, getQuestionId(currentSlide))}
+          selectedAnswer={getSavedAnswer(currentSlideInfo.slideId, currentSlideInfo.questionId)}
         />;
       }
       
@@ -269,14 +267,14 @@ const Index = () => {
         return <WelcomeSlide 
           onLifestyleAnswer={handleLifestyleAnswer} 
           highlightQuestion={highlightQuestion}
-          selectedAnswer={getSavedAnswer('welcome', getQuestionId(currentSlide))}
+          selectedAnswer={getSavedAnswer(currentSlideInfo.slideId, currentSlideInfo.questionId)}
         />;
       }
       
       return <CurrentSlideComponent 
         onLifestyleAnswer={handleLifestyleAnswer} 
         highlightQuestion={highlightQuestion}
-        selectedAnswer={getSavedAnswer(slideId, getQuestionId(currentSlide))}
+        selectedAnswer={getSavedAnswer(currentSlideInfo.slideId, currentSlideInfo.questionId)}
       />;
     }
     
