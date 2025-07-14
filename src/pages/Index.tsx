@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PresentationSlide } from '@/components/PresentationSlide';
 import { SlideNavigation } from '@/components/SlideNavigation';
 import { ProgressBar } from '@/components/ProgressBar';
@@ -34,7 +34,8 @@ const Index = () => {
   const [answeredSlides, setAnsweredSlides] = useState<Set<number>>(new Set());
   const [nextClickCount, setNextClickCount] = useState(0);
   const [highlightQuestion, setHighlightQuestion] = useState(false);
-  const { sessionId, saveAnswer } = useSurveySession();
+  const [savedAnswers, setSavedAnswers] = useState<Record<string, any>>({});
+  const { sessionId, saveAnswer, getSessionResponses } = useSurveySession();
   const { stop } = useTextToSpeech();
 
   const slides = [
@@ -53,6 +54,36 @@ const Index = () => {
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: 'longevityCoach', hasQuestion: true },
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: 'finalDecision', hasQuestion: false }
   ];
+
+  // Load saved answers when sessionId is available
+  useEffect(() => {
+    const loadSavedAnswers = async () => {
+      if (sessionId) {
+        const responses = await getSessionResponses();
+        const answersMap: Record<string, any> = {};
+        const answeredSlideIndexes = new Set<number>();
+        
+        responses.forEach(response => {
+          const key = `${response.slide_id}-${response.question_id}`;
+          answersMap[key] = response.answer;
+          
+          // Find slide index and mark as answered
+          const slideIndex = slides.findIndex(slide => 
+            slide.scriptKey === response.slide_id || 
+            slide.title.toLowerCase().includes(response.slide_id.toLowerCase())
+          );
+          if (slideIndex !== -1) {
+            answeredSlideIndexes.add(slideIndex);
+          }
+        });
+        
+        setSavedAnswers(answersMap);
+        setAnsweredSlides(answeredSlideIndexes);
+      }
+    };
+    
+    loadSavedAnswers();
+  }, [sessionId]);
 
   // Reset next click count and highlight when slide changes
   useEffect(() => {
@@ -157,6 +188,12 @@ const Index = () => {
     }
   };
 
+  // Get saved answer for current slide
+  const getSavedAnswer = (slideId: string, questionId: string) => {
+    const key = `${slideId}-${questionId}`;
+    return savedAnswers[key];
+  };
+
   // Get current slide script
   const getCurrentScript = () => {
     const slide = slides[currentSlide];
@@ -173,7 +210,7 @@ const Index = () => {
       return <FinalDecisionSlide sessionId={sessionId} onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
     }
     
-    // All other slides need onLifestyleAnswer
+    // All other slides need onLifestyleAnswer and saved answers
     const slideComponents = [
       WelcomeSlide,
       GoldenYearsSlide,
@@ -193,15 +230,34 @@ const Index = () => {
     const CurrentSlideComponent = slideComponents[currentSlide];
     
     if (CurrentSlideComponent) {
+      // Get saved answer for current slide
+      const slideInfo = slides[currentSlide];
+      const slideId = slideInfo.scriptKey || slideInfo.title.toLowerCase().replace(/\s+/g, '-');
+      
       // Special handling for ModernDiseasesSlide (slide 3, index 3) to add auto-advance
       if (currentSlide === 3) {
         return <ModernDiseasesSlide 
           onLifestyleAnswer={handleLifestyleAnswer} 
           highlightQuestion={highlightQuestion}
           onAutoAdvance={nextSlide}
+          savedAnswer={getSavedAnswer(slideId, 'health-risks')}
         />;
       }
-      return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
+      
+      // Handle WelcomeSlide specially
+      if (currentSlide === 0) {
+        return <WelcomeSlide 
+          onLifestyleAnswer={handleLifestyleAnswer} 
+          highlightQuestion={highlightQuestion}
+          savedAnswer={getSavedAnswer('welcome', 'personal-choice')}
+        />;
+      }
+      
+      return <CurrentSlideComponent 
+        onLifestyleAnswer={handleLifestyleAnswer} 
+        highlightQuestion={highlightQuestion}
+        savedAnswer={getSavedAnswer(slideId, 'default')}
+      />;
     }
     
     return null;

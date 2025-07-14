@@ -17,6 +17,7 @@ interface LifestylePollProps {
   multipleChoice?: boolean;
   onAnswer?: (slideId: string, questionId: string, optionId: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[]; // Previously selected answer(s)
 }
 
 export const LifestylePoll = ({ 
@@ -26,11 +27,28 @@ export const LifestylePoll = ({
   options, 
   multipleChoice = false,
   onAnswer,
-  highlightQuestion = false
+  highlightQuestion = false,
+  selectedAnswer
 }: LifestylePollProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [hasAnswered, setHasAnswered] = useState(false);
-  const [showMotivation, setShowMotivation] = useState(false);
+  // Initialize state based on selectedAnswer prop
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(() => {
+    if (selectedAnswer) {
+      if (Array.isArray(selectedAnswer)) {
+        return selectedAnswer;
+      } else {
+        // If it's a JSON string, try to parse it
+        try {
+          const parsed = JSON.parse(selectedAnswer);
+          return Array.isArray(parsed) ? parsed : [selectedAnswer];
+        } catch {
+          return [selectedAnswer];
+        }
+      }
+    }
+    return [];
+  });
+  const [hasAnswered, setHasAnswered] = useState(!!selectedAnswer);
+  const [showMotivation, setShowMotivation] = useState(!!selectedAnswer);
   
   const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
   

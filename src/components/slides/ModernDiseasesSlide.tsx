@@ -11,9 +11,10 @@ interface ModernDiseasesSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
   onAutoAdvance?: () => void;
+  savedAnswer?: string | string[];
 }
 
-export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance }: ModernDiseasesSlideProps) => {
+export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance, savedAnswer }: ModernDiseasesSlideProps) => {
   // Auto-advance after 3 seconds without user interaction
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -248,6 +249,7 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAu
             question="Wie viele Stunden sitzen Sie täglich?"
             options={pollOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={savedAnswer}
           />
         </div>
 
