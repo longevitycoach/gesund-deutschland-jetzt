@@ -359,32 +359,29 @@ export const FinalDecisionSlide = ({
               
               User Prompt: Hier sind die Antworten des Nutzers auf die Longevity-Umfrage mit Fragen und Antworten...
              */}
-            <div className="prose prose-lg max-w-none">
-              <div className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft" dangerouslySetInnerHTML={{
+            <div className="prose prose-sm max-w-none">
+              <div className="text-gray-800 leading-snug space-y-2 animate-slideInLeft" dangerouslySetInnerHTML={{
             __html: analysisResults
-            // Zuerst die neuen Symbol-Überschriften (mit Emojis am Anfang)
-            .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>').replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>').replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>').replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-            // Dann die klassischen Markdown-Überschriften
-            .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h2>').replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
-            // Fettgedruckte Texte als kleinere Überschriften
-            .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
-            // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
-            .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
-            // Nummerierte Aufzählungen in einer Zeile darstellen
-            .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-3 my-2"><span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$1</span><span class="text-gray-800 font-medium">$2</span></div>')
-            // Fix formatting for emoji headers to keep symbols and text on same line
-            .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>').replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>').replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>').replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-            // ✓ Symbole mit nachfolgenden Text auf einer Zeile zusammenfassen - alle Varianten
-            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-3 my-4"><span class="text-green-600 font-bold">✓</span><span class="text-gray-800"><strong>$1:</strong> $2</span></div>')
-            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-3 my-4"><span class="text-green-600 font-bold">✓</span><span class="text-gray-800"><strong>$1:</strong> $2</span></div>')
-            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<div class="flex items-start gap-3 my-4"><span class="text-green-600 font-bold">✓</span><span class="text-gray-800"><strong>$1:</strong> $2</span></div>')
-            .replace(/<span[^>]*><span[^>]*>✓<\/span><span[^>]*>([^<]*)<\/span><\/span>/g, '✓ $1')
-            // Horizontale Linien
-            .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
-            // Listen formatieren
-            .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
-            // Absätze
-            .replace(/\n\n/g, '</p><p class="mb-4 text-gray-700 leading-relaxed">').replace(/^(.+)$/gm, '<p class="mb-4 text-gray-700 leading-relaxed">$1</p>').replace(/<p class="mb-4 text-gray-700 leading-relaxed"><\/p>/g, '')
+            // Kompakte Symbol-Überschriften (kleinere Abstände und Schriftgrößen)
+            .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-xl font-bold text-purple-800 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-2xl">🔍</span>$1</h2>')
+            .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-xl font-bold text-green-800 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-2xl">🎯</span>$1</h2>')
+            .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-xl font-bold text-blue-800 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-2xl">💡</span>$1</h2>')
+            .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-xl font-bold text-amber-800 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-2xl">🌟</span>$1</h2>')
+            // Kompakte klassische Überschriften
+            .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-xl font-bold text-purple-800 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-2xl">⭐</span>$1</h2>')
+            .replace(/^#\s*(.*?)$/gm, '<h1 class="text-2xl font-bold text-purple-900 mt-4 mb-2 inline-flex items-center gap-2"><span class="text-3xl">🎯</span>$1</h1>')
+            // Kompakte Unter-Überschriften
+            .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-3 mb-1">$1</h3>')
+            // Kompakte nummerierte Listen
+            .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-2 my-1"><span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">$1</span><span class="text-gray-800 text-sm">$2</span></div>')
+            // Kompakte ✓ Symbole
+            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
+            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
+            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
+            // Kompakte Listen
+            .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-2 my-1 p-2 bg-white/50 rounded text-sm"><span class="w-4 h-4 text-green-500 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
+            // Kompakte Absätze
+            .replace(/\n\n/g, '</p><p class="mb-2 text-gray-700 leading-snug text-sm">').replace(/^(.+)$/gm, '<p class="mb-2 text-gray-700 leading-snug text-sm">$1</p>').replace(/<p class="mb-2 text-gray-700 leading-snug text-sm"><\/p>/g, '')
           }} />
             </div>
             
