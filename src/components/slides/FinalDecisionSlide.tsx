@@ -340,8 +340,13 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                     .replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
                     // Fettgedruckte Texte als kleinere Überschriften
                     .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
-                    // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
-                    .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
+                     // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
+                     .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
+                     // Fix formatting for emoji headers to keep symbols and text on same line
+                     .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>')
+                     .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
+                     .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
+                     .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
                     // "✓ Bewegung integrieren" in eine Zeile
                     .replace(/✓\s*Bewegung\s*integrieren/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Bewegung integrieren</span></span>')
                     // Horizontale Linien
@@ -370,10 +375,20 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
         )}
 
         {isLoadingAnalysis && (
-          <div className="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 animate-pulse">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-6 h-6 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-gray-600 font-medium">Ihre Analyse wird geladen...</p>
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-pulse">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+              <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
+              <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            <h3 className="text-2xl font-bold text-purple-800 text-center mb-2">Ihre personalisierte Longevity-Analyse</h3>
+            <p className="text-center text-gray-600 font-medium mb-4">Generierung läuft... Bitte haben Sie einen Moment Geduld</p>
+            <div className="bg-white/50 p-4 rounded-lg">
+              <p className="text-sm text-purple-700 text-center">
+                ⚡ Ihre individuellen Antworten werden analysiert<br />
+                🧠 AI erstellt Ihre maßgeschneiderte Longevity-Strategie<br />
+                📊 Basierend auf neuester Forschung
+              </p>
             </div>
           </div>
         )}

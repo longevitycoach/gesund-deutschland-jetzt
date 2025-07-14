@@ -184,8 +184,11 @@ export const FunctionalMedicineSlide = () => {
 
         <div className="text-center p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl">
           <h3 className="text-2xl font-bold mb-3">💡 Die Lösung: Eigenverantwortung</h3>
-          <p className="text-xl">
+          <p className="text-xl mb-4">
             Wenn das System noch nicht bereit ist, ergreifen Sie selbst die Initiative! Es gibt tolle Bücher, Hörbücher, Podcasts und YouTube Channels von deutschen und internationalen Experten.
+          </p>
+          <p className="text-lg font-semibold">
+            Ich bin Selbstzahler bei einem Arzt spezialisiert für funktionelle Medizin
           </p>
         </div>
 

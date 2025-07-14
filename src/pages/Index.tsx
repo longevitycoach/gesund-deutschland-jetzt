@@ -64,18 +64,24 @@ const Index = () => {
     // Stop audio when changing slides
     stop();
     setCurrentSlide((prev) => (prev + 1) % slides.length);
+    // Scroll to top after slide transition
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
   const prevSlide = () => {
     // Stop audio when changing slides
     stop();
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    // Scroll to top after slide transition
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
   const goToSlide = (index: number) => {
     // Stop audio when changing slides
     stop();
     setCurrentSlide(index);
+    // Scroll to top after slide transition
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
   };
 
   const handleNext = () => {
