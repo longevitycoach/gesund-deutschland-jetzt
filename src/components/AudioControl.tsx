@@ -60,15 +60,15 @@ export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) =>
       size="sm"
       className={`fixed top-4 right-20 z-50 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
         isPlaying 
-          ? 'bg-blue-100 border-blue-300 animate-pulse shadow-md' 
-          : 'bg-white hover:bg-blue-50'
+          ? 'bg-blue-100 border-blue-300 animate-pulse shadow-md border-2' 
+          : 'bg-white hover:bg-blue-50 border-2 border-gray-300'
       }`}
     >
       <div className={`transition-transform duration-200 ${isPlaying ? 'animate-pulse' : ''}`}>
         {isPlaying ? (
-          <VolumeX className="w-4 h-4 mr-2" />
+          <VolumeX className="w-4 h-4 mr-2 text-blue-600" />
         ) : (
-          <Volume2 className="w-4 h-4 mr-2" />
+          <Volume2 className="w-4 h-4 mr-2 text-gray-600" />
         )}
       </div>
       {isPlaying ? 'Audio stoppen' : 'Audio abspielen'}

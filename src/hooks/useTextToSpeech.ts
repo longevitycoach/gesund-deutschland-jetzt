@@ -114,6 +114,7 @@ export const useTextToSpeech = () => {
 
       // Create and configure audio element
       const audio = new Audio();
+      audio.volume = 0.8; // Set volume to 80% to ensure it's audible
       audioRef.current = audio;
       globalAudio = audio; // Set as global audio instance
 
