@@ -50,9 +50,31 @@ export const useSurveySession = () => {
           question_text: questionText,
           answer_text: answerText
         });
+
+        // WICHTIG: Lösche bestehende Analyse, damit eine neue generiert wird
+        await invalidateExistingAnalysis();
       }
     } catch (error) {
       console.error('Unexpected error saving survey response:', error);
+    }
+  };
+
+  const invalidateExistingAnalysis = async () => {
+    try {
+      // Lösche bestehende Analyse aus der ai_insights Tabelle
+      const { error } = await supabase
+        .from('ai_insights')
+        .delete()
+        .eq('session_id', sessionId)
+        .eq('prompt_type', 'longevity_personalized_comprehensive');
+
+      if (error) {
+        console.error('Error invalidating existing analysis:', error);
+      } else {
+        console.log('Existing analysis invalidated - new analysis will be generated');
+      }
+    } catch (error) {
+      console.error('Unexpected error invalidating analysis:', error);
     }
   };
 

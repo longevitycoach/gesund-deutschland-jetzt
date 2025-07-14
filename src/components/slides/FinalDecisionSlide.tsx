@@ -21,8 +21,16 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
   useEffect(() => {
     loadExistingAnalysis();
     checkMissingQuestions();
-    // Automatische Analyse starten, wenn noch keine vorhanden ist
-    autoGenerateAnalysis();
+    
+    // Polling: Prüfe alle 2 Sekunden, ob eine Analyse verfügbar ist
+    const analysisInterval = setInterval(() => {
+      if (!analysisResults) {
+        loadExistingAnalysis();
+        autoGenerateAnalysis();
+      }
+    }, 2000);
+
+    return () => clearInterval(analysisInterval);
   }, [sessionId]);
 
   const loadExistingAnalysis = async () => {
