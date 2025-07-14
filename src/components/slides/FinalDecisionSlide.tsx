@@ -321,9 +321,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                   __html: analysisResults
                     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-purple-700 font-bold">$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em class="text-purple-600 italic">$1</em>')
-                    .replace(/#{3}\s*(.*?)$/gm, '<h3 class="text-xl font-bold text-purple-800 mt-6 mb-3 flex items-center gap-2"><span class="w-2 h-2 bg-purple-500 rounded-full"></span>$1</h3>')
-                    .replace(/#{2}\s*(.*?)$/gm, '<h2 class="text-2xl font-bold text-purple-800 mt-8 mb-4 flex items-center gap-2"><span class="w-3 h-3 bg-purple-600 rounded-full"></span>$1</h2>')
-                    .replace(/#{1}\s*(.*?)$/gm, '<h1 class="text-3xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="w-4 h-4 bg-purple-700 rounded-full"></span>$1</h1>')
+                    .replace(/^---$/gm, '<hr class="my-6 border-purple-200 border-2">')
+                    .replace(/\*\*([^*]+)\*\*/g, '<h3 class="text-xl font-bold text-purple-800 mt-6 mb-3 flex items-center gap-2"><span class="w-2 h-2 bg-purple-500 rounded-full"></span>$1</h3>')
                     .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
                     .replace(/\n\n/g, '</p><p class="mb-4">')
                     .replace(/^(.+)$/gm, '<p class="mb-4">$1</p>')

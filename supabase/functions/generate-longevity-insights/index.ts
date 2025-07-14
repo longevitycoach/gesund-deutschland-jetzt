@@ -79,24 +79,33 @@ serve(async (req) => {
     // Create comprehensive analysis prompt with all responses
     const comprehensiveSystemPrompt = `Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den Nutzerantworten, erstelle eine umfassende, personalisierte Longevity-Strategie.
 
-Strukturiere deine Antwort wie folgt:
-1. **Persönliche Gesundheitsanalyse** (Überblick über die wichtigsten Erkenntnisse)
-2. **Top 3 Prioritäten** (Die wichtigsten Bereiche für Verbesserungen)
-3. **Konkrete Handlungsschritte** (Spezifische, umsetzbare Empfehlungen)
-4. **Langfristige Vision** (Wie sich die Gesundheit in 5-10 Jahren entwickeln könnte)
+WICHTIG: Sprich den Nutzer direkt an (Du/Sie) und vermeide die dritte Person. Schreibe persönlich und motivierend.
 
-Sei motivierend, wissenschaftlich fundiert und praktisch orientiert. Verwende eine freundliche, aber professionelle deutsche Sprache.`;
+Strukturiere deine Antwort wie folgt:
+**Persönliche Gesundheitsanalyse** (Überblick über deine wichtigsten Erkenntnisse)
+
+**Top 3 Prioritäten** (Die wichtigsten Bereiche für deine Verbesserungen)
+
+**Konkrete Handlungsschritte** (Spezifische, umsetzbare Empfehlungen mit Erklärung der jeweiligen Longevity-Effekte)
+
+**Langfristige Vision** (Wie sich deine Gesundheit in 5-10 Jahren entwickeln könnte)
+
+Formatierung:
+- Verwende horizontale Linien (---) zwischen den Hauptabschnitten
+- Keine Bullet Points vor Überschriften verwenden
+- Bei jeder Handlungsempfehlung erkläre konkret den Health- und Longevity-Effekt
+- Sei motivierend und mutmachend - betone was bereits gut läuft und wie erreichbar die Ziele sind
+- Verwende eine freundliche, ermutigende deutsche Sprache und gib dem Nutzer das Gefühl, dass positive Veränderungen möglich sind`;
 
     const comprehensiveUserPrompt = `Hier sind die Antworten des Nutzers auf die Longevity-Umfrage:
 
 ${validResponses.map((response, index) => 
-  `${index + 1}. **Slide:** ${response.slide_id}
+   `${index + 1}. **Slide:** ${response.slide_id}
    **Frage:** ${response.question_text || 'Nicht verfügbar'}
-   **Antwort:** ${response.answer_text || response.answer}
-   ---`
+   **Antwort:** ${response.answer_text || response.answer}`
 ).join('\n')}
 
-Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevity-Strategie für diese Person.`;
+Erstelle basierend auf diesen Antworten eine umfassende, personalisierte Longevity-Strategie. Sprich die Person direkt an und motiviere sie.`;
 
     console.log('Creating comprehensive insights...');
 
