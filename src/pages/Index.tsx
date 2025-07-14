@@ -234,13 +234,33 @@ const Index = () => {
       const slideInfo = slides[currentSlide];
       const slideId = slideInfo.scriptKey || slideInfo.title.toLowerCase().replace(/\s+/g, '-');
       
+      // Get specific question ID for each slide
+      const getQuestionId = (slideIndex: number) => {
+        const questionIds = [
+          'personal-choice', // welcome
+          'fitness-comparison', // golden-years  
+          'body-awareness', // silent-decline
+          'health-risks', // modern-diseases
+          'aging-fears', // second-half-drama
+          'monthly-health-spending', // healthcare-explosion
+          'prevention-attitude', // prevention-revolution
+          'self-payer-question', // functional-medicine
+          'healthy-years-purpose', // longevity-vision
+          'optimal-vs-normal', // optimal-health
+          'health-approach', // individual-health
+          'first-small-step', // one-percent-method
+          'coach-support-needs' // longevity-coach
+        ];
+        return questionIds[slideIndex] || 'default';
+      };
+      
       // Special handling for ModernDiseasesSlide (slide 3, index 3) to add auto-advance
       if (currentSlide === 3) {
         return <ModernDiseasesSlide 
           onLifestyleAnswer={handleLifestyleAnswer} 
           highlightQuestion={highlightQuestion}
           onAutoAdvance={nextSlide}
-          savedAnswer={getSavedAnswer(slideId, 'health-risks')}
+          selectedAnswer={getSavedAnswer(slideId, getQuestionId(currentSlide))}
         />;
       }
       
@@ -249,14 +269,14 @@ const Index = () => {
         return <WelcomeSlide 
           onLifestyleAnswer={handleLifestyleAnswer} 
           highlightQuestion={highlightQuestion}
-          savedAnswer={getSavedAnswer('welcome', 'personal-choice')}
+          selectedAnswer={getSavedAnswer('welcome', getQuestionId(currentSlide))}
         />;
       }
       
       return <CurrentSlideComponent 
         onLifestyleAnswer={handleLifestyleAnswer} 
         highlightQuestion={highlightQuestion}
-        savedAnswer={getSavedAnswer(slideId, 'default')}
+        selectedAnswer={getSavedAnswer(slideId, getQuestionId(currentSlide))}
       />;
     }
     

@@ -8,9 +8,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 interface SilentDeclineSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  selectedAnswer?: string | string[];
 }
 
-export const SilentDeclineSlide = ({ onLifestyleAnswer }: SilentDeclineSlideProps) => {
+export const SilentDeclineSlide = ({ onLifestyleAnswer, selectedAnswer }: SilentDeclineSlideProps) => {
   const bodyAwarenessOptions = [
     { 
       id: '1', 
@@ -135,6 +136,7 @@ export const SilentDeclineSlide = ({ onLifestyleAnswer }: SilentDeclineSlideProp
             question="Nehmen Sie bewusst wahr, wenn sich etwas in Ihrem Körper verändert?"
             options={bodyAwarenessOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
 

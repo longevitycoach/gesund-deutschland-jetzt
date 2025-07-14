@@ -5,9 +5,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface FunctionalMedicineSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion }: FunctionalMedicineSlideProps) => {
+export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: FunctionalMedicineSlideProps) => {
   const pollOptions = [
     { id: '1', text: 'Ja, regelmäßig beim Hausarzt', votes: 45 },
     { id: '2', text: 'Nur bei akuten Beschwerden', votes: 120 },
@@ -235,6 +236,7 @@ export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion }
             question="Sind Sie bereits Selbstzahler bei einem Arzt spezialisiert für funktionelle Medizin?"
             options={functionalMedicineOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
 

@@ -9,9 +9,10 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 interface SecondHalfDramaSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const SecondHalfDramaSlide = ({ onLifestyleAnswer, highlightQuestion }: SecondHalfDramaSlideProps) => {
+export const SecondHalfDramaSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: SecondHalfDramaSlideProps) => {
   const fearOptions = [
     { 
       id: '1', 
@@ -180,6 +181,7 @@ export const SecondHalfDramaSlide = ({ onLifestyleAnswer, highlightQuestion }: S
             question="Beschäftigt Sie der Gedanke, im Alter krank und pflegebedürftig zu werden?"
             options={fearOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
       </div>

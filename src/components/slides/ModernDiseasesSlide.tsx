@@ -11,10 +11,10 @@ interface ModernDiseasesSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
   onAutoAdvance?: () => void;
-  savedAnswer?: string | string[];
+  selectedAnswer?: string | string[];
 }
 
-export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance, savedAnswer }: ModernDiseasesSlideProps) => {
+export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance, selectedAnswer }: ModernDiseasesSlideProps) => {
   // Auto-advance after 3 seconds without user interaction
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,34 +25,36 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAu
     
     return () => clearTimeout(timer);
   }, [onAutoAdvance]);
-  const pollOptions = [
+  const healthRiskOptions = [
     { 
-      id: '1', 
-      text: 'Weniger als 4 Stunden', 
-      votes: 15,
-      motivationalResponse: 'Hervorragend! Sie gehören zur gesunden Minderheit. Achten Sie darauf, auch aktive Pausen einzubauen - das optimiert Ihre Gesundheit zusätzlich!',
-      icon: <DirectionsRunIcon className="w-5 h-5" />
-    },
-    { 
-      id: '2', 
-      text: '4-6 Stunden', 
-      votes: 45,
-      motivationalResponse: 'Noch im akzeptablen Bereich! Versuchen Sie, alle 60 Minuten aufzustehen und sich zu bewegen. Schon 2 Minuten können den Unterschied machen.',
-      icon: <SelfImprovementIcon className="w-5 h-5" />
-    },
-    { 
-      id: '3', 
-      text: '6-8 Stunden', 
-      votes: 120,
-      motivationalResponse: 'Achtung - Sie befinden sich in der Risikozone! Planen Sie bewusst Stehpausen ein. Ein höhenverstellbarer Schreibtisch könnte eine Investition in Ihre Gesundheit sein.',
-      icon: <FitnessCenterIcon className="w-5 h-5" />
-    },
-    { 
-      id: '4', 
-      text: 'Mehr als 8 Stunden', 
+      id: 'sitting', 
+      text: 'Mehr als 8 Stunden sitzen täglich', 
       votes: 85,
-      motivationalResponse: 'Höchste Priorität für Veränderung! Langes Sitzen ist das neue Rauchen. Starten Sie sofort mit 5-Minuten-Bewegungspausen alle Stunde.',
-      icon: <ChairIcon className="w-5 h-5" />
+      motivationalResponse: 'Das "neue Rauchen"! Langes Sitzen erhöht das Sterberisiko um 38%. Planen Sie sofort 5-Minuten-Bewegungspausen alle Stunde ein.',
+    },
+    { 
+      id: 'processed-food', 
+      text: 'Über 50% hochverarbeitete Nahrung', 
+      votes: 120,
+      motivationalResponse: 'Sehr häufig! Hochverarbeitete Nahrung fördert Entzündungen. Versuchen Sie, schrittweise mehr frische, unverarbeitete Lebensmittel zu integrieren.',
+    },
+    { 
+      id: 'chronic-stress', 
+      text: 'Chronischer Stress im Beruf/Alltag', 
+      votes: 95,
+      motivationalResponse: 'Stress ist ein stiller Killer! Chronischer Stress beschleunigt das Altern massiv. Atemtechniken und Meditation können hier sehr helfen.',
+    },
+    { 
+      id: 'sleep-problems', 
+      text: 'Weniger als 7 Stunden Schlaf oder schlechte Schlafqualität', 
+      votes: 110,
+      motivationalResponse: 'Schlaf ist Ihre kostenlose Anti-Aging-Medizin! Schlechter Schlaf schwächt Immunsystem und Regeneration. Optimieren Sie Ihre Schlafhygiene.',
+    },
+    { 
+      id: 'none', 
+      text: 'Keines davon trifft auf mich zu', 
+      votes: 25,
+      motivationalResponse: 'Fantastisch! Sie leben bereits sehr gesundheitsbewusst. Bleiben Sie dabei und inspirieren Sie andere mit Ihrem Vorbild!',
     }
   ];
 
@@ -245,11 +247,13 @@ export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAu
         <div className="mt-8">
           <LifestylePoll
             slideId="modern-diseases"
-            questionId="sitting-hours"
-            question="Wie viele Stunden sitzen Sie täglich?"
-            options={pollOptions}
+            questionId="health-risks"
+            question="Welche dieser modernen Gesundheitsrisiken betreffen Sie persönlich?"
+            options={healthRiskOptions}
+            multipleChoice={true}
             onAnswer={onLifestyleAnswer}
-            selectedAnswer={savedAnswer}
+            highlightQuestion={highlightQuestion}
+            selectedAnswer={selectedAnswer}
           />
         </div>
 

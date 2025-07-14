@@ -6,9 +6,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface OnePercentMethodSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const OnePercentMethodSlide = ({ onLifestyleAnswer, highlightQuestion }: OnePercentMethodSlideProps) => {
+export const OnePercentMethodSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: OnePercentMethodSlideProps) => {
   const pollOptions = [
     {
       id: 'longevity-expert',
@@ -157,6 +158,7 @@ export const OnePercentMethodSlide = ({ onLifestyleAnswer, highlightQuestion }: 
             question="🚀 Mit welchem kleinen Schritt möchten Sie heute beginnen?"
             options={pollOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
       </div>

@@ -7,9 +7,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface HealthcareExplosionSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const HealthcareExplosionSlide = ({ onLifestyleAnswer, highlightQuestion }: HealthcareExplosionSlideProps) => {
+export const HealthcareExplosionSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: HealthcareExplosionSlideProps) => {
 
   const spendingOptions = [
     {
@@ -106,6 +107,7 @@ export const HealthcareExplosionSlide = ({ onLifestyleAnswer, highlightQuestion 
           options={spendingOptions}
           onAnswer={onLifestyleAnswer}
           highlightQuestion={highlightQuestion}
+          selectedAnswer={selectedAnswer}
         />
       </div>
 

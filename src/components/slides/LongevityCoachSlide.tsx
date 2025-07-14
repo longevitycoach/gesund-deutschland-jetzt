@@ -4,9 +4,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface LongevityCoachSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlideProps) => {
+export const LongevityCoachSlide = ({ onLifestyleAnswer, selectedAnswer }: LongevityCoachSlideProps) => {
   const pollOptions = [
     {
       id: 'habit-ideas',
@@ -264,6 +265,7 @@ export const LongevityCoachSlide = ({ onLifestyleAnswer }: LongevityCoachSlidePr
             question="Welches Feature ist für Sie am wichtigsten?"
             options={pollOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
       </div>

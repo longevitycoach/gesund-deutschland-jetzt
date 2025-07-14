@@ -7,10 +7,11 @@ import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 interface ShockingPredictionSlideProps {
-  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string) => void;
+  onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  selectedAnswer?: string | string[];
 }
 
-export const ShockingPredictionSlide = ({ onLifestyleAnswer }: ShockingPredictionSlideProps) => {
+export const ShockingPredictionSlide = ({ onLifestyleAnswer, selectedAnswer }: ShockingPredictionSlideProps) => {
   const reactionOptions = [
     { 
       id: '1', 
@@ -136,6 +137,7 @@ export const ShockingPredictionSlide = ({ onLifestyleAnswer }: ShockingPredictio
             question="Wie reagieren Sie auf diese Statistiken über Ihre Zukunft?"
             options={reactionOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
 

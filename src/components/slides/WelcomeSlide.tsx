@@ -9,10 +9,10 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 interface WelcomeSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
-  savedAnswer?: string | string[];
+  selectedAnswer?: string | string[];
 }
 
-export const WelcomeSlide = ({ onLifestyleAnswer, highlightQuestion, savedAnswer }: WelcomeSlideProps) => {
+export const WelcomeSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: WelcomeSlideProps) => {
   const personalChoiceOptions = [
     { 
       id: '1', 
@@ -123,7 +123,7 @@ export const WelcomeSlide = ({ onLifestyleAnswer, highlightQuestion, savedAnswer
           question="Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?"
           options={personalChoiceOptions}
           onAnswer={onLifestyleAnswer}
-          selectedAnswer={savedAnswer}
+          selectedAnswer={selectedAnswer}
         />
       </div>
     </div>

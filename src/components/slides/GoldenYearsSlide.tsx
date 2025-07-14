@@ -9,9 +9,10 @@ import HealingIcon from '@mui/icons-material/Healing';
 interface GoldenYearsSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) => {
+export const GoldenYearsSlide = ({ onLifestyleAnswer, selectedAnswer }: GoldenYearsSlideProps) => {
   const fitnessComparisonOptions = [
     { 
       id: '1', 
@@ -127,6 +128,7 @@ export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) =
           question="Fühlen Sie sich heute genauso fit wie vor 10 Jahren?"
           options={fitnessComparisonOptions}
           onAnswer={onLifestyleAnswer}
+          selectedAnswer={selectedAnswer}
         />
       </div>
     </div>

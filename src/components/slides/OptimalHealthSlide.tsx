@@ -6,9 +6,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface OptimalHealthSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: OptimalHealthSlideProps) => {
+export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: OptimalHealthSlideProps) => {
   const optimalHealthOptions = [
     { 
       id: '1', 
@@ -355,6 +356,7 @@ export const OptimalHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: Opt
           options={optimalHealthOptions}
           onAnswer={onLifestyleAnswer}
           highlightQuestion={highlightQuestion}
+          selectedAnswer={selectedAnswer}
         />
       </div>
     </div>

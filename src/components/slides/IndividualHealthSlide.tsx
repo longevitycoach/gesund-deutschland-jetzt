@@ -4,9 +4,10 @@ import { LifestylePoll } from '@/components/LifestylePoll';
 interface IndividualHealthSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const IndividualHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: IndividualHealthSlideProps) => {
+export const IndividualHealthSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: IndividualHealthSlideProps) => {
   const individualHealthOptions = [
     { 
       id: '1', 
@@ -159,6 +160,7 @@ export const IndividualHealthSlide = ({ onLifestyleAnswer, highlightQuestion }: 
           question="Wie gehen Sie derzeit mit Ihrer individuellen Gesundheit um?"
           options={individualHealthOptions}
           onAnswer={onLifestyleAnswer}
+          selectedAnswer={selectedAnswer}
         />
       </div>
     </div>

@@ -8,9 +8,10 @@ import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb';
 interface PreventionRevolutionSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  selectedAnswer?: string | string[];
 }
 
-export const PreventionRevolutionSlide = ({ onLifestyleAnswer, highlightQuestion }: PreventionRevolutionSlideProps) => {
+export const PreventionRevolutionSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: PreventionRevolutionSlideProps) => {
   const lifestyleOptions = [
     { 
       id: '1', 
@@ -184,6 +185,7 @@ export const PreventionRevolutionSlide = ({ onLifestyleAnswer, highlightQuestion
             question="Wie stehen Sie persönlich zur Gesundheitsvorsorge?"
             options={lifestyleOptions}
             onAnswer={onLifestyleAnswer}
+            selectedAnswer={selectedAnswer}
           />
         </div>
       </div>
