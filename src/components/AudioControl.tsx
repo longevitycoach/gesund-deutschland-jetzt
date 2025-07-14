@@ -13,41 +13,12 @@ export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) =>
   const { toggle, isPlaying, isSupported } = useTextToSpeech();
   const [hasUserInteracted, setHasUserInteracted] = React.useState(false);
 
-  // Auto-play when component mounts if autoPlay is true AND user has interacted
-  React.useEffect(() => {
-    if (autoPlay && isSupported && script && !isPlaying && hasUserInteracted) {
-      // Small delay to ensure proper initialization, then try autoplay
-      const timer = setTimeout(async () => {
-        // Double check that no audio is playing before starting
-        if (!isPlaying) {
-          try {
-            toggle(script);
-          } catch (error) {
-            console.log('Autoplay blocked by browser - this is normal');
-          }
-        }
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [autoPlay, script, isSupported, hasUserInteracted]);
+  // Remove autoplay functionality completely due to browser security restrictions
 
   const handleClick = () => {
-    // Mark that user has interacted
-    if (!hasUserInteracted) {
-      setHasUserInteracted(true);
-      // Store in sessionStorage so it persists across slides
-      sessionStorage.setItem('userInteracted', 'true');
-    }
     toggle(script);
   };
 
-  // Check if user has already interacted in this session
-  React.useEffect(() => {
-    const userInteracted = sessionStorage.getItem('userInteracted');
-    if (userInteracted === 'true') {
-      setHasUserInteracted(true);
-    }
-  }, []);
 
   if (!isSupported) {
     return null;
@@ -60,18 +31,18 @@ export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) =>
       size="sm"
       className={`fixed top-4 right-20 z-50 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
         isPlaying 
-          ? 'bg-blue-100 border-blue-300 animate-pulse shadow-md border-2' 
+          ? 'bg-blue-100 border-blue-300 shadow-md border-2' 
           : 'bg-white hover:bg-blue-50 border-2 border-gray-300'
       }`}
     >
-      <div className={`transition-transform duration-200 ${isPlaying ? 'animate-pulse' : ''}`}>
+      <div className="transition-transform duration-200">
         {isPlaying ? (
           <VolumeX className="w-4 h-4 mr-2 text-blue-600" />
         ) : (
           <Volume2 className="w-4 h-4 mr-2 text-gray-600" />
         )}
       </div>
-      {isPlaying ? 'Audio stoppen' : 'Audio abspielen'}
+      {isPlaying ? 'Audio stoppen' : 'Audio beginnen'}
     </Button>
   );
 };
