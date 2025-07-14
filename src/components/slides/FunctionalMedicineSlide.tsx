@@ -11,33 +11,33 @@ export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion, 
   const pollOptions = [
     { 
       id: '1', 
+      text: 'Ja, ich bin bereits Selbstzahler bei einem funktionellen Mediziner', 
+      votes: 15,
+      motivationalResponse: 'Fantastisch! Sie sind bereits auf dem richtigen Weg zur Longevity-Medizin. Nutzen Sie diese Expertise optimal für Ihre Gesundheit!'
+    },
+    { 
+      id: '2', 
       text: 'Ja, regelmäßig beim Hausarzt', 
       votes: 45,
       motivationalResponse: 'Großartig! Regelmäßige Vorsorge ist der Grundstein der Gesundheit. Haben Sie schon einmal über eine umfassendere Analyse Ihrer Biomarker nachgedacht?'
     },
     { 
-      id: '2', 
+      id: '3', 
       text: 'Nur bei akuten Beschwerden', 
       votes: 120,
       motivationalResponse: 'Das kennen viele! Reaktive Medizin ist Standard, aber präventive Checks könnten Probleme verhindern, bevor sie entstehen.'
     },
     { 
-      id: '3', 
+      id: '4', 
       text: 'Selten, ich fühle mich gesund', 
       votes: 85,
       motivationalResponse: 'Sich gesund zu fühlen ist toll! Aber viele Alterungsprozesse laufen still ab. Früherkennung kann Ihr Wohlbefinden langfristig erhalten.'
     },
     { 
-      id: '4', 
+      id: '5', 
       text: 'Nein, ich vermeide Arztbesuche', 
       votes: 25,
       motivationalResponse: 'Verständlich - niemand geht gern zum Arzt. Aber moderne Präventivmedizin ist anders: Es geht um Optimierung Ihrer Gesundheit, nicht um Krankheit!'
-    },
-    { 
-      id: '5', 
-      text: 'Ja, ich bin bereits Selbstzahler bei einem funktionellen Mediziner', 
-      votes: 15,
-      motivationalResponse: 'Fantastisch! Sie sind bereits auf dem richtigen Weg zur Longevity-Medizin. Nutzen Sie diese Expertise optimal für Ihre Gesundheit!'
     }
   ];
 
