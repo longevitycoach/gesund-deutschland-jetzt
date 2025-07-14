@@ -349,14 +349,10 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                      .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
                      .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
                      .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-                     // "✓ Bewegung integrieren" in eine Zeile
-                     .replace(/✓\s*Bewegung\s*integrieren/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Bewegung integrieren</span></span>')
-                     // "✓ Steh- und Gehpausen:" in eine Zeile - auch bei Zeilenumbrüchen
-                     .replace(/✓\s*\n?\s*Steh-\s*und\s*Gehpausen:/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>Steh- und Gehpausen:</span></span>')
-                     // Allgemeine Regel für ✓ gefolgt von Text (auch mit Zeilenumbrüchen)
-                     .replace(/✓\s*\n?\s*([^<\n]+)/g, '<span class="inline-flex items-center gap-2"><span class="text-green-500">✓</span><span>$1</span></span>')
-                    // Horizontale Linien
-                    .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
+                     // Alle ✓ Symbole mit nachfolgendem Text in einer Zeile darstellen (vor anderen Formatierungen)
+                     .replace(/✓\s*\n?\s*([^\n<]+)/g, '<span class="inline-flex items-center gap-2 mb-2"><span class="text-green-500 text-lg">✓</span><span class="font-medium">$1</span></span>')
+                     // Horizontale Linien
+                     .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
                     // Listen formatieren
                     .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
                     // Absätze
