@@ -116,7 +116,7 @@ export const slideScripts = {
     Wie gehen Sie derzeit mit Ihrer individuellen Gesundheit um?
   `,
 
-  onePercentMethod: `
+onePercentMethod: `
     Die Ein-Prozent-Methode für Ihre Gesundheit basiert auf James Clears bewährtem Prinzip: 
     Minimale tägliche Verbesserungen führen zu maximalen Ergebnissen.
     
@@ -133,5 +133,145 @@ export const slideScripts = {
     und werden Sie in einem Jahr zu einer völlig neuen, gesünderen Version Ihrer selbst.
     
     Mit welchem kleinen Schritt möchten Sie heute beginnen?
+  `,
+
+  secondHalfDrama: `
+    Die meisten Menschen ignorieren die Realität ihrer zweiten Lebenshälfte. 
+    Ab dem 60. Lebensjahr beginnt für viele eine Zeit der körperlichen Einschränkungen und nachlassenden Lebensqualität.
+    
+    Die Stanford-Studie hat drei kritische Alterungswellen identifiziert: Bei 34, 60 und 78 Jahren 
+    erleben wir massive Veränderungen in unserem Körper. Diese sind messbar und vorhersagbar.
+    
+    Die häufigsten Alterskrankheiten treffen fast jeden: 45 Prozent der Bevölkerung über 65 leiden unter 
+    Herz-Kreislauf-Erkrankungen. 60 Prozent haben Gelenkprobleme und Arthrose. 
+    1,8 Millionen Deutsche sind von Demenz betroffen. 7,2 Prozent aller Erwachsenen haben Diabetes.
+    
+    Das Erschreckende: Die meisten Menschen verdrängen diese Realität oder hoffen, 
+    dass es sie nicht treffen wird. Dabei sind diese Entwicklungen nicht unvermeidlich!
+    
+    Die erste Alterungswelle beginnt bereits bei 34 Jahren mit ersten Hautveränderungen, 
+    Kollagenabbau und hormonellen Veränderungen. Um 60 Jahre steigen chronische Krankheiten exponentiell an. 
+    Bei 78 Jahren kommt es zu drastischem Verlust der Organfunktionen.
+    
+    Beschäftigt Sie der Gedanke, im Alter krank und pflegebedürftig zu werden?
+  `,
+
+  healthcareExplosion: `
+    Das deutsche Gesundheitssystem steht vor dem Kollaps. Die Zahlen sind alarmierend:
+    
+    Die Gesundheitsausgaben explodieren: Von 440 Milliarden Euro heute auf über 700 Milliarden Euro bis 2040. 
+    Das entspricht einer Steigerung von 58 Prozent in nur 15 Jahren.
+    
+    Die Anzahl der Pflegebedürftigen wird sich verdoppeln: Von 4,1 Millionen heute auf über 8 Millionen bis 2040. 
+    Gleichzeitig schrumpft die Anzahl der Menschen im erwerbsfähigen Alter drastisch.
+    
+    Deutschland hat bereits heute die höchsten Gesundheitsausgaben pro Kopf in der Europäischen Union. 
+    Dennoch werden die Menschen nicht gesünder - sie werden nur älter mit mehr Krankheiten.
+    
+    Das Problem liegt im System: Es ist auf Krankheitsbehandlung, nicht auf Gesundheitserhaltung fokusiert. 
+    Ärzte werden für Behandlungen bezahlt, nicht für die Verhinderung von Krankheiten.
+    
+    Die Lösung liegt in der Eigenverantwortung: Wenn wir präventiv handeln und in unsere Gesundheit investieren, 
+    können wir das System entlasten und gleichzeitig unsere Lebensqualität drastisch verbessern.
+    
+    Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben?
+  `,
+
+  preventionRevolution: `
+    Wir brauchen eine Revolution der Prävention! Weg von der reaktiven Krankheitsbehandlung, 
+    hin zu proaktiver Gesundheitserhaltung.
+    
+    Die neue Formel für ein langes, gesundes Leben ist wissenschaftlich belegt: 
+    Täglich 30 Minuten Bewegung plus vollwertige Ernährung plus regelmäßige Biomarker-Tests.
+    
+    Die Weltgesundheitsorganisation empfiehlt 300 Minuten Bewegung pro Woche, 
+    Krafttraining zweimal pro Woche und hochintensive Intervalltrainings.
+    
+    Bei der Ernährung hat sich die mediterrane Kost als optimal erwiesen: 
+    Wenig verarbeitete Lebensmittel, viel Gemüse und Früchte, gesunde Fette und intermittierendes Fasten.
+    
+    Das Biomarker-Monitoring ist der dritte Baustein: Umfassende Blutanalysen, 
+    Stuhl-, Urin- und Speicheltests geben uns präzise Daten über unseren Gesundheitszustand.
+    
+    Dazu kommt Stressmanagement: 7 bis 9 Stunden Schlaf, Meditation, Atemtechniken und aktive Erholung.
+    
+    Das Ziel ist klar: Gesundheitsspanne gleich Lebensspanne. Statt 15 kranke Jahre am Lebensende 
+    wollen wir bis zum letzten Tag vital, geistig klar und körperlich aktiv bleiben.
+    
+    Wie stehen Sie persönlich zur Gesundheitsvorsorge?
+  `,
+
+  longevityVision: `
+    Die Longevity-Forschung zeigt uns eine revolutionäre Vision: Wir können nicht nur länger leben, 
+    sondern vor allem länger gesund leben.
+    
+    Betrachten wir die Entwicklung: 1960 hatten Menschen eine Lebenserwartung von 54 Jahren, 
+    davon 27 Jahre in guter Gesundheit. Heute leben wir 81 Jahre, aber nur 41 Jahre davon gesund.
+    
+    Die Vision für 2030: 81 Jahre oder mehr leben, aber 63 Jahre davon - das sind 78 Prozent - in guter Gesundheit verbringen. 
+    Bis 2050 könnte die Lebenserwartung auf 90 Jahre steigen, mit 77 Jahren in optimaler Gesundheit.
+    
+    Professor Eric Verdin vom Buck Institute for Research on Aging spricht von 15 bis 17 zusätzlichen gesunden Jahren, 
+    die durch die Longevity-Forschung möglich werden.
+    
+    Das Ziel ist die Verlängerung der Gesundheitsspanne: Nicht nur länger leben, sondern länger gesund leben - 
+    mit voller Mobilität und geistiger Klarheit.
+    
+    Wir wollen Vitalität erhalten: Energie, Kraft und Lebensfreude bis ins hohe Alter, 
+    wie ein 40-Jähriger mit 80 Jahren.
+    
+    Die Lebensqualität soll maximiert werden: Unabhängigkeit, Mobilität und kognitive Leistung 
+    bis zum letzten Lebenstag bewahren.
+    
+    Welcher Aspekt eines längeren, gesunden Lebens ist für Sie am wichtigsten?
+  `,
+
+  optimalHealth: `
+    Es gibt Pioniere in der Medizin, die den Weg zu echter Vitalität zeigen. 
+    Mediziner wie Dr. Ulrich Strunz, Professor Ingo Froböse und Professor Bernd Kleine-Gunk 
+    haben verstanden, was optimale Gesundheit wirklich bedeutet.
+    
+    Dr. Strunz hat die "Frohwerte" entwickelt - optimale Blutwerte für maximale Leistungsfähigkeit. 
+    Zum Beispiel Hämoglobin: Für Männer über 16 Gramm pro Deziliter, für Frauen über 14 - 
+    deutlich höher als die Standard-Referenzwerte.
+    
+    Professor Froböse zeigt die Bewegungsformel: Täglich 10.000 Schritte minimum, 
+    zweimal pro Woche Krafttraining, dreimal pro Woche Ausdauertraining und täglich Mobilität und Dehnung.
+    
+    Professor Kleine-Gunk fokussiert auf die Anti-Aging-Säulen: Hormonoptimierung, 
+    Mikronährstoffe durch orthomolekulare Medizin, optimierter Lifestyle und regelmäßiges Biomarker-Monitoring.
+    
+    Der kontinuierliche Optimierungskreislauf ist entscheidend: Messen, handeln, nachmessen, anpassen - 
+    ein nie endender Prozess der Verbesserung.
+    
+    Diese Experten haben die Roadmap für optimale Gesundheit erstellt. 
+    Jetzt liegt es an uns, sie zu befolgen!
+    
+    Wie stehen Sie zu optimalen Gesundheitswerten statt Durchschnittswerten?
+  `,
+
+  longevityCoach: `
+    Der persönliche Longevity Coach ist die Brücke zwischen medizinischer Expertise und Ihrer Eigenverantwortung.
+    
+    Was der Coach für Sie leistet: Biomarker-Interpretation - Ihre Laborwerte werden verständlich erklärt, 
+    optimale versus durchschnittliche Werte aufgezeigt und Zusammenhänge zwischen verschiedenen Markern verdeutlicht.
+    
+    Individualisierte Pläne basieren auf Ihren aktuellen Daten, berücksichtigen Ihren Lifestyle 
+    und bieten realistische, umsetzbare Schritte.
+    
+    Habit-Coaching nach der bewährten Ein-Prozent-Methode hilft dabei, schlechte Gewohnheiten schrittweise zu ersetzen 
+    und gute Gewohnheiten systematisch aufzubauen.
+    
+    Kontinuierliches Monitoring sorgt für regelmäßige Fortschrittskontrolle, 
+    Anpassung der Strategie bei Bedarf und bietet Motivation und Accountability.
+    
+    Der Longevity Coach ist die perfekte Ergänzung zum funktionellen Arzt: 
+    Während der Arzt für medizinische Diagnose und Behandlung zuständig ist, 
+    fokussiert sich der Coach auf Lifestyle-Optimierung und Gewohnheitsänderung.
+    
+    Ihr Weg zur Eigenverantwortung erfolgt in vier Phasen: Verstehen, planen, umsetzen, optimieren. 
+    Das Ziel: Sie werden zum Experten Ihrer eigenen Gesundheit.
+    
+    Wie könnte die Longevity Coach App aussehen?
   `
 };
