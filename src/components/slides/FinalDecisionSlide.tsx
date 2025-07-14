@@ -374,10 +374,10 @@ export const FinalDecisionSlide = ({
             .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-3 mb-1">$1</h3>')
             // Kompakte nummerierte Listen
             .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-2 my-1"><span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">$1</span><span class="text-gray-800 text-sm">$2</span></div>')
-            // Kompakte ✓ Symbole
-            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
-            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
-            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<div class="flex items-start gap-2 my-2"><span class="text-green-600 font-bold text-sm">✓</span><span class="text-gray-800 text-sm"><strong>$1:</strong> $2</span></div>')
+            // Kompakte ✓ Symbole - mehr kompakt
+            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<p class="my-1 text-sm"><span class="text-green-600 font-bold">✓</span> <strong>$1:</strong> $2</p>')
+            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<p class="my-1 text-sm"><span class="text-green-600 font-bold">✓</span> <strong>$1:</strong> $2</p>')
+            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<p class="my-1 text-sm"><span class="text-green-600 font-bold">✓</span> <strong>$1:</strong> $2</p>')
             // Kompakte Listen
             .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-2 my-1 p-2 bg-white/50 rounded text-sm"><span class="w-4 h-4 text-green-500 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
             // Kompakte Absätze
