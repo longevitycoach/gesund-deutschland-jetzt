@@ -1,5 +1,4 @@
 import { Stethoscope, Users, CreditCard, AlertCircle } from 'lucide-react';
-import { InteractivePoll } from '@/components/InteractivePoll';
 import { LifestylePoll } from '@/components/LifestylePoll';
 
 interface FunctionalMedicineSlideProps {
@@ -10,38 +9,38 @@ interface FunctionalMedicineSlideProps {
 
 export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion, selectedAnswer }: FunctionalMedicineSlideProps) => {
   const pollOptions = [
-    { id: '1', text: 'Ja, regelmäßig beim Hausarzt', votes: 45 },
-    { id: '2', text: 'Nur bei akuten Beschwerden', votes: 120 },
-    { id: '3', text: 'Selten, ich fühle mich gesund', votes: 85 },
-    { id: '4', text: 'Nein, ich vermeide Arztbesuche', votes: 25 }
-  ];
-
-  const functionalMedicineOptions = [
     { 
       id: '1', 
-      text: 'Ja, ich bin bereits Selbstzahler bei einem funktionellen Mediziner', 
-      votes: 15,
-      motivationalResponse: 'Fantastisch! Sie sind bereits auf dem richtigen Weg zur Longevity-Medizin. Nutzen Sie diese Expertise optimal für Ihre Gesundheit!'
+      text: 'Ja, regelmäßig beim Hausarzt', 
+      votes: 45,
+      motivationalResponse: 'Großartig! Regelmäßige Vorsorge ist der Grundstein der Gesundheit. Haben Sie schon einmal über eine umfassendere Analyse Ihrer Biomarker nachgedacht?'
     },
     { 
       id: '2', 
-      text: 'Nein, aber ich würde es gerne versuchen', 
-      votes: 85,
-      motivationalResponse: 'Ausgezeichnet! Der erste Schritt ist das Interesse. Recherchieren Sie Funktionelle Mediziner in Ihrer Nähe - es ist eine Investition in Ihre Zukunft!'
+      text: 'Nur bei akuten Beschwerden', 
+      votes: 120,
+      motivationalResponse: 'Das kennen viele! Reaktive Medizin ist Standard, aber präventive Checks könnten Probleme verhindern, bevor sie entstehen.'
     },
     { 
       id: '3', 
-      text: 'Ich bin unsicher, ob sich die Kosten lohnen', 
-      votes: 120,
-      motivationalResponse: 'Verständlich! Bedenken Sie: Was kostet Ihre Gesundheit? Eine Konsultation kann Jahre des gesunden Lebens bedeuten - die beste Investition überhaupt!'
+      text: 'Selten, ich fühle mich gesund', 
+      votes: 85,
+      motivationalResponse: 'Sich gesund zu fühlen ist toll! Aber viele Alterungsprozesse laufen still ab. Früherkennung kann Ihr Wohlbefinden langfristig erhalten.'
     },
     { 
       id: '4', 
-      text: 'Nein, ich vertraue nur der konventionellen Medizin', 
-      votes: 35,
-      motivationalResponse: 'Das ist nachvollziehbar. Funktionelle Medizin ergänzt die konventionelle Medizin - sie ersetzt sie nicht. Es geht um Prävention statt nur Behandlung!'
+      text: 'Nein, ich vermeide Arztbesuche', 
+      votes: 25,
+      motivationalResponse: 'Verständlich - niemand geht gern zum Arzt. Aber moderne Präventivmedizin ist anders: Es geht um Optimierung Ihrer Gesundheit, nicht um Krankheit!'
+    },
+    { 
+      id: '5', 
+      text: 'Ja, ich bin bereits Selbstzahler bei einem funktionellen Mediziner', 
+      votes: 15,
+      motivationalResponse: 'Fantastisch! Sie sind bereits auf dem richtigen Weg zur Longevity-Medizin. Nutzen Sie diese Expertise optimal für Ihre Gesundheit!'
     }
   ];
+
 
   return (
     <div className="space-y-8">
@@ -226,25 +225,18 @@ export const FunctionalMedicineSlide = ({ onLifestyleAnswer, highlightQuestion, 
           </p>
         </div>
 
-        {/* New Lifestyle Poll about Functional Medicine */}
+        {/* Main Lifestyle Poll */}
         <div className={`mt-8 transition-all duration-300 ${
           highlightQuestion ? 'ring-4 ring-blue-500 ring-opacity-50 bg-blue-50 p-4 rounded-xl' : ''
         }`}>
           <LifestylePoll
             slideId="functional-medicine"
             questionId="self-payer-question"
-            question="Sind Sie bereits Selbstzahler bei einem Arzt spezialisiert für funktionelle Medizin?"
-            options={functionalMedicineOptions}
-            onAnswer={onLifestyleAnswer}
-            selectedAnswer={selectedAnswer}
-          />
-        </div>
-
-        {/* Original Interactive Poll */}
-        <div className="my-8">
-          <InteractivePoll
             question="Wie häufig lassen Sie präventive Gesundheitschecks durchführen?"
             options={pollOptions}
+            onAnswer={onLifestyleAnswer}
+            highlightQuestion={highlightQuestion}
+            selectedAnswer={selectedAnswer}
           />
         </div>
       </div>
