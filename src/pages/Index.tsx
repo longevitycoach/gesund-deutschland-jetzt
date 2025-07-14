@@ -233,19 +233,20 @@ const Index = () => {
       // Get specific slide ID and question ID for each slide
       const getSlideInfo = (slideIndex: number) => {
         const slideInfos = [
-          { slideId: 'welcome', questionId: 'personal-choice' },
-          { slideId: 'golden-years', questionId: 'fitness-comparison' },
-          { slideId: 'silent-decline', questionId: 'body-awareness' },
-          { slideId: 'modern-diseases', questionId: 'health-risks' },
-          { slideId: 'second-half-drama', questionId: 'aging-fears' },
-          { slideId: 'healthcare-explosion', questionId: 'monthly-health-spending' },
-          { slideId: 'prevention-revolution', questionId: 'prevention-attitude' },
-          { slideId: 'functional-medicine', questionId: 'self-payer-question' },
-          { slideId: 'longevity-vision', questionId: 'healthy-years-purpose' },
-          { slideId: 'optimal-health', questionId: 'optimal-vs-normal' },
-          { slideId: 'individual-health', questionId: 'health-approach' },
-          { slideId: 'one-percent-method', questionId: 'first-small-step' },
-          { slideId: 'longevity-coach', questionId: 'coach-support-needs' }
+          { slideId: 'welcome', questionId: 'personal-choice' },                     // 0
+          { slideId: 'golden-years', questionId: 'fitness-comparison' },             // 1  
+          { slideId: 'silent-decline', questionId: 'body-awareness' },               // 2
+          { slideId: 'modern-diseases', questionId: 'health-risks' },                // 3
+          { slideId: 'second-half-drama', questionId: 'aging-fears' },               // 4
+          { slideId: 'healthcare-explosion', questionId: 'monthly-health-spending' }, // 5
+          { slideId: 'prevention-revolution', questionId: 'prevention-attitude' },    // 6
+          { slideId: 'functional-medicine', questionId: 'self-payer-question' },      // 7
+          { slideId: 'longevity-vision', questionId: 'healthy-years-purpose' },       // 8
+          { slideId: 'optimal-health', questionId: 'optimal-vs-normal' },             // 9
+          { slideId: 'individual-health', questionId: 'health-approach' },            // 10
+          { slideId: 'one-percent-method', questionId: 'first-small-step' },          // 11
+          { slideId: 'longevity-coach', questionId: 'coach-support-needs' },          // 12
+          { slideId: 'final-decision', questionId: 'none' }                           // 13 (FinalDecisionSlide has no LifestylePoll)
         ];
         return slideInfos[slideIndex] || { slideId: 'default', questionId: 'default' };
       };
