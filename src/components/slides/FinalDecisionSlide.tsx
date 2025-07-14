@@ -331,15 +331,24 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                 className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft"
                 dangerouslySetInnerHTML={{ 
                   __html: analysisResults
-                    .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🔍</span>$1</h2>')
-                    .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🎯</span>$1</h2>')
-                    .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">💡</span>$1</h2>')
-                    .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-2xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-3xl">🌟</span>$1</h2>')
-                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
-                    .replace(/---/g, '<hr class="my-6 border-purple-200 border-2">')
-                    .replace(/\n\n/g, '</p><p class="mb-4">')
-                    .replace(/^(.+)$/gm, '<p class="mb-4">$1</p>')
-                    .replace(/<p class="mb-4"><\/p>/g, '')
+                    // Zuerst die neuen Symbol-Überschriften (mit Emojis am Anfang)
+                    .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>')
+                    .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
+                    .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
+                    .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
+                    // Dann die klassischen Markdown-Überschriften
+                    .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h2>')
+                    .replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
+                    // Fettgedruckte Texte als kleinere Überschriften
+                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4 flex items-center gap-2"><span class="text-2xl">💫</span>$1</h3>')
+                    // Horizontale Linien
+                    .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
+                    // Listen formatieren
+                    .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
+                    // Absätze
+                    .replace(/\n\n/g, '</p><p class="mb-4 text-gray-700 leading-relaxed">')
+                    .replace(/^(.+)$/gm, '<p class="mb-4 text-gray-700 leading-relaxed">$1</p>')
+                    .replace(/<p class="mb-4 text-gray-700 leading-relaxed"><\/p>/g, '')
                 }}
               />
             </div>
