@@ -15,11 +15,18 @@ export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) =>
   // Auto-play when component mounts if autoPlay is true AND no audio is currently playing
   React.useEffect(() => {
     if (autoPlay && isSupported && script && !isPlaying) {
-      // Small delay to ensure proper initialization
-      const timer = setTimeout(() => {
+      // Small delay to ensure proper initialization, then try autoplay
+      const timer = setTimeout(async () => {
         // Double check that no audio is playing before starting
         if (!isPlaying) {
-          toggle(script);
+          try {
+            // Try autoplay - this might fail due to browser restrictions
+            toggle(script);
+          } catch (error) {
+            // Browser blocked autoplay - this is expected behavior
+            // The user can still manually start audio via the button
+            console.log('Autoplay blocked by browser - this is normal');
+          }
         }
       }, 500);
       return () => clearTimeout(timer);
