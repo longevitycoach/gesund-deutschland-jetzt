@@ -30,12 +30,14 @@ export const LifestylePoll = ({
   highlightQuestion = false,
   selectedAnswer
 }: LifestylePollProps) => {
+  // Debug log to check selectedAnswer content
+  console.log('LifestylePoll debug:', { slideId, questionId, selectedAnswer, type: typeof selectedAnswer });
   // Initialize state based on selectedAnswer prop but allow re-selection
   const [selectedOptions, setSelectedOptions] = useState<string[]>(() => {
     if (selectedAnswer) {
       if (Array.isArray(selectedAnswer)) {
         return selectedAnswer;
-      } else {
+      } else if (typeof selectedAnswer === 'string') {
         // If it's a JSON string, try to parse it
         try {
           const parsed = JSON.parse(selectedAnswer);
