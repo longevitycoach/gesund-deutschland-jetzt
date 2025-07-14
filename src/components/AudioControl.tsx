@@ -11,27 +11,43 @@ interface AudioControlProps {
 
 export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) => {
   const { toggle, isPlaying, isSupported } = useTextToSpeech();
+  const [hasUserInteracted, setHasUserInteracted] = React.useState(false);
 
-  // Auto-play when component mounts if autoPlay is true AND no audio is currently playing
+  // Auto-play when component mounts if autoPlay is true AND user has interacted
   React.useEffect(() => {
-    if (autoPlay && isSupported && script && !isPlaying) {
+    if (autoPlay && isSupported && script && !isPlaying && hasUserInteracted) {
       // Small delay to ensure proper initialization, then try autoplay
       const timer = setTimeout(async () => {
         // Double check that no audio is playing before starting
         if (!isPlaying) {
           try {
-            // Try autoplay - this might fail due to browser restrictions
             toggle(script);
           } catch (error) {
-            // Browser blocked autoplay - this is expected behavior
-            // The user can still manually start audio via the button
             console.log('Autoplay blocked by browser - this is normal');
           }
         }
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [autoPlay, script, isSupported]); // Removed isPlaying from dependencies to prevent re-triggering
+  }, [autoPlay, script, isSupported, hasUserInteracted]);
+
+  const handleClick = () => {
+    // Mark that user has interacted
+    if (!hasUserInteracted) {
+      setHasUserInteracted(true);
+      // Store in sessionStorage so it persists across slides
+      sessionStorage.setItem('userInteracted', 'true');
+    }
+    toggle(script);
+  };
+
+  // Check if user has already interacted in this session
+  React.useEffect(() => {
+    const userInteracted = sessionStorage.getItem('userInteracted');
+    if (userInteracted === 'true') {
+      setHasUserInteracted(true);
+    }
+  }, []);
 
   if (!isSupported) {
     return null;
@@ -39,18 +55,22 @@ export const AudioControl = ({ script, autoPlay = false }: AudioControlProps) =>
 
   return (
     <Button
-      onClick={() => toggle(script)}
+      onClick={handleClick}
       variant="outline"
       size="sm"
-      className={`fixed top-4 right-20 z-50 ${
-        isPlaying ? 'bg-blue-100 border-blue-300' : 'bg-white'
+      className={`fixed top-4 right-20 z-50 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+        isPlaying 
+          ? 'bg-blue-100 border-blue-300 animate-pulse shadow-md' 
+          : 'bg-white hover:bg-blue-50'
       }`}
     >
-      {isPlaying ? (
-        <VolumeX className="w-4 h-4 mr-2" />
-      ) : (
-        <Volume2 className="w-4 h-4 mr-2" />
-      )}
+      <div className={`transition-transform duration-200 ${isPlaying ? 'animate-pulse' : ''}`}>
+        {isPlaying ? (
+          <VolumeX className="w-4 h-4 mr-2" />
+        ) : (
+          <Volume2 className="w-4 h-4 mr-2" />
+        )}
+      </div>
       {isPlaying ? 'Audio stoppen' : 'Audio abspielen'}
     </Button>
   );
