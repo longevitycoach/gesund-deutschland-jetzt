@@ -305,8 +305,57 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
           </div>
         </div>
 
-        <div className="text-center p-8 bg-gradient-to-r from-blue-500 to-green-600 text-white rounded-xl">
-          <Zap className="w-16 h-16 mx-auto mb-4" />
+        {/* Personalized Analysis Section */}
+        {analysisResults && (
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-fadeIn">
+            <div className="flex items-center gap-3 mb-6">
+              <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
+              <h3 className="text-3xl font-bold text-purple-800">Ihre personalisierte Longevity-Analyse</h3>
+              <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
+            </div>
+            
+            <div className="prose prose-lg max-w-none">
+              <div 
+                className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft"
+                dangerouslySetInnerHTML={{ 
+                  __html: analysisResults
+                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-purple-700 font-bold">$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em class="text-purple-600 italic">$1</em>')
+                    .replace(/#{3}\s*(.*?)$/gm, '<h3 class="text-xl font-bold text-purple-800 mt-6 mb-3 flex items-center gap-2"><span class="w-2 h-2 bg-purple-500 rounded-full"></span>$1</h3>')
+                    .replace(/#{2}\s*(.*?)$/gm, '<h2 class="text-2xl font-bold text-purple-800 mt-8 mb-4 flex items-center gap-2"><span class="w-3 h-3 bg-purple-600 rounded-full"></span>$1</h2>')
+                    .replace(/#{1}\s*(.*?)$/gm, '<h1 class="text-3xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="w-4 h-4 bg-purple-700 rounded-full"></span>$1</h1>')
+                    .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
+                    .replace(/\n\n/g, '</p><p class="mb-4">')
+                    .replace(/^(.+)$/gm, '<p class="mb-4">$1</p>')
+                    .replace(/<p class="mb-4"><\/p>/g, '')
+                }}
+              />
+            </div>
+            
+            <div className="mt-8 p-4 bg-white rounded-lg border-l-4 border-purple-500 animate-slideInRight">
+              <div className="flex items-center gap-2 mb-2">
+                <BookOpen className="w-5 h-5 text-purple-600" />
+                <span className="font-semibold text-purple-800">Ihre nächsten Schritte:</span>
+              </div>
+              <p className="text-gray-700 text-sm">
+                Diese Analyse basiert auf Ihren individuellen Antworten und aktueller Longevity-Forschung. 
+                Beginnen Sie mit den wichtigsten Empfehlungen und steigern Sie sich schrittweise.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {isLoadingAnalysis && (
+          <div className="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 animate-pulse">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-6 h-6 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-gray-600 font-medium">Ihre Analyse wird geladen...</p>
+            </div>
+          </div>
+        )}
+
+        <div className="text-center p-8 bg-gradient-to-r from-blue-500 to-green-600 text-white rounded-xl animate-scaleIn">
+          <Zap className="w-16 h-16 mx-auto mb-4 animate-bounce" />
           <h3 className="text-3xl font-bold mb-4">Ihre Zukunft beginnt heute</h3>
           <p className="text-xl leading-relaxed max-w-3xl mx-auto">
             Sie haben heute die Werkzeuge kennengelernt, um Ihre Gesundheit in die eigenen Hände zu nehmen. 
