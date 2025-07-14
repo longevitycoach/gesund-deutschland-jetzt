@@ -2,26 +2,31 @@ import { useState, useEffect } from 'react';
 import { Heart, Target, Zap, Clock, Brain, Sparkles, BookOpen, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-
 interface FinalDecisionSlideProps {
   sessionId: string;
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
 }
-
-export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQuestion }: FinalDecisionSlideProps) => {
+export const FinalDecisionSlide = ({
+  sessionId,
+  onLifestyleAnswer,
+  highlightQuestion
+}: FinalDecisionSlideProps) => {
   const [insights, setInsights] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
   const [analysisResults, setAnalysisResults] = useState<string>('');
   const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
-  const [missingQuestions, setMissingQuestions] = useState<Array<{slideNumber: number, slideName: string}>>([]);
+  const [missingQuestions, setMissingQuestions] = useState<Array<{
+    slideNumber: number;
+    slideName: string;
+  }>>([]);
 
   // Load existing Perplexity analysis and check missing questions on component mount
   useEffect(() => {
     loadExistingAnalysis();
     checkMissingQuestions();
-    
+
     // Polling: Prüfe alle 2 Sekunden, ob eine Analyse verfügbar ist
     const analysisInterval = setInterval(() => {
       if (!analysisResults) {
@@ -29,24 +34,18 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
         autoGenerateAnalysis();
       }
     }, 2000);
-
     return () => clearInterval(analysisInterval);
   }, [sessionId]);
-
   const loadExistingAnalysis = async () => {
     if (!sessionId) return;
-    
     setIsLoadingAnalysis(true);
     try {
       // Check for existing analysis in ai_insights table
-      const { data: insights } = await supabase
-        .from('ai_insights')
-        .select('insights_text')
-        .eq('session_id', sessionId)
-        .eq('prompt_type', 'longevity_personalized_comprehensive')
-        .order('created_at', { ascending: false })
-        .limit(1);
-
+      const {
+        data: insights
+      } = await supabase.from('ai_insights').select('insights_text').eq('session_id', sessionId).eq('prompt_type', 'longevity_personalized_comprehensive').order('created_at', {
+        ascending: false
+      }).limit(1);
       if (insights && insights.length > 0 && insights[0].insights_text) {
         setAnalysisResults(insights[0].insights_text);
       }
@@ -56,41 +55,63 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       setIsLoadingAnalysis(false);
     }
   };
-
   const checkMissingQuestions = async () => {
     if (!sessionId) return;
-    
     try {
       // Get user's survey responses
-      const { data: responses } = await supabase
-        .from('survey_responses')
-        .select('slide_id')
-        .eq('session_id', sessionId);
-
+      const {
+        data: responses
+      } = await supabase.from('survey_responses').select('slide_id').eq('session_id', sessionId);
       const answeredSlideIds = new Set(responses?.map(r => r.slide_id) || []);
-      
+
       // Define slides that should have questions based on actual database responses
       // Match the actual slide_id values from the database
-      const slidesWithQuestions = [
-        { slideNumber: 1, slideName: 'Willkommen', slideId: 'welcome' },
-        { slideNumber: 2, slideName: 'Goldene Jahre', slideId: 'golden-years' },
-        { slideNumber: 3, slideName: 'Der stille Beginn des Verfalls', slideId: 'silent-decline' },
-        { slideNumber: 5, slideName: 'Das Drama der zweiten Lebenshälfte', slideId: 'second-half-drama' },
-        { slideNumber: 7, slideName: 'Die Revolution der Prävention', slideId: 'prevention-revolution' },
-        { slideNumber: 9, slideName: 'Die Vision der Longevity-Forschung', slideId: 'longevity-vision' },
-        { slideNumber: 10, slideName: 'Die Pioniere der optimalen Gesundheit', slideId: 'optimal-health' },
-        { slideNumber: 11, slideName: 'Gesundheit ist individuell', slideId: 'individual-health' },
-        { slideNumber: 12, slideName: 'Die 1%-Methode für Ihre Gesundheit', slideId: 'one-percent-method' },
-        { slideNumber: 13, slideName: 'Longevity Coach', slideId: 'longevity-coach' }
-      ];
-
+      const slidesWithQuestions = [{
+        slideNumber: 1,
+        slideName: 'Willkommen',
+        slideId: 'welcome'
+      }, {
+        slideNumber: 2,
+        slideName: 'Goldene Jahre',
+        slideId: 'golden-years'
+      }, {
+        slideNumber: 3,
+        slideName: 'Der stille Beginn des Verfalls',
+        slideId: 'silent-decline'
+      }, {
+        slideNumber: 5,
+        slideName: 'Das Drama der zweiten Lebenshälfte',
+        slideId: 'second-half-drama'
+      }, {
+        slideNumber: 7,
+        slideName: 'Die Revolution der Prävention',
+        slideId: 'prevention-revolution'
+      }, {
+        slideNumber: 9,
+        slideName: 'Die Vision der Longevity-Forschung',
+        slideId: 'longevity-vision'
+      }, {
+        slideNumber: 10,
+        slideName: 'Die Pioniere der optimalen Gesundheit',
+        slideId: 'optimal-health'
+      }, {
+        slideNumber: 11,
+        slideName: 'Gesundheit ist individuell',
+        slideId: 'individual-health'
+      }, {
+        slideNumber: 12,
+        slideName: 'Die 1%-Methode für Ihre Gesundheit',
+        slideId: 'one-percent-method'
+      }, {
+        slideNumber: 13,
+        slideName: 'Longevity Coach',
+        slideId: 'longevity-coach'
+      }];
       const missing = slidesWithQuestions.filter(slide => !answeredSlideIds.has(slide.slideId));
       setMissingQuestions(missing);
-      
       console.log('Antworten gefunden für Slides:', Array.from(answeredSlideIds));
       console.log('Fehlende Slides:', missing);
       console.log('Alle verfügbaren slide_ids in der Datenbank:', responses?.map(r => r.slide_id));
-      
     } catch (error) {
       console.error('Error checking missing questions:', error);
     }
@@ -104,41 +125,39 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
    */
   const autoGenerateAnalysis = async () => {
     if (!sessionId) return;
-    
     try {
       // Prüfe, ob bereits eine Analyse existiert
-      const { data: existingAnalysis } = await supabase
-        .from('ai_insights')
-        .select('id')
-        .eq('session_id', sessionId)
-        .eq('prompt_type', 'longevity_personalized_comprehensive')
-        .limit(1);
-
+      const {
+        data: existingAnalysis
+      } = await supabase.from('ai_insights').select('id').eq('session_id', sessionId).eq('prompt_type', 'longevity_personalized_comprehensive').limit(1);
       if (existingAnalysis && existingAnalysis.length > 0) {
         console.log('Analyse bereits vorhanden für Session:', sessionId);
         return;
       }
 
       // Hole alle Antworten für diese Session (ohne analysis_created_at Filter)
-      const { data: responses } = await supabase
-        .from('survey_responses')
-        .select('*')
-        .eq('session_id', sessionId)
-        .order('created_at', { ascending: true });
-
+      const {
+        data: responses
+      } = await supabase.from('survey_responses').select('*').eq('session_id', sessionId).order('created_at', {
+        ascending: true
+      });
       if (!responses || responses.length === 0) {
         console.log('Keine Antworten für automatische Analyse gefunden');
         return;
       }
-
       console.log(`Starte automatische Analyse für ${responses.length} Antworten`);
       console.log('Responses für Analyse:', responses);
-      
-      // Rufe die Perplexity Edge Function auf
-      const { data, error } = await supabase.functions.invoke('generate-longevity-insights', {
-        body: { sessionId, responses }
-      });
 
+      // Rufe die Perplexity Edge Function auf
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('generate-longevity-insights', {
+        body: {
+          sessionId,
+          responses
+        }
+      });
       if (error) {
         console.error('Fehler bei automatischer Analyse:', error);
         console.error('Error details:', error);
@@ -159,12 +178,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
     setIsLoadingAnalysis(true);
     try {
       // Delete existing analysis first
-      await supabase
-        .from('ai_insights')
-        .delete()
-        .eq('session_id', sessionId)
-        .eq('prompt_type', 'longevity_personalized_comprehensive');
-      
+      await supabase.from('ai_insights').delete().eq('session_id', sessionId).eq('prompt_type', 'longevity_personalized_comprehensive');
+
       // Generate new analysis
       await autoGenerateAnalysis();
       // Reload the new analysis
@@ -185,19 +200,16 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       setIsLoadingAnalysis(false);
     }
   };
-
   const generatePersonalizedInsights = async () => {
     if (!sessionId) return;
-    
     setIsLoading(true);
     try {
       // Get user's survey responses
-      const { data: responses } = await supabase
-        .from('survey_responses')
-        .select('*')
-        .eq('session_id', sessionId)
-        .order('created_at', { ascending: true });
-
+      const {
+        data: responses
+      } = await supabase.from('survey_responses').select('*').eq('session_id', sessionId).order('created_at', {
+        ascending: true
+      });
       if (!responses || responses.length === 0) {
         setInsights('Keine Antworten gefunden. Bitte durchlaufen Sie die Umfrage erneut.');
         setIsLoading(false);
@@ -205,10 +217,15 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       }
 
       // Call the Perplexity API to generate insights
-      const { data, error } = await supabase.functions.invoke('generate-longevity-insights', {
-        body: { sessionId, responses }
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('generate-longevity-insights', {
+        body: {
+          sessionId,
+          responses
+        }
       });
-
       if (error) {
         console.error('Error generating insights:', error);
         setInsights('Fehler beim Generieren der Insights. Bitte versuchen Sie es erneut.');
@@ -223,9 +240,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       setIsLoading(false);
     }
   };
-
-  return (
-    <div className="space-y-8">
+  return <div className="space-y-8">
       <div className="text-center mb-8">
         <Heart className="w-16 h-16 mx-auto text-red-500 mb-4" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -239,8 +254,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
       <div className="max-w-5xl mx-auto space-y-8">
 
         {/* Missing Questions Info Box */}
-        {missingQuestions.length > 0 && (
-          <div className="bg-orange-50 p-6 rounded-xl border-2 border-orange-300 shadow-lg">
+        {missingQuestions.length > 0 && <div className="bg-orange-50 p-6 rounded-xl border-2 border-orange-300 shadow-lg">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center">!</div>
               <h3 className="text-xl font-bold text-orange-800">Fehlende Antworten</h3>
@@ -249,20 +263,17 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
               Die folgenden Fragen wurden noch nicht beantwortet:
             </p>
             <ul className="space-y-2">
-              {missingQuestions.map((question, index) => (
-                <li key={index} className="flex items-center gap-2 text-orange-800">
+              {missingQuestions.map((question, index) => <li key={index} className="flex items-center gap-2 text-orange-800">
                   <span className="w-6 h-6 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold">
                     {question.slideNumber}
                   </span>
                   <span className="font-medium">{question.slideName}</span>
-                </li>
-              ))}
+                </li>)}
             </ul>
             <p className="text-sm text-orange-600 mt-4 italic">
               Bitte gehen Sie zurück zu den entsprechenden Folien und beantworten Sie die Fragen.
             </p>
-          </div>
-        )}
+          </div>}
 
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -334,30 +345,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
         </div>
 
         {/* Personalized Analysis Section */}
-        {analysisResults && (
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-fadeIn">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
-                <h3 className="text-3xl font-bold text-purple-800">Ihre personalisierte Longevity-Analyse</h3>
-                <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
-              </div>
-              <Button 
-                onClick={forceRegenerateAnalysis}
-                disabled={isLoadingAnalysis}
-                variant="outline"
-                className="border-purple-300 text-purple-700 hover:bg-purple-50"
-              >
-                {isLoadingAnalysis ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
-                    Generiere...
-                  </div>
-                ) : (
-                  "🔄 Neue Analyse generieren"
-                )}
-              </Button>
-            </div>
+        {analysisResults && <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-fadeIn">
+            
             
             {/* Perplexity request: 
               System Prompt: Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den Nutzerantworten, erstelle eine umfassende, personalisierte Longevity-Strategie.
@@ -369,43 +358,31 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
               🌟 **Langfristige Vision** (Wie sich Ihre Gesundheit in 5-10 Jahren entwickeln könnte)
               
               User Prompt: Hier sind die Antworten des Nutzers auf die Longevity-Umfrage mit Fragen und Antworten...
-            */}
+             */}
             <div className="prose prose-lg max-w-none">
-              <div 
-                className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft"
-                dangerouslySetInnerHTML={{ 
-                  __html: analysisResults
-                    // Zuerst die neuen Symbol-Überschriften (mit Emojis am Anfang)
-                    .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>')
-                    .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
-                    .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
-                    .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-                    // Dann die klassischen Markdown-Überschriften
-                    .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h2>')
-                    .replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
-                    // Fettgedruckte Texte als kleinere Überschriften
-                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
-                     // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
-                     .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
-                     // Nummerierte Aufzählungen in einer Zeile darstellen
-                     .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-3 my-2"><span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$1</span><span class="text-gray-800 font-medium">$2</span></div>')
-                     // Fix formatting for emoji headers to keep symbols and text on same line
-                     .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>')
-                     .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
-                     .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
-                     .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-                     // ✓ Symbole unverändert lassen - keine Spans erzeugen
-                     .replace(/<span[^>]*><span[^>]*>✓<\/span><span[^>]*>([^<]*)<\/span><\/span>/g, '✓ $1')
-                     // Horizontale Linien
-                     .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
-                    // Listen formatieren
-                    .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
-                    // Absätze
-                    .replace(/\n\n/g, '</p><p class="mb-4 text-gray-700 leading-relaxed">')
-                    .replace(/^(.+)$/gm, '<p class="mb-4 text-gray-700 leading-relaxed">$1</p>')
-                    .replace(/<p class="mb-4 text-gray-700 leading-relaxed"><\/p>/g, '')
-                }}
-              />
+              <div className="text-gray-800 leading-relaxed space-y-4 animate-slideInLeft" dangerouslySetInnerHTML={{
+            __html: analysisResults
+            // Zuerst die neuen Symbol-Überschriften (mit Emojis am Anfang)
+            .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>').replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>').replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>').replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
+            // Dann die klassischen Markdown-Überschriften
+            .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h2>').replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
+            // Fettgedruckte Texte als kleinere Überschriften
+            .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
+            // Spezielle Formatierung für "Top 3 Prioritäten" - Nummern und Headlines in einer Zeile
+            .replace(/(<h3[^>]*>)(\d+\.\s*)(.*?)(<\/h3>)/g, '$1<span class="inline-flex items-center gap-2"><span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$2</span><span>$3</span></span>$4')
+            // Nummerierte Aufzählungen in einer Zeile darstellen
+            .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-3 my-2"><span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$1</span><span class="text-gray-800 font-medium">$2</span></div>')
+            // Fix formatting for emoji headers to keep symbols and text on same line
+            .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>').replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>').replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>').replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
+            // ✓ Symbole unverändert lassen - keine Spans erzeugen
+            .replace(/<span[^>]*><span[^>]*>✓<\/span><span[^>]*>([^<]*)<\/span><\/span>/g, '✓ $1')
+            // Horizontale Linien
+            .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
+            // Listen formatieren
+            .replace(/^-\s+(.*?)$/gm, '<div class="flex items-start gap-3 my-2 p-3 bg-white/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"><span class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0">✓</span><span class="text-gray-700">$1</span></div>')
+            // Absätze
+            .replace(/\n\n/g, '</p><p class="mb-4 text-gray-700 leading-relaxed">').replace(/^(.+)$/gm, '<p class="mb-4 text-gray-700 leading-relaxed">$1</p>').replace(/<p class="mb-4 text-gray-700 leading-relaxed"><\/p>/g, '')
+          }} />
             </div>
             
             <div className="mt-8 p-4 bg-white rounded-lg border-l-4 border-purple-500 animate-slideInRight">
@@ -418,11 +395,9 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                 Beginnen Sie mit den wichtigsten Empfehlungen und steigern Sie sich schrittweise.
               </p>
             </div>
-          </div>
-        )}
+          </div>}
 
-        {isLoadingAnalysis && (
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-pulse">
+        {isLoadingAnalysis && <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-xl border border-purple-200 animate-pulse">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
               <Brain className="w-8 h-8 text-purple-600 animate-pulse" />
@@ -437,8 +412,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                 📊 Basierend auf neuester Forschung
               </p>
             </div>
-          </div>
-        )}
+          </div>}
 
         <div className="text-center p-8 bg-gradient-to-r from-blue-500 to-green-600 text-white rounded-xl animate-scaleIn">
           <Zap className="w-16 h-16 mx-auto mb-4 animate-bounce" />
@@ -450,6 +424,5 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
