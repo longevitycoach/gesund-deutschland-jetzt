@@ -349,6 +349,8 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                      .replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>')
                      .replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>')
                      .replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
+                     // ✓ Symbole unverändert lassen - keine Spans erzeugen
+                     .replace(/<span[^>]*><span[^>]*>✓<\/span><span[^>]*>([^<]*)<\/span><\/span>/g, '✓ $1')
                      // Horizontale Linien
                      .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
                     // Listen formatieren
