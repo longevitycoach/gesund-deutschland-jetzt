@@ -187,6 +187,14 @@ const Index = () => {
     const CurrentSlideComponent = slideComponents[currentSlide];
     
     if (CurrentSlideComponent) {
+      // Special handling for ModernDiseasesSlide (slide 3, index 3) to add auto-advance
+      if (currentSlide === 3) {
+        return <ModernDiseasesSlide 
+          onLifestyleAnswer={handleLifestyleAnswer} 
+          highlightQuestion={highlightQuestion}
+          onAutoAdvance={nextSlide}
+        />;
+      }
       return <CurrentSlideComponent onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
     }
     

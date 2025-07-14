@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Smartphone, UtensilsCrossed, Zap, AlertCircle, ExternalLink } from 'lucide-react';
 import { AnimatedStatistic } from '@/components/AnimatedStatistic';
 import { LifestylePoll } from '@/components/LifestylePoll';
@@ -9,9 +10,20 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 interface ModernDiseasesSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
   highlightQuestion?: boolean;
+  onAutoAdvance?: () => void;
 }
 
-export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion }: ModernDiseasesSlideProps) => {
+export const ModernDiseasesSlide = ({ onLifestyleAnswer, highlightQuestion, onAutoAdvance }: ModernDiseasesSlideProps) => {
+  // Auto-advance after 3 seconds without user interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (onAutoAdvance) {
+        onAutoAdvance();
+      }
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, [onAutoAdvance]);
   const pollOptions = [
     { 
       id: '1', 

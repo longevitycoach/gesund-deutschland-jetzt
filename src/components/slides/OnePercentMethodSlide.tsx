@@ -11,6 +11,12 @@ interface OnePercentMethodSlideProps {
 export const OnePercentMethodSlide = ({ onLifestyleAnswer, highlightQuestion }: OnePercentMethodSlideProps) => {
   const pollOptions = [
     {
+      id: 'longevity-expert',
+      text: 'Ich bin bereits Longevity Experte',
+      votes: 12,
+      motivationalResponse: 'Fantastisch! Als Longevity-Experte kennen Sie bereits die wichtigsten Prinzipien. Nutzen Sie Ihr Wissen, um anderen zu helfen und bleiben Sie immer neugierig auf neue Forschung. Ihr Beispiel kann andere inspirieren!'
+    },
+    {
       id: 'daily-walk',
       text: 'Täglich 10 Minuten spazieren gehen',
       votes: 42,
