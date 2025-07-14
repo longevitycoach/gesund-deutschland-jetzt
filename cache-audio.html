@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Cache Utility</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .script { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .cached { background-color: #d4edda; }
+        .progress { margin: 10px 0; }
+        button { padding: 10px 20px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Audio Cache Utility</h1>
+    <button id="cacheAll">Cache All Audio Files</button>
+    <div id="progress"></div>
+    <div id="scripts"></div>
+
+    <script>
+        const slideScripts = {
+            welcome: `Willkommen zum Thema Altern in Deutschland. Betrachten wir zunächst die aktuellen Zahlen: Die Gesamtlebenserwartung in Deutschland liegt bei etwa 81 Jahren. Das klingt zunächst ermutigend. Doch die Realität sieht anders aus. Wir verbringen im Durchschnitt etwa die erste Hälfte unserer Lebenszeit gesund. Dann folgen 24 Jahre eine Zeit mit mit eingeschränkter Mobilität und beginnen die ersten Anzeichen von ein bis zwei chronischen Krankheiten. Die letzten 16 Jahre sind eine Zeit mit mehreren chronischen Krankheiten und Pflegebedürftigkeit. Das bedeutet: Fast ein Drittel Ihres Lebens verbringen Sie voraussichtlich schwer krank! Die zweite Hälfte des Lebens ist für die meisten Menschen von eingeschränkter Lebensqualität geprägt. Doch es gibt Hoffnung - wir möchten Ihnen erklären wie Sie Ihre zweite Lebenshälfte mit gesundheitlichen Einschränkungen überwinden können. Wir stellen Ihnen am Ende jedes Themas eine kurze Frage. Sie erhalten am Ende eine ausführliche Auswertung und eine persönliche Empfehlung. Hier die erste Frage: Was ist Ihnen wichtiger? Länger leben als der heutige Durchschnitt oder gesünder leben im hohen Alter?`,
+            
+            goldenYears: `Die ersten 40 Jahre unseres Lebens sind unser goldenes Zeitalter. Bis zum 40. Lebensjahr befinden wir uns in der Regel in guter Gesundheit. Unser Körper funktioniert optimal, wir fühlen uns stark und leistungsfähig. Die körperliche Leistungsfähigkeit erreicht ihren Höhepunkt etwa um das 30. Lebensjahr. Danach beginnt bereits ein langsamer, aber stetiger Abfall. Bereits ab dem 30. Lebensjahr beginnt ein schleichender Prozess, den die meisten von uns ignorieren. Die ersten Zeichen sind subtil: längere Regenerationszeiten nach dem Sport, weniger Energie am Nachmittag, erste Verspannungen und schlechterer Schlaf. Dieser schleichende Prozess beginnt früh - viel früher, als die meisten Menschen denken. Fühlen Sie sich heute genauso fit wie vor 10 Jahren?`,
+            
+            silentDecline: `Ab dem 40. Lebensjahr beschleunigt sich der körperliche Abbau erheblich. Was schleichend begann, wird nun messbar und spürbar. Die Zahlen sind alarmierend: Pro Jahr verlieren wir ab 40 etwa 1 Prozent unserer Muskelmasse. Frauen verlieren zusätzlich 2 Prozent ihrer Knochendichte pro Jahr. Unser Stoffwechsel verlangsamt sich um 10 Prozent pro Dekade. Die ersten Warnsignale sind deutlich: Längere Regeneration nach dem Sport, nachlassende Energie am Nachmittag, häufigere Verspannungen und schlechterer Schlaf. Das Problem: Die meisten Menschen ignorieren diese subtilen Veränderungen oder schieben sie einfach auf "das Alter". Dabei ist genau jetzt der optimale Zeitpunkt für Gegenmaßnahmen! Die gute Nachricht: Jetzt ist noch Zeit zum Handeln! Nehmen Sie bewusst wahr, wenn sich etwas in Ihrem Körper verändert?`,
+            
+            modernDiseases: `Moderne Krankheiten sind die Hauptverursacher unseres vorzeitigen Alterns und unserer reduzierten Lebensqualität. Die großen Krankmacher unserer Zeit sind: Herz-Kreislauf-Erkrankungen, die 37 Prozent aller Todesfälle verursachen. Krebs mit 25 Prozent, Diabetes und seine Folgeerkrankungen, sowie Demenz und Alzheimer. Diese Krankheiten entstehen nicht über Nacht. Sie entwickeln sich über Jahre und Jahrzehnte durch unseren modernen Lebensstil: Bewegungsmangel, ungesunde Ernährung, chronischer Stress, schlechter Schlaf und Umweltgifte. Das Erschreckende: 80 Prozent dieser Krankheiten sind vermeidbar! Sie sind das direkte Resultat unserer Lebensweise. Die Krankheitsspirale beginnt meist schleichend: Erste Symptome werden ignoriert, kleine Beschwerden als normal abgetan, bis es zu spät ist für einfache Korrekturen. Welche dieser modernen Gesundheitsrisiken bereitet Ihnen die größten Sorgen?`,
+            
+            secondHalfDrama: `Die meisten Menschen ignorieren die Realität ihrer zweiten Lebenshälfte. Ab dem 60. Lebensjahr beginnt für viele eine Zeit der körperlichen Einschränkungen und nachlassenden Lebensqualität. Die Stanford-Studie hat drei kritische Alterungswellen identifiziert: Bei 34, 60 und 78 Jahren erleben wir massive Veränderungen in unserem Körper. Diese sind messbar und vorhersagbar. Die häufigsten Alterskrankheiten treffen fast jeden: 45 Prozent der Bevölkerung über 65 leiden unter Herz-Kreislauf-Erkrankungen. 60 Prozent haben Gelenkprobleme und Arthrose. 1,8 Millionen Deutsche sind von Demenz betroffen. 7,2 Prozent aller Erwachsenen haben Diabetes. Das Erschreckende: Die meisten Menschen verdrängen diese Realität oder hoffen, dass es sie nicht treffen wird. Dabei sind diese Entwicklungen nicht unvermeidlich! Die erste Alterungswelle beginnt bereits bei 34 Jahren mit ersten Hautveränderungen, Kollagenabbau und hormonellen Veränderungen. Um 60 Jahre steigen chronische Krankheiten exponentiell an. Bei 78 Jahren kommt es zu drastischem Verlust der Organfunktionen. Beschäftigt Sie der Gedanke, im Alter krank und pflegebedürftig zu werden?`,
+            
+            healthcareExplosion: `Das deutsche Gesundheitssystem steht vor dem Kollaps. Die Zahlen sind alarmierend: Die Gesundheitsausgaben explodieren: Von 440 Milliarden Euro heute auf über 700 Milliarden Euro bis 2040. Das entspricht einer Steigerung von 58 Prozent in nur 15 Jahren. Die Anzahl der Pflegebedürftigen wird sich verdoppeln: Von 4,1 Millionen heute auf über 8 Millionen bis 2040. Gleichzeitig schrumpft die Anzahl der Menschen im erwerbsfähigen Alter drastisch. Deutschland hat bereits heute die höchsten Gesundheitsausgaben pro Kopf in der Europäischen Union. Dennoch werden die Menschen nicht gesünder - sie werden nur älter mit mehr Krankheiten. Das Problem liegt im System: Es ist auf Krankheitsbehandlung, nicht auf Gesundheitserhaltung fokusiert. Ärzte werden für Behandlungen bezahlt, nicht für die Verhinderung von Krankheiten. Die Lösung liegt in der Eigenverantwortung: Wenn wir präventiv handeln und in unsere Gesundheit investieren, können wir das System entlasten und gleichzeitig unsere Lebensqualität drastisch verbessern. Wie viel würden Sie monatlich für Ihre Gesundheit ausgeben?`,
+            
+            preventionRevolution: `Wir brauchen eine Revolution der Prävention! Weg von der reaktiven Krankheitsbehandlung, hin zu proaktiver Gesundheitserhaltung. Die neue Formel für ein langes, gesundes Leben ist wissenschaftlich belegt: Täglich 30 Minuten Bewegung plus vollwertige Ernährung plus regelmäßige Biomarker-Tests. Die Weltgesundheitsorganisation empfiehlt 300 Minuten Bewegung pro Woche, Krafttraining zweimal pro Woche und hochintensive Intervalltrainings. Bei der Ernährung hat sich die mediterrane Kost als optimal erwiesen: Wenig verarbeitete Lebensmittel, viel Gemüse und Früchte, gesunde Fette und intermittierendes Fasten. Das Biomarker-Monitoring ist der dritte Baustein: Umfassende Blutanalysen, Stuhl-, Urin- und Speicheltests geben uns präzise Daten über unseren Gesundheitszustand. Dazu kommt Stressmanagement: 7 bis 9 Stunden Schlaf, Meditation, Atemtechniken und aktive Erholung. Das Ziel ist klar: Gesundheitsspanne gleich Lebensspanne. Statt 15 kranke Jahre am Lebensende wollen wir bis zum letzten Tag vital, geistig klar und körperlich aktiv bleiben. Wie stehen Sie persönlich zur Gesundheitsvorsorge?`,
+            
+            functionalMedicine: `Es gibt Pioniere in der Medizin, die einen anderen Weg gehen: die funktionelle Medizin. Visionäre wie Dr. Helena Orfanos-Boeckel, Dr. Thiemo Osterhaus, Professor Bernd Kleine-Gunk und Dr. Ulrich Strunz haben verstanden, was Standard-Medizin oft übersieht. Der Unterschied ist fundamental: Die Standard-Medizin orientiert sich an Durchschnittswerten der kranken Bevölkerung, behandelt nur Symptome, wendet Einheitsbehandlungen an und handelt erst reaktiv, wenn die Krankheit bereits da ist. Die funktionelle Medizin hingegen arbeitet mit optimalen Blutwerten - nicht Durchschnittswerten. Sie erforscht Ursachen statt nur Symptome zu behandeln, bietet individuelle Behandlung für jeden einzigartigen Menschen und handelt präventiv, bevor Krankheiten überhaupt entstehen. Das Problem: Es gibt nur wenige funktionelle Mediziner in Deutschland, lange Wartezeiten für Termine, und sie sind meist in Großstädten konzentriert. Zudem gibt es keine Kassenzulassung - Konsultationen kosten 200 bis 500 Euro, umfassende Bluttests weitere 300 bis 800 Euro. Die Lösung: Eigenverantwortung! Wenn das System noch nicht bereit ist, ergreifen Sie selbst die Initiative! Ich bin Selbstzahler bei einem Arzt spezialisiert für funktionelle Medizin. Wie häufig lassen Sie präventive Gesundheitschecks durchführen?`,
+            
+            longevityVision: `Die Longevity-Forschung zeigt uns eine revolutionäre Vision: Wir können nicht nur länger leben, sondern vor allem länger gesund leben. Betrachten wir die Entwicklung: 1960 hatten Menschen eine Lebenserwartung von 54 Jahren, davon 27 Jahre in guter Gesundheit. Heute leben wir 81 Jahre, aber nur 41 Jahre davon gesund. Die Vision für 2030: 81 Jahre oder mehr leben, aber 63 Jahre davon - das sind 78 Prozent - in guter Gesundheit verbringen. Bis 2050 könnte die Lebenserwartung auf 90 Jahre steigen, mit 77 Jahren in optimaler Gesundheit. Professor Eric Verdin vom Buck Institute for Research on Aging spricht von 15 bis 17 zusätzlichen gesunden Jahren, die durch die Longevity-Forschung möglich werden. Das Ziel ist die Verlängerung der Gesundheitsspanne: Nicht nur länger leben, sondern länger gesund leben - mit voller Mobilität und geistiger Klarheit. Wir wollen Vitalität erhalten: Energie, Kraft und Lebensfreude bis ins hohe Alter, wie ein 40-Jähriger mit 80 Jahren. Die Lebensqualität soll maximiert werden: Unabhängigkeit, Mobilität und kognitive Leistung bis zum letzten Lebenstag bewahren. Welcher Aspekt eines längeren, gesunden Lebens ist für Sie am wichtigsten?`,
+            
+            optimalHealth: `Es gibt Pioniere in der Medizin, die den Weg zu echter Vitalität zeigen. Mediziner wie Dr. Ulrich Strunz, Professor Ingo Froböse und Professor Bernd Kleine-Gunk haben verstanden, was optimale Gesundheit wirklich bedeutet. Dr. Strunz hat die "Frohwerte" entwickelt - optimale Blutwerte für maximale Leistungsfähigkeit. Zum Beispiel Hämoglobin: Für Männer über 16 Gramm pro Deziliter, für Frauen über 14 - deutlich höher als die Standard-Referenzwerte. Professor Froböse zeigt die Bewegungsformel: Täglich 10.000 Schritte minimum, zweimal pro Woche Krafttraining, dreimal pro Woche Ausdauertraining und täglich Mobilität und Dehnung. Professor Kleine-Gunk fokussiert auf die Anti-Aging-Säulen: Hormonoptimierung, Mikronährstoffe durch orthomolekulare Medizin, optimierter Lifestyle und regelmäßiges Biomarker-Monitoring. Der kontinuierliche Optimierungskreislauf ist entscheidend: Messen, handeln, nachmessen, anpassen - ein nie endender Prozess der Verbesserung. Diese Experten haben die Roadmap für optimale Gesundheit erstellt. Jetzt liegt es an uns, sie zu befolgen! Wie stehen Sie zu optimalen Gesundheitswerten statt Durchschnittswerten?`,
+            
+            individualHealth: `Gesundheit ist so individuell wie Ihr Fingerabdruck. Jeder Mensch ist biochemisch einzigartig. Ihre einzigartige biochemische Signatur umfasst Ihren individuellen Bedarf an Vitaminen, Mineralien abhängig von Genetik und Lebensstil, Aminosäuren als Bausteine für Ihre Proteine, und Hormone als Ihr körpereigenes Regulationssystem. Was NICHT funktioniert: Raten und Standard-Dosierungen, einmal messen und dann vergessen, das Kopieren von anderen Menschen, oder Behandlung nach Durchschnittswerten. Was funktioniert: Datenbasierte Entscheidungen, regelmäßige Kontrollen alle 3 bis 6 Monate, individuelle Dosierung und Optimierung auf Ihre persönlichen Werte. Was Sie brauchen an Vitaminen, Mineralien, Aminosäuren und Hormonen ist so einzigartig wie Ihr Fingerabdruck. Nur durch regelmäßiges Messen, gezieltes Auffüllen und erneutes Messen können Sie Ihre optimale Gesundheit erreichen. Wie gehen Sie derzeit mit Ihrer individuellen Gesundheit um?`,
+            
+            onePercentMethod: `Die Ein-Prozent-Methode für Ihre Gesundheit basiert auf James Clears bewährtem Prinzip: Minimale tägliche Verbesserungen führen zu maximalen Ergebnissen. Ein inspirierendes Beispiel ist das britische Radsport-Team: Sie belegten über 100 Jahre lang die letzten Plätze bei internationalen Wettkämpfen. Dann wendeten sie die Ein-Prozent-Methode an: Ein Prozent Verbesserung in allen Bereichen - Ernährung, Training, Equipment, Regeneration. Das Ergebnis: Sie wurden Olympiasieger und Weltrekordhalter innerhalb weniger Jahre. Die Psychologie dahinter: Kleine Schritte überfordern nicht, schaffen Dopamin-Belohnung durch schnelle Erfolge, und Gewohnheiten bilden sich automatisch. Radikalkuren scheitern, weil sie überfordern, keine nachhaltigen Gewohnheiten schaffen und eine hohe Rückfallrate haben. Vergessen Sie große Vorsätze! Verbessern Sie sich jeden Tag nur um ein Prozent - und werden Sie in einem Jahr zu einer völlig neuen, gesünderen Version Ihrer selbst. Mit welchem kleinen Schritt möchten Sie heute beginnen?`,
+            
+            longevityCoach: `Der persönliche Longevity Coach ist die Brücke zwischen medizinischer Expertise und Ihrer Eigenverantwortung. Was der Coach für Sie leistet: Biomarker-Interpretation - Ihre Laborwerte werden verständlich erklärt, optimale versus durchschnittliche Werte aufgezeigt und Zusammenhänge zwischen verschiedenen Markern verdeutlicht. Individualisierte Pläne basieren auf Ihren aktuellen Daten, berücksichtigen Ihren Lifestyle und bieten realistische, umsetzbare Schritte. Habit-Coaching nach der bewährten Ein-Prozent-Methode hilft dabei, schlechte Gewohnheiten schrittweise zu ersetzen und gute Gewohnheiten systematisch aufzubauen. Kontinuierliches Monitoring sorgt für regelmäßige Fortschrittskontrolle, Anpassung der Strategie bei Bedarf und bietet Motivation und Accountability. Der Longevity Coach ist die perfekte Ergänzung zum funktionellen Arzt: Während der Arzt für medizinische Diagnose und Behandlung zuständig ist, fokussiert sich der Coach auf Lifestyle-Optimierung und Gewohnheitsänderung. Ihr Weg zur Eigenverantwortung erfolgt in vier Phasen: Verstehen, planen, umsetzen, optimieren. Das Ziel: Sie werden zum Experten Ihrer eigenen Gesundheit. Wie könnte die Longevity Coach App aussehen?`
+        };
+
+        const SUPABASE_URL = 'https://prybthpekucgwivbdjhi.supabase.co';
+        
+        async function cacheAudioFile(scriptKey, text) {
+            try {
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/text-to-speech`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: text.trim() })
+                });
+
+                if (response.ok) {
+                    console.log(`✅ Cached: ${scriptKey}`);
+                    return true;
+                } else {
+                    console.error(`❌ Failed to cache ${scriptKey}: ${response.status}`);
+                    return false;
+                }
+            } catch (error) {
+                console.error(`❌ Error caching ${scriptKey}:`, error);
+                return false;
+            }
+        }
+
+        async function cacheAllAudio() {
+            const button = document.getElementById('cacheAll');
+            const progress = document.getElementById('progress');
+            
+            button.disabled = true;
+            button.textContent = 'Caching...';
+            
+            const scripts = Object.entries(slideScripts);
+            let completed = 0;
+            
+            progress.innerHTML = `<div>Caching ${scripts.length} audio files...</div>`;
+            
+            for (const [key, text] of scripts) {
+                progress.innerHTML += `<div>Processing: ${key}...</div>`;
+                
+                const success = await cacheAudioFile(key, text);
+                completed++;
+                
+                progress.innerHTML += `<div style="color: ${success ? 'green' : 'red'}">
+                    ${success ? '✅' : '❌'} ${key} (${completed}/${scripts.length})
+                </div>`;
+                
+                // Small delay to avoid overwhelming the API
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            
+            progress.innerHTML += `<div><strong>Completed! ${completed}/${scripts.length} files processed.</strong></div>`;
+            button.disabled = false;
+            button.textContent = 'Cache All Audio Files';
+        }
+
+        document.getElementById('cacheAll').addEventListener('click', cacheAllAudio);
+
+        // Display scripts
+        const scriptsDiv = document.getElementById('scripts');
+        Object.entries(slideScripts).forEach(([key, text]) => {
+            const div = document.createElement('div');
+            div.className = 'script';
+            div.innerHTML = `<strong>${key}</strong><br>${text.substring(0, 100)}...`;
+            scriptsDiv.appendChild(div);
+        });
+    </script>
+</body>
+</html>
