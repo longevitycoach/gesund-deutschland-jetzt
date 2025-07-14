@@ -45,7 +45,7 @@ const Index = () => {
     { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: 'secondHalfDrama', hasQuestion: true },
     { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: 'healthcareExplosion', hasQuestion: true },
     { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: 'preventionRevolution', hasQuestion: true },
-    { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin", scriptKey: 'functionalMedicine', hasQuestion: false },
+    { component: FunctionalMedicineSlide, title: "Das Problem der funktionellen Medizin", scriptKey: 'functionalMedicine', hasQuestion: true },
     { component: LongevityVisionSlide, title: "Die Vision der Longevity-Forschung", scriptKey: 'longevityVision', hasQuestion: true },
     { component: OptimalHealthSlide, title: "Die Pioniere der optimalen Gesundheit", scriptKey: 'optimalHealth', hasQuestion: true },
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth', hasQuestion: true },
