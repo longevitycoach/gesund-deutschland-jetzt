@@ -30,7 +30,7 @@ export const LifestylePoll = ({
   highlightQuestion = false,
   selectedAnswer
 }: LifestylePollProps) => {
-  // Initialize state based on selectedAnswer prop
+  // Initialize state based on selectedAnswer prop but allow re-selection
   const [selectedOptions, setSelectedOptions] = useState<string[]>(() => {
     if (selectedAnswer) {
       if (Array.isArray(selectedAnswer)) {
@@ -47,8 +47,8 @@ export const LifestylePoll = ({
     }
     return [];
   });
-  const [hasAnswered, setHasAnswered] = useState(!!selectedAnswer);
-  const [showMotivation, setShowMotivation] = useState(!!selectedAnswer);
+  const [hasAnswered, setHasAnswered] = useState(false); // Always allow re-selection
+  const [showMotivation, setShowMotivation] = useState(false);
   
   const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
   
@@ -109,6 +109,14 @@ export const LifestylePoll = ({
   
   return (
     <div className={highlightQuestion ? "animate-pulse bg-yellow-100 p-6 rounded-xl border-2 border-yellow-400" : ""}>
+      {/* Show previous selection indicator if there was a saved answer */}
+      {selectedAnswer && !hasAnswered && selectedOptions.length > 0 && (
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-700 font-medium">
+            💡 Ihre vorherige Antwort wird angezeigt. Sie können Ihre Auswahl ändern.
+          </p>
+        </div>
+      )}
       <h3 className={`text-xl font-semibold mb-4 ${highlightQuestion ? "text-yellow-800" : "text-gray-800"}`} dangerouslySetInnerHTML={{ __html: question }} />
       
       {multipleChoice && !hasAnswered && (
@@ -121,12 +129,15 @@ export const LifestylePoll = ({
         {options.map((option) => {
           const percentage = totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
           const isSelected = selectedOptions.includes(option.id);
+          const isPreviousSelection = selectedAnswer && selectedOptions.includes(option.id) && !hasAnswered;
           
           if (multipleChoice) {
             return (
               <div key={option.id} className="relative">
                 <div className={`flex items-center space-x-3 p-4 rounded-lg border transition-all ${
-                  isSelected ? 'bg-blue-100 border-blue-300' : 'bg-white border-gray-200 hover:border-blue-200'
+                  isSelected && hasAnswered ? 'bg-blue-100 border-blue-300' : 
+                  isPreviousSelection ? 'bg-green-50 border-green-300' :
+                  isSelected ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200 hover:border-blue-200'
                 } ${hasAnswered ? 'cursor-default' : 'cursor-pointer'}`}
                 onClick={() => !hasAnswered && handleMultipleChoice(option.id, !isSelected)}
                 >
@@ -146,7 +157,8 @@ export const LifestylePoll = ({
                       />
                     )}
                     <span className={`relative z-10 flex justify-between w-full ${
-                      isSelected && hasAnswered ? 'font-semibold text-blue-800' : 'text-gray-800'
+                      (isSelected && hasAnswered) ? 'font-semibold text-blue-800' : 
+                      isPreviousSelection ? 'font-medium text-green-700' : 'text-gray-800'
                     }`}>
                       <span>{option.text}</span>
                       {hasAnswered && (
@@ -165,10 +177,11 @@ export const LifestylePoll = ({
                 <Button
                   onClick={() => handleSingleAnswer(option.id)}
                   disabled={hasAnswered}
-                  variant={isSelected ? "default" : "outline"}
+                  variant={isSelected && hasAnswered ? "default" : isPreviousSelection ? "secondary" : "outline"}
                   className={`w-full text-left justify-start relative overflow-hidden ${
                     hasAnswered ? 'cursor-default' : 'hover:bg-blue-50'
-                  } ${isSelected && hasAnswered ? 'bg-blue-600 text-white border-blue-600' : ''}`}
+                  } ${isSelected && hasAnswered ? 'bg-blue-600 text-white border-blue-600' : 
+                       isPreviousSelection ? 'bg-green-100 border-green-300 text-green-800' : ''}`}
                 >
                   {hasAnswered && (
                     <div 
@@ -179,7 +192,8 @@ export const LifestylePoll = ({
                     />
                   )}
                   <span className="relative z-10 flex justify-between w-full">
-                    <span className={`${isSelected && hasAnswered ? 'text-white font-semibold' : 'text-gray-800'}`}>
+                    <span className={`${isSelected && hasAnswered ? 'text-white font-semibold' : 
+                                      isPreviousSelection ? 'text-green-800 font-medium' : 'text-gray-800'}`}>
                       {option.text}
                     </span>
                     {hasAnswered && (
