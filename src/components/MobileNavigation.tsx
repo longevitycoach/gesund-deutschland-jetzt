@@ -81,7 +81,7 @@ export const MobileNavigation = ({
                   >
                     {index === currentSlide ? (
                       <CircleDot className="w-4 h-4 text-blue-600" />
-                    ) : answeredSlides.has(index) ? (
+                    ) : (answeredSlides && answeredSlides.has(index)) ? (
                       <CircleDot className="w-4 h-4 text-green-600" />
                     ) : (
                       <Circle className="w-4 h-4 text-gray-400" />

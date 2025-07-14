@@ -75,7 +75,7 @@ export const SlideNavigation = ({
               >
                 {index === currentSlide ? (
                   <CircleDot className="w-3 h-3 text-blue-600" />
-                ) : answeredSlides.has(index) ? (
+                ) : (answeredSlides && answeredSlides.has(index)) ? (
                   <CircleDot className="w-3 h-3 text-green-600" />
                 ) : (
                   <Circle className="w-3 h-3 text-gray-400 hover:text-blue-400" />

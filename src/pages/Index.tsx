@@ -225,7 +225,7 @@ const Index = () => {
       {getCurrentScript() && (
         <AudioControl 
           script={getCurrentScript()} 
-          autoPlay={true}
+          autoPlay={false}
         />
       )}
       
