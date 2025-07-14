@@ -374,7 +374,8 @@ export const FinalDecisionSlide = ({
             .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-3 my-2"><span class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">$1</span><span class="text-gray-800 font-medium">$2</span></div>')
             // Fix formatting for emoji headers to keep symbols and text on same line
             .replace(/🔍 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🔍</span>$1</h2>').replace(/🎯 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-green-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🎯</span>$1</h2>').replace(/💡 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-blue-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">💡</span>$1</h2>').replace(/🌟 \*\*(.*?)\*\*/g, '<h2 class="text-3xl font-bold text-amber-800 mt-8 mb-6 inline-flex items-center gap-3"><span class="text-4xl">🌟</span>$1</h2>')
-            // ✓ Symbole unverändert lassen - keine Spans erzeugen
+            // ✓ Symbole mit nachfolgenden Text auf einer Zeile zusammenfassen
+            .replace(/✓\s*\n([^\n]+?):\s*\n([^\n]+)/g, '<div class="flex items-start gap-3 my-4"><span class="text-green-600 font-bold">✓</span><span class="text-gray-800"><strong>$1:</strong> $2</span></div>')
             .replace(/<span[^>]*><span[^>]*>✓<\/span><span[^>]*>([^<]*)<\/span><\/span>/g, '✓ $1')
             // Horizontale Linien
             .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
