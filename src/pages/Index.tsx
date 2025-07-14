@@ -41,7 +41,7 @@ const Index = () => {
     { component: WelcomeSlide, title: "Willkommen - Die Wahrheit über unser Altern", scriptKey: 'welcome', hasQuestion: true },
     { component: GoldenYearsSlide, title: "Die ersten 40 Jahre - Unser goldenes Zeitalter", scriptKey: 'goldenYears', hasQuestion: true },
     { component: SilentDeclineSlide, title: "Der stille Beginn des Verfalls", scriptKey: 'silentDecline', hasQuestion: true },
-    { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases', hasQuestion: false },
+    { component: ModernDiseasesSlide, title: "Die modernen Krankmacher", scriptKey: 'modernDiseases', hasQuestion: true },
     { component: SecondHalfDramaSlide, title: "Das Drama der zweiten Lebenshälfte", scriptKey: 'secondHalfDrama', hasQuestion: true },
     { component: HealthcareExplosionSlide, title: "Das unbezahlbare Problem der Krankenkassen", scriptKey: 'healthcareExplosion', hasQuestion: true },
     { component: PreventionRevolutionSlide, title: "Die Revolution der Prävention", scriptKey: 'preventionRevolution', hasQuestion: true },
