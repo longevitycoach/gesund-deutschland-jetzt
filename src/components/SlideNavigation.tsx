@@ -10,6 +10,7 @@ interface SlideNavigationProps {
   onPrev: () => void;
   onGoTo: (index: number) => void;
   slideTitle: string;
+  answeredSlides: Set<number>;
 }
 
 export const SlideNavigation = ({ 
@@ -18,7 +19,8 @@ export const SlideNavigation = ({
   onNext, 
   onPrev, 
   onGoTo, 
-  slideTitle 
+  slideTitle,
+  answeredSlides 
 }: SlideNavigationProps) => {
   const handleNext = () => {
     onNext();
@@ -43,6 +45,7 @@ export const SlideNavigation = ({
           onPrev={handlePrev}
           onGoTo={handleGoTo}
           slideTitle={slideTitle}
+          answeredSlides={answeredSlides}
         />
       </div>
 
@@ -72,6 +75,8 @@ export const SlideNavigation = ({
               >
                 {index === currentSlide ? (
                   <CircleDot className="w-3 h-3 text-blue-600" />
+                ) : answeredSlides.has(index) ? (
+                  <CircleDot className="w-3 h-3 text-green-600" />
                 ) : (
                   <Circle className="w-3 h-3 text-gray-400 hover:text-blue-400" />
                 )}

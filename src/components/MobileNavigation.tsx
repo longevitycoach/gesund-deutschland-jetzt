@@ -10,6 +10,7 @@ interface MobileNavigationProps {
   onPrev: () => void;
   onGoTo: (index: number) => void;
   slideTitle: string;
+  answeredSlides: Set<number>;
 }
 
 export const MobileNavigation = ({ 
@@ -18,7 +19,8 @@ export const MobileNavigation = ({
   onNext, 
   onPrev, 
   onGoTo, 
-  slideTitle 
+  slideTitle,
+  answeredSlides 
 }: MobileNavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -79,6 +81,8 @@ export const MobileNavigation = ({
                   >
                     {index === currentSlide ? (
                       <CircleDot className="w-4 h-4 text-blue-600" />
+                    ) : answeredSlides.has(index) ? (
+                      <CircleDot className="w-4 h-4 text-green-600" />
                     ) : (
                       <Circle className="w-4 h-4 text-gray-400" />
                     )}

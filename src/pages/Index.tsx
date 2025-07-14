@@ -242,6 +242,7 @@ const Index = () => {
             onPrev={prevSlide}
             onGoTo={goToSlide}
             slideTitle={slides[currentSlide].title}
+            answeredSlides={answeredSlides}
           />
         </div>
       </div>
