@@ -51,7 +51,7 @@ const Index = () => {
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth', hasQuestion: true },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod', hasQuestion: true },
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: 'longevityCoach', hasQuestion: true },
-    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: false }
+    { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: 'finalDecision', hasQuestion: false }
   ];
 
   // Reset next click count and highlight when slide changes

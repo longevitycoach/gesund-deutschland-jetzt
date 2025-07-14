@@ -273,5 +273,25 @@ onePercentMethod: `
     Das Ziel: Sie werden zum Experten Ihrer eigenen Gesundheit.
     
     Wie könnte die Longevity Coach App aussehen?
+  `,
+
+  finalDecision: `
+    Sie haben alle Informationen. Jetzt liegt es an Ihnen, den ersten Schritt zu einer gesünderen Zukunft zu machen.
+
+    Der Weg nach vorne besteht aus drei klaren Schritten:
+
+    Erste Schritte: Beginnen Sie mit kleinen, nachhaltigen Veränderungen.
+
+    Kontinuierliche Verbesserung: 1 Prozent besser jeden Tag - das ist die Formel.
+
+    Langfristige Vision: Ihre gesunde zweite Lebenshälfte wartet auf Sie.
+
+    Die Zeit ist JETZT. Jeder Tag zählt. Mit jedem Tag, den Sie warten, wird es schwieriger. Ihr Körper altert kontinuierlich - aber Sie können diesen Prozess verlangsamen und umkehren.
+
+    Ihre Kraft liegt in Ihren Händen. Sie haben heute gelernt, dass 80 Prozent der Alterskrankheiten vermeidbar sind. Das bedeutet: Sie haben die Kontrolle über Ihr Schicksal.
+
+    Der beste Zeitpunkt war gestern. Der zweitbeste Zeitpunkt ist heute. Beginnen Sie jetzt mit Ihrer Transformation zu einem gesünderen, energiereicheren Leben.
+
+    Hier ist das Ergebnis Ihrer individuellen Antworten:
   `
 };
