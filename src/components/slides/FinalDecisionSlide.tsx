@@ -314,8 +314,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
               <Sparkles className="w-6 h-6 text-yellow-500 animate-bounce" />
             </div>
             
-            {/* 
-              HTML Comment - Original Perplexity Request for debugging:
+            {/* Perplexity request: 
               System Prompt: Du bist ein erfahrener Longevity-Experte und Coach. Basierend auf den Nutzerantworten, erstelle eine umfassende, personalisierte Longevity-Strategie.
               WICHTIG: Sprich den Nutzer direkt an (Du/Sie) und vermeide die dritte Person. Schreibe persönlich und motivierend.
               Strukturiere deine Antwort wie folgt:
@@ -340,7 +339,7 @@ export const FinalDecisionSlide = ({ sessionId, onLifestyleAnswer, highlightQues
                     .replace(/^##\s*(\d+\.\s*.*?)$/gm, '<h2 class="text-3xl font-bold text-purple-800 mt-8 mb-6 flex items-center gap-3"><span class="text-4xl">⭐</span>$1</h2>')
                     .replace(/^#\s*(.*?)$/gm, '<h1 class="text-4xl font-bold text-purple-900 mt-8 mb-6 flex items-center gap-3"><span class="text-5xl">🎯</span>$1</h1>')
                     // Fettgedruckte Texte als kleinere Überschriften
-                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4 flex items-center gap-2"><span class="text-2xl">💫</span>$1</h3>')
+                    .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">$1</h3>')
                     // Horizontale Linien
                     .replace(/^---$/gm, '<hr class="my-8 border-purple-300 border-2">')
                     // Listen formatieren
