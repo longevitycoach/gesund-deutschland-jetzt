@@ -21,7 +21,6 @@ import { IndividualHealthSlide } from '@/components/slides/IndividualHealthSlide
 import { OnePercentMethodSlide } from '@/components/slides/OnePercentMethodSlide';
 import { LongevityCoachSlide } from '@/components/slides/LongevityCoachSlide';
 import { FinalDecisionSlide } from '@/components/slides/FinalDecisionSlide';
-import { PersonalizedInsightsSlide } from '@/components/slides/PersonalizedInsightsSlide';
 
 interface SlideComponentProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
@@ -52,7 +51,6 @@ const Index = () => {
     { component: IndividualHealthSlide, title: "Gesundheit ist individuell", scriptKey: 'individualHealth', hasQuestion: true },
     { component: OnePercentMethodSlide, title: "Die 1%-Methode für Ihre Gesundheit", scriptKey: 'onePercentMethod', hasQuestion: true },
     { component: LongevityCoachSlide, title: "Ihr persönlicher Longevity Coach", scriptKey: null, hasQuestion: true },
-    { component: PersonalizedInsightsSlide, title: "Ihre personalisierten Longevity-Insights", scriptKey: null, hasQuestion: false },
     { component: FinalDecisionSlide, title: "Ihre Entscheidung - Ihr Leben", scriptKey: null, hasQuestion: false }
   ];
 
@@ -154,12 +152,8 @@ const Index = () => {
 
   // Render the current slide component
   const renderCurrentSlide = () => {
-    // PersonalizedInsightsSlide is at index 13 and needs sessionId
+    // FinalDecisionSlide is now at index 13 and needs sessionId
     if (currentSlide === 13) {
-      return <PersonalizedInsightsSlide sessionId={sessionId} />;
-    }
-    // FinalDecisionSlide is at index 14 and needs sessionId
-    if (currentSlide === 14) {
       return <FinalDecisionSlide sessionId={sessionId} onLifestyleAnswer={handleLifestyleAnswer} highlightQuestion={highlightQuestion} />;
     }
     
