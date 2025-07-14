@@ -8,33 +8,41 @@ import HealingIcon from '@mui/icons-material/Healing';
 
 interface GoldenYearsSlideProps {
   onLifestyleAnswer?: (slideId: string, questionId: string, answer: string | string[], questionText: string, answerText: string) => void;
+  highlightQuestion?: boolean;
 }
 
 export const GoldenYearsSlide = ({ onLifestyleAnswer }: GoldenYearsSlideProps) => {
   const fitnessComparisonOptions = [
     { 
       id: '1', 
+      text: 'Ja ich fühle mich sogar fitter!', 
+      votes: 8,
+      motivationalResponse: 'Wow! Das ist außergewöhnlich und inspirierend! Sie zeigen, dass es möglich ist, mit zunehmendem Alter sogar fitter zu werden. Sie sind ein wahres Vorbild!',
+      icon: <FitnessCenterIcon className="w-5 h-5" />
+    },
+    { 
+      id: '2', 
       text: 'Ja, ich fühle mich genauso fit wie damals', 
       votes: 15,
       motivationalResponse: 'Fantastisch! Sie gehören zur seltenen Gruppe, die ihre Fitness erhalten hat. Bleiben Sie auf diesem Weg - Sie machen alles richtig!',
       icon: <FitnessCenterIcon className="w-5 h-5" />
     },
     { 
-      id: '2', 
+      id: '3', 
       text: 'Größtenteils ja, aber ich merke kleine Unterschiede', 
       votes: 45,
       motivationalResponse: 'Das ist völlig normal und ein gutes Zeichen für Ihr Körperbewusstsein. Kleine Anpassungen können große Unterschiede machen.',
       icon: <SelfImprovementIcon className="w-5 h-5" />
     },
     { 
-      id: '3', 
+      id: '4', 
       text: 'Nein, ich merke deutliche Unterschiede', 
       votes: 110,
       motivationalResponse: 'Ehrlichkeit ist der erste Schritt! Die gute Nachricht: Es ist nie zu spät, wieder mehr Fitness aufzubauen. Jede Verbesserung zählt.',
       icon: <AccessibilityNewIcon className="w-5 h-5" />
     },
     { 
-      id: '4', 
+      id: '5', 
       text: 'Ich war schon vor 10 Jahren nicht besonders fit', 
       votes: 65,
       motivationalResponse: 'Perfekte Ausgangslage für Verbesserungen! Sie haben weniger zu verlieren und mehr zu gewinnen. Starten Sie jetzt - Ihr Körper wird es Ihnen danken.',
