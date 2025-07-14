@@ -92,7 +92,8 @@ Strukturiere deine Antwort wie folgt:
 
 Formatierung:
 - Verwende horizontale Linien (---) zwischen den Hauptabschnitten
-- Keine Bullet Points vor Überschriften verwenden
+- Spreche the Nutzer direkt an und nicht in dritter Person und danke ihm für seine Antworten
+- Keine Bullet Points vor Überschriften verwenden, stattdessen passende Symbole
 - Bei jeder Handlungsempfehlung erkläre konkret den Health- und Longevity-Effekt
 - Sei motivierend und mutmachend - betone was bereits gut läuft und wie erreichbar die Ziele sind
 - Verwende eine freundliche, ermutigende deutsche Sprache und gib dem Nutzer das Gefühl, dass positive Veränderungen möglich sind`;
