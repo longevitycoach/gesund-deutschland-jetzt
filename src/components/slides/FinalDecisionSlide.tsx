@@ -374,15 +374,15 @@ export const FinalDecisionSlide = ({
             .replace(/\*\*(.*?)\*\*/g, '<h3 class="text-lg font-bold text-gray-800 mt-3 mb-1">$1</h3>')
             // Kompakte nummerierte Listen
             .replace(/^(\d+\.\s*)(.*?)$/gm, '<div class="inline-flex items-center gap-2 my-1"><span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">$1</span><span class="text-gray-800 text-sm">$2</span></div>')
-            // ✓ Symbole und • Listen - einfaches Format mit ul/b tags
-            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            .replace(/•\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            .replace(/•\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            .replace(/•\s+([^:\n]+):\s+([^\n]+)/g, '<ul><b>$1:</b> $2</ul>')
-            // Listen OHNE spans/divs
-            .replace(/^-\s+(.*?)$/gm, '<ul>$1</ul>')
+            // ✓ Symbole und • Listen - korrekte HTML-Struktur
+            .replace(/✓\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            .replace(/✓\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            .replace(/✓\s+([^:\n]+):\s+([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            .replace(/•\s*\n\s*([^\n]+?):\s*\n\s*([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            .replace(/•\s+([^:\n]+):\s*\n\s*([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            .replace(/•\s+([^:\n]+):\s+([^\n]+)/g, '<ul><li><b>$1:</b> $2</li></ul>')
+            // Listen mit li tags
+            .replace(/^-\s+(.*?)$/gm, '<ul><li>$1</li></ul>')
             // Horizontale Linien
             .replace(/^---+$/gm, '<hr class="my-4 border-gray-300">')
             // Alle verbleibenden Zeilenumbrüche zwischen verwandten Elementen entfernen
